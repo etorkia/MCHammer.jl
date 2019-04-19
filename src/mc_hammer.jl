@@ -2,18 +2,20 @@ module mc_hammer
 
 #MC Hammer is a Monte-Carlo Tool Kit for quickly building risk and decisision analysis
 
-using Distributions
-using StatsBase
-using DataFrames
-using LinearAlgebra
-using Random
-using Gadfly; precompile
-using DataFrames
-using CSV
-using Distributions
-using Statistics
-using TimeSeries; precompile
-using IterableTables
+using
+    Distributions,
+    StatsBase,
+    DataFrames,
+    LinearAlgebra,
+    Random,
+    DataFrames,
+    CSV,
+    Distributions,
+    Statistics,
+    IterableTables
+    using TimeSeries; precompile,
+    using Gadfly; precompile,
+
 
 import Random: rand, rand!
 import LinearAlgebra: BlasReal, BlasFloat
@@ -22,7 +24,6 @@ import Statistics: mean, mean!, var, varm, varm!, std, stdm, cov, covm,
 median, middle
 
 export
-
 cormat,
 covmat,
 corvar,
