@@ -1,11 +1,11 @@
 #CORRELATION AND SIMULATION TOOLS FOR MC HAMMER
 #by Eric Torkia, April 17th 2019
 
-using Distributions
-using StatsBase
-using DataFrames
-using LinearAlgebra
-using Random
+# using Distributions
+# using StatsBase
+# using DataFrames
+# using LinearAlgebra
+# using Random
 
 function cormat(ArrayName, RankOrder)
 cor_mat = []
@@ -112,4 +112,3 @@ cmd(x) = run(`cmd /C $x`)
 #
 # #Test Data
 # test_logNormal = [rand(LogNormal(0, 0.5),n_trials), rand(Normal(3,2),n_trials), rand(Gamma(1, 0.5),n_trials), rand(LogNormal(0, 0.5),n_trials), rand(Normal(3,2),n_trials), rand(Gamma(1, 0.5),n_trials)]
- 

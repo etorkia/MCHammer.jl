@@ -1,7 +1,7 @@
 #SIMULATION RESULTS AND CHARTS FOR MC HAMMER
 #by Eric Torkia, April 17th 2019
 
-using Gadfly; precompile
+#using Gadfly; precompile
 
 function density_chrt(Data, x_label)
       if x_label ==""
@@ -160,11 +160,11 @@ return plot(stack(trend_chart), y=:value, x=:timestamp, color=:variable, Geom.li
 
 end
 
+# ADD Cumulative form (in Markowitz example)
 
 
 
-
-#Error Bar Example
+#ADD Error Bar Example
 
 # x = sort(rand(10)); xmin = 0.9x; xmax = 1.1x;
 # ystr = map(i -> string(i) * " as a string", 1:10)
