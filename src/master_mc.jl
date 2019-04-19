@@ -1,7 +1,4 @@
-module mc_hammer
-
-#MC Hammer is a Monte-Carlo Tool Kit for quickly building risk and decisision analysis
-
+module master_mc
 
 using LinearAlgebra
 using Distributions, StatsBase, Random, DataFrames, CSV, Distributions, Statistics, IterableTables
@@ -31,8 +28,5 @@ include("correlation.jl")
 include("mch_charts.jl")
 include("mch_timeseries.jl")
 
-function test()
-    println("Hello")
-
+#uuid = "b2cdeac0-6178-11e9-0dae-dd520ea357d8"
 end
-end # module

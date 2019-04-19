@@ -10,11 +10,11 @@ function density_chrt(Data, x_label)
 chart = plot(Data, x=Data, Guide.xlabel(x_label), Guide.ylabel("Frequency"), Geom.density)
 describe(Data)
 println("")
-print("Mean: ", mean(ProjectNPV),"\n")
-print("Std.Dev: ", std(ProjectNPV),"\n")
-print("Prob. of Neg.: ", GetCertainty(ProjectNPV,0,0),"\n")
+print("Mean: ", mean(Data),"\n")
+print("Std.Dev: ", std(Data),"\n")
+print("Prob. of Neg.: ", GetCertainty(Data,0,0),"\n")
 println("")
-print("p10, p50, p90 : ", quantile(collect(Float64, ProjectNPV),[0.1,0.5,0.9]),"\n")
+print("p10, p50, p90 : ", quantile(collect(Float64, Data),[0.1,0.5,0.9]),"\n")
 return chart
 end
 
@@ -25,11 +25,11 @@ function histogram_chrt(Data, x_label)
 chart = plot(Data, x=Data, Guide.xlabel(x_label), Guide.ylabel("Frequency"), Geom.histogram)
 describe(Data)
 println("")
-print("Mean: ", mean(ProjectNPV),"\n")
-print("Std.Dev: ", std(ProjectNPV),"\n")
-print("Prob. of Neg.: ", GetCertainty(ProjectNPV,0,0),"\n")
+print("Mean: ", mean(Data),"\n")
+print("Std.Dev: ", std(Data),"\n")
+print("Prob. of Neg.: ", GetCertainty(Data,0,0),"\n")
 println("")
-print("p10, p50, p90 : ", quantile(collect(Float64, ProjectNPV),[0.1,0.5,0.9]),"\n")
+print("p10, p50, p90 : ", quantile(collect(Float64, Data),[0.1,0.5,0.9]),"\n")
 return chart
 end
 

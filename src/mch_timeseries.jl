@@ -1,12 +1,12 @@
 #TIME SERIES FUNCTIONS FOR MC HAMMER
 #by Eric Torkia, April 17th 2019
-# using DataFrames
-# using CSV
-# using Distributions
-# using Statistics
-# using StatsBase
-# using TimeSeries; precompile
-# using IterableTables #this important to convert DF to TimeSeries
+using DataFrames
+using CSV
+using Distributions
+using Statistics
+using StatsBase
+using TimeSeries; precompile
+using IterableTables #this important to convert DF to TimeSeries
 
 
 #--------------------------------------

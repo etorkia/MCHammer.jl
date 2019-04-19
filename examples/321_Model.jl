@@ -2,7 +2,7 @@ using StatsBase
 using Distributions
 using Random
 using Gadfly, Compose
-include("correlation_v0r5.jl")
+include("src\\correlation.jl")
 
 clearconsole()
 

@@ -1,11 +1,11 @@
 #CORRELATION AND SIMULATION TOOLS FOR MC HAMMER
 #by Eric Torkia, April 17th 2019
 
-# using Distributions
-# using StatsBase
-# using DataFrames
-# using LinearAlgebra
-# using Random
+using Distributions
+using StatsBase
+using DataFrames
+using LinearAlgebra
+using Random
 
 function cormat(ArrayName, RankOrder)
 cor_mat = []
