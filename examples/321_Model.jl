@@ -2,7 +2,8 @@ using StatsBase
 using Distributions
 using Random
 using Gadfly, Compose
-include("src\\correlation.jl")
+using mc_hammer; precompile
+#include("..\\src\\correlation.jl")
 
 clearconsole()
 
@@ -31,7 +32,7 @@ cormat(Trials,1)
 plot(x=[Profit Profit_C], Geom.density, color=["Uncorrelated","Correlated"], Guide.Title("Compare Results Methods"))
 
 #Plot S-Curves
-plot(layer(ecdf(Profit),minimum(Profit), maximum(Profit), Theme(default_color="orange")),layer(ecdf(Profit_C), minimum(Profit_C), maximum(Profit_C)), Guide.Title("Compare Portfolio Methods"))
+# plot(layer(ecdf(Profit),minimum(Profit), maximum(Profit), Theme(default_color="orange")),layer(ecdf(Profit_C), minimum(Profit_C), maximum(Profit_C)), Guide.Title("Compare Portfolio Methods"))
 
 
 

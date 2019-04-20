@@ -1,0 +1,7 @@
+Items to develop in MC Hammer
+
+* MetaLogs
+* BP : Use print to List Outputs for use with graph and stats functions
+* Create a Percentile reporting function that supports Percentiles, Quantiles, Deciles and quintiles
+* BP for Modeling : create functions for all repeated logic
+* Correlation has to be done for all groups of simulated vars seperately and recombined into sensitivity tables 

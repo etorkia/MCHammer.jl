@@ -1,11 +1,11 @@
 #CORRELATION AND SIMULATION TOOLS FOR MC HAMMER
 #by Eric Torkia, April 17th 2019
 
-using Distributions
-using StatsBase
-using DataFrames
-using LinearAlgebra
-using Random
+# using Distributions
+# using StatsBase
+# using DataFrames
+# using LinearAlgebra
+# using Random
 
 function cormat(ArrayName, RankOrder)
 cor_mat = []
@@ -90,7 +90,19 @@ function GetCertainty(ArrayName, x, AboveBelow)
       return certainty
 end
 
+#Shell /Dos Command wrapper
 cmd(x) = run(`cmd /C $x`)
+
+function P_Buffet(ArrayName, Increment=0.1)
+names = map(i -> "P" * string(i), RoundDown(collect(0:Increment:1)*100,0))
+P_Vals = collect(0:Increment:1)
+#convert(Array{Float64}, ArrayName)
+fractiles = quantile(collect(Float64, ArrayName), P_Vals)
+return hcat(names, fractiles)
+end
+
+#convert(Array{Float64}, ArrayName)
+# convert(Array{Int64}, collect(0:Increment:1)*100)
 
 
 

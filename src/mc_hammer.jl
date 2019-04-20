@@ -4,7 +4,7 @@ module mc_hammer
 
 
 using LinearAlgebra
-using Distributions, StatsBase, Random, DataFrames, CSV, Distributions, Statistics, IterableTables
+using Statistics, Random, Distributions, StatsBase, DataFrames, CSV, IterableTables
 using TimeSeries
 using Gadfly
 
@@ -16,18 +16,20 @@ import Statistics: mean, mean!, var, varm, varm!, std, stdm, cov, covm,
 median, middle
 
 export
-cormat,
-covmat,
-corvar,
-GetCertainty,
-density_chrt,
-histogram_chrt,
-sensitivity_chrt,
-trend_chrt,
-GBMMult_Fit,
-GBMM
+    cormat,
+    covmat,
+    corvar,
+    GetCertainty,
+    density_chrt,
+    histogram_chrt,
+    sensitivity_chrt,
+    trend_chrt,
+    GBMMult_Fit,
+    GBMM
 
-include("correlation.jl")
+
+#Source files for MC_Hammer functions
+include("mch_simtools.jl")
 include("mch_charts.jl")
 include("mch_timeseries.jl")
 
