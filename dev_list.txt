@@ -1,7 +1,29 @@
-Items to develop in MC Hammer
+Things to remember
+---------------------------
+1.) When you add a function, dont forget to export in in the main file
+2.) Documentation Docstrings must can't have line spaces between description and function, otherwise text wont show up
 
+
+Items to develop in MC Hammer
+---------------------------------
 * MetaLogs
 * BP : Use print to List Outputs for use with graph and stats functions
 * Create a Percentile reporting function that supports Percentiles, Quantiles, Deciles and quintiles
 * BP for Modeling : create functions for all repeated logic
-* Correlation has to be done for all groups of simulated vars seperately and recombined into sensitivity tables 
+* Correlation has to be done for all groups of simulated vars separately and recombined into sensitivity tables
+* Changes to output means Sensitivity Chart
+* Combined Expert Opinion
+* Learning Curve Forecasts
+* Ogive through empirical resampling
+* Error Messages
+* ADD Cumulative form (in Markowitz example)
+* Error Bar Example (base code in mch_charts)
+* Add Overlay
+
+
+
+
+How to create an error condition in Julia:
+--------------------------------------------
+m == n || throw(DimensionMismatch("matrix is not square: dimensions are $(size(A))"))
+https://discourse.julialang.org/t/exception-handling/3853/6

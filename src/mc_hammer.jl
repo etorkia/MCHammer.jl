@@ -1,7 +1,8 @@
 module mc_hammer
 
-#MC Hammer is a Monte-Carlo Tool Kit for quickly building risk and decisision analysis
-
+"""
+MC Hammer is a Monte-Carlo Tool Kit for quickly building risk and decisision analysis
+"""
 
 using LinearAlgebra
 using Statistics, Random, Distributions, StatsBase, DataFrames, CSV, IterableTables
@@ -20,6 +21,9 @@ export
     covmat,
     corvar,
     GetCertainty,
+    fractiles,
+    cmd,
+    truncate_digit,
     density_chrt,
     histogram_chrt,
     sensitivity_chrt,

@@ -1,5 +1,10 @@
 #TIME SERIES FUNCTIONS FOR MC HAMMER
-#by Eric Torkia, April 17th 2019
+#by Eric Torkia, April 2019
+
+"""
+mch_timeseries contains functions to create simulated times series with mc_hammer. Current implementation supports GBM only. Other methods should be added
+"""
+
 # using DataFrames
 # using CSV
 # using Distributions
@@ -10,6 +15,11 @@
 
 
 #--------------------------------------
+"""
+    GBMMult_Fit(HistoricalData, PeriodsToForecast)
+
+GBMMult_Fit uses a vector of historical data to calculate the log returns and use the mean and standard deviation to project a random walk. It the uses the last datapoint in the set as the starting point for the new forecast. *PeriodsToForecast* is an integer >1
+"""
 function GBMMult_Fit(HistoricalData, PeriodsToForecast)
 #calculate returns
 Returns_Arr = []
@@ -43,6 +53,13 @@ push!(Returns_Arr, 0 )
     return result
 end
 
+
+"""
+    GBMM(LastValue, ReturnsMean, ReturnsStd, PeriodsToForecast)
+
+GBMM produces a random wlak using the last data point and requires a mean and standard deviation to be provided. *PeriodsToForecast* is an integer >1
+
+"""
 function GBMM(LastValue, ReturnsMean, ReturnsStd, PeriodsToForecast)
     # project Series
         frct_multiplier = cumprod(rand(Normal(ReturnsMean,ReturnsStd),PeriodsToForecast,1) + fill(1,PeriodsToForecast,1), dims=1)
