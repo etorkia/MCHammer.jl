@@ -147,7 +147,7 @@ end
 """
     fractiles(ArrayName, Increment=0.1)
 
-The fractiles function calculates percentiles at equal increments. The default **optional** argument for Increments is 0.1 for Deciles but can be set to anyting such as 0.05 for quintiles or 0.01 for percentiles.
+The fractiles function calculates percentiles at equal increments. The default **optional** argument for *Increments is 0.1* for deciles but can be set to anyting such as 0.05 for quintiles or 0.01 for percentiles.
 """
 function fractiles(ArrayName, Increment=0.1)
 names = map(i -> "P" * string(i), collect(0:Increment:1)*100)
