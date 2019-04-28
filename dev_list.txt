@@ -6,19 +6,19 @@ Things to remember
 
 Items to develop in MC Hammer
 ---------------------------------
-* MetaLogs
+* Functions : MetaLog Distributions
 * BP : Use print to List Outputs for use with graph and stats functions
 * Create a Percentile reporting function that supports Percentiles, Quantiles, Deciles and quintiles
 * BP for Modeling : create functions for all repeated logic
-* Correlation has to be done for all groups of simulated vars separately and recombined into sensitivity tables
-* Changes to output means Sensitivity Chart
-* Combined Expert Opinion
-* Learning Curve Forecasts
-* Ogive through empirical resampling
-* Error Messages
-* ADD Cumulative form (in Markowitz example)
-* Error Bar Example (base code in mch_charts)
-* Add Overlay
+* BP: Correlation has to be done for all groups of simulated vars separately and recombined into sensitivity tables
+* Chart: Changes to output means Sensitivity Chart
+* Function: Combined Expert Opinion
+* Time Series: Learning Curve Forecasts
+* Function: Ogive through empirical resampling
+* Documentation: Error Messages
+* Chart: ADD S-Curve (in Markowitz example)
+* Chart: Error Bar Example (base code in mch_charts)
+* Chart: Add Overlay
 
 
 

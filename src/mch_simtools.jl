@@ -8,8 +8,8 @@
 """
     cormat(ArrayName, RankOrder=1)
 
-Cormat
-
+Cormat calculates a symetric correlation matrix using both PPMC and Rank Order. Rank Order is default because this is what it used in the Iman-Conover method for correlating of simulated variables.
+.
 RankOrder = 1 calculates the Spearman rank order correlation used in mc_hammer (this argument is options and defaults to Spearman)
 
 RankOrder = 0 calculates the Pearson Product Moment Correlation
@@ -60,11 +60,11 @@ cov_mat = []
 return reshape(cov_mat, M_Size, M_Size)
 end
 
-#Correlation using Iman-Connover
+#Correlation using Iman-Conover
 """
     corvar(ArrayName, n_trials, correl_matrix)
 
-The *corvar* function correlates simulation inputs unsing the Iman Connover Method
+The *corvar* function correlates simulation inputs unsing the Iman Conover Method. Your array must contain >2 and remember to ***hcat*** your inputs into tables reflecting your input correlation matrices.  
 
 *n_trials* is the number of trials in the simulation. This must be consistent.
 
