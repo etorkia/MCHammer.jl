@@ -1,9 +1,10 @@
-using StatsBase
+using StatsBase, Gadfly
 using Distributions
 using Random
-using Gadfly, Compose
-using mc_hammer; precompile
-#include("..\\src\\correlation.jl")
+#using Gadfly, Compose
+#using StatsPlots
+using mc_hammer
+# include("src\\correlation.jl")
 
 clearconsole()
 
@@ -32,7 +33,7 @@ cormat(Trials,1)
 plot(x=[Profit Profit_C], Geom.density, color=["Uncorrelated","Correlated"], Guide.Title("Compare Results Methods"))
 
 #Plot S-Curves
-# plot(layer(ecdf(Profit),minimum(Profit), maximum(Profit), Theme(default_color="orange")),layer(ecdf(Profit_C), minimum(Profit_C), maximum(Profit_C)), Guide.Title("Compare Portfolio Methods"))
+plot(layer(ecdf(Profit),minimum(Profit), maximum(Profit), Theme(default_color="orange")),layer(ecdf(Profit_C), minimum(Profit_C), maximum(Profit_C)), Guide.Title("Compare Portfolio Methods"))
 
 
 
@@ -41,3 +42,5 @@ println("Input Correlation: ", cor(Revenue,Expenses),"\n")
 println("Probability of Making 1m or less (correlated) :",GetCertainty(Profit_C, 1000000, 0))
 println("Input Correlation: ", cor(Trials[1],Trials[2]))
 println("\n")
+
+println("Model Outputs: Revenue, Expenses, Profit, Profit_C")

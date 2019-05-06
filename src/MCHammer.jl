@@ -1,7 +1,7 @@
-module mc_hammer
+module MCHammer
 
 """
-MC Hammer is a Monte-Carlo Tool Kit for quickly building risk and decisision analysis
+MC Hammer is a Monte-Carlo Tool Kit for quickly building/porting risk and decisision analysis in Julia for breakneck performance.
 """
 
 using LinearAlgebra

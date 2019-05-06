@@ -1,5 +1,5 @@
-name = "mc_hammer"
-uuid = "b2cdeac0-6178-11e9-0dae-dd520ea357d8"
+name = "MCHammer"
+uuid = "58716550-704d-11e9-05c2-8f708e47025f"
 authors = ["Eric Torkia <etorkia@technologypartnerz.com>"]
 version = "0.1.0"
 

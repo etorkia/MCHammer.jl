@@ -7,5 +7,3 @@ function mlprobs(Array, Increment)
     ArrayLength = size(Array,1)
     SA = sort(Array,1,rev=false)
     ML_Probs = []
-
-    
