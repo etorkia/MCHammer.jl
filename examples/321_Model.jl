@@ -15,7 +15,7 @@ Expenses = rand(TriangularDist(1400000,3000000,2000000), n_trials)
 
 #Uncorrelated Model (1)
 Profit = Revenue - Expenses
-Rev_Exp_Cor = -0.5
+Rev_Exp_Cor = -0.8
 
 
 #Apply correlation to random samples

@@ -68,6 +68,7 @@ function sensitivity_chrt(ArrayName, TargetCol, Chrt_Type=1)
       #       Chrt_Type = 3
       # end
 M_Size = size(ArrayName,2)
+ArrayName = DataFrame(ArrayName)
 
 #Calculate Spearman
 cor_mat_s = []

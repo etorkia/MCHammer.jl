@@ -1,5 +1,5 @@
-site_name:           mc_hammer
-repo_url:            https://github.com/etorkia/mc_hammer
+site_name:           MCHhammer
+repo_url:            https://github.com/etorkia/MCHammer.jl
 site_description:    Monte-Carlo Simulation for Julia
 site_author:         Eric Torkia
 theme:               readthedocs
@@ -18,11 +18,12 @@ extra_javascript:
   - https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML
   - assets/mathjaxhelper.js
 
-docs_dir: 'build'
+docs_dir: 'userguide'
 
 pages:
 - Overview: index.md
 - Manual:
+  - Quick Start Guide: manual/MCHammer_QuickStart.md
   - Core Functions: manual/functions.md
   - Charting: manual/charts.md
   - Time Series: manual/time_series.md
