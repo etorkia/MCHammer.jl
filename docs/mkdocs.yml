@@ -23,11 +23,11 @@ docs_dir: 'userguide'
 pages:
 - Overview: index.md
 - Manual:
-  - Quick Start Guide: manual/MCHammer_QuickStart.md
   - Core Functions: manual/functions.md
   - Charting: manual/charts.md
   - Time Series: manual/time_series.md
 - Tutorial:
+  - Quick Start Guide: /tutorials/FirstJuliaModel.html
   - Basic Model with Correlation: tutorials/321.md
   - Simulated Time Series: tutorials/NPV_in_Julia.md
   - Data Analysis: tutorials/DataAnalysis.md
