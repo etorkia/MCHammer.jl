@@ -10,9 +10,9 @@ In dev.
 
 ```@contents
 Pages = [
-    "tutorials/page1.md",
-    "tutorials/page2.md",
-    "tutorials/page3.md"
+    "tutorials/321.md",
+    "tutorials/DataAnalysis.md",
+    "tutorials/NPV_in_Julia.md"
     ]
 Depth = 2
 ```
