@@ -1,12 +1,12 @@
 #NPV TEST MODEL FOR MC HAMMER
-#by Eric Torkia, April 17th 2019
+#MAY 2019
 
 
 using Distributions
 using Dates
 using Gadfly
 using StatsBase
-using mc_hammer
+using MCHammer
 using DataFrames
 
 #Setup the Date Range for the analysis
@@ -33,7 +33,7 @@ for i = 1:100000
     UnitSellPrice = GBMM(80, 0.2, 0.1, ForecastYrs)
     UnitCost = GBMM(40, 0.1, 0.05, ForecastYrs)
 
-    #each period the discount rate is independent. If you use an additive method instead of multiplicative, you can end up with differences. These may or may not impact the decision. For simulation it is best to use the risk free rate.
+    #Each period the discount rate is independent. If you use an additive method instead of multiplicative, you can end up with differences. These may or may not impact the decision. For simulation it is best to use the risk free rate.
 
         #Multiplicative Method
         DiscountRate = cumprod(rand(Normal(0.02,0.0075),ForecastYrs)+fill(1,ForecastYrs))#accumulate(+,rand(Normal(0.02,0.0075),ForecastYrs))+fill(1,ForecastYrs)

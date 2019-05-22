@@ -16,6 +16,12 @@ Cormat calculates a symetric correlation matrix using both PPMC and Rank Order. 
 function cormat(ArrayName, RankOrder=1)
 cor_mat = []
 M_Size = size(ArrayName,2)
+
+#Converting to a data frame is necessary (and simpler) to perform rankings
+if typeof(ArrayName) == Array{Float64,2}
+      ArrayName = DataFrame(ArrayName)
+end
+
 if RankOrder == 1
       for i=1:M_Size
       cor_vector = []
@@ -49,6 +55,11 @@ Calculates the covariance matrix.
 function covmat(ArrayName)
 M_Size = size(ArrayName,2)
 cov_mat = []
+
+if typeof(ArrayName) == Array{Float64,2}
+      ArrayName = DataFrame(ArrayName)
+
+end
       for i=1:M_Size
             for i2=1:M_Size
              cov_i = cov(ArrayName[i],ArrayName[i2]);
@@ -70,6 +81,11 @@ The corvar function correlates simulation inputs unsing the Iman Conover Method.
 **correl_matrix**: must be defined as a Square Positive Definite correlation matrix. This can be calculated from histroical data using `cormat()` function.
 """
 function corvar(ArrayName, n_trials, correl_matrix)
+
+if typeof(ArrayName) == Array{Float64,2}
+      ArrayName = DataFrame(ArrayName)
+
+end
 
 #Define how many columns of ISNs are required
 array_dims = length(ArrayName)
@@ -159,9 +175,6 @@ end
 
 
 
-
-
-
 #convert(Array{Float64}, ArrayName)
 # convert(Array{Int64}, collect(0:Increment:1)*100)
 
@@ -184,4 +197,4 @@ end
 # correl_matrix = [1 0 0 0 0 0; 0 1 0 0 0 0; 0 0 1 0 0 0;0 0 0 1 0.75 -0.7; 0 0 0 0.75 1 -0.95; 0 0 0 -0.7 -0.95 1 ]
 #
 # #Test Data
-# test_logNormal = [rand(LogNormal(0, 0.5),n_trials), rand(Normal(3,2),n_trials), rand(Gamma(1, 0.5),n_trials), rand(LogNormal(0, 0.5),n_trials), rand(Normal(3,2),n_trials), rand(Gamma(1, 0.5),n_trials)]
+# test_logNormal = [rand(LogNormal(0, 0.5),n_trials) rand(Normal(3,2),n_trials) rand(Gamma(1, 0.5),n_trials) rand(LogNormal(0, 0.5),n_trials) rand(Normal(3,2),n_trials) rand(Gamma(1, 0.5),n_trials)]

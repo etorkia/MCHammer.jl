@@ -15,15 +15,16 @@
 
 #--------------------------------------
 """
-    GBMMult_Fit(HistoricalData, PeriodsToForecast)
+    GBMM_Fit(HistoricalData, PeriodsToForecast)
 
-GBMMult_Fit uses a vector of historical data to calculate the log returns and use the mean and standard deviation to project a random walk. It the uses the last datapoint in the set as the starting point for the new forecast.
+GBMM_Fit uses a vector of historical data to calculate the log returns and use the mean and standard deviation to project a random walk. It the uses the last datapoint in the set as the starting point for the new forecast.
 
-HistoricalData: Vector containing historical data
-PeriodsToForecast: integer >1
+**HistoricalData**: Vector containing historical data
+
+**PeriodsToForecast**: integer >1
 
 """
-function GBMMult_Fit(HistoricalData, PeriodsToForecast)
+function GBMM_Fit(HistoricalData, PeriodsToForecast)
 #calculate returns
 Returns_Arr = []
 for i = 1:size(HistoricalData,1)-1
@@ -63,9 +64,10 @@ end
 GBMM produces a random wlak using the last data point and requires a mean and standard deviation to be provided.
 
 **LastValue**: The most recent data point on which to base your random walk.
-ReturnsMean and ReturnsStd : Historical Mean and Standard Deviation of Returns
 
-**PeriodsToForecast is** an integer >1
+**ReturnsMean and ReturnsStd** : Historical Mean and Standard Deviation of Returns
+
+**PeriodsToForecast** is an integer >1
 """
 function GBMM(LastValue, ReturnsMean, ReturnsStd, PeriodsToForecast)
     # project Series
