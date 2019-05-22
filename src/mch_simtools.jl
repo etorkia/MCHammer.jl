@@ -8,10 +8,10 @@
     cormat(ArrayName, RankOrder=1)
 
 Cormat calculates a symetric correlation matrix using both PPMC and Rank Order. Rank Order is default because this is what it used in the Iman-Conover method for correlating of simulated variables.
-.
-RankOrder = 1 calculates the Spearman rank order correlation used in mc_hammer (this argument is options and defaults to Spearman)
 
-RankOrder = 0 calculates the Pearson Product Moment Correlation
+**RankOrder = 1** calculates the Spearman rank order correlation used in MCHammer (this argument is optional and defaults to Spearman)
+
+**RankOrder = 0** calculates the Pearson Product Moment Correlation
 """
 function cormat(ArrayName, RankOrder=1)
 cor_mat = []
@@ -63,11 +63,11 @@ end
 """
     corvar(ArrayName, n_trials, correl_matrix)
 
-The corvar function correlates simulation inputs unsing the Iman Conover Method. Your array must contain >2 and remember to hcat your inputs into tables reflecting your input correlation matrices.
+The corvar function correlates simulation inputs unsing the Iman Conover Method. Your array must contain >2 simulated inputs. **Remember to hcat() your inputs into tables reflecting your input correlation matrices.**
 
-n_trials: is the number of trials in the simulation. This must be consistent.
+**n_trials**: is the number of trials in the simulation. This must be consistent.
 
-correl_matrix: must be defined as a Square Positive Definite correlation matrix. This can be calculated from histroical data using cormat function.
+**correl_matrix**: must be defined as a Square Positive Definite correlation matrix. This can be calculated from histroical data using `cormat()` function.
 """
 function corvar(ArrayName, n_trials, correl_matrix)
 
@@ -105,10 +105,7 @@ end
 """
     GetCertainty(ArrayName, x, AboveBelow=0)
 
-This function returns the percentage of trials Above or Below a target value of x.
-
-      1 = % Above X
-      0 = % Below X
+This function returns the percentage of trials Above (1) or Below(0) a target value of x.
 """
 function GetCertainty(ArrayName, x, AboveBelow=0)
       if AboveBelow == 1
@@ -124,14 +121,15 @@ end
 """
     cmd(x)
 
-Shell /Dos Command wrapper to run batch and shell commands in script
+Shell /Dos Command wrapper to run batch and shell commands in script. This is used to process SQL from the command line or perform system level operation in a script using a command prompt.
 """
 cmd(x) = run(`cmd /C $x`)
 
 """
     function  truncate_digit(num, digits=2)
-Truncation algorithim to remove decimals (ported by anonymous author from Maple)
-e.g.  0.066 = 0.06
+Truncation algorithim to remove decimals (ported by anonymous author from Maple) e.g.
+
+      0.066 = 0.06
       0.063 = 0.06
 
 """

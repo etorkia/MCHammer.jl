@@ -27,7 +27,7 @@ pages:
   - Charting: manual/charts.md
   - Time Series: manual/time_series.md
 - Tutorial:
-  - Quick Start Guide: /tutorials/FirstJuliaModel.html
+  - Quick Start Guide: /tutorials/first_model.md
   - Basic Model with Correlation: tutorials/321.md
   - Simulated Time Series: tutorials/NPV_in_Julia.md
   - Data Analysis: tutorials/DataAnalysis.md
