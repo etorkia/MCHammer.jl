@@ -184,4 +184,4 @@ end
 # correl_matrix = [1 0 0 0 0 0; 0 1 0 0 0 0; 0 0 1 0 0 0;0 0 0 1 0.75 -0.7; 0 0 0 0.75 1 -0.95; 0 0 0 -0.7 -0.95 1 ]
 #
 # #Test Data
-# test_logNormal = [rand(LogNormal(0, 0.5),n_trials), rand(Normal(3,2),n_trials), rand(Gamma(1, 0.5),n_trials), rand(LogNormal(0, 0.5),n_trials), rand(Normal(3,2),n_trials), rand(Gamma(1, 0.5),n_trials)]
+# test_logNormal = [rand(LogNormal(0, 0.5),n_trials), rand(Normal(3,2),n_trials), rand(Gamma(1, 0.5),n_trials), rand(LogNormal(0, 0.5),n_trials), rand(Normal(3,2),n_trials), rand(Gamma(1, 0.5),n_trials)] 
