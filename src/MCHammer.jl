@@ -28,7 +28,7 @@ export
     histogram_chrt,
     sensitivity_chrt,
     trend_chrt,
-    GBMMult_Fit,
+    GBMMfit,
     GBMM
 
 
