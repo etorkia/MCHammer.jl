@@ -125,9 +125,9 @@ This function returns the percentage of trials Above (1) or Below(0) a target va
 """
 function GetCertainty(ArrayName, x, AboveBelow=0)
       if AboveBelow == 1
-            certainty = count(i ->(i>=x), ArrayName)/size(ArrayName,2)
+            certainty = count(i ->(i>=x), ArrayName)/size(ArrayName,1)
       else
-            certainty = count(i ->(i<=x), ArrayName)/size(ArrayName,2)
+            certainty = count(i ->(i<=x), ArrayName)/size(ArrayName,1)
 
       end
       return certainty

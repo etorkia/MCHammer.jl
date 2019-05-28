@@ -38,7 +38,7 @@ cor_matrix
 ```
 It is very important to join Trial into an array before applying correlation. Furthermore, this step is necessary in order to produce a `sensitivity_chrt()`
 ```@example SampleModel
-c_table = [Revenue, Expenses]
+c_table = [Revenue Expenses]
 C_Trials = corvar(c_table, n_trials, cor_matrix)
 
 #Correlated Model(2) - Create Correlated Results Array
