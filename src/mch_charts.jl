@@ -55,9 +55,9 @@ end
 """
     sensitivity_chrt(ArrayName, TargetCol, Chrt_Type=1)
 
-*TargetCol*: used to select the output against which the other variables are analyzed for influence.
+**TargetCol**: used to select the output against which the other variables are analyzed for influence.
 
-*Chrt_Type*: allows to change the chart metric: Spearman (1), PPMC (2) and  Contribution to Variance % (3)
+**Chrt_Type**: allows to change the chart metric: Spearman (1), PPMC (2) and  Contribution to Variance % (3)
 """
 function sensitivity_chrt(ArrayName, TargetCol, Chrt_Type=1)
       #Chrt_Type =="" || "please select a chart"
@@ -167,9 +167,9 @@ end
 """
     trend_chrt(SimTimeArray, PeriodRange, quantiles=[0.05,0.5,0.95])
 
-*trend_chrt* allows the visualization of a simulated time series. These can be generated using the GBMM function.
+**trend_chrt** allows the visualization of a simulated time series. These can be generated using the GBMM function.
 
-*PeriodRange* must constructed using the ***Dates*** package and use the following syntax :
+**PeriodRange** must constructed using the `Dates` package and use the following syntax :
 
       dr = collect(Date(2019,1,01):Dates.Year(1):Date(2023,01,01))
 """

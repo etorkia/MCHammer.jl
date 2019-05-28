@@ -75,14 +75,16 @@ A model is either a visual or mathematical representation of a situation or syst
 
 Let's create a simple simulation model with 1000 trials with the following inputs:
 
-### Building a Sample Model
+### Setup environment and inputs
 
 ```@example SampleModel
 using Distributions, StatsBase, DataFrames, MCHammer
 n_trials = 1000
 Revenue = rand(TriangularDist(2500000,4000000,3000000), n_trials)
 Expenses = rand(TriangularDist(1400000,3000000,2000000), n_trials)
-
+```
+### Define a Model and Outputs
+```@example SampleModel
 # The Model
 Profit = Revenue - Expenses
 

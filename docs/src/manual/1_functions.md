@@ -14,11 +14,12 @@ test = rand(Normal(),1000,5)
 cormat(test)
 
 # output
- 1.0         0.045012   0.00247197  -0.0455839   0.0126131
- 0.045012    1.0        0.0534       0.0449149   0.0219751
- 0.00247197  0.0534     1.0          0.0194396   0.0504692
+
+1.0         0.045012   0.00247197  -0.0455839   0.0126131
+0.045012    1.0        0.0534       0.0449149   0.0219751
+0.00247197  0.0534     1.0          0.0194396   0.0504692
 -0.0455839   0.0449149  0.0194396    1.0        -0.0301272
- 0.0126131   0.0219751  0.0504692   -0.0301272   1.0
+0.0126131   0.0219751  0.0504692   -0.0301272   1.0
 ```
 
 ```@docs
@@ -40,17 +41,16 @@ covmat(test)
 corvar
 ```
 ```jldoctest
-Random.seed!(1) #hide
+Random.seed!(1)
 n_trials = 1000
 sample_data = [rand(LogNormal(0, 0.5),n_trials) rand(Normal(3,2),n_trials) rand(Gamma(1, 0.5),n_trials) rand(LogNormal(0, 0.5),n_trials) rand(Normal(3,2),n_trials) rand(Gamma(1, 0.5),n_trials)]
 
 test_cmatrix = [1 0 0 0 0 0; 0 1 0 0 0 0; 0 0 1 0 0 0;0 0 0 1 0.75 -0.7; 0 0 0 0.75 1 -0.95; 0 0 0 -0.7 -0.95 1 ]
 
-Random.seed!(1) #hide
+Random.seed!(1)
 cormat(corvar(sample_data, n_trials, test_cmatrix))
 
 # output
-
 1.0          0.045012    0.00247197  -0.0455839  -0.0138308   0.0112554
 0.045012     1.0         0.0534       0.0449149   0.0592791  -0.0355262
 0.00247197   0.0534      1.0          0.0194396   0.0532426  -0.0468971
@@ -64,13 +64,12 @@ GetCertainty
 ```
 ```jldoctest dist_ex
 
-Random.seed!(1) #hide
+Random.seed!(1)
 test = rand(Normal(),1000)
 
 GetCertainty(test, 0, 1)
 
 # output
-
 0.502
 ```
 
@@ -78,7 +77,6 @@ GetCertainty(test, 0, 1)
 fractiles
 ```
 ```jldoctest dist_ex
-
 fractiles(test)
 
 # output
@@ -107,6 +105,5 @@ truncate_digit
 truncate_digit(0.667) == truncate_digit(0.661)
 
 # output
-
 true
 ```
