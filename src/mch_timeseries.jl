@@ -15,16 +15,16 @@
 
 #--------------------------------------
 """
-    GBMM_Fit(HistoricalData, PeriodsToForecast)
+    GBMMfit(HistoricalData, PeriodsToForecast)
 
-GBMM_Fit uses a vector of historical data to calculate the log returns and use the mean and standard deviation to project a random walk. It the uses the last datapoint in the set as the starting point for the new forecast.
+GBMMfit uses a vector of historical data to calculate the log returns and use the mean and standard deviation to project a random walk. It the uses the last datapoint in the set as the starting point for the new forecast.
 
 **HistoricalData**: Vector containing historical data
 
 **PeriodsToForecast**: integer >1
 
 """
-function GBMM_Fit(HistoricalData, PeriodsToForecast)
+function GBMMfit(HistoricalData, PeriodsToForecast)
 #calculate returns
 Returns_Arr = []
 for i = 1:size(HistoricalData,1)-1
