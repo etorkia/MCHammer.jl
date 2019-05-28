@@ -25,7 +25,7 @@ names!(Trials, [:Profit, :Revenue, :Expenses])
 cormat(Trials)
 ```
 ## Applying correlation to your simulation
-Using the **corvar()** function, we are going to correlate the Revenue and Expenses at -0.8 and generate the results tables for both the correlated and uncorrelated versions.
+Using the `corvar()` function, we are going to correlate the Revenue and Expenses at -0.8 and generate the results tables for both the correlated and uncorrelated versions.
 
 ```@example SampleModel
 #Apply correlation to random samples
@@ -36,7 +36,7 @@ cor_matrix = [1 Rev_Exp_Cor; Rev_Exp_Cor 1]
 #matrix from historical data.
 cor_matrix
 ```
-It is very important to join Trial into an array before applying correlation. Furthermore, this step is necessary in order to produce ***sensitivity_chrt(s)***
+It is very important to join Trial into an array before applying correlation. Furthermore, this step is necessary in order to produce a `sensitivity_chrt()`
 ```@example SampleModel
 c_table = [Revenue, Expenses]
 C_Trials = corvar(c_table, n_trials, cor_matrix)

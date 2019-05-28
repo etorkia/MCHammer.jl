@@ -1,16 +1,23 @@
 # Time-Series Simulation
 
 ## Overview
-mch_timeseries contains functions to create simulated times series with mc_hammer. Current implementation supports GBM only. Other methods should be added
+MCH Timeseries contains functions to create simulated times series with MCHammer. Current implementation supports GBM only. Other methods will be added
 
 ## Functions
+```@meta
+DocTestSetup = quote
+    using MCHammer
+    using Distributions
+    using Random
+end
+```
 ```@docs
 GBMMfit
 ```
 ```jldoctest
-Random.seed!(1) #hide
+Random.seed!(1)
 historical = rand(Normal(10,2.5),1000)
-GBMM_Fit(historical, 12)
+GBMMfit(historical, 12)
 
 # output
 12×1 Array{Float64,2}:

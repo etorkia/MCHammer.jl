@@ -1,10 +1,21 @@
 # Simulation Modeling Functions
 
 ## Overview
-Some of the most important features in a Monte-Carlo simulation package have to do with analyzing and applying correlation in models. MCHammer's correlation approach is based on *"Ronald L. Iman & W. J. Conover (1982) A distribution-free approach to inducing rank correlation among input variables, Communications in Statistics - Simulation and Computation"*
 
+Though most of your modeling can be realized in raw Julia, some of the most important features in a Monte-Carlo simulation package have to do with analyzing and applying correlation in models. MCHammer's correlation approach is based on *"Ronald L. Iman & W. J. Conover (1982) A distribution-free approach to inducing rank correlation among input variables, Communications in Statistics - Simulation and Computation"*
+
+The simulation and correlation functions are designed to quickly obtain risk and decision analysis metrics such as moments, percentiles and risk over time.
 
 ## Functions
+
+```@meta
+DocTestSetup = quote
+    using MCHammer
+    using Distributions
+    using Random
+end
+```
+
 ```@docs
 cormat
 ```
@@ -51,6 +62,7 @@ Random.seed!(1)
 cormat(corvar(sample_data, n_trials, test_cmatrix))
 
 # output
+6×6 Array{Float64,2}
 1.0          0.045012    0.00247197  -0.0455839  -0.0138308   0.0112554
 0.045012     1.0         0.0534       0.0449149   0.0592791  -0.0355262
 0.00247197   0.0534      1.0          0.0194396   0.0532426  -0.0468971
@@ -63,7 +75,6 @@ cormat(corvar(sample_data, n_trials, test_cmatrix))
 GetCertainty
 ```
 ```jldoctest dist_ex
-
 Random.seed!(1)
 test = rand(Normal(),1000)
 
@@ -102,7 +113,9 @@ cmd
 truncate_digit
 ```
 ```jldoctest
-truncate_digit(0.667) == truncate_digit(0.661)
+Result_1 = truncate_digit(0.667)
+Result_2 = truncate_digit(0.661)
+Result_1 == Result_2
 
 # output
 true

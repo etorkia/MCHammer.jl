@@ -88,7 +88,7 @@ if typeof(ArrayName) == Array{Float64,2}
 end
 
 #Define how many columns of ISNs are required
-array_dims = length(ArrayName)
+array_dims = size(ArrayName,2)
 
 #calc cholesky transform to transfer correlation to ISNs
 P = cholesky(correl_matrix)
@@ -125,9 +125,9 @@ This function returns the percentage of trials Above (1) or Below(0) a target va
 """
 function GetCertainty(ArrayName, x, AboveBelow=0)
       if AboveBelow == 1
-            certainty = count(i ->(i>=x), ArrayName)/length(ArrayName)
+            certainty = count(i ->(i>=x), ArrayName)/size(ArrayName,2)
       else
-            certainty = count(i ->(i<=x), ArrayName)/length(ArrayName)
+            certainty = count(i ->(i<=x), ArrayName)/size(ArrayName,2)
 
       end
       return certainty
