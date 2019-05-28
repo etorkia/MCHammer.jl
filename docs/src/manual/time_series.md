@@ -5,12 +5,12 @@ mch_timeseries contains functions to create simulated times series with mc_hamme
 
 ## Functions
 ```@docs
-GBMMult_Fit
+GBMM_Fit
 ```
 ```jldoctest
 Random.seed!(1) #hide
 historical = rand(Normal(10,2.5),1000)
-
+GBMM_Fit(historical, 12)
 
 
 ```@docs
