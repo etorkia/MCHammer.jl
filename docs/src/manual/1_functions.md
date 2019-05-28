@@ -49,7 +49,7 @@ test_cmatrix = [1 0 0 0 0 0; 0 1 0 0 0 0; 0 0 1 0 0 0;0 0 0 1 0.75 -0.7; 0 0 0 0
 Random.seed!(1) #hide
 cormat(corvar(sample_data, n_trials, test_cmatrix))
 
-#output
+# output
 
 1.0          0.045012    0.00247197  -0.0455839  -0.0138308   0.0112554
 0.045012     1.0         0.0534       0.0449149   0.0592791  -0.0355262
@@ -57,6 +57,7 @@ cormat(corvar(sample_data, n_trials, test_cmatrix))
 -0.0455839    0.0449149   0.0194396    1.0         0.719585   -0.662708
 -0.0138308    0.0592791   0.0532426    0.719585    1.0        -0.939008
 0.0112554   -0.0355262  -0.0468971   -0.662708   -0.939008    1.0
+```
 
 ```@docs
 GetCertainty
@@ -80,7 +81,7 @@ fractiles
 
 fractiles(test)
 
-#output
+# output
 
 11×2 Array{Any,2}:
  "P0.0"    -3.882
@@ -105,7 +106,7 @@ truncate_digit
 ```jldoctest
 truncate_digit(0.667) == truncate_digit(0.661)
 
-#output
+# output
 
 true
 ```

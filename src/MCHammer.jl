@@ -10,7 +10,7 @@ using Gadfly
 
 
 import StatsBase: tiedrank
-import Random: rand, rand!
+import Random: rand, rand!, seed!
 import LinearAlgebra: BlasReal, BlasFloat
 import Statistics: mean, mean!, var, varm, varm!, std, stdm, cov, covm,
                    cor, corm, cov2cor!, unscaled_covzm, quantile, sqrt!,
