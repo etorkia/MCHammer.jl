@@ -1,6 +1,6 @@
 Things to remember
 ---------------------------
-1.) When you add a function, dont forget to export in in the main file
+1.) When you add a function, dont forget to export in the main file
 2.) Documentation Docstrings must can't have line spaces between description and function, otherwise text wont show up
 
 
