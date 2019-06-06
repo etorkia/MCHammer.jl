@@ -1,4 +1,4 @@
-#  MCHammer for Julia
+#  MCHammer.jl
 
 ## Overview
 
