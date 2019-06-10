@@ -1,7 +1,7 @@
 #clearconsole()
 #push!(LOAD_PATH,"../src")
 using Documenter, MCHammer
-makedocs(sitename="MCHammer.jl", modules =[MCHammer], doctest = true, root = "Z:\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer\\docs", repo = "github.com/etorkia/MCHammer.jl")
+makedocs(sitename="MCHammer.jl", modules =[MCHammer, Documenter, DocumenterTools], doctest = true, repo = "github.com/etorkia/MCHammer.jl")
 
 deploydocs(
     #target="build",
