@@ -1,6 +1,9 @@
 #clearconsole()
 #push!(LOAD_PATH,"../src")
+using Pkg
+Pkg.add("Documenter")
 using Documenter, MCHammer
+
 makedocs(sitename="MCHammer.jl", modules =[MCHammer, Documenter, DocumenterTools], doctest = true, repo = "github.com/etorkia/MCHammer.jl")
 
 deploydocs(
