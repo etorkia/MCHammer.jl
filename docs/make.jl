@@ -3,15 +3,19 @@
 using Pkg
 Pkg.add("Documenter")
 Pkg.add("DocumenterTools")
-using Documenter, DocumenterTools, MCHammer
+Pkg.add("Distributions")
+Pkg.add("StatsBase")
+Pkg.add("Statistics")
 
-makedocs(sitename="MCHammer.jl", modules =[MCHammer, Documenter, DocumenterTools], doctest = true, repo = "github.com/etorkia/MCHammer.jl")
+using Documenter, DocumenterTools, MCHammer, Distributions, Statistics, StatsBase
+
+makedocs(sitename="MCHammer.jl", modules =[MCHammer, Documenter, DocumenterTools, Distributions, StatsBase, Statistics], doctest = true, repo = "github.com/etorkia/MCHammer.jl")
 
 deploydocs(
-    #target="build",
+    target="build",
     repo = "github.com/etorkia/MCHammer.jl.git",
-    #branch = "gh-pages",
-    #devbranch="master",
+    branch = "gh-pages",
+    devbranch="master"
     #versions = ["stable" => "v^", "v#.#"]
 )
 
