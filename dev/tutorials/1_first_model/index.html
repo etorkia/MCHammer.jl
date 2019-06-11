@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Building your first model · MCHammer.jl</title><link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css" rel="stylesheet" type="text/css"/><link href="https://fonts.googleapis.com/css?family=Lato|Roboto+Mono" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="../.."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.2.0/require.min.js" data-main="../../assets/documenter.js"></script><script src="../../siteinfo.js"></script><script src="../../../versions.js"></script><link href="../../assets/documenter.css" rel="stylesheet" type="text/css"/></head><body><nav class="toc"><a href="../../index.html"><img class="logo" src="../../assets/logo.png" alt="MCHammer.jl logo"/></a><h1>MCHammer.jl</h1><select id="version-selector" onChange="window.location.href=this.value" style="visibility: hidden"></select><form class="search" id="search-form" action="../../search/"><input id="search-query" name="q" type="text" placeholder="Search docs"/></form><ul><li><a class="toctext" href="../../">MCHammer.jl</a></li><li><a class="toctext" href="../../manual/1_functions/">Simulation Modeling Functions</a></li><li><a class="toctext" href="../../manual/charts/">Charting Functions</a></li><li><a class="toctext" href="../../manual/time_series/">Time-Series Simulation</a></li><li class="current"><a class="toctext" href>Building your first model</a><ul class="internal"><li><a class="toctext" href="#Installing-MCHammer-1">Installing MCHammer</a></li><li><a class="toctext" href="#Loading-MCHammer-1">Loading MCHammer</a></li><li class="toplevel"><a class="toctext" href="#Getting-your-environment-setup-for-modeling-1">Getting your environment setup for modeling</a></li><li><a class="toctext" href="#Building-a-simple-example-1">Building a simple example</a></li><li><a class="toctext" href="#Creating-a-simple-model-1">Creating a simple model</a></li></ul></li><li><a class="toctext" href="../2_Correlated_Model/">Correlating Variables in Your Model</a></li><li><a class="toctext" href="../3_NPV_testmodel/">Simulated NPV with Time-Series</a></li></ul></nav><article id="docs"><header><nav><ul><li><a href>Building your first model</a></li></ul><a class="edit-page" href="github.com/etorkia/MCHammer.jl"><span class="fa"></span> Edit on GitHub</a></nav><hr/><div id="topbar"><span>Building your first model</span><a class="fa fa-bars" href="#"></a></div></header><h1><a class="nav-anchor" id="Building-your-first-model-1" href="#Building-your-first-model-1">Building your first model</a></h1><h2><a class="nav-anchor" id="Installing-MCHammer-1" href="#Installing-MCHammer-1">Installing MCHammer</a></h2><p>Install the package as usual using Pkg.</p><pre><code class="language-julia">    using Pkg
+    Pkg.(&quot;MCHammer&quot;)</code></pre><p>If you need to install direct, we recommend using &#39;]&#39; to go in the native Pkg manager.</p><pre><code class="language-none">    (v1.1) pkg&gt; add https://github.com/etorkia/MCHammer.jl</code></pre><h2><a class="nav-anchor" id="Loading-MCHammer-1" href="#Loading-MCHammer-1">Loading MCHammer</a></h2><p><strong>To load the MCHammer package</strong></p><pre><code class="language-julia">using MCHammer</code></pre><h1><a class="nav-anchor" id="Getting-your-environment-setup-for-modeling-1" href="#Getting-your-environment-setup-for-modeling-1">Getting your environment setup for modeling</a></h1><p>In order to build your first model, you will need to get a few more packages installed:</p><ul><li><p><strong>Distributions.jl</strong> : To build a simulation, you need distributions as inputs. Julia offers univariate and multivariate distributions covering most needs.</p></li><li><p><strong>StatsBase.jl and Statistics.jl</strong> : These packages provide all the functions to analyze results and build models.</p></li></ul><p>To load the support packages:</p><pre><code class="language-none">  julia&gt; using Distributions, Statistics, StatsBase, DataFrames</code></pre><h2><a class="nav-anchor" id="Building-a-simple-example-1" href="#Building-a-simple-example-1">Building a simple example</a></h2><p><strong>EVERY MONTE CARLO MODEL HAS 3 COMPONENTS</strong></p><ul><li><strong>Inputs</strong>: Ranges or Single Values</li><li><strong>A Model</strong>:  Set of mathematical relationships f(x)</li><li><strong>Outputs</strong>: The variable(s) of interest you want to analyze</li></ul><h3><a class="nav-anchor" id="Main-Distributions-for-most-modeling-situations-1" href="#Main-Distributions-for-most-modeling-situations-1">Main Distributions for most modeling situations</a></h3><p>Though the most used distributions are cite below, Julia&#39;s Distributions package has an impressive array of options. Please check out the complete library of distributions at <a href="http://juliastats.github.io/Distributions.jl/latest/index.html">Distributions.jl</a></p><ul><li>Normal()</li><li>LogNormal()</li><li>Triangular()</li><li>Uniform()</li><li>Beta()</li><li>Exponential()</li><li>Gamma()</li><li>Weibull()</li><li>Poisson()</li><li>Binomial()</li><li>Bernoulli()</li></ul><p>In order to define a simulated input you need to use the <em>rand</em> function. By assigning a variable name, you can generate any simulated vector you want.</p><pre><code class="language-julia">using Distributions
+input_variable = rand(Normal(0,1),100)</code></pre><pre><code class="language-none">100-element Array{Float64,1}:
+  0.3724949277657717 
+  1.0979353096884492 
+ -1.9321700226531728 
+ -0.3630668602518459 
+  0.5547454619366828 
+ -0.1563494585270185 
+ -0.03510081060040437
+  2.3519076214120433 
+  1.3079525737462678 
+  0.8926833339789375 
+  ⋮                  
+ -0.5960182982967601 
+  1.0215790717420865 
+ -0.9634346144636665 
+ -1.2057837939725884 
+ -1.6527764322221665 
+  0.5594360673183576 
+ -0.1009919092459431 
+ -0.5557044529790767 
+  1.1434703652710498 </code></pre><h2><a class="nav-anchor" id="Creating-a-simple-model-1" href="#Creating-a-simple-model-1">Creating a simple model</a></h2><p>A model is either a visual or mathematical representation of a situation or system. The easiest example of a model is</p><p><strong>PROFIT = REVENUE - EXPENSES</strong></p><p>Let&#39;s create a simple simulation model with 1000 trials with the following inputs:</p><h3><a class="nav-anchor" id="Setup-environment-and-inputs-1" href="#Setup-environment-and-inputs-1">Setup environment and inputs</a></h3><pre><code class="language-">using Distributions, StatsBase, DataFrames, MCHammer
+n_trials = 1000
+Revenue = rand(TriangularDist(2500000,4000000,3000000), n_trials)
+Expenses = rand(TriangularDist(1400000,3000000,2000000), n_trials)</code></pre><h3><a class="nav-anchor" id="Define-a-Model-and-Outputs-1" href="#Define-a-Model-and-Outputs-1">Define a Model and Outputs</a></h3><pre><code class="language-"># The Model
+Profit = Revenue - Expenses
+
+#Trial Results : the Profit vector (OUTPUT)
+Profit</code></pre><h3><a class="nav-anchor" id="Analyzing-the-results-in-Julia-1" href="#Analyzing-the-results-in-Julia-1">Analyzing the results in Julia</a></h3><pre><code class="language-"># `fractiles()` allows you to get the percentiles at various increments.
+
+fractiles(Profit)</code></pre><pre><code class="language-">
+density_chrt(Profit)</code></pre><h3><a class="nav-anchor" id="Sensitivity-Analysis-1" href="#Sensitivity-Analysis-1">Sensitivity Analysis</a></h3><p>First we need to create a sensitivity table with <strong>hcat()</strong> using both the input and output vectors.</p><pre><code class="language-">
+#Construct the sensitivity input table by consolidating all the relevant
+#inputs and outputs.
+
+s_table = hcat(Profit, Revenue, Expenses)
+
+#We then need to convert to a DataFrame and add names
+
+s_table = DataFrame(s_table)
+names!(s_table, [:Profit, :Revenue, :Expenses])
+
+#To produce a sensitivity tornado chart, we need to select the output against
+#which the inputs are measured for effect.
+
+sensitivity_chrt(s_table, 1, 3)</code></pre><footer><hr/><a class="previous" href="../../manual/time_series/"><span class="direction">Previous</span><span class="title">Time-Series Simulation</span></a><a class="next" href="../2_Correlated_Model/"><span class="direction">Next</span><span class="title">Correlating Variables in Your Model</span></a></footer></article></body></html>

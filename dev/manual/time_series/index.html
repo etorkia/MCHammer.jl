@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Time-Series Simulation · MCHammer.jl</title><link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css" rel="stylesheet" type="text/css"/><link href="https://fonts.googleapis.com/css?family=Lato|Roboto+Mono" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="../.."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.2.0/require.min.js" data-main="../../assets/documenter.js"></script><script src="../../siteinfo.js"></script><script src="../../../versions.js"></script><link href="../../assets/documenter.css" rel="stylesheet" type="text/css"/></head><body><nav class="toc"><a href="../../index.html"><img class="logo" src="../../assets/logo.png" alt="MCHammer.jl logo"/></a><h1>MCHammer.jl</h1><select id="version-selector" onChange="window.location.href=this.value" style="visibility: hidden"></select><form class="search" id="search-form" action="../../search/"><input id="search-query" name="q" type="text" placeholder="Search docs"/></form><ul><li><a class="toctext" href="../../">MCHammer.jl</a></li><li><a class="toctext" href="../1_functions/">Simulation Modeling Functions</a></li><li><a class="toctext" href="../charts/">Charting Functions</a></li><li class="current"><a class="toctext" href>Time-Series Simulation</a><ul class="internal"><li><a class="toctext" href="#Overview-1">Overview</a></li><li><a class="toctext" href="#Functions-1">Functions</a></li></ul></li><li><a class="toctext" href="../../tutorials/1_first_model/">Building your first model</a></li><li><a class="toctext" href="../../tutorials/2_Correlated_Model/">Correlating Variables in Your Model</a></li><li><a class="toctext" href="../../tutorials/3_NPV_testmodel/">Simulated NPV with Time-Series</a></li></ul></nav><article id="docs"><header><nav><ul><li><a href>Time-Series Simulation</a></li></ul><a class="edit-page" href="github.com/etorkia/MCHammer.jl"><span class="fa"></span> Edit on GitHub</a></nav><hr/><div id="topbar"><span>Time-Series Simulation</span><a class="fa fa-bars" href="#"></a></div></header><h1><a class="nav-anchor" id="Time-Series-Simulation-1" href="#Time-Series-Simulation-1">Time-Series Simulation</a></h1><h2><a class="nav-anchor" id="Overview-1" href="#Overview-1">Overview</a></h2><p>MCH Timeseries contains functions to create simulated times series with MCHammer. Current implementation supports GBM only. Other methods will be added</p><h2><a class="nav-anchor" id="Functions-1" href="#Functions-1">Functions</a></h2><section class="docstring"><div class="docstring-header"><a class="docstring-binding" id="MCHammer.GBMMfit" href="#MCHammer.GBMMfit"><code>MCHammer.GBMMfit</code></a> — <span class="docstring-category">Function</span>.</div><div><div><pre><code class="language-julia">GBMMfit(HistoricalData, PeriodsToForecast)</code></pre><p>GBMMfit uses a vector of historical data to calculate the log returns and use the mean and standard deviation to project a random walk. It the uses the last datapoint in the set as the starting point for the new forecast.</p><p><strong>HistoricalData</strong>: Vector containing historical data</p><p><strong>PeriodsToForecast</strong>: integer &gt;1</p></div></div><a class="source-link" target="_blank" href="github.com/etorkia/MCHammer.jl">source</a></section><pre><code class="language-julia">Random.seed!(1)
+historical = rand(Normal(10,2.5),1000)
+GBMMfit(historical, 12)
+
+# output
+12×1 Array{Float64,2}:
+ 6.6992003689078325
+ 7.062760356166932
+ 7.103000620460403
+ 7.420415139367789
+ 8.514400412609032
+ 3.943937898162356
+ 4.146251875790493
+ 5.262045352529825
+ 0.7692838668172376
+ 1.2648073358011491
+ 1.5912440333414342
+ 2.1886864479965875</code></pre><section class="docstring"><div class="docstring-header"><a class="docstring-binding" id="MCHammer.GBMM" href="#MCHammer.GBMM"><code>MCHammer.GBMM</code></a> — <span class="docstring-category">Function</span>.</div><div><div><pre><code class="language-julia">GBMM(LastValue, ReturnsMean, ReturnsStd, PeriodsToForecast)</code></pre><p>GBMM produces a random wlak using the last data point and requires a mean and standard deviation to be provided.</p><p><strong>LastValue</strong>: The most recent data point on which to base your random walk.</p><p><strong>ReturnsMean and ReturnsStd</strong> : Historical Mean and Standard Deviation of Returns</p><p><strong>PeriodsToForecast</strong> is an integer &gt;1</p></div></div><a class="source-link" target="_blank" href="github.com/etorkia/MCHammer.jl">source</a></section><pre><code class="language-julia">Random.seed!(1)
+
+GBMM(100000, 0.05,0.05,12)
+
+# output
+
+12×1 Array{Float64,2}:
+ 106486.4399226773
+ 113846.7611813516
+ 116137.16176312814
+ 121883.36579797923
+ 122864.3632374885
+ 130918.80622439094
+ 152488.25443945627
+ 142827.4651618234
+ 153753.52041326065
+ 164757.82535740297
+ 177804.24203041938
+ 195258.14301210243</code></pre><h3><a class="nav-anchor" id="How-to-simulate-a-random-walk-1" href="#How-to-simulate-a-random-walk-1">How to simulate a random walk</a></h3><pre><code class="language-">using Dates, Distributions, DataFrames, MCHammer #hide
+
+ts_trials =[]
+dr = collect(Date(2019,1,01):Dates.Month(1):Date(2019,12,31))
+
+#To setup a TimeSeries simulation with MCHammer
+for i = 1:1000
+     Monthly_Sales = GBMM(100000, 0.05,0.05,12)
+     Monthly_Expenses = GBMM(50000, 0.03,0.02,12)
+     MonthlyCOGS = Monthly_Sales .* 0.3
+     MonthlyProfit = Monthly_Sales - Monthly_Expenses - MonthlyCOGS
+     push!(ts_trials, MonthlyProfit)
+end
+
+#You can graph the result using trend_chrt()
+trend_chrt(ts_trials, dr)</code></pre><footer><hr/><a class="previous" href="../charts/"><span class="direction">Previous</span><span class="title">Charting Functions</span></a><a class="next" href="../../tutorials/1_first_model/"><span class="direction">Next</span><span class="title">Building your first model</span></a></footer></article></body></html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Simulated NPV with Time-Series · MCHammer.jl</title><link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css" rel="stylesheet" type="text/css"/><link href="https://fonts.googleapis.com/css?family=Lato|Roboto+Mono" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="../.."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.2.0/require.min.js" data-main="../../assets/documenter.js"></script><script src="../../siteinfo.js"></script><script src="../../../versions.js"></script><link href="../../assets/documenter.css" rel="stylesheet" type="text/css"/></head><body><nav class="toc"><a href="../../index.html"><img class="logo" src="../../assets/logo.png" alt="MCHammer.jl logo"/></a><h1>MCHammer.jl</h1><select id="version-selector" onChange="window.location.href=this.value" style="visibility: hidden"></select><form class="search" id="search-form" action="../../search/"><input id="search-query" name="q" type="text" placeholder="Search docs"/></form><ul><li><a class="toctext" href="../../">MCHammer.jl</a></li><li><a class="toctext" href="../../manual/1_functions/">Simulation Modeling Functions</a></li><li><a class="toctext" href="../../manual/charts/">Charting Functions</a></li><li><a class="toctext" href="../../manual/time_series/">Time-Series Simulation</a></li><li><a class="toctext" href="../1_first_model/">Building your first model</a></li><li><a class="toctext" href="../2_Correlated_Model/">Correlating Variables in Your Model</a></li><li class="current"><a class="toctext" href>Simulated NPV with Time-Series</a><ul class="internal"><li><a class="toctext" href="#Load-Environment-1">Load Environment</a></li><li><a class="toctext" href="#Setup-Inputs-and-Outputs-1">Setup Inputs and Outputs</a></li><li><a class="toctext" href="#Build-Simulation-Model-1">Build Simulation Model</a></li><li><a class="toctext" href="#Setting-up-data-for-analysis-and-charting-1">Setting up data for analysis and charting</a></li><li><a class="toctext" href="#Stats-1">Stats</a></li></ul></li></ul></nav><article id="docs"><header><nav><ul><li><a href>Simulated NPV with Time-Series</a></li></ul><a class="edit-page" href="github.com/etorkia/MCHammer.jl"><span class="fa"></span> Edit on GitHub</a></nav><hr/><div id="topbar"><span>Simulated NPV with Time-Series</span><a class="fa fa-bars" href="#"></a></div></header><h1><a class="nav-anchor" id="Simulated-NPV-with-Time-Series-1" href="#Simulated-NPV-with-Time-Series-1">Simulated NPV with Time-Series</a></h1><h2><a class="nav-anchor" id="Load-Environment-1" href="#Load-Environment-1">Load Environment</a></h2><p>Let&#39;s start by making sure all the tools we nned are loaded up. You will almost always need to load these packages up anytime you are build a Monte-Carlo model.</p><pre><code class="language-">using Distributions
+using Dates
+using Gadfly
+using StatsBase
+using MCHammer
+using DataFrames</code></pre><h2><a class="nav-anchor" id="Setup-Inputs-and-Outputs-1" href="#Setup-Inputs-and-Outputs-1">Setup Inputs and Outputs</a></h2><p>The next critical step is to setup key inputs, arrays and other important model parameters.</p><pre><code class="language-julia">#Setup the Date Range for the analysis
+dr = collect(Date(2019,1,01):Dates.Year(1):Date(2023,01,01))
+
+#Setup Global Inputs
+ForecastYrs = 5
+Trials = 10000
+Units = [5000, 10000, 17000, 18000, 20000]
+InitialInvestment = 250000
+Investment = [100000, 0, 0, 25000,0] #fill(0,ForecastYrs)
+
+#Setup Outputs
+Sensitivity_Tbl = []
+
+ProjectNPV = []
+USP = []
+USC =[]
+DR = []
+OP =[]
+Annual_CashFlows =[]</code></pre><pre><code class="language-none">0-element Array{Any,1}</code></pre><h2><a class="nav-anchor" id="Build-Simulation-Model-1" href="#Build-Simulation-Model-1">Build Simulation Model</a></h2><p>Monte-Carlo simulation needs to generate a table of scenarios which are known as ***Trials***. A trial documents, in the form of a row, all of the inputs and calculated outputs for a particular scenario.</p><p>Using this results table allows you to runs all sorts of analysis, including sensitivity analysis and assigning probabilities to outcomes. To generate this table, you need to loop your equation/function as many times as you need and vary the inputs using probability distributions.</p><p>Another challenge to account for is that our example is a 5yr NPV model which requires building and analyzing the results over multiple periods. To extend the model, we are using MCHammer&#39;s GBMM function that allows to project a random walk forecast over how ever many periods you need, which extends automatically the model in Julia.</p><pre><code class="language-">for i = 1:Trials
+
+    UnitSellPrice = GBMM(80, 0.2, 0.1, ForecastYrs)
+    UnitCost = GBMM(40, 0.1, 0.05, ForecastYrs)
+
+    #Each period the discount rate is independent. If you use an additive method instead of multiplicative, you can end up with differences. These may or may not impact the decision. For simulation it is best to use the risk free rate.
+
+        #Multiplicative Method
+        DiscountRate = cumprod(rand(Normal(0.02,0.0075),ForecastYrs)+fill(1,ForecastYrs))#accumulate(+,rand(Normal(0.02,0.0075),ForecastYrs))+fill(1,ForecastYrs)
+
+        #Additive Method
+        #DiscountRate = accumulate(+,rand(Normal(0.02,0.0075),ForecastYrs))+fill(1,ForecastYrs)
+
+        #a static DR
+        #DiscountRate = accumulate(+, fill(0.02,ForecastYrs))+fill(1,ForecastYrs)
+
+    #print(DiscountRate)
+
+    #DCF Elements
+    Annual_Sales = UnitSellPrice .* Units
+    Annual_COGS = UnitCost .* Units
+    OPEX = rand(TriangularDist(.2,0.5,0.35),ForecastYrs) .* Annual_Sales
+
+    #Constant Dollar Cashflow
+    #CashFlow_C = (Annual_Sales - Annual_COGS - OPEX - Investment)
+
+    #Discounted CashFLow over multpile periods. This function uses arrays and DOT functions.
+
+    CashFlow = (Annual_Sales - Annual_COGS - OPEX - Investment) ./ DiscountRate
+
+    #Calculated Output
+    Trial_NPV = sum(CashFlow)-InitialInvestment
+
+#Convert Arrays to Scalars for sensitivity analysis
+    push!(ProjectNPV, Trial_NPV)
+    push!(USC, mean(UnitCost))
+    push!(USP, mean(UnitSellPrice))
+    push!(DR,  mean(DiscountRate))
+    push!(OP,  mean(OPEX))
+    push!(Annual_CashFlows,  CashFlow)
+
+end</code></pre><h2><a class="nav-anchor" id="Setting-up-data-for-analysis-and-charting-1" href="#Setting-up-data-for-analysis-and-charting-1">Setting up data for analysis and charting</a></h2><p><strong>Setup inputs/outputs(above) and output tables (below)</strong> for sensitivity analysis and charting. Since correlation is based on the same math as regression, the only way to calculate sensitivity on an Array &gt; 1 (in this case multiple years) is to condense the array into a scalar value using either mean, sum or any other transform because what ever you pick will generate a similar or identical result.</p><pre><code class="language-">Sensitivity_Tbl = DataFrame(hcat(ProjectNPV, USC, USP, DR, OP))
+names!(Sensitivity_Tbl, [:ProjectNPV, :USC, :USP, :DR, :OP])
+NPV_Sensitivity = cormat(Sensitivity_Tbl,1)</code></pre><h2><a class="nav-anchor" id="Stats-1" href="#Stats-1">Stats</a></h2><p>Generate model results and list all the outputs for your charting and analysis functions.</p><pre><code class="language-">print(&quot;Project Mean: &quot;, mean(ProjectNPV),&quot;\n&quot;)
+print(&quot;Project Std.Dev: &quot;, std(ProjectNPV),&quot;\n&quot;)
+print(&quot;Prob. of Neg. NPV: &quot;, GetCertainty(ProjectNPV,0,0),&quot;\n&quot;)
+print(&quot;NPV p10, p50, p90 : &quot;, quantile(collect(Float64, ProjectNPV),[0.1,0.5,0.9]),&quot;\n&quot;)
+println(&quot;&quot;)
+println(&quot;OUTPUTS: Annual_CashFlows, ProjectNPV, Sensitivity_Tbl&quot;)
+println(&quot;date range = dr&quot;)</code></pre><p>To generate a complete list of percentiles, use the <code>fractiles()</code>.</p><pre><code class="language-">fractiles(ProjectNPV)</code></pre><p>##Visualizing the outputs</p><h3><a class="nav-anchor" id="Looking-at-the-Probability-Distribution-1" href="#Looking-at-the-Probability-Distribution-1">Looking at the Probability Distribution</a></h3><pre><code class="language-">histogram_chrt(ProjectNPV, &quot;Five Year NPV&quot;)</code></pre><pre><code class="language-">density_chrt(ProjectNPV, &quot;Five Year NPV&quot;)</code></pre><h3><a class="nav-anchor" id="What-variables-are-most-influential-on-my-output-distribution?-1" href="#What-variables-are-most-influential-on-my-output-distribution?-1">What variables are most influential on my output distribution?</a></h3><pre><code class="language-">sensitivity_chrt(Sensitivity_Tbl, 1, 3)</code></pre><h3><a class="nav-anchor" id="What-does-my-cashflow-look-like-over-time?-1" href="#What-does-my-cashflow-look-like-over-time?-1">What does my cashflow look like over time?</a></h3><p>The trend chart is a median centered chart that establishes a 90% confidence interval for each period. Remember <strong>dr</strong> or the date range is specified at the top.</p><h4><a class="nav-anchor" id="CashFlow-forecast-1" href="#CashFlow-forecast-1">CashFlow forecast</a></h4><pre><code class="language-">trend_chrt(Annual_CashFlows, dr)</code></pre><footer><hr/><a class="previous" href="../2_Correlated_Model/"><span class="direction">Previous</span><span class="title">Correlating Variables in Your Model</span></a></footer></article></body></html>
