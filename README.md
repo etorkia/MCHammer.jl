@@ -71,5 +71,5 @@ If you are interested about learning or sharing extensive experience on how to b
 [docs-stable-img]: https://img.shields.io/badge/docs-stable-blue.svg
 [docs-stable-url]: https://etorkia.github.io/MCHammer.jl/dev/
 
-[travis-img]: https://travis-ci.com/etorkia/MCHammer.jl.svg?branch=master
+[travis-img]: https://travis-ci.com/etorkia/MCHammer.jl.svg?branch=master 
 [travis-url]: https://travis-ci.com/etorkia/MCHammer.jl
