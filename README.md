@@ -2,7 +2,9 @@
 
 | **Documentation**                                                               | **Build Status**                                                                                |
 |:-------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------:|
-| [![][docs-stable-img]][docs-stable-url] [![][docs-dev-img]][docs-dev-url] | [![][travis-img]][travis-url] [![][appveyor-img]][appveyor-url] [![][codecov-img]][codecov-url] |
+| [![][https://travis-ci.com/etorkia/MCHammer.jl.svg?branch=master][https://etorkia.github.io/MCHammer.jl/dev/] [![][docs-dev-img]][docs-dev-url] | [![][travis-img]][travis-url] [![][appveyor-img]][appveyor-url] [![][codecov-img]][codecov-url] |
+
+[![Build Status](https://travis-ci.com/etorkia/MCHammer.jl.svg?branch=master)](https://travis-ci.com/etorkia/MCHammer.jl)
 
 ## Project Mission
 
