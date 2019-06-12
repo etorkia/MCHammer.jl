@@ -9,13 +9,14 @@ Pkg.add("Statistics")
 Pkg.add("Dates")
 Pkg.add("MCHammer")
 Pkg.add("DataFrames")
+Pkg.add("Gadfly")
 
 using Dates
 using DataFrames
 using Documenter, DocumenterTools
 using Distributions, Statistics, StatsBase
 using MCHammer
-
+using Gadfly
 
 makedocs(
 sitename="MCHammer.jl",
