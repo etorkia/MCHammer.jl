@@ -3,6 +3,17 @@
 ## Load Environment
 Let's start by making sure all the tools we nned are loaded up. You will almost always need to load these packages up anytime you are build a Monte-Carlo model.
 
+```@setup SampleModel
+using Pkg
+Pkg.add("Distributions")
+Pkg.add("StatsBase")
+Pkg.add("Statistics")
+Pkg.add("Dates")
+Pkg.add("MCHammer")
+Pkg.add("DataFrames")
+Pkg.add("Gadfly")
+```
+
 ```@example NPVModel
 using Distributions
 using Dates

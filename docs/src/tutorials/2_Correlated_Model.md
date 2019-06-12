@@ -5,6 +5,17 @@ To get started, we are going to recap what we did in your first model and build 
 
 ## Building a Simple Uncorrelated Model
 
+```@setup SampleModel
+using Pkg
+Pkg.add("Distributions")
+Pkg.add("StatsBase")
+Pkg.add("Statistics")
+Pkg.add("Dates")
+Pkg.add("MCHammer")
+Pkg.add("DataFrames")
+Pkg.add("Gadfly")
+```
+
 ```@example SampleModel
 using Distributions, StatsBase, DataFrames, MCHammer
 n_trials = 10000

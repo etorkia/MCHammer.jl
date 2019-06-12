@@ -6,9 +6,18 @@ MCH Timeseries contains functions to create simulated times series with MCHammer
 ## Functions
 ```@meta
 DocTestSetup = quote
+    using Pkg
+    Pkg.add("Distributions")
+    Pkg.add("StatsBase")
+    Pkg.add("Statistics")
+    Pkg.add("Dates")
+    Pkg.add("MCHammer")
+    Pkg.add("DataFrames")
+    Pkg.add("Gadfly")
     using MCHammer
     using Distributions
     using Random
+    using DataFrames
 end
 ```
 ```@docs

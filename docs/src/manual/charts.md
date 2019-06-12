@@ -4,6 +4,15 @@
 MCHammer offers the most important charts for building and analyzing Monte-Carlo Results. MCH_Charts contains standard simulation charts for sensitivity, density, trends (time series with confidence bands) for simulation arrays, vectors and dataframes.
 
 ```@setup Graphing
+using Pkg
+Pkg.add("Gadfly")
+Pkg.add("Distributions")
+Pkg.add("StatsBase")
+Pkg.add("Statistics")
+Pkg.add("Dates")
+Pkg.add("MCHammer")
+Pkg.add("DataFrames")
+
 using Distributions
 using DataFrames
 using MCHammer

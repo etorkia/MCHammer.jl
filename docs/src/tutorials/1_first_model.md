@@ -76,6 +76,16 @@ A model is either a visual or mathematical representation of a situation or syst
 Let's create a simple simulation model with 1000 trials with the following inputs:
 
 ### Setup environment and inputs
+```@setup SampleModel
+using Pkg
+Pkg.add("Distributions")
+Pkg.add("StatsBase")
+Pkg.add("Statistics")
+Pkg.add("Dates")
+Pkg.add("MCHammer")
+Pkg.add("DataFrames")
+Pkg.add("Gadfly")
+```
 
 ```@example SampleModel
 using Distributions, StatsBase, DataFrames, MCHammer

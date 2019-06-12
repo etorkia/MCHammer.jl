@@ -10,6 +10,16 @@ The simulation and correlation functions are designed to quickly obtain risk and
 
 ```@meta
 DocTestSetup = quote
+    using Pkg
+    Pkg.add("Distributions")
+    Pkg.add("StatsBase")
+    Pkg.add("Statistics")
+    Pkg.add("Dates")
+    Pkg.add("MCHammer")
+    Pkg.add("DataFrames")
+    Pkg.add("Gadfly")
+
+
     using MCHammer
     using Distributions
     using Random
