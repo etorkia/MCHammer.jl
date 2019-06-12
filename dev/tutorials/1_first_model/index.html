@@ -2,26 +2,26 @@
 <html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Building your first model · MCHammer.jl</title><link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css" rel="stylesheet" type="text/css"/><link href="https://fonts.googleapis.com/css?family=Lato|Roboto+Mono" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="../.."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.2.0/require.min.js" data-main="../../assets/documenter.js"></script><script src="../../siteinfo.js"></script><script src="../../../versions.js"></script><link href="../../assets/documenter.css" rel="stylesheet" type="text/css"/></head><body><nav class="toc"><a href="../../index.html"><img class="logo" src="../../assets/logo.png" alt="MCHammer.jl logo"/></a><h1>MCHammer.jl</h1><select id="version-selector" onChange="window.location.href=this.value" style="visibility: hidden"></select><form class="search" id="search-form" action="../../search/"><input id="search-query" name="q" type="text" placeholder="Search docs"/></form><ul><li><a class="toctext" href="../../">MCHammer.jl</a></li><li><a class="toctext" href="../../manual/1_functions/">Simulation Modeling Functions</a></li><li><a class="toctext" href="../../manual/charts/">Charting Functions</a></li><li><a class="toctext" href="../../manual/time_series/">Time-Series Simulation</a></li><li class="current"><a class="toctext" href>Building your first model</a><ul class="internal"><li><a class="toctext" href="#Installing-MCHammer-1">Installing MCHammer</a></li><li><a class="toctext" href="#Loading-MCHammer-1">Loading MCHammer</a></li><li class="toplevel"><a class="toctext" href="#Getting-your-environment-setup-for-modeling-1">Getting your environment setup for modeling</a></li><li><a class="toctext" href="#Building-a-simple-example-1">Building a simple example</a></li><li><a class="toctext" href="#Creating-a-simple-model-1">Creating a simple model</a></li></ul></li><li><a class="toctext" href="../2_Correlated_Model/">Correlating Variables in Your Model</a></li><li><a class="toctext" href="../3_NPV_testmodel/">Simulated NPV with Time-Series</a></li></ul></nav><article id="docs"><header><nav><ul><li><a href>Building your first model</a></li></ul><a class="edit-page" href="github.com/etorkia/MCHammer.jl"><span class="fa"></span> Edit on GitHub</a></nav><hr/><div id="topbar"><span>Building your first model</span><a class="fa fa-bars" href="#"></a></div></header><h1><a class="nav-anchor" id="Building-your-first-model-1" href="#Building-your-first-model-1">Building your first model</a></h1><h2><a class="nav-anchor" id="Installing-MCHammer-1" href="#Installing-MCHammer-1">Installing MCHammer</a></h2><p>Install the package as usual using Pkg.</p><pre><code class="language-julia">    using Pkg
     Pkg.(&quot;MCHammer&quot;)</code></pre><p>If you need to install direct, we recommend using &#39;]&#39; to go in the native Pkg manager.</p><pre><code class="language-none">    (v1.1) pkg&gt; add https://github.com/etorkia/MCHammer.jl</code></pre><h2><a class="nav-anchor" id="Loading-MCHammer-1" href="#Loading-MCHammer-1">Loading MCHammer</a></h2><p><strong>To load the MCHammer package</strong></p><pre><code class="language-julia">using MCHammer</code></pre><h1><a class="nav-anchor" id="Getting-your-environment-setup-for-modeling-1" href="#Getting-your-environment-setup-for-modeling-1">Getting your environment setup for modeling</a></h1><p>In order to build your first model, you will need to get a few more packages installed:</p><ul><li><p><strong>Distributions.jl</strong> : To build a simulation, you need distributions as inputs. Julia offers univariate and multivariate distributions covering most needs.</p></li><li><p><strong>StatsBase.jl and Statistics.jl</strong> : These packages provide all the functions to analyze results and build models.</p></li></ul><p>To load the support packages:</p><pre><code class="language-none">  julia&gt; using Distributions, Statistics, StatsBase, DataFrames</code></pre><h2><a class="nav-anchor" id="Building-a-simple-example-1" href="#Building-a-simple-example-1">Building a simple example</a></h2><p><strong>EVERY MONTE CARLO MODEL HAS 3 COMPONENTS</strong></p><ul><li><strong>Inputs</strong>: Ranges or Single Values</li><li><strong>A Model</strong>:  Set of mathematical relationships f(x)</li><li><strong>Outputs</strong>: The variable(s) of interest you want to analyze</li></ul><h3><a class="nav-anchor" id="Main-Distributions-for-most-modeling-situations-1" href="#Main-Distributions-for-most-modeling-situations-1">Main Distributions for most modeling situations</a></h3><p>Though the most used distributions are cite below, Julia&#39;s Distributions package has an impressive array of options. Please check out the complete library of distributions at <a href="http://juliastats.github.io/Distributions.jl/latest/index.html">Distributions.jl</a></p><ul><li>Normal()</li><li>LogNormal()</li><li>Triangular()</li><li>Uniform()</li><li>Beta()</li><li>Exponential()</li><li>Gamma()</li><li>Weibull()</li><li>Poisson()</li><li>Binomial()</li><li>Bernoulli()</li></ul><p>In order to define a simulated input you need to use the <em>rand</em> function. By assigning a variable name, you can generate any simulated vector you want.</p><pre><code class="language-julia">using Distributions
 input_variable = rand(Normal(0,1),100)</code></pre><pre><code class="language-none">100-element Array{Float64,1}:
- -0.8778627833076313 
- -0.20723300286559374
- -1.233854683243862  
- -0.8376079339683085 
-  2.199707790099887  
- -2.0848260037335673 
-  0.13655173173801136
-  0.5216577643128409 
- -0.34271346531827396
- -0.13394222253997753
-  ⋮                  
-  1.488675677610659  
-  0.7156006350862141 
- -0.7756027409018537 
- -0.8477177799929219 
- -0.8574646923341751 
-  0.3729184500869091 
- -0.0947829284514654 
- -0.6788494487984666 
-  0.9973230870761591 </code></pre><h2><a class="nav-anchor" id="Creating-a-simple-model-1" href="#Creating-a-simple-model-1">Creating a simple model</a></h2><p>A model is either a visual or mathematical representation of a situation or system. The easiest example of a model is</p><p><strong>PROFIT = REVENUE - EXPENSES</strong></p><p>Let&#39;s create a simple simulation model with 1000 trials with the following inputs:</p><h3><a class="nav-anchor" id="Setup-environment-and-inputs-1" href="#Setup-environment-and-inputs-1">Setup environment and inputs</a></h3><pre><code class="language-">using Distributions, StatsBase, DataFrames, MCHammer
+  1.3686221052601932  
+  0.7394008074117214  
+  0.050212141255795976
+ -1.6247559896669845  
+ -0.39103387148497687 
+  0.5311727757969303  
+  0.014584426234122178
+ -0.10500189803367548 
+  0.20700893659945901 
+ -0.1768990887101897  
+  ⋮                   
+ -0.62932111865908    
+ -0.9185492900447909  
+  1.6262829141143709  
+  0.35241803269715394 
+ -0.7371129296806697  
+  0.4039825321268034  
+ -0.03148334998024708 
+ -0.4713080329565737  
+  0.9362415919689236  </code></pre><h2><a class="nav-anchor" id="Creating-a-simple-model-1" href="#Creating-a-simple-model-1">Creating a simple model</a></h2><p>A model is either a visual or mathematical representation of a situation or system. The easiest example of a model is</p><p><strong>PROFIT = REVENUE - EXPENSES</strong></p><p>Let&#39;s create a simple simulation model with 1000 trials with the following inputs:</p><h3><a class="nav-anchor" id="Setup-environment-and-inputs-1" href="#Setup-environment-and-inputs-1">Setup environment and inputs</a></h3><pre><code class="language-">using Distributions, StatsBase, DataFrames, MCHammer
 n_trials = 1000
 Revenue = rand(TriangularDist(2500000,4000000,3000000), n_trials)
 Expenses = rand(TriangularDist(1400000,3000000,2000000), n_trials)</code></pre><h3><a class="nav-anchor" id="Define-a-Model-and-Outputs-1" href="#Define-a-Model-and-Outputs-1">Define a Model and Outputs</a></h3><pre><code class="language-"># The Model
