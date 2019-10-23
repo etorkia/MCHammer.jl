@@ -26,7 +26,7 @@ if RankOrder == 1
       for i=1:M_Size
       cor_vector = []
             for i2=1:M_Size
-             cor_i = cor(tiedrank(ArrayName[i]),tiedrank(ArrayName[i2]));
+             cor_i = cor(tiedrank(ArrayName[!, i]),tiedrank(ArrayName[!, i2]));
              push!(cor_vector,cor_i)
              #print(cov_i)
             end

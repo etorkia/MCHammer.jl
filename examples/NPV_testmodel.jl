@@ -28,7 +28,7 @@ DR = []
 OP =[]
 Annual_CashFlows =[]
 
-for i = 1:100000
+for i = 1:10000000
 
     UnitSellPrice = GBMM(80, 0.2, 0.1, ForecastYrs)
     UnitCost = GBMM(40, 0.1, 0.05, ForecastYrs)
