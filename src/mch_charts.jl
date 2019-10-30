@@ -175,8 +175,13 @@ end
 """
 function trend_chrt(SimTimeArray, PeriodRange, quantiles=[0.05,0.5,0.95])
 #In order to stack vector entries, use the mapping function ****
+
+if typeof(SimTimeArray) == DataFrame
+    AC_DF = SimTimeArray
+else
 AC_DF = vcat(map(x->x',SimTimeArray)...)
 AC_DF = DataFrame(AC_DF)
+end
 
 trend_chart = []
 
