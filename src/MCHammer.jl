@@ -29,13 +29,19 @@ export
     sensitivity_chrt,
     trend_chrt,
     GBMMfit,
-    GBMM
+    GBMM,
+    sip2csv,
+    importxlsip,
+    importsip,
+    genmeta
+
 
 
 #Source files for MC_Hammer functions
 include("mch_simtools.jl")
 include("mch_charts.jl")
 include("mch_timeseries.jl")
+include("mch_SIPTools.jl")
 
 function test()
     println("Hello")

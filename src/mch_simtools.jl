@@ -62,7 +62,7 @@ if typeof(ArrayName) == Array{Float64,2}
 end
       for i=1:M_Size
             for i2=1:M_Size
-             cov_i = cov(ArrayName[i],ArrayName[i2]);
+             cov_i = cov(ArrayName[!,i],ArrayName[!,i2]);
              push!(cov_mat,cov_i)
              #print(cov_i)
             end
@@ -101,7 +101,7 @@ ISN_Matrix_DF = DataFrame(ISN_Matrix)
 #apply ranks to create independant correlation rankings matrix
 ISN_Ranked = []
 for i = 1:array_dims
-      temp_ranks = ordinalrank(ISN_Matrix_DF[i])
+      temp_ranks = ordinalrank(ISN_Matrix_DF[!,i])
       push!(ISN_Ranked, temp_ranks)
 end
 ISN_Ranked_DF = DataFrame(ISN_Ranked)
@@ -111,7 +111,7 @@ ISN_Ranked_DF = DataFrame(ISN_Ranked)
 #Reindex the array of samples using the ISN_Ranks. Sort(Array)[OrderingVector]
 final_array=[]
 for i = 1:array_dims
-      sorted_array = sort(ArrayName[i])[ISN_Ranked[i]]
+      sorted_array = sort(ArrayName[!,i])[ISN_Ranked[!,i]]
       push!(final_array, sorted_array)
 end
 Final_DF=DataFrame(final_array)

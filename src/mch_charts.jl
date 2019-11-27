@@ -75,7 +75,7 @@ cor_mat_s = []
 for i=TargetCol
 cor_vector = []
       for i2=1:M_Size
-       cor_i = cor(tiedrank(ArrayName[i]),tiedrank(ArrayName[i2]));
+       cor_i = cor(tiedrank(ArrayName[!,i]),tiedrank(ArrayName[!,i2]));
        push!(cor_vector,cor_i)
        #print(cov_i)
       end
@@ -88,7 +88,7 @@ cor_mat_p = []
 for i=TargetCol
 cor_vector = []
       for i2=1:M_Size
-       cor_i = cor(ArrayName[i], ArrayName[i2]);
+       cor_i = cor(ArrayName[!,i], ArrayName[!,i2]);
        push!(cor_vector,cor_i)
       end
 push!(cor_mat_p,cor_vector)
