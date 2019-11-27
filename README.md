@@ -30,6 +30,9 @@ The *MC* in MC Hammer stands for Monte-Carlo. This tool is inspired by seminal t
 *	Time Series using Historical Data to calculate parameters for Simulated Random Walk
 *	Trend Charts with Customizable Confidence Bands
 
+### Import / Exporting (New)
+* Import SIPmath 2.0 Libraries
+* Export simulation results to the SIPmath 2.0 standard.
 
 ### Current Functions
 * cormat()
@@ -45,6 +48,11 @@ The *MC* in MC Hammer stands for Monte-Carlo. This tool is inspired by seminal t
 * trend_chrt()
 * GBMMult_Fit()
 * GBMM()
+* genmeta()
+* sip2csv()
+* importsip()
+* importxlsip()
+
 
 ## Documentation
 
@@ -71,5 +79,7 @@ If you are interested about learning or sharing extensive experience on how to b
 [docs-stable-img]: https://img.shields.io/badge/docs-stable-blue.svg
 [docs-stable-url]: https://etorkia.github.io/MCHammer.jl/dev/
 
-[travis-img]: https://travis-ci.com/etorkia/MCHammer.jl.svg?branch=master 
+[travis-img]: https://travis-ci.com/etorkia/MCHammer.jl.svg?branch=master
 [travis-url]: https://travis-ci.com/etorkia/MCHammer.jl
+
+[siplogo]: https://github.com/etorkia/MCHammer.jl/tree/master/docs/src/assets/siplogo.png

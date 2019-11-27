@@ -1,12 +1,12 @@
-#Importing and Exporting Simulation Results
+# Importing and Exporting Simulation Results
 
-##Overview
+## Overview
 
 Simulation operates using the simple constructor :Data In , Data Out or *Inputs -> Model -> Outputs.*  This section covers importing inputs, perhaps from a different department or external source and then exporting the results for consumption by the interested stakeholders.
 
-##Getting Started
+## Getting Started
 
-###How are simulation results organized?
+### How are simulation results organized?
 
 Essentially all Monte-Carlo simulation results take the form of a 2 dimensional table consisting of Trials (rows) and Variables (columns). Each variable is a vector (column) of numbers in a specific order. The order is important because it is what maintains the correlation structure. For example, because of the ordered sequence, you could calculate the R2 or correlation using any 2 output vector or input vectors.
 
@@ -20,10 +20,10 @@ Another thing to keep in mind is that **each** trial is assigned an ID and the g
 |...       | ...     |  ...     | ...    |
 
 
-A simulation results table should contain inputs variables and output variables side by side. This is a good practice because in theory it allows you to reconstruct/validate the results. *_In all cases, the number of trials/rows, must be of consistent length for all inputs and outputs in the model. (i.e. A 1000 trials). Each trial should have a trial ID. You can easily generate a Trial ID vector using *Trial_ID = collect(1:1000)_* and append the column to your results using hcat().
+A simulation results table should contain inputs variables and output variables side by side. This is a good practice because in theory it allows you to reconstruct/validate the results. **_In all cases, the number of trials/rows, must be of consistent length for all inputs and outputs in the model. (i.e. A 1000 trials). Each trial should have a trial ID. You can easily generate a Trial ID vector using Trial_ID = collect(1:1000)_** and append the column to your results using hcat().
 
 
-###Using the SIPMath standard to organize simulation results
+### Using the SIPMath standard to organize simulation results
 SIPMath and probability management are approaches that were popularized by Sam Savage in 2009. A SIP Is known technically as a stochastic information packet or vector. The basic idea behind SIPMath is that models can be simplified and broken out into submodels. Generally, the output of a submodel can be summarized as an output vector and saves a lot of the computing efforts required to rerun both models together side-by-side.
 
 > In the SIPmath Standard, uncertainties are communicated as data arrays called SIPs (Stochastic Information Packets). For example, the SIP representing the roll of a die would be expressed as thousands of outcomes, which could be stored in Excel or a database. The open SIPmath™ Standard enables legacy and future simulation models to communicate with each other, ushering in a new paradigm for enterprise risk management.
@@ -53,9 +53,19 @@ When importing data using the strict 2.0 standard from another environment, incl
 importsip
 ```
 
-##Exporting results
+## Exporting results
 
 Exporting results from a simulation built in Julia can also be done using either the standard CSV package or with the functions included in MC Hammer to export using the SIPMath standard. One of the main differences when working in a programmatic environment versus a spreadsheet is that the metadata needs to reside in a separate file first before it can be recombined in the final export format. To do so, we have created both a function for incorporating MetaData into your SIP library and one for exporting the simulation results.
 
 
-called genmeta() which creates a template file for your sip library metadata. This needs to be run prior to the SIP to Excel export.
+### Generating MetaData
+
+```@docs
+genmeta
+```
+
+### Exporting Results in the CSV SIPMath 2.0 standard.
+
+```@docs
+sip2csv
+```
