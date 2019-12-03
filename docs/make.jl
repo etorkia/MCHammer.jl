@@ -32,6 +32,9 @@ format = Documenter.HTML(
 
 authors = "Eric Torkia, Technology Partnerz and contributors",
 doctest = true,
+source  = "src",
+build   = "build",
+clean   = true,
 repo = "github.com/etorkia/MCHammer.jl")
 
 deploydocs(
@@ -39,7 +42,28 @@ deploydocs(
     repo = "github.com/etorkia/MCHammer.jl.git",
     branch = "gh-pages",
     devbranch="master",
-    versions = ["stable" => "v^", "v#.#"]
+    versions = ["stable" => "v^", "v1.3"]
 )
 
 #Literate.markdown("examples/NPV_testmodel.jl", "docs/src/tutorials"; documenter=true)
+
+
+#Local build
+# cd("Z:\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer\\docs\\src")
+# using Documenter, DocumenterTools, Test
+# using MCHammer
+#
+# makedocs(
+# sitename="MCHammer.jl",
+# source  = "src",
+# build   = "build",
+# clean   = true,
+# doctest = true,
+# modules =[MCHammer, Documenter, DocumenterTools, Distributions, StatsBase, Statistics, Dates, DataFrames, Gadfly])
+#
+#
+# @testset "MCHammer" begin
+#
+#     doctest(MCHammer; manual = true)
+#
+# end
