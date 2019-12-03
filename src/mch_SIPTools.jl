@@ -5,7 +5,7 @@ using DataFrames, CSV, Distributions
     # FileName = "sip_export"
 
 """
-    function dfnames(headings)
+    dfnames(headings)
 
 Adds ":" in front of all items in an array. This format is required by the DataFrame packages when giving names to columns.
 """
@@ -26,9 +26,7 @@ end
 - In order to export a SIP Library from Julia, you simply need to have a DataFrame.
 - Only specify header fields if your data does not contain any.
 - Also make to specify the full filename, including extension
-
 """
-
 function sip2csv(FileName, source_df, s_name="SLURP", s_origin="Julia Language")
 
     csvfilename = "$FileName.csv"
@@ -159,7 +157,6 @@ end
 This function allows to import SIPs in CSV format from Excel using the SIP 2.0 Standard (Stochastic Information Packets, Savage[2009]) to build unified simulation models.
 Based on the CSV package, the function cleans up meta data and cleans out redundant columns. You can also set a *source string* that will be included in your SIP DataFrame as a dimension.
 """
-
 function importxlsip(FileName, source="")
 println("Processing SIP Data...\n")
     open(FileName) do file
@@ -194,7 +191,6 @@ end
 This function allows to import SIPs in CSV format from Julia using the SIP 2.0 Standard (Stochastic Information Packets, Savage[2009]) to build unified simulation models.
 Based on the CSV package, the function cleans up meta data and cleans out redundant columns. You can also set a *source string* that will be included in your SIP DataFrame as a dimension.
 """
-
 function importsip(FileName, source="Not specified by user")
     open(FileName) do file
         global linecounter = 1
@@ -225,7 +221,6 @@ end
 
 SIPs using the SIP 2.0 Standard (Stochastic Information Packets, Savage[2009]) require that Meta Data be available and maintained. This function creates a file template to add MetaData to your SIP Library. This is a seperate file must accompany the DataFrame to generate the SIP Library correctly. If ommited, the file will export the SIP Library without any metadata.
 """
-
 function genmeta(source_df, s_name="SLURPName")
     #File Operations
     csvfilename = string("$s_name","_meta.csv")
