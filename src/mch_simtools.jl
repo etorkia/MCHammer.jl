@@ -111,7 +111,7 @@ ISN_Ranked_DF = DataFrame(ISN_Ranked)
 #Reindex the array of samples using the ISN_Ranks. Sort(Array)[OrderingVector]
 final_array=[]
 for i = 1:array_dims
-      sorted_array = sort(ArrayName[!,i])[ISN_Ranked[!,i]]
+      sorted_array = sort(ArrayName[i])[ISN_Ranked[i]]
       push!(final_array, sorted_array)
 end
 Final_DF=DataFrame(final_array)
