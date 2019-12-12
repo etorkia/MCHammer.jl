@@ -28,7 +28,7 @@ SIPMath and probability management are approaches that were popularized by Sam S
 
 > In the SIPmath Standard, uncertainties are communicated as data arrays called SIPs (Stochastic Information Packets). For example, the SIP representing the roll of a die would be expressed as thousands of outcomes, which could be stored in Excel or a database. The open SIPmath™ Standard enables legacy and future simulation models to communicate with each other, ushering in a new paradigm for enterprise risk management.
 
-The SIPMath standard can be consulted on the [probabilitymanagement.org](https://www.probabilitymanagement.org/20-standard) website
+[siplogo] The SIPMath standard can be consulted on the [probabilitymanagement.org](https://www.probabilitymanagement.org/20-standard) website
 
 
 ## Importing Variables / Data.
@@ -69,3 +69,4 @@ genmeta
 ```@docs
 sip2csv
 ```
+[siplogo]: https://github.com/etorkia/MCHammer.jl/tree/master/docs/src/assets/siplogo.png
