@@ -2,7 +2,7 @@
 
 | **Documentation**                                                               | **Build Status**                                                                                |
 |:-------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------:|
-| [![][docs-stable-img]][docs-stable-url] [![][docs-dev-img]][docs-dev-url] | [![][travis-img]][travis-url] | [siplogo]
+| [![][docs-stable-img]][docs-stable-url] [![][docs-dev-img]][docs-dev-url] | [![][travis-img]][travis-url] |
 
 ## Project Mission
 
@@ -33,6 +33,8 @@ The *MC* in MC Hammer stands for Monte-Carlo. This tool is inspired by seminal t
 ### Import / Exporting (New)
 * Import SIPmath 2.0 Libraries
 * Export simulation results to the SIPmath 2.0 standard.
+
+[siplogo]
 
 ### Current Functions
 * cormat()
