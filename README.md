@@ -90,4 +90,4 @@ If you are interested about learning or sharing extensive experience on how to b
 [travis-url]: https://travis-ci.com/etorkia/MCHammer.jl
 
 [siplogo]: https://github.com/etorkia/MCHammer.jl/tree/master/docs/src/assets/siplogo.png
-[mch_logo]: https://github.com/etorkia/MCHammer.jl/tree/master/docs/src/assets/logo.png
+[mch_logo]: https://github.com/etorkia/MCHammer.jl/tree/master/docs/src/assets/logo.png "MCHammer simulates in Julia"
