@@ -25,7 +25,7 @@ modules =[MCHammer, Documenter, DocumenterTools, Distributions, StatsBase, Stati
 format = Documenter.HTML(
     # Use clean URLs, unless built as a "local" build
     prettyurls = !("local" in ARGS),
-    canonical = "https://etorkia.github.io/MCHammer.jl/dev/",
+    canonical = "https://etorkia.github.io/MCHammer.jl/1.3/",
     assets = ["assets/favicon.ico"],
     analytics = "UA-3913053-5",
 ),
