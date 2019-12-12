@@ -5,7 +5,7 @@
 | [![][docs-stable-img]][docs-stable-url] [![][docs-dev-img]][docs-dev-url] | [![][travis-img]][travis-url] |
 
 
-![MCHammer for Julia][mch_logo]
+![alt text][mch_logo]
 
 ## Project Mission
 
@@ -35,7 +35,7 @@ The *MC* in MC Hammer stands for Monte-Carlo. This tool is inspired by seminal t
 
 ### Import / Exporting (New)
 
-![SIPMath 2.0 certified][siplogo]
+![alt text][siplogo]
 
 * Import SIPmath 2.0 Libraries
 * Export simulation results to the SIPmath 2.0 standard.
@@ -89,5 +89,5 @@ If you are interested about learning or sharing extensive experience on how to b
 [travis-img]: https://travis-ci.com/etorkia/MCHammer.jl.svg?branch=master
 [travis-url]: https://travis-ci.com/etorkia/MCHammer.jl
 
-[siplogo]: https://github.com/etorkia/MCHammer.jl/tree/master/docs/src/assets/siplogo.png
+[siplogo]: https://github.com/etorkia/MCHammer.jl/tree/master/docs/src/assets/siplogo.png "SIPMath 2.0 Certified"
 [mch_logo]: https://github.com/etorkia/MCHammer.jl/tree/master/docs/src/assets/logo.png "MCHammer : MCS in Julia"
