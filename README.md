@@ -36,7 +36,7 @@ The *MC* in MC Hammer stands for Monte-Carlo. This tool is inspired by seminal t
 
 ### Import / Exporting (New)
 
-![SIPMath 2.0 certified](siplogo.png)
+<p align="left"><img src="siplogo.png" height="150"></p>
 
 * Import SIPmath 2.0 Libraries
 * Export simulation results to the SIPmath 2.0 standard.
