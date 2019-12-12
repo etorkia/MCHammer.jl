@@ -2,7 +2,10 @@
 
 | **Documentation**                                                               | **Build Status**                                                                                |
 |:-------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------:|
-| [![][docs-stable-img]][docs-stable-url] [![][docs-dev-img]][docs-dev-url] | [![][travis-img]][travis-url] | [siplogo]
+| [![][docs-stable-img]][docs-stable-url] [![][docs-dev-img]][docs-dev-url] | [![][travis-img]][travis-url] |
+
+
+<img src="https://github.com/etorkia/MCHammer.jl/tree/master/docs/src/assets/logo.png", align ="center")
 
 ## Project Mission
 
@@ -31,8 +34,12 @@ The *MC* in MC Hammer stands for Monte-Carlo. This tool is inspired by seminal t
 *	Trend Charts with Customizable Confidence Bands
 
 ### Import / Exporting (New)
+
+![siplogo]
+
 * Import SIPmath 2.0 Libraries
 * Export simulation results to the SIPmath 2.0 standard.
+
 
 ### Current Functions
 * cormat()
@@ -83,3 +90,4 @@ If you are interested about learning or sharing extensive experience on how to b
 [travis-url]: https://travis-ci.com/etorkia/MCHammer.jl
 
 [siplogo]: https://github.com/etorkia/MCHammer.jl/tree/master/docs/src/assets/siplogo.png
+[mch_logo]: https://github.com/etorkia/MCHammer.jl/tree/master/docs/src/assets/logo.png
