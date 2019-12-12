@@ -5,7 +5,7 @@
 | [![][docs-stable-img]][docs-stable-url] [![][docs-dev-img]][docs-dev-url] | [![][travis-img]][travis-url] |
 
 
-![MCHammer for Julia](/master/docs/src/assets/logo.png)
+![MCHammer for Julia](logo.png)
 
 ## Project Mission
 
@@ -35,7 +35,7 @@ The *MC* in MC Hammer stands for Monte-Carlo. This tool is inspired by seminal t
 
 ### Import / Exporting (New)
 
-![SIPMath 2.0 certified](/tree/master/docs/src/assets/siplogo.png)
+![SIPMath 2.0 certified](siplogo.png)
 
 * Import SIPmath 2.0 Libraries
 * Export simulation results to the SIPmath 2.0 standard.
