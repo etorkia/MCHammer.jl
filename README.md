@@ -1,3 +1,5 @@
+<p align="center"><img src="logo.png" height="200"></p>
+
 # MC HAMMER Monte Carlo Simulation and Business Analysis tools for Julia
 
 | **Documentation**                                                               | **Build Status**                                                                                |
@@ -5,7 +7,6 @@
 | [![][docs-stable-img]][docs-stable-url] [![][docs-dev-img]][docs-dev-url] | [![][travis-img]][travis-url] |
 
 
-![MCHammer for Julia](logo.png)
 
 ## Project Mission
 
