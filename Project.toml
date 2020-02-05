@@ -29,7 +29,7 @@ Gadfly ="1"
 IterableTables ="^1"
 StatsBase="^0.32.0"
 TimeSeries="^0.16.0"
-
+Colors ="^0"
 
 
 
