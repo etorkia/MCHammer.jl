@@ -150,13 +150,13 @@ graph_tbl = sort(graph_tbl,3,rev=false)
 println(graph_tbl)
 
 if Chrt_Type ==1
-      return plot(graph_tbl, y=:name, x=:correlation, Guide.Title("Variables with Biggest Impact"), Guide.xlabel("Rank Correlation"), Guide.ylabel("Input"), Geom.bar(orientation=:horizontal), Theme(bar_spacing=10pt), color=:impact, Scale.color_discrete_manual(colorant"red", colorant"deep sky blue"), Scale.x_continuous(minvalue=-1, maxvalue=1))
+      return plot(graph_tbl, y=:name, x=:correlation, Guide.Title("Variables with Biggest Impact"), Guide.xlabel("Rank Correlation"), Guide.ylabel("Input"), Geom.bar(orientation=:horizontal), Theme(bar_spacing=10pt), color=:impact, Scale.color_discrete_manual(colorant"red", colorant"deepskyblue"), Scale.x_continuous(minvalue=-1, maxvalue=1))
 elseif Chrt_Type ==2
-      return plot(graph_tbl, y=:name, x=:PPMC, Guide.Title("Variables with Biggest Impact"), Guide.xlabel("Pearson Correlation"), Guide.ylabel("Input"), Geom.bar(orientation=:horizontal), Theme(bar_spacing=10pt), color=:impact, Scale.color_discrete_manual(colorant"red", colorant"deep sky blue"), Scale.x_continuous(minvalue=-1, maxvalue=1))
+      return plot(graph_tbl, y=:name, x=:PPMC, Guide.Title("Variables with Biggest Impact"), Guide.xlabel("Pearson Correlation"), Guide.ylabel("Input"), Geom.bar(orientation=:horizontal), Theme(bar_spacing=10pt), color=:impact, Scale.color_discrete_manual(colorant"red", colorant"deepskyblue"), Scale.x_continuous(minvalue=-1, maxvalue=1))
 elseif Chrt_Type ==3
-      return plot(graph_tbl, y=:name, x=:cont_var, Guide.Title("Variables with Biggest Impact"), Guide.xlabel("% Contribution to Variance"), Guide.ylabel("Input"), Geom.bar(orientation=:horizontal), Theme(bar_spacing=10pt), color=:impact, Scale.color_discrete_manual(colorant"red", colorant"deep sky blue"),Scale.x_continuous(minvalue=-1, maxvalue=1))
+      return plot(graph_tbl, y=:name, x=:cont_var, Guide.Title("Variables with Biggest Impact"), Guide.xlabel("% Contribution to Variance"), Guide.ylabel("Input"), Geom.bar(orientation=:horizontal), Theme(bar_spacing=10pt), color=:impact, Scale.color_discrete_manual(colorant"red", colorant"deepskyblue"),Scale.x_continuous(minvalue=-1, maxvalue=1))
 else
-      return plot(graph_tbl, y=:name, x=:cont_var, Guide.Title("Variables with Biggest Impact"), Guide.xlabel("% Contribution to Variance"), Guide.ylabel("Input"), Geom.bar(orientation=:horizontal), Theme(bar_spacing=10pt), color=:impact, Scale.color_discrete_manual(colorant"red", colorant"deep sky blue"), Scale.x_continuous(minvalue=-1, maxvalue=1))
+      return plot(graph_tbl, y=:name, x=:cont_var, Guide.Title("Variables with Biggest Impact"), Guide.xlabel("% Contribution to Variance"), Guide.ylabel("Input"), Geom.bar(orientation=:horizontal), Theme(bar_spacing=10pt), color=:impact, Scale.color_discrete_manual(colorant"red", colorant"deepskyblue"), Scale.x_continuous(minvalue=-1, maxvalue=1))
 
 end
 end

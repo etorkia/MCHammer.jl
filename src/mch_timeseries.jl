@@ -77,6 +77,20 @@ function GBMM(LastValue, ReturnsMean, ReturnsStd, PeriodsToForecast)
     end
 
 
+    """
+        GBMA_d(price_0, t, rf, exp_vol)
+
+    GBMA_d allows you to forecast the stock price at a given day in the future.
+
+    This function uses a multiplicative Geometric Brownian Motion to forecast
+
+    """
+    function GBMA_d(price_0, t, rf, exp_vol)
+    forecast = price_0 * exp((rf - ((exp_vol^2)/2) *t/252)+ (exp_vol*rand(Normal(0,1))*sqrt(t/252)))
+    return forecast
+    end
+
+
 #---------------------------------------------------------------
 # testing exercises
 #_______________________________________________________________
