@@ -1,6 +1,6 @@
 #NPV TEST MODEL FOR MC HAMMER
 #MAY 2019
-
+clearconsole()
 
 using Distributions
 using Dates
@@ -28,7 +28,7 @@ DR = []
 OP =[]
 Annual_CashFlows =[]
 
-for i = 1:10000000
+for i = 1:10000
 
     UnitSellPrice = GBMM(80, 0.2, 0.1, ForecastYrs)
     UnitCost = GBMM(40, 0.1, 0.05, ForecastYrs)
@@ -69,11 +69,11 @@ for i = 1:10000000
 
 end
 Sensitivity_Tbl = DataFrame(hcat(ProjectNPV, USC, USP, DR, OP))
-names!(Sensitivity_Tbl, [:ProjectNPV, :USC, :USP, :DR, :OP])
+rename!(Sensitivity_Tbl, [:ProjectNPV, :USC, :USP, :DR, :OP])
 NPV_Sensitivity = cormat(Sensitivity_Tbl,1)
 
 #Stats
-clearconsole()
+
 plot(ProjectNPV, x=ProjectNPV, Geom.density)
 print("Project Mean: ", mean(ProjectNPV),"\n")
 print("Project Std.Dev: ", std(ProjectNPV),"\n")

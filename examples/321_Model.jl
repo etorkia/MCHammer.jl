@@ -25,8 +25,8 @@ Trials = hcat(Revenue, Expenses)
 Trials = corvar(Trials, n_trials, cor_matrix)
 
 #Correlated Model(2) - Create Correlated Results Array
-Profit_C = Trials[1] -Trials[2]
-Trials = hcat(Trials[1], Trials[2], Profit_C)
+Profit_C = Trials[!,1] -Trials[!,2]
+Trials = hcat(Trials[!,1], Trials[!,2], Profit_C)
 cormat(Trials,1)
 
 #Plot Density
