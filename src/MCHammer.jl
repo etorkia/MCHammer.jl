@@ -33,7 +33,12 @@ export
     sip2csv,
     importxlsip,
     importsip,
-    genmeta
+    genmeta,
+    marty,
+    markov_a,
+    markov_ts,
+    RiskEvent
+
 
 
 
@@ -42,6 +47,8 @@ include("mch_simtools.jl")
 include("mch_charts.jl")
 include("mch_timeseries.jl")
 include("mch_SIPTools.jl")
+include("mch_distributions.jl")
+include("mch_stochastic.jl")
 
 function test()
     println("Hello")

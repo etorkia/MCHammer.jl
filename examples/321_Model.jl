@@ -45,3 +45,4 @@ println("Input Correlation: ", cor(Trials[:, 1],Trials[:,2]))
 println("\n")
 
 println("Model Outputs: Revenue, Expenses, Profit, Profit_C")
+Profit_C
