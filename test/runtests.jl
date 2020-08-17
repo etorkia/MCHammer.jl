@@ -78,3 +78,37 @@ end
     @test test_r[12,1] == 2.1886864479965875
 
 end
+
+@testset "RiskEvent" begin
+    test_r =RiskEvent(0.3, Normal(), 10,seed=1)
+    @test test_rt[9,:] ==  -0.6936536438038856
+
+end
+
+
+@testset "cmatrix" begin
+    test_r = cmatrix(3)
+    @test test_r[3:3,:] ==  [1 1 1]
+
+end
+
+@testset "MarkovChains" begin
+#Setup test data
+    Marital_StatM = [0.85	0.12	0.02	0.01;
+    0	0.88	0.08	0.04;
+    0	0.13	0.45	0.42;
+    0	0.09	0.02	0.89;
+    ]
+
+    initial_marital = [0.43, 0.29, 0.11, 0.17 ]
+
+AnalyticSolution = markov_a(Marital_StatM)
+TS_Solution = markov_ts(Marital_StatM, initial_marital, 5)
+
+
+ts_test = [0.3655  0.310675  0.264074   0.224463   0.190793
+ 0.3364  0.370109  0.394771   0.412797   0.425883
+ 0.0847  0.076605  0.0751467  0.0759993  0.0774475
+ 0.2134  0.242611  0.266009   0.286741   0.305876]
+
+TS_Solution[4,5] == 0.305875860034

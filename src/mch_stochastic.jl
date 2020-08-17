@@ -121,7 +121,7 @@ The resulting vector is the balance of cash the gambler has in hand at any given
 *GameWinProb* is the estimated probability of winning.
 *CashInHand* is the starting balance for the martigale. At times, this parameter can make a difference in whether your survive the process or go home broke.
 
-For example a gambler with 50$ making wagers of 50$ 10 times using the double or nothing strategy.
+For example a gambler with 50 dollars making wagers of 50 dollars, 10 times using the double or nothing strategy.
 
 julia> marty(50,10)
 
