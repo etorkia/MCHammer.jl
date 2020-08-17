@@ -123,11 +123,11 @@ function sip2csv(FileName, source_df, s_name="SLURP", s_origin="Julia Language")
 end
 
 
-```
+"""
     SIPNames(source_df)
 
 Preps a vector of names for the CSV export of SIPs by removing unnecessary characters in front of all items in an array.
-```
+"""
 function SIPNames(source_df)
     df_names=names(source_df)
     df_names=string([df_names])
@@ -136,12 +136,12 @@ function SIPNames(source_df)
     df_names = replace(df_names, ":" =>"")
     return df_names
 end
-```
+"""
     lineprep(line_array)
 
 When you want to strip "[]" from Arrays for export to CSV
 
-```
+"""
 function lineprep(line_array)
     val = string([line_array])
     val = replace(val, "Array{Array{Float64,1},1}" =>"")
