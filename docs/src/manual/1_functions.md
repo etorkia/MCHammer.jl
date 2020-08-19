@@ -32,7 +32,8 @@ RiskEvent
 ```
 
 ```@example
-#Simulate a conditional risk event with a 30% chance of occurring and an impact that is distributed along a standard Normal. 10 trials are generated.
+# Simulate a conditional risk event with a 30% chance of occurring and an impact
+# that is distributed along a standard Normal. 10 trials are generated.
 
 RiskEvent(0.3, Normal(0,1), 10)
 ```

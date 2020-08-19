@@ -20,7 +20,7 @@ using Gadfly
 
 # makedocs(
 # sitename="MCHammer.jl",
-# modules =[MCHammer, Documenter, DocumenterTools, Distributions, StatsBase, Statistics, Dates, DataFrames, Gadfly],
+# modules =[MCHammer],
 #
 # pages = Any[
 # "Home" => "index.md"
@@ -32,8 +32,8 @@ using Gadfly
 #
 # "Tutorials" => Any[
 #     "My First Model" => "tutorials/1_first_model.md"
-#     "Correlating Inputs" => "2_Correlated_Model.md"
-#     "Simulated CashFlow Model" => "3_NPV_testmodel.md"
+#     "Correlating Inputs" => "tutorials/2_Correlated_Model.md"
+#     "Simulated CashFlow Model" => "tutorials/3_NPV_testmodel.md"
 # ],
 #
 # "Import / Export Data" => "manual/4_moving_results.md"
@@ -43,7 +43,7 @@ using Gadfly
 # format = Documenter.HTML(
 #     # Use clean URLs, unless built as a "local" build
 #     prettyurls = !("local" in ARGS),
-#     canonical = "https://etorkia.github.io/MCHammer.jl/1.3/",
+#     canonical = "https://etorkia.github.io/MCHammer.jl/",
 #     assets = ["assets/favicon.ico"],
 #     analytics = "UA-3913053-5",
 # ),
@@ -66,8 +66,8 @@ using Gadfly
 #Literate.markdown("examples/NPV_testmodel.jl", "docs/src/tutorials"; documenter=true)
 
 
-#Local build
-#cd("Z:\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer\\docs\\src")
+## Local build
+
 using Documenter,Test, DocumenterTools
 using MCHammer
 
