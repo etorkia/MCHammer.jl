@@ -32,6 +32,7 @@ RiskEvent
 ```
 
 ```@example ConditionalEvent
+using MCHammer, Distributions, Random #hide
 # Simulate a conditional risk event with a 30% chance of occurring and an impact
 # that is distributed along a standard Normal. 10 trials are generated and about
 # 3 should have non-zero outcomes.

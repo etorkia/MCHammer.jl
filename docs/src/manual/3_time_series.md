@@ -103,7 +103,7 @@ marty
 ```
 
 ```@example MaringaleTS
-using Gadfly #hide
+using Gadfly, MCHammer, Distributions, Random, DataFrames #hide
 
 #In probability theory, a martingale is a sequence of random variables (i.e., a stochastic process) for which, at a particular time, the conditional expectation of the next value in the sequence, given all prior values, is equal to the present value. (Wikipedia)
 
@@ -131,7 +131,7 @@ gridstack([Exp11 Exp12; Exp13 Exp14])
 markov_a
 ```
  ```@example MC_AnalyticSolution
-
+using Gadfly, MCHammer, Distributions, Random, DataFrames #hide
 #Using linear algebra and matrix math, you can calculate the final state of equilibrium of
 #the Markov Chain directly from the transition matrix.
 
@@ -157,7 +157,7 @@ markov_ts
 ```
 
 ```@example MarkovTS
-
+using Gadfly, MCHammer, Distributions, Random, DataFrames #hide
 #A large bottling company wants to calculate market share based on clients switching to and from their beverage brands.
 
 #The transition matrix below represents the probabilities of switching for the company's various beverage types.
