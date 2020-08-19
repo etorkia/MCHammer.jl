@@ -19,6 +19,8 @@ using DataFrames
 using MCHammer
 using Random
 using Gadfly
+using Compose, Cairo, Fontconfig
+
 ```
 
 ```@meta
@@ -121,9 +123,8 @@ marty
 
 ```@example Stochastic
 
-#In probability theory, a martingale is a sequence of random variables (i.e., a stochastic process) for which, at a particular time, the conditional expectation of the next value in the sequence, given all prior values, is equal to the present value. (Wikipedia)
-
-#For example a gambler with 50 dollars making wagers of 50 dollars, 10 times using the double or nothing strategy.
+#For example a gambler with 50 dollars making wagers of 50 dollars, 10 times using
+#the double or nothing strategy.
 
 println(marty(50,10))
 
@@ -166,6 +167,7 @@ Marital_StatM = [0.85	0.12	0.02	0.01;
 #As we can see, from a starting point of 88%, we have a 44% chance of still being married  and a 47% chance of being divorced.
 
 markov_a(Marital_StatM)
+
 ```
 
 ```@docs
@@ -192,6 +194,12 @@ DrinkPreferences =
 BrandShare = [0.1, 0.25, 0.05, 0.35, 0.25]
 
 # Assumming that each trial is equal to 1 year, we can calculate the brand shares at different points in time (e.g. 5 or 10 yrs.) using the markov_ts()
+
+ markov_ts(DrinkPreferences, BrandShare, 10)
+
+ ```
+
+ ```@example Stochastic
 
 ms = markov_ts(DrinkPreferences, BrandShare, 10)
 
