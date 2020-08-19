@@ -14,19 +14,6 @@ The RiskEvent() allows you to conditionally sample any distribution for as many 
 *Trials* is the number of total iterations.
 *seed* allows you to set a seed for the RiskEvent. Left blank or set to 0, the seed is set to random.
 
-julia> RiskEvent(0.3, Normal(0,1), 10)
-10-element Array{Float64,1}:
- -0.0
- -0.0
- -0.0
-  1.4263681391845335
-  0.07972964267827688
-  0.0
- -1.333737934384415
-  0.0
-  0.0
- -0.0
-
 """
 function RiskEvent(Prob, Distribution, Trials; seed=0)
     if seed != 0 Random.seed!(seed) end

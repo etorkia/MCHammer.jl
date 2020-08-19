@@ -42,7 +42,7 @@ To load the support packages:
 
 ## Tutorials
 
-* [Getting Started with MCHammer](\tutorials\1_first_model\index.html)
+* [Getting Started with MCHammer](/tutorials/1_first_model/index.html)
 
 
 ## Index

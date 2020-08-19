@@ -1,7 +1,7 @@
 # Time-Series Simulation
 
 ## Overview
-MCH Timeseries contains functions to create simulated times series with MCHammer. Current implementation supports GBM only. Other methods will be added
+MCH Timeseries contains functions to create simulated times series with MCHammer. Current implementation supports Geometric Brownian Motion, Martingales and Markov Chain Time Series. Other methods will be added.
 
 ## Functions
 ```@meta
@@ -68,7 +68,11 @@ GBMM(100000, 0.05,0.05,12)
  195258.14301210243
 ```
 
-### How to simulate a random walk
+```@docs
+GBMA_d
+```
+
+## Simulating a random walk
 
 ```@example Graphing
 using Dates, Distributions, DataFrames, MCHammer #hide
@@ -87,4 +91,19 @@ end
 
 #You can graph the result using trend_chrt()
 trend_chrt(ts_trials, dr)
+```
+
+## Martingales
+
+```@docs
+marty
+```
+
+## Markov Chains
+```@docs
+markov_a
+```
+
+```@docs
+markov_ts
 ```

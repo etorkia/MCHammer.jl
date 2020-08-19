@@ -1,13 +1,5 @@
 # Simulation Modeling Functions
 
-## Overview
-
-Though most of your modeling can be realized in raw Julia, some of the most important features in a Monte-Carlo simulation package have to do with analyzing and applying correlation in models. MCHammer's correlation approach is based on *"Ronald L. Iman & W. J. Conover (1982) A distribution-free approach to inducing rank correlation among input variables, Communications in Statistics - Simulation and Computation"*
-
-The simulation and correlation functions are designed to quickly obtain risk and decision analysis metrics such as moments, percentiles and risk over time.
-
-## Functions
-
 ```@meta
 DocTestSetup = quote
     using Pkg
@@ -25,6 +17,23 @@ DocTestSetup = quote
     using Random
 end
 ```
+
+## Overview
+
+Though most of your modeling can be realized in raw Julia, some of the most important features in a Monte-Carlo simulation package have to do with analyzing and applying correlation in models. MCHammer's correlation approach is based on *"Ronald L. Iman & W. J. Conover (1982) A distribution-free approach to inducing rank correlation among input variables, Communications in Statistics - Simulation and Computation"*
+
+The simulation and correlation functions are designed to quickly obtain risk and decision analysis metrics such as moments, percentiles and risk over time.
+
+## Risk Events and conditional Distributions
+Risk Events allow you to model a joint distribution accounting for the probability of it occurring and the conditional impact. The process simulates the *Probability x Impact* formula correctly.
+
+```@docs
+RiskEvent
+```
+
+## Correlation and Covariance
+
+
 
 ```@docs
 cormat
@@ -60,6 +69,8 @@ covmat(test)
   0.0132867  0.0216141  0.0583517  -0.0240827   1.02767
 ```
 
+
+## Correlating simulation variables
 ```@docs
 corvar
 ```
@@ -83,7 +94,7 @@ cormat(corvar(sample_data, n_trials, test_cmatrix))
  -0.0138308    0.0592791   0.0532426    0.719585    1.0        -0.939008
   0.0112554   -0.0355262  -0.0468971   -0.662708   -0.939008    1.0
 ```
-
+## Analyzing Simulation Results
 ```@docs
 GetCertainty
 ```
@@ -120,6 +131,7 @@ fractiles(test)
  "P100.0"   3.12432
 ```
 
+## Misc functions
 ```@docs
 cmd
 ```

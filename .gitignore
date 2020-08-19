@@ -8,6 +8,7 @@ test/formats/builds/
 test/missingdocs/build/
 test/nongit/build/
 test/errors/build/
+docs/local/
 docs/build/
 docs/pdf/build/
 docs/site/

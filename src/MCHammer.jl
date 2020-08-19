@@ -30,6 +30,7 @@ export
     trend_chrt,
     GBMMfit,
     GBMM,
+    GBMA_d,
     sip2csv,
     importxlsip,
     importsip,
