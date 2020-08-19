@@ -4,6 +4,23 @@
 MCH Timeseries contains functions to create simulated times series with MCHammer. Current implementation supports Geometric Brownian Motion, Martingales and Markov Chain Time Series. Other methods will be added.
 
 ## Functions
+```@setup Stochastic
+using Pkg
+Pkg.add("Gadfly")
+Pkg.add("Distributions")
+Pkg.add("StatsBase")
+Pkg.add("Statistics")
+Pkg.add("Dates")
+Pkg.add("MCHammer")
+Pkg.add("DataFrames")
+
+using Distributions
+using DataFrames
+using MCHammer
+using Random
+using Gadfly
+```
+
 ```@meta
 DocTestSetup = quote
     using Pkg
@@ -102,8 +119,7 @@ trend_chrt(ts_trials, dr)
 marty
 ```
 
-```@example MaringaleTS
-using Gadfly, MCHammer, Distributions, Random, DataFrames #hide
+```@example Stochastic
 
 #In probability theory, a martingale is a sequence of random variables (i.e., a stochastic process) for which, at a particular time, the conditional expectation of the next value in the sequence, given all prior values, is equal to the present value. (Wikipedia)
 
@@ -130,7 +146,7 @@ gridstack([Exp11 Exp12; Exp13 Exp14])
 ```@docs
 markov_a
 ```
- ```@example MC_AnalyticSolution
+ ```@example Stochastic
 using Gadfly, MCHammer, Distributions, Random, DataFrames #hide
 #Using linear algebra and matrix math, you can calculate the final state of equilibrium of
 #the Markov Chain directly from the transition matrix.
@@ -156,8 +172,8 @@ markov_a(Marital_StatM)
 markov_ts
 ```
 
-```@example MarkovTS
-using Gadfly, MCHammer, Distributions, Random, DataFrames #hide
+```@example Stochastic
+
 #A large bottling company wants to calculate market share based on clients switching to and from their beverage brands.
 
 #The transition matrix below represents the probabilities of switching for the company's various beverage types.
