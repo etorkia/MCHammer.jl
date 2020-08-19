@@ -24,11 +24,17 @@ Though most of your modeling can be realized in raw Julia, some of the most impo
 
 The simulation and correlation functions are designed to quickly obtain risk and decision analysis metrics such as moments, percentiles and risk over time.
 
-## Risk Events and conditional Distributions
+## Risk Events and Conditional Distributions
 Risk Events allow you to model a joint distribution accounting for the probability of it occurring and the conditional impact. The process simulates the *Probability x Impact* formula correctly.
 
 ```@docs
 RiskEvent
+```
+
+```@example
+#Simulate a conditional risk event with a 30% chance of occurring and an impact that is distributed along a standard Normal. 10 trials are generated.
+
+RiskEvent(0.3, Normal(0,1), 10)
 ```
 
 ## Correlation and Covariance
