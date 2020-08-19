@@ -34,23 +34,8 @@ end
 """
     markov_a(t_matrix)
 
-markov_a produces the calculated end state of a markov chain using a sqaure transition matrix.
+markov_a produces the calculated end state of a Markov chain using a sqaure transition matrix.
 
-For example, [Single Married Seperated Divorced]
-
-julia> Marital_StatM
-4×4 Array{Float64,2}:
- 0.85  0.12  0.02  0.01
- 0.0   0.88  0.08  0.04
- 0.0   0.13  0.45  0.42
- 0.0   0.09  0.02  0.89
-
-julia> markov_a(Marital_StatM)
-4-element Array{Float64,1}:
- 1.1102230246251565e-16
- 0.44416027280477405
- 0.08184143222506393
- 0.473998294970162
 """
 function markov_a(t_matrix)
     md = size(t_matrix,1)
@@ -86,16 +71,7 @@ Extremely useful for market share or account receivables problems where you want
 *start_arr* is the starting values for the chain.
  *trials* is the number of iterations you want to run through the Markov Chain Process.
 
-For example, [Single Married Seperated Divorced]
 
-julia> Marital_StatM
-4×4 Array{Float64,2}:
- 0.85  0.12  0.02  0.01
- 0.0   0.88  0.08  0.04
- 0.0   0.13  0.45  0.42
- 0.0   0.09  0.02  0.89
-
-julia> initial_marital = [0.43, 0.29, 0.11, 0.17 ]
 
 """
 function markov_ts(t_matrix, start_arr, trials=1)
@@ -115,41 +91,11 @@ end
 """
     marty(Wager, GamesPlayed; GameWinProb = 0.5, CashInHand = Wager)
 
-the marty function is designed to simulate a Martigale such as that everytime a wager is lost, the next bet doubles the wagered amount to negate the previous loss.
+The marty function is designed to simulate a Martigale such as that everytime a wager is lost, the next bet doubles the wagered amount to negate the previous loss.
 The resulting vector is the balance of cash the gambler has in hand at any given point in the Martingale process.
 
 *GameWinProb* is the estimated probability of winning.
 *CashInHand* is the starting balance for the martigale. At times, this parameter can make a difference in whether your survive the process or go home broke.
-
-For example a gambler with 50 dollars making wagers of 50 dollars, 10 times using the double or nothing strategy.
-
-julia> marty(50,10)
-
-10-element Array{Any,1}:
- 100
- 150
- 100
- 200
- 250
- 200
- 300
- 250
- 150
- 250
-
-julia> marty(50,10)
-
-10-element Array{Any,1}:
-  100
-   50
-  -50
- -150
- -250
- -350
- -450
- -550
- -450
- -500
 
 """
 function marty(Wager, GamesPlayed; GameWinProb = 0.5, CashInHand = Wager)

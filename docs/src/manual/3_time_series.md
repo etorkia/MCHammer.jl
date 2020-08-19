@@ -18,12 +18,13 @@ DocTestSetup = quote
     using Distributions
     using Random
     using DataFrames
+    using Gadfly
 end
 ```
 ```@docs
 GBMMfit
 ```
-```jldoctest
+```jldoctest GBBMFit
 Random.seed!(1)
 historical = rand(Normal(10,2.5),1000)
 GBMMfit(historical, 12)
@@ -46,7 +47,7 @@ GBMMfit(historical, 12)
 ```@docs
 GBMM
 ```
-```jldoctest
+```jldoctest RandWalk
 Random.seed!(1)
 
 GBMM(100000, 0.05,0.05,12)
@@ -93,17 +94,93 @@ end
 trend_chrt(ts_trials, dr)
 ```
 
+#Stochastic Time Series
+
 ## Martingales
 
 ```@docs
 marty
 ```
 
+```@example MaringaleTS
+using Gadfly #hide
+
+#In probability theory, a martingale is a sequence of random variables (i.e., a stochastic process) for which, at a particular time, the conditional expectation of the next value in the sequence, given all prior values, is equal to the present value. (Wikipedia)
+
+#For example a gambler with 50 dollars making wagers of 50 dollars, 10 times using the double or nothing strategy.
+
+println(marty(50,10))
+
+#Now let's assume that the gambler knows the odds of winning  at the casino are less than 0.5 and decides to bring additional funds to persist until the bet pays off.
+
+println(marty(50,10; GameWinProb=0.45, CashInHand=400))
+
+
+#Let's compare outcomes at different win probabilities
+
+Exp11 = plot(y = Marty(5, 100, GameWinProb = 0.25, CashInHand = 400), Geom.point)
+Exp12 = plot(y = Marty(5, 100, GameWinProb = 0.33, CashInHand = 400), Geom.point)
+Exp13 = plot(y = Marty(5, 100, GameWinProb = 0.5, CashInHand = 400), Geom.point)
+Exp14 = plot(y = Marty(5, 100, GameWinProb = 0.55, CashInHand = 400), Geom.point)
+
+gridstack([Exp11 Exp12; Exp13 Exp14])
+```
+
 ## Markov Chains
 ```@docs
 markov_a
 ```
+ ```@example MC_AnalyticSolution
+
+#Using linear algebra and matrix math, you can calculate the final state of equilibrium of
+#the Markov Chain directly from the transition matrix.
+
+#For example, we want to see how many people will still be married once the Markov chain
+#has stabilized. In the example below we will calculate what is the probability of still
+#being married in 25 or 50 yrs assuming we are still alive.
+
+#Lets define the Transition Matrix [Single Married Separated Divorced]
+
+Marital_StatM = [0.85	0.12	0.02	0.01;
+0	0.88	0.08	0.04;
+0	0.13	0.45	0.42;
+0	0.09	0.02	0.89;
+]
+
+#As we can see, from a starting point of 88%, we have a 44% chance of still being married  and a 47% chance of being divorced.
+
+markov_a(Marital_StatM)
+ ```
 
 ```@docs
 markov_ts
+```
+
+```@example MarkovTS
+
+#A large bottling company wants to calculate market share based on clients switching to and from their beverage brands.
+
+#The transition matrix below represents the probabilities of switching for the company's various beverage types.
+
+#[CherryCola DietCola CaffeinFree Classic Zero]
+
+DrinkPreferences =
+[0.6	0.03 0.15 0.2 0.02;
+0.02 0.4 0.3 0.2 0.08;
+0.15	0.25	0.3 0.25	0.05;
+0.15	0.02	0.1	0.7	0.03;
+0.15	0.3 0.05	0.05	0.45]
+
+# This array represents the starting brand share. It must total 1.
+
+BrandShare = [0.1, 0.25, 0.05, 0.35, 0.25]
+
+# Assumming that each trial is equal to 1 year, we can calculate the brand shares at different points in time (e.g. 5 or 10 yrs.) using the markov_ts()
+
+ms = markov_ts(DrinkPreferences, BrandShare, 10)
+
+ms = DataFrame(hcat(transpose(ms), collect(1:10)), [:CherryCola, :DietCola, :CaffeinFree, :Classic, :Zero, :Yr])
+
+#Plot Brandshare over time
+plot(stack(ms, Not(:Yr)), x=:Yr, y=:value, color=:variable, Geom.Line)
 ```

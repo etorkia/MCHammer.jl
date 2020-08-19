@@ -25,15 +25,18 @@ Though most of your modeling can be realized in raw Julia, some of the most impo
 The simulation and correlation functions are designed to quickly obtain risk and decision analysis metrics such as moments, percentiles and risk over time.
 
 ## Risk Events and Conditional Distributions
-Risk Events allow you to model a joint distribution accounting for the probability of it occurring and the conditional impact. The process simulates the *Probability x Impact* formula correctly.
+Risk Events allow you to model a joint distribution accounting for the probability of it occurring and the conditional impact when it does. The process simulates the *Probability x Impact* formula correctly.
 
 ```@docs
 RiskEvent
 ```
 
-```@example
+```@example ConditionalEvent
 # Simulate a conditional risk event with a 30% chance of occurring and an impact
-# that is distributed along a standard Normal. 10 trials are generated.
+# that is distributed along a standard Normal. 10 trials are generated and about
+# 3 should have non-zero outcomes.
+
+using MCHammer #hide
 
 RiskEvent(0.3, Normal(0,1), 10)
 ```
@@ -81,7 +84,7 @@ covmat(test)
 ```@docs
 corvar
 ```
-```jldoctest
+```jldoctest correlating_vars
 Random.seed!(1)
 n_trials = 1000
 sample_data = [rand(LogNormal(0, 0.5),n_trials) rand(Normal(3,2),n_trials) rand(Gamma(1, 0.5),n_trials) rand(LogNormal(0, 0.5),n_trials) rand(Normal(3,2),n_trials) rand(Gamma(1, 0.5),n_trials)]
@@ -145,7 +148,7 @@ cmd
 ```@docs
 truncate_digit
 ```
-```jldoctest
+```jldoctest truncate
 Result_1 = truncate_digit(0.667)
 Result_2 = truncate_digit(0.661)
 Result_1 == Result_2
