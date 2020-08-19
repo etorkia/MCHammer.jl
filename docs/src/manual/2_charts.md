@@ -25,7 +25,7 @@ Expenses = rand(TriangularDist(1400000,3000000,2000000), n_trials)
 Profit = Revenue - Expenses
 Trials = [Revenue-Expenses, Revenue, Expenses]
 Trials = DataFrame(Trials)
-names!(Trials,[:Profit, :Revenue, :Expenses])
+rename(Trials,[:Profit, :Revenue, :Expenses])
 ```
 ## Functions
 ```@docs

@@ -134,10 +134,10 @@ println(marty(50,10; GameWinProb=0.45, CashInHand=400))
 
 #Let's compare outcomes at different win probabilities
 
-Exp11 = plot(y = Marty(5, 100, GameWinProb = 0.25, CashInHand = 400), Geom.point)
-Exp12 = plot(y = Marty(5, 100, GameWinProb = 0.33, CashInHand = 400), Geom.point)
-Exp13 = plot(y = Marty(5, 100, GameWinProb = 0.5, CashInHand = 400), Geom.point)
-Exp14 = plot(y = Marty(5, 100, GameWinProb = 0.55, CashInHand = 400), Geom.point)
+Exp11 = plot(y = marty(5, 100, GameWinProb = 0.25, CashInHand = 400), Geom.point)
+Exp12 = plot(y = marty(5, 100, GameWinProb = 0.33, CashInHand = 400), Geom.point)
+Exp13 = plot(y = marty(5, 100, GameWinProb = 0.5, CashInHand = 400), Geom.point)
+Exp14 = plot(y = marty(5, 100, GameWinProb = 0.55, CashInHand = 400), Geom.point)
 
 gridstack([Exp11 Exp12; Exp13 Exp14])
 ```
@@ -146,8 +146,8 @@ gridstack([Exp11 Exp12; Exp13 Exp14])
 ```@docs
 markov_a
 ```
- ```@example Stochastic
-using Gadfly, MCHammer, Distributions, Random, DataFrames #hide
+```@example Stochastic
+
 #Using linear algebra and matrix math, you can calculate the final state of equilibrium of
 #the Markov Chain directly from the transition matrix.
 
@@ -166,7 +166,7 @@ Marital_StatM = [0.85	0.12	0.02	0.01;
 #As we can see, from a starting point of 88%, we have a 44% chance of still being married  and a 47% chance of being divorced.
 
 markov_a(Marital_StatM)
- ```
+```
 
 ```@docs
 markov_ts
