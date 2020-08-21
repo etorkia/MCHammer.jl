@@ -16,11 +16,25 @@ using DataFrames
 using Documenter, DocumenterTools
 using Distributions, Statistics, StatsBase
 using MCHammer
-using Gadfly
+using Gadfly, Compose, Cairo
 
 makedocs(
 sitename="MCHammer.jl",
-modules =[MCHammer, Documenter, DocumenterTools, Distributions, StatsBase, Statistics, Dates, DataFrames, Gadfly],
+modules =[MCHammer],
+pages = Any[
+"Home" => "index.md",
+"User Manual" => Any[
+    "Simulation Functions" => "manual/1_functions.md",
+    "Charting & Analyzing" => "manual/2_charts.md",
+    "Time-Series Functions" => "manual/3_time_series.md",
+],
+"Tutorials" => Any[
+    "My First Model" => "tutorials/1_first_model.md",
+    "Correlating Inputs" => "tutorials/2_Correlated_Model.md",
+    "Simulated CashFlow Model" => "tutorials/3_NPV_testmodel.md",
+],
+"Import / Export Data" => "manual/4_moving_results.md"
+],
 
 format = Documenter.HTML(
     # Use clean URLs, unless built as a "local" build
@@ -42,28 +56,5 @@ deploydocs(
     repo = "github.com/etorkia/MCHammer.jl.git",
     branch = "gh-pages",
     devbranch="master",
-    versions = ["stable" => "v^", "v1.3"]
+    versions = ["stable" => "v^", "v1.5"]
 )
-
-#Literate.markdown("examples/NPV_testmodel.jl", "docs/src/tutorials"; documenter=true)
-
-
-#Local build
-# cd("Z:\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer\\docs\\src")
-# using Documenter, DocumenterTools, Test
-# using MCHammer
-#
-# makedocs(
-# sitename="MCHammer.jl",
-# source  = "src",
-# build   = "build",
-# clean   = true,
-# doctest = true,
-# modules =[MCHammer, Documenter, DocumenterTools, Distributions, StatsBase, Statistics, Dates, DataFrames, Gadfly])
-#
-#
-# @testset "MCHammer" begin
-#
-#     doctest(MCHammer; manual = true)
-#
-# end
