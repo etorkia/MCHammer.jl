@@ -81,7 +81,7 @@ end
 
 @testset "RiskEvent" begin
     test_r =RiskEvent(0.3, Normal(), 10,seed=1)
-    @test test_rt[9,:] ==  -0.6936536438038856
+    @test test_r[9,:] ==  -0.693654
 
 end
 
