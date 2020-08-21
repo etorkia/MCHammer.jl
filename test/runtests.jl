@@ -81,16 +81,10 @@ end
 
 @testset "RiskEvent" begin
     test_r =RiskEvent(0.3, Normal(), 10,seed=1)
-    @test test_r[9,:] ==  -0.693654
+    @test round(test_r[9,1];digits=6) ==  -0.693654
 
 end
 
-
-@testset "cmatrix" begin
-    test_r = cmatrix(3)
-    @test test_r[3:3,:] ==  [1 1 1]
-
-end
 
 @testset "MarkovChains" begin
 #Setup test data
@@ -111,4 +105,5 @@ ts_test = [0.3655  0.310675  0.264074   0.224463   0.190793
  0.0847  0.076605  0.0751467  0.0759993  0.0774475
  0.2134  0.242611  0.266009   0.286741   0.305876]
 
-TS_Solution[4,5] == 0.305876
+@test round(TS_Solution[4,5]; digits=6) == 0.305876
+end
