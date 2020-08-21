@@ -97,13 +97,9 @@ end
     initial_marital = [0.43, 0.29, 0.11, 0.17 ]
 
 AnalyticSolution = markov_a(Marital_StatM)
+@test round(AnalyticSolution[4,1]; digits=6) == 0.473998
+
 TS_Solution = markov_ts(Marital_StatM, initial_marital, 5)
-
-
-ts_test = [0.3655  0.310675  0.264074   0.224463   0.190793
- 0.3364  0.370109  0.394771   0.412797   0.425883
- 0.0847  0.076605  0.0751467  0.0759993  0.0774475
- 0.2134  0.242611  0.266009   0.286741   0.305876]
 
 @test round(TS_Solution[4,5]; digits=6) == 0.305876
 end
