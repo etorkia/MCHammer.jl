@@ -3,36 +3,76 @@ language: julia
 os:
   - linux
   - osx
+  - windows
 
 julia:
-  - 1.0
-  - 1.1
-  - nightly
+  - 1.4
+  - 1.5
+#  - nightly
 
 # Uncomment the following lines to allow failures on nightly julia
 # (tests will run but not make your overall status red)
-matrix:
-  allow_failures:
-  - julia: nightly
+# Matrix section is depricated.
+# matrix:
+#   allow_failures:
+#   - julia: nightly
 
 notifications:
-  email: false
+  email: true
 
 after_success:
-  - if [[ $TRAVIS_JULIA_VERSION = 1.1 ]] && [[ $TRAVIS_OS_NAME = linux ]]; then
+  - if [[ $TRAVIS_JULIA_VERSION = 1.4 ]] && [[ $TRAVIS_OS_NAME = linux ]]; then
       julia --project=coverage/ -e 'using Pkg; Pkg.instantiate();
           using Coverage; Codecov.submit(Codecov.process_folder())';
     fi
 
 
+# jobs:
+#   include:
+#     - stage: "Documentation"
+#       julia: 1.4
+#       os: linux
+#       script:
+#         - julia --project=docs/ -e 'using Pkg; Pkg.develop(PackageSpec(path=pwd())); Pkg.instantiate()'
+#         - julia --project=docs/ docs/make.jl
+#       name: "HTML"
+#       after_success: skip
+# services: docker
+
+name: Documentation
+
+on:
+  push:
+    branches:
+      - master
+    tags: '*'
+  pull_request:
+
 jobs:
-  include:
-    - stage: "Documentation"
-      julia: 1.0
-      os: linux
-      script:
-        - julia --project=docs/ -e 'using Pkg; Pkg.develop(PackageSpec(path=pwd())); Pkg.instantiate()'
-        - julia --project=docs/ docs/make.jl
-      name: "HTML"
-      after_success: skip
-services: docker
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: julia-actions/setup-julia@latest
+        with:
+          version: '1.4'
+      - name: Install dependencies
+        run: julia --project=docs/ -e 'using Pkg; Pkg.develop(PackageSpec(path=pwd())); Pkg.instantiate()'
+      - name: Build and deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # For authentication with GitHub Actions token
+          DOCUMENTER_KEY: ${{ secrets.DOCUMENTER_KEY }} # For authentication with SSH deploy key
+        run: julia --project=docs/ docs/make.jl
+
+name: TagBot
+on:
+  schedule:
+    - cron: 0 0 * * *
+jobs:
+  TagBot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: JuliaRegistries/TagBot@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          ssh: ${{ secrets.DOCUMENTER_KEY }}

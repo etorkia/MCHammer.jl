@@ -1,16 +1,6 @@
 #clearconsole()
-#push!(LOAD_PATH,"../src")
+push!(LOAD_PATH,"../src")
 using Pkg
-Pkg.add("Documenter")
-Pkg.add("DocumenterTools")
-Pkg.add("Distributions")
-Pkg.add("StatsBase")
-Pkg.add("Statistics")
-Pkg.add("Dates")
-Pkg.add("MCHammer")
-Pkg.add("DataFrames")
-Pkg.add("Gadfly")
-
 using Dates
 using DataFrames
 using Documenter, DocumenterTools
@@ -39,7 +29,7 @@ pages = Any[
 format = Documenter.HTML(
     # Use clean URLs, unless built as a "local" build
     prettyurls = !("local" in ARGS),
-    canonical = "https://etorkia.github.io/MCHammer.jl/1.3/",
+    canonical = "https://etorkia.github.io/MCHammer.jl/",
     assets = ["assets/favicon.ico"],
     analytics = "UA-3913053-5",
 ),
@@ -55,6 +45,6 @@ deploydocs(
     target="build",
     repo = "github.com/etorkia/MCHammer.jl.git",
     branch = "gh-pages",
-    devbranch="master",
-    versions = ["stable" => "v^", "v1.5"]
+    devbranch="master"
+    # versions = ["latest" => "v^", "v1.4"]
 )
