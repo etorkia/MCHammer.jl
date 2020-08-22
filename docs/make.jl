@@ -41,10 +41,12 @@ build   = "build",
 clean   = true,
 repo = "github.com/etorkia/MCHammer.jl")
 
-deploydocs(
-    target="build",
-    repo = "github.com/etorkia/MCHammer.jl.git",
-    branch = "gh-pages",
-    devbranch="master"
-    # versions = ["latest" => "v^", "v1.4"]
-)
+# deploydocs(
+#     target="build",
+#     repo = "github.com/etorkia/MCHammer.jl.git",
+#     branch = "gh-pages",
+#     devbranch="master"
+#     # versions = ["latest" => "v^", "v1.4"]
+# )
+
+deploydocs(repo = "github.com/etorkia/MCHammer.jl.git")
