@@ -28,7 +28,7 @@ pages = Any[
 
 format = Documenter.HTML(
     # Use clean URLs, unless built as a "local" build
-    prettyurls = !("local" in ARGS),
+    prettyurls = get(ENV, "CI", nothing) == "true",
     canonical = "https://etorkia.github.io/MCHammer.jl/",
     assets = ["assets/favicon.ico"],
     analytics = "UA-3913053-5",
@@ -41,12 +41,12 @@ build   = "build",
 clean   = true,
 repo = "github.com/etorkia/MCHammer.jl")
 
-# deploydocs(
-#     target="build",
-#     repo = "github.com/etorkia/MCHammer.jl.git",
-#     branch = "gh-pages",
-#     devbranch="master"
-#     # versions = ["latest" => "v^", "v1.4"]
-# )
+deploydocs(
+    target="build",
+    repo = "github.com/etorkia/MCHammer.jl.git",
+    branch = "gh-pages",
+    devbranch="master"
+    versions = ["stable" => "v^", "v#.#"]
+)
 
-deploydocs(repo = "github.com/etorkia/MCHammer.jl.git")
+#deploydocs(repo = "github.com/etorkia/MCHammer.jl.git")

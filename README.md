@@ -34,13 +34,17 @@ The *MC* in MC Hammer stands for Monte-Carlo. This tool is inspired by seminal t
 *	Time Series using Historical Data to calculate parameters for Simulated Random Walk
 *	Trend Charts with Customizable Confidence Bands
 
-### Import / Exporting (New)
+### Import / Exporting
 
 <p align="left"><img src="siplogo.png" height="150"></p>
 
 * Import SIPmath 2.0 Libraries
 * Export simulation results to the SIPmath 2.0 standard.
 
+### Stochastic Processes (New)
+* Introduced a simulated martingale process with adjustable win probability
+* Markov Chain discrete time-series solution
+* Markov Chain analytical solve method to calculate equilibrium state
 
 ### Current Functions
 * cormat()
@@ -60,7 +64,10 @@ The *MC* in MC Hammer stands for Monte-Carlo. This tool is inspired by seminal t
 * sip2csv()
 * importsip()
 * importxlsip()
-
+* RiskEvent()
+* marty()
+* markov_a()
+* markov_ts()
 
 ## Documentation
 
@@ -85,7 +92,7 @@ If you are interested about learning or sharing extensive experience on how to b
 [docs-dev-url]: https://etorkia.github.io/MCHammer.jl/dev/
 
 [docs-stable-img]: https://img.shields.io/badge/docs-stable-blue.svg
-[docs-stable-url]: https://etorkia.github.io/MCHammer.jl/dev/
+[docs-stable-url]: https://www.crystalballservices.com/portals/0/eng/mch_devdocs/index.html/
 
 [travis-img]: https://travis-ci.com/etorkia/MCHammer.jl.svg?branch=master
 [travis-url]: https://travis-ci.com/etorkia/MCHammer.jl
