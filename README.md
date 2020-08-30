@@ -14,18 +14,30 @@ We want to give access to models to those who need it because for too long insig
 
 ## Overview
 
-The *MC* in MC Hammer stands for Monte-Carlo. This tool is inspired by seminal tools such as *Oracle Crystal Ball and Palisade @RISK* for their ability to quickly build and analyze Monte-Carlo simulation models using excel functions and automations. MC Hammer replicates their logic, functions and elemental tools in Julia, thus significantly reducing the time, complexity and effort to perform advanced modeling and simulation.
+The *MC* in MCHammer stands for Monte-Carlo. This tool is inspired by seminal tools such as *Oracle Crystal Ball and Palisade @RISK* for their ability to quickly build and analyze Monte-Carlo simulation models using excel functions and automations.
+
+Though you can build a Monte-Carlo simulation in Julia using a few simple packages, it can be tedious setting up all the charts and analysis every time you build a new model. In order to save time and improve clarity, we have taken th standard charts and analysis to and packaged them into functions that allow the user to focus on modeling instead of coding the same things over and over again.
+
+MCHammer replicates Excel's familiar logic, functions and elemental tools in Julia, thus significantly reducing the time, complexity and effort to perform advanced modeling and simulation.
 
 ## Why use MCHammer to build your Monte-Carlo simulation model?
 * Ability to correlate variables using Iman-Connover's numeric method using a simple function.
-* Analyse and visualize results using simple Excel like formulas
+* Analyse and visualize input data and simulation results using simple Excel like formulas
 * Simplify and eliminate 100s of lines of code for your charts and results analysis using MCHammers wrapper functions.
 * Elegant pre-built chart functions for rendering your simulation results : Histograms, Trend Charts, Sensitivity analysis.
 * Time Series functions to stress test your model over multiple time periods.
 * Easy for an Excel analyst to pick up quickly.
 
 ## Example models and application
-
+Even though you can make the argument that anything can be modelled using uncertainty, here are some classic areas where MCHammer can streamline your analysis process.
+* CashFlow Modeling
+* Portfolio Modeling
+* Valuation models
+* Options Value using stock price forecasts
+* Total ShareHolder Returns
+* Contagion models
+* Geological / Oil & Gas Modeling
+* Quantitative Risk Modeling
 
 ## Current Features
 
@@ -100,7 +112,10 @@ The *MC* in MC Hammer stands for Monte-Carlo. This tool is inspired by seminal t
 If you have any bugs to report or issues with the package, please visit our project page.
 
 ## Become an MCHammer contributor
-If you are interested about learning or sharing extensive experience on how to build and automate simulation using Julia, then the MCHammer team NEEDS YOU!
+MCHammer is an *open source project* sponsored by Technology Partnerz Ltd. We are happy to share our tools and approaches with the wider Julia community. Rolling out features is not an easy process to take on alone so if you are interested in joining our open source team to build and automate simulation using Julia, then please drop us a line.
+
+For more information, send us a note at info@technologypartnerz.com
+
 
 
 
