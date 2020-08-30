@@ -106,4 +106,4 @@ If you are interested about learning or sharing extensive experience on how to b
 [mch_logo]: https://github.com/etorkia/MCHammer.jl/tree/master/docs/src/assets/logo.png "MCHammer : MCS in Julia"
 
 
-[mch_site]: https://www.crystalballservices.com/MCHammerjl "MCHammer.jl Project Page"
+[mch_site]: https://www.crystalballservices.com/MCHammerjl "Official MCHammer.jl Project Page"
