@@ -16,6 +16,17 @@ We want to give access to models to those who need it because for too long insig
 
 The *MC* in MC Hammer stands for Monte-Carlo. This tool is inspired by seminal tools such as *Oracle Crystal Ball and Palisade @RISK* for their ability to quickly build and analyze Monte-Carlo simulation models using excel functions and automations. MC Hammer replicates their logic, functions and elemental tools in Julia, thus significantly reducing the time, complexity and effort to perform advanced modeling and simulation.
 
+#Why use MCHammer to build your Monte-Carlo simulation model?
+* Ability to correlate variables using Iman-Connover's numeric method using a simple function.
+* Analyse and visualize results using simple Excel like formulas
+* Simplify and eliminate 100s of lines of code for your charts and results analysis using MCHammers wrapper functions.
+* Elegant pre-built chart functions for rendering your simulation results : Histograms, Trend Charts, Sensitivity analysis.
+* Time Series functions to stress test your model over multiple time periods.
+* Easy for an Excel analyst to pick up quickly.
+
+## Example models and application
+
+
 ## Current Features
 
 ### Modeling Features
