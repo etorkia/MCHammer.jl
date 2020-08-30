@@ -86,7 +86,7 @@ The *MC* in MC Hammer stands for Monte-Carlo. This tool is inspired by seminal t
 * Chart: Add Overlay
 
 ## Questions?
-If you have any bugs to report or issues with the package, please send a note to
+If you have any bugs to report or issues with the package, please visit our project page.
 
 ## Become an MCHammer contributor
 If you are interested about learning or sharing extensive experience on how to build and automate simulation using Julia, then the MCHammer team NEEDS YOU!
