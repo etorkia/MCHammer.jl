@@ -73,6 +73,7 @@ The *MC* in MC Hammer stands for Monte-Carlo. This tool is inspired by seminal t
 
 - [**STABLE**][docs-stable-url] &mdash; **most recently tagged version of the documentation.**
 - [**DEVEL**][docs-dev-url] &mdash; *in-development version of the documentation.*
+- **Project Page** [mch_site]
 
 ## Development Roadmap
 * Functions : MetaLog Distributions
@@ -84,18 +85,25 @@ The *MC* in MC Hammer stands for Monte-Carlo. This tool is inspired by seminal t
 * Chart: Error Bar Example (base code in mch_charts)
 * Chart: Add Overlay
 
+## Questions?
+If you have any bugs to report or issues with the package, please send a note to
+
 ## Become an MCHammer contributor
 If you are interested about learning or sharing extensive experience on how to build and automate simulation using Julia, then the MCHammer team NEEDS YOU!
+
 
 
 [docs-dev-img]: https://img.shields.io/badge/docs-dev-blue.svg
 [docs-dev-url]: https://etorkia.github.io/MCHammer.jl/dev/
 
 [docs-stable-img]: https://img.shields.io/badge/docs-stable-blue.svg
-[docs-stable-url]: https://www.crystalballservices.com/portals/0/eng/mch_devdocs/index.html/
+[docs-stable-url]: http://www.technologypartnerz.com/mch_docs
 
 [travis-img]: https://travis-ci.com/etorkia/MCHammer.jl.svg?branch=master
 [travis-url]: https://travis-ci.com/etorkia/MCHammer.jl
 
 [siplogo]: https://github.com/etorkia/MCHammer.jl/tree/master/docs/src/assets/siplogo.png "SIPMath 2.0 Certified"
 [mch_logo]: https://github.com/etorkia/MCHammer.jl/tree/master/docs/src/assets/logo.png "MCHammer : MCS in Julia"
+
+
+[mch_site]: https://www.crystalballservices.com/MCHammerjl "MCHammer.jl Project Page"
