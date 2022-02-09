@@ -214,3 +214,16 @@ end
 # x = sort(rand(10)); xmin = 0.9x; xmax = 1.1x;
 # ystr = map(i -> string(i) * " as a string", 1:10)
 # plot(y = ystr, x = ex, xmin = xmin, xmax = xmax, Geom.errorbar)
+
+#Generate an emprical s_curve
+function s_curve(results)
+    n=size(results,1)
+    p = plot(y=collect((1:n)./n), x=sort(results), Geom.line)
+    return p
+end
+
+# #My cumulative function for my Pareto magic
+# test = sort(rand(Normal(10,1),1000))
+# cum = cumsum(test)
+# y_plot =cum ./ sum(test)
+# plot(y=y_plot, x = test)

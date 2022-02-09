@@ -118,7 +118,6 @@ function marty(Wager, GamesPlayed; GameWinProb = 0.5, CashInHand = Wager)
             push!(BalResults, Balance)
         end
 
-println()
 #println("Gain/Loss after $GamesPlayed games: ", Balance - CashInHand,'$')
 return BalResults
 end
