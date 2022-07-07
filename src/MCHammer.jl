@@ -38,7 +38,8 @@ export
     marty,
     markov_a,
     markov_ts,
-    RiskEvent
+    RiskEvent,
+    s_curve
 
 
 

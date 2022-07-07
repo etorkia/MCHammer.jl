@@ -216,11 +216,22 @@ end
 # plot(y = ystr, x = ex, xmin = xmin, xmax = xmax, Geom.errorbar)
 
 #Generate an emprical s_curve
-function s_curve(results)
+"""
+    s_curve(results; rev=false)
+
+**s_curve** allows the visualization of a data set in cumulative form.  You can create a reverse emprical CDF py setting *rev=true*
+"""
+function s_curve(results; rev=false)
     n=size(results,1)
-    p = plot(y=collect((1:n)./n), x=sort(results), Geom.line)
+    if rev == false
+        p = plot(y=collect((1:n)./n), x=sort(results), Geom.line)
+    else
+        p = plot(y=collect((1:n)./n), x=sort(results, rev = true), Geom.line)
+    end
+
     return p
 end
+
 
 # #My cumulative function for my Pareto magic
 # test = sort(rand(Normal(10,1),1000))
