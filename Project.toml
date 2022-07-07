@@ -28,7 +28,7 @@ DataFrames ="1.0,1.1,1.2,1.3"
 Distributions ="0.20,0.21,0.22,0.23,0.24,0.25"
 Gadfly ="1"
 IterableTables ="1"
-StatsBase="0.24-0.33"
+StatsBase="0.24.0-0.33.0"
 TimeSeries="0.20"
 Colors ="0.10,0.11, 0.12"
 
