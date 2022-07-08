@@ -83,7 +83,7 @@ The corvar function correlates simulation inputs unsing the Iman Conover Method.
 function corvar(ArrayName, n_trials, correl_matrix)
 
 if typeof(ArrayName) == Array{Float64,2}
-      ArrayName = DataFrame(ArrayName)
+      ArrayName = DataFrame(ArrayName, :auto)
 
 end
 

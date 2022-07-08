@@ -58,7 +58,7 @@ historical = rand(Normal(10,2.5),1000)
 GBMMfit(historical, 12)
 
 # output
-12×1 Array{Float64,2}:
+12×1 Matrix{Float64}:
  6.6992003689078325
  7.062760356166932
  7.103000620460403
