@@ -129,7 +129,7 @@ fractiles(test)
 
 # output
 
-11×2 Array{Any,2}:
+11×2 Matrix{Any}:
  "P0.0"    -3.882
  "P10.0"   -1.34325
  "P20.0"   -0.860748

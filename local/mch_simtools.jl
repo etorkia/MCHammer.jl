@@ -19,7 +19,7 @@ M_Size = size(ArrayName,2)
 
 #Converting to a data frame is necessary (and simpler) to perform rankings
 if typeof(ArrayName) == Array{Float64,2}
-      ArrayName = DataFrame(ArrayName, :auto)
+      ArrayName = DataFrame(ArrayName)
 end
 
 if RankOrder == 1
@@ -57,7 +57,7 @@ M_Size = size(ArrayName,2)
 cov_mat = []
 
 if typeof(ArrayName) == Array{Float64,2}
-      ArrayName = DataFrame(ArrayName, :auto)
+      ArrayName = DataFrame(ArrayName)
 
 end
       for i=1:M_Size

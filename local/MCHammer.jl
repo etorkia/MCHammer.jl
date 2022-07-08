@@ -8,15 +8,6 @@ using Statistics, Random, Distributions, StatsBase, DataFrames, CSV, IterableTab
 using TimeSeries
 using Gadfly
 
-#Source files for MC_Hammer functions
-include("mch_simtools.jl")
-include("mch_charts.jl")
-include("mch_timeseries.jl")
-include("mch_SIPTools.jl")
-include("mch_distributions.jl")
-include("mch_stochastic.jl")
-include("mch_ExponentialSmoothing.jl")
-
 
 import StatsBase: tiedrank
 import Random: rand, rand!, seed!
@@ -63,7 +54,14 @@ export
 
 
 
-
+#Source files for MC_Hammer functions
+include("mch_simtools.jl")
+include("mch_charts.jl")
+include("mch_timeseries.jl")
+include("mch_SIPTools.jl")
+include("mch_distributions.jl")
+include("mch_stochastic.jl")
+include("mch_ExponentialSmoothing.jl")
 function test()
     println("Hello")
 

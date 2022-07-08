@@ -8,7 +8,7 @@ using Gadfly
 using Documenter,Test, DocumenterTools
 using MCHammer, Compose, Cairo, Fontconfig
 
-
+#remember to change directory to \docs
 function DoIt()
 
     makedocs(

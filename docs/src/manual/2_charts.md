@@ -17,15 +17,6 @@ using Distributions
 using DataFrames
 using MCHammer
 using Dates
-
-#Sensitivity Example Data
-n_trials = 1000
-Revenue = rand(TriangularDist(2500000,4000000,3000000), n_trials)
-Expenses = rand(TriangularDist(1400000,3000000,2000000), n_trials)
-Profit = Revenue - Expenses
-Trials = [Revenue-Expenses, Revenue, Expenses]
-Trials = DataFrame(Trials)
-rename(Trials,[:Profit, :Revenue, :Expenses])
 ```
 ## Functions
 ```@docs
@@ -42,11 +33,41 @@ histogram_chrt
 histogram_chrt(dist, "The Standard Normal")
 ```
 ```@docs
+s_curve
+```
+#Regular Cumulative Density Function
+```@example Graphing
+s_curve(dist)
+```
+# Reverse Cumulative Density Function
+```@example Graphing
+s_curve(dist; rev=true)
+```
+## Analyzing which variables are most influential using a tornado sensitivity chart
+To illustrate the chart we are using the simple 3-2-1 profit model example.
+```@docs
 sensitivity_chrt
 ```
 ```@example Graphing
+#Set trials
+n_trials = 1000
+
+#Set inputs
+Revenue = rand(TriangularDist(2500000,4000000,3000000), n_trials)
+Expenses = rand(TriangularDist(1400000,3000000,2000000), n_trials)
+
+#Model
+Profit = Revenue - Expenses
+
+#Capture results
+Trials = [Revenue-Expenses, Revenue, Expenses]
+Trials = DataFrame(Trials, :auto)
+rename(Trials,[:Profit, :Revenue, :Expenses])
+
+#Chart sensitivity of profit (column 1 in DataFrame)
 sensitivity_chrt(Trials,1)
 ```
+## Trend Charts - Probabilistic Line Chart and Time Series Charts
 ```@docs
 trend_chrt
 ```

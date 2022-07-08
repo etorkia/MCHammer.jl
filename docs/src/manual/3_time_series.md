@@ -82,7 +82,7 @@ GBMM(100000, 0.05,0.05,12)
 
 # output
 
-12×1 Array{Float64,2}:
+12×1 Array{Float64}:
  106486.4399226773
  113846.7611813516
  116137.16176312814
@@ -227,4 +227,90 @@ ms = DataFrame(hcat(transpose(ms), collect(1:10)), [:CherryCola, :DietCola, :Caf
 
 #Plot Brandshare over time
 plot(stack(ms, Not(:Yr)), x=:Yr, y=:value, color=:variable, Geom.line)
+```
+### Exponential Smoothing Methods
+Exponential smoothing has proven as one of the best naïve forecasting methods around. Though there are 4 methods out there, we will cover simple, double and triple (a.k.a Holt-Winters Seasonal Method) exponential smoothing.
+
+##Simple Exponetial Smoothing.
+The basic idea behind ES (Exponential Smoothing) is to give more weight to recent observations over older ones. As the name implies, this method projects provides a smoothed forecast for each historical observations. Originally developed during the Second World War to predict tank positions, it was deemed very accurate for other applications.
+
+```@docs
+ESmooth
+```
+
+```@example ES
+HistoricalSeries = [3,10,12,13,12,10,12] # results [803.0, 957.8, 900.38, 828.938, 842.4938,  886.14938, 927.414938, 888.3414938]
+alpha = 0.9
+
+ESmooth(HistoricalSeries, alpha; forecast_only=false)
+
+```
+## Double Exponential Smoothing
+The difference between single and double exponential smoothing is easily explained byduck hunting. In single exponential smoothing we are essentially pointing the gun where we think the duck will be and not where it is. In a double exponential smoothing situation imagine the duck shoots back! For this reason, we can predict one period out using this method. Being the crafty programmers that we are, we extended the method so that you can predict further out but you will realize that in reality the forecast stabilizes after the first period.
+
+```@docs
+ESmooth2x
+```
+
+```@docs
+ESFore2x
+```
+
+```@example ES2
+HistoricalSeries = [30,21,29,31,40,48,53,47,37,39,31,29,17,9,20,24,27,35,41,38,
+          27,31,27,26,21,13,21,18,33,35,40,36,22,24,21,20,17,14,17,19,
+          26,29,40,31,20,24,18,26,17,9,17,21,28,32,46,33,23,28,22,27,
+          18,8,17,21,31,34,44,38,31,30,26,32]
+
+periods = 4
+alpha = 0.9
+beta = 0.1
+
+ESFore2x(HistoricalSeries, alpha, beta, periods)
+```
+
+## Triple Exponential Smoothing (Holt-Winters Multiplicative Method)
+If the historical data has some seasonal patterns in it, we can use the Holt-Winters Multiplicative. This function is most effective when combined with the auto fitting function like in the example below.
+
+```@docs
+ES3xFit
+```
+
+```@docs
+ESFore3x
+```
+
+
+```@example ES2
+using Gadfly
+
+fit = ES3xFit(HistoricalSeries, 12, 100_000)
+ForecastSeries = ESFore3x(HistoricalSeries, 12, fit[1], fit[2], fit[3], 24)
+frct = layer(y=ForecastSeries, Geom.line, Theme(default_color="red"))
+hist = layer(y=HistoricalSeries, Geom.line)
+plot(hist,frct)
+```
+
+## Simulating forecast using historical uncertainty
+
+Because most models we work on are probabilistic, we can apply the Rand Walk approach to the predicted time series to get a stochastic result over time.
+
+```@docs
+ForecastUncertainty
+```
+```@example ES2
+@time fit = ES3xFit(HistoricalData, 12, 100_000)
+ForecastSeries = ESFore3x(HistoricalData, 12, fit[1], fit[2], fit[3], 24; forecast_only=true)
+SimResults = []
+
+for i = 1:10000
+    Uncertainty = ForecastUncertainty(HistoricalData, 24)
+    TrialFrct = ForecastSeries .* Uncertainty
+    push!(SimResults, TrialFrct)
+end
+
+
+#set the date range for the trend chart and generate plot
+dr = collect(Date(2019,1,01):Dates.Month(1):Date(2020,12,31))
+trend_chrt(SimResults, dr)
 ```

@@ -90,7 +90,8 @@ end
 Double exponential smoothing forecasting is a technique that will calculate a trend forecast.
 
     *alpha* is the smoothing constant
-    *beta* is the trend smoothing factor.
+    *beta* is the trend smoothing factor
+    *periods* is the number of periods to cast out above 1
 """
 function ESFore2x(HistoricalSeries, alpha, beta, periods)
     #step 1: Calculate Level (this is essentiually a single Exponential Smoothing)
@@ -208,7 +209,18 @@ end
 """
     ESFore3x(HistoricalSeries, season_length, alpha, beta, gamma, periods_out; forecast_only=false)
 
-[...].
+    *HistoricalSeries* is a vector of historical data.
+    *season_length* is the number of periods. For example if you have monthly data then you set this parameter to 12.
+    *alpha* is the smoothing constant
+    *beta* is the trend smoothing factor
+    *gamma* controls the influence of the seasonal component
+    *periods_out* reflects how many forecast periods
+
+Here is an example of how to use the fitting function to find the optimal fit parameters.
+
+    fit = ES3xFit(HistoricalSeries, 12, 100_000)
+    ForecastSeries = ESFore3x(HistoricalSeries, 12, fit[1], fit[2], fit[3], 24)
+.
 """
 function ESFore3x(HistoricalSeries, season_length, alpha, beta, gamma, periods_out; forecast_only=false)
     results = []
@@ -249,7 +261,7 @@ end
 
 
 """
-    ESFore3x(HistoricalSeries, season_length, alpha, beta, gamma, periods_out; forecast_only=false)
+    FrctStdError(HistoricalSeries, ForecastSeries)
 
 [...].
 """
@@ -270,9 +282,17 @@ function FrctStdError(HistoricalSeries, ForecastSeries)
 end
 
 """
-    ESFore3x(HistoricalSeries, season_length, alpha, beta, gamma, periods_out; forecast_only=false)
+    ES3xFit(HistoricalSeries, season_length, trials)
 
-[...].
+This function automatically finds the 3x exponential smoothing parameters.
+    *HistoricalSeries* is a vector of historical data.
+    *season_length* is the number of periods. For example if you have monthly data then you set this parameter to 12.
+    *trials* is how many iterations to test in order to get an optimal fit.
+
+How to use the fit function with the forecast function:
+    fit = ES3xFit(HistoricalSeries, 12, 100_000)
+    ForecastSeries = ESFore3x(HistoricalSeries, 12, fit[1], fit[2], fit[3], 24)
+
 """
 function ES3xFit(HistoricalSeries, season_length, trials)
     #Set starting values
@@ -312,9 +332,9 @@ end
 ## Simulation function to incorporate untrended uncertainty into base forecast.
 
 """
-    ESFore3x(HistoricalSeries, season_length, alpha, beta, gamma, periods_out; forecast_only=false)
+    ForecastUncertainty(HistoricalData, PeriodsToForecast)
 
-[...].
+Similar to the approach used in the Geometric Brownian Motion forecast (random walk), this function calculates the mean change and volatility over time. Each time this is run, a different forecast is produced thus allowing for simulation.
 """
 function ForecastUncertainty(HistoricalData, PeriodsToForecast)
 

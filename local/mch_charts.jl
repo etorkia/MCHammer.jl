@@ -194,7 +194,7 @@ trend_chart = vcat(map(x->x',trend_chart)...)
 
 #convert to time array to join dates and reconvert to DataFrame
 trend_chart = TimeArray(PeriodRange, trend_chart)
-trend_chart = DataFrame(trend_chart, :auto)
+trend_chart = DataFrame(trend_chart)
 
 #Build Charts
 names!(trend_chart, [:timestamp, :LowerBound, :p50, :UpperBound])
