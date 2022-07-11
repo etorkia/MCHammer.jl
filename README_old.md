@@ -4,7 +4,7 @@
 
 | **Documentation**                                                               | **Build Status**                                                                                |
 |:-------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------:|
-| [![][docs-stable-img]][docs-stable-url] | [![][travis-img]][travis-url] |
+| [![][docs-stable-img]][docs-stable-url] [![][docs-dev-img]][docs-dev-url] | [![][travis-img]][travis-url] |
 
 
 ## Overview
@@ -16,8 +16,8 @@ Though you can build a Monte-Carlo simulation in Julia using a few simple packag
 MCHammer replicates Excel's familiar logic, functions and elemental tools in Julia, thus significantly reducing the time, complexity and effort to perform advanced modeling and simulation.
 
 ## Why use MCHammer to build your Monte-Carlo simulation model?
-* Ability to correlate variables using Iman-Connover's numeric method with a simple function.
-* Analyze and visualize input data and simulation results using simple Excel like formulas
+* Ability to correlate variables using Iman-Connover's numeric method using a simple function.
+* Analyse and visualize input data and simulation results using simple Excel like formulas
 * Simplify and eliminate 100s of lines of code for your charts and results analysis using MCHammers wrapper functions.
 * Elegant pre-built chart functions for rendering your simulation results : Histograms, Trend Charts, Sensitivity analysis.
 * Time Series functions to stress test your model over multiple time periods.
@@ -41,11 +41,7 @@ Even though you can make the argument that anything can be modelled using uncert
 	*	Covariance Matrix
 	*	Rank Order Correlation Matrix
 	*	Pearson Product Moment Correlation Matrix
-*	Stats and Simulation Charts
-	* Density and Histogram Charts with Descriptive Stats
-	* Fractiles
-	* GetCertainty to find the exact probability of a scenario
-	* Cumulative and Reverse Cumulative S-Curves (New)
+*	Density & Histogram Charts with Descriptive Stats
 *	Sensitivity Analysis Chart
 	*	Rank Correlation
 	*	PPMC
@@ -55,10 +51,6 @@ Even though you can make the argument that anything can be modelled using uncert
 *	Time Series using Simulated Random Walk
 *	Time Series using Historical Data to calculate parameters for Simulated Random Walk
 *	Trend Charts with Customizable Confidence Bands
-* Exponential Smoothing (New)
-	* Simple
-	* Double
-	* Triple (Holt-Winters)
 
 ### Import / Exporting
 
@@ -94,12 +86,11 @@ Even though you can make the argument that anything can be modelled using uncert
 * marty()
 * markov_a()
 * markov_ts()
-*...
 
 ## Documentation
 
 - [**STABLE**][docs-stable-url] &mdash; **most recently tagged version of the documentation.**
-
+- [**DEVEL**][docs-dev-url] &mdash; *in-development version of the documentation.*
 - [**MCHammer.jl Project Page**][mch_site]
 
 ## Project Mission
@@ -111,7 +102,10 @@ We want to give access to models to those who need it because for too long insig
 * Chart: Changes to output means Sensitivity Chart
 * Function: Combined Expert Opinion
 * Time Series: Learning Curve Forecasts
+* Function: Ogive through empirical resampling
+* Chart: ADD S-Curve (in Markowitz example)
 * Chart: Error Bar Example (base code in mch_charts)
+* Chart: Add Overlay
 
 ## Questions?
 If you have any bugs to report or issues with the package, please visit our project page.
