@@ -32,8 +32,8 @@ function DoIt()
     ])
 end
 
-# @testset "MCHammer" begin
-#
-#     doctest(MCHammer; manual = true)
-#
-# end
+@testset "MCHammer" begin
+
+    doctest(MCHammer; manual = true)
+
+end
