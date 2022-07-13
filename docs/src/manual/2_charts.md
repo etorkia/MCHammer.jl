@@ -60,12 +60,10 @@ Expenses = rand(TriangularDist(1400000,3000000,2000000), n_trials)
 Profit = Revenue - Expenses
 
 #Capture results
-Trials = [Revenue-Expenses, Revenue, Expenses]
-Trials = DataFrame(Trials, :auto)
-rename(Trials,[:Profit, :Revenue, :Expenses])
+Trials_df = DataFrame(Profit = Revenue-Expenses, Revenue = Revenue, Expenses = Expenses)
 
 #Chart sensitivity of profit (column 1 in DataFrame)
-sensitivity_chrt(Trials,1)
+sensitivity_chrt(Trials_df,1)
 ```
 ## Trend Charts - Probabilistic Line Chart and Time Series Charts
 ```@docs
@@ -73,9 +71,8 @@ trend_chrt
 ```
 ```@example Graphing
 ts_trials =[]
-dr = collect(Date(2019,1,01):Dates.Month(1):Date(2019,12,01))
 
-#To setup a TimeSeries simulation with MCHammer
+#To setup a TimeSeries simulation with MCHammer over 12 periods
 for i = 1:1000
     Monthly_Sales = GBMM(100000, 0.05,0.05,12)
     Monthly_Expenses = GBMM(50000, 0.03,0.02,12)
@@ -84,5 +81,11 @@ for i = 1:1000
     push!(ts_trials, MonthlyProfit)
 end
 
-trend_chrt(ts_trials, dr)
+trend_chrt(ts_trials, x_label="last 12 months")
 ```
+Say you wanted to replace periods with a series of dates.
+
+```@example Graphing
+dr = collect(Date(2019,1,01):Dates.Month(1):Date(2019,12,01))
+
+trend_chrt(ts_trials, dr, x_label="last 12 months")

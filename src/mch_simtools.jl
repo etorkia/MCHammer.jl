@@ -96,7 +96,7 @@ P = cholesky(correl_matrix)
 #Normal() Returns Standard Normals (ISNs)
 R = rand(Normal(),n_trials,array_dims)
 ISN_Matrix = R*P.U
-ISN_Matrix_DF = DataFrame(ISN_Matrix)
+ISN_Matrix_DF = DataFrame(ISN_Matrix, :auto)
 
 #apply ranks to create independant correlation rankings matrix
 ISN_Ranked = []
@@ -104,7 +104,7 @@ for i = 1:array_dims
       temp_ranks = ordinalrank(ISN_Matrix_DF[!,i])
       push!(ISN_Ranked, temp_ranks)
 end
-ISN_Ranked_DF = DataFrame(ISN_Ranked)
+ISN_Ranked_DF = DataFrame(ISN_Ranked, :auto)
 #Results_Ranked = []
 #println(ISN_Ranked_DF)
 
@@ -114,7 +114,7 @@ for i = 1:array_dims
       sorted_array = sort(ArrayName[!,i])[ISN_Ranked[i]]
       push!(final_array, sorted_array)
 end
-Final_DF=DataFrame(final_array)
+Final_DF=DataFrame(final_array, :auto)
 end
 
 # GetCertainty
