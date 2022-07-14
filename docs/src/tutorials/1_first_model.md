@@ -120,15 +120,9 @@ First we need to create a sensitivity table with **hcat()** using both the input
 
 ```@example SampleModel
 
-#Construct the sensitivity input table by consolidating all the relevant
-#inputs and outputs.
+#Construct the sensitivity input table by consolidating all the relevant inputs and outputs.
 
-s_table = hcat(Profit, Revenue, Expenses)
-
-#We then need to convert to a DataFrame and add names
-
-s_table = DataFrame(s_table)
-names!(s_table, [:Profit, :Revenue, :Expenses])
+s_table = DataFrame(Profit = Profit, Revenue = Revenue, Expenses = Expenses)
 
 #To produce a sensitivity tornado chart, we need to select the output against
 #which the inputs are measured for effect.

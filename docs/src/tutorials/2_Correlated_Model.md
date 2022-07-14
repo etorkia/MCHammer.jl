@@ -29,9 +29,7 @@ Profit = Revenue - Expenses
 Profit
 
 # Trials or Results Table (OUTPUT)
-Trials = hcat(Profit, Revenue, Expenses)
-Trials = DataFrame(Trials)
-names!(Trials, [:Profit, :Revenue, :Expenses])
+Trials = DataFrame(Profit = Profit, Revenue = Revenue, Expenses = Expenses)
 
 cormat(Trials)
 ```
@@ -49,16 +47,15 @@ cor_matrix
 ```
 It is very important to join Trial into an array before applying correlation. Furthermore, this step is necessary in order to produce a `sensitivity_chrt()`
 ```@example SampleModel
-c_table = [Revenue Expenses]
-C_Trials = corvar(c_table, n_trials, cor_matrix)
+Input_Table = DataFrame(Revenue=Revenue, Expenses=Expenses)
+Correl_Trials = corvar(Input_Table, n_trials, cor_matrix)
+rename!(Correl_Trials, [:Revenue, :Expenses])
 
-#Correlated Model(2) - Create Correlated Results Array
-C_Profit = C_Trials[1] - C_Trials[2]
-C_Trials = [C_Profit, C_Trials[1], C_Trials[2]]
-C_Trials = DataFrame(C_Trials)
-names!(C_Trials, [:C_Profit, :C_Revenue, :C_Expenses])
+#Using the correlated inputs to calculate the correlated profit
+Correl_Trials.Profit = Correl_Trials.Revenue - Correl_Trials.Expenses
 
-cormat(C_Trials)
+#Verify results
+cormat(Correl_Trials)
 
 ```
 
@@ -70,52 +67,53 @@ cor(Revenue,Expenses)
 ```
 Input Correlation for the Correlated Model:
 ```@example SampleModel
-cor(C_Trials[2],C_Trials[3])
+cor(Correl_Trials.Revenue, Correl_Trials.Expenses)
 ```
 
 Make sure to put a line in your project that lists all the outputs you can query with the charting and stats functions.
 ```@REPL
-println("Model Outputs: Trials, C_Trials, Profit, C_Profit")
+println("Model Outputs: Trials, Correl_Trials, Profit, Correl_Trials.Profit")
 ```
 
 ## Correlated vs. Uncorrelated results in Julia
 Let us compare the percentiles of an uncorrelated  model vs. a correlated one.
 
-### Uncorrelated Results
+### Probability Analysis
 ```@example SampleModel
-density_chrt(Profit)
+
+compresults_df = DataFrame(uprofit = Profit, cprofit = Correl_Trials.Profit )
+
+plot(stack(compresults_df), x=:value, color=:variable, Geom.density)
 ```
-Probability of Making 1m or less (uncorrelated) :
+Using `GetCertainty()` we can do some simple probability accounting to assess the likelyhood of making 1m or less in profit :
 ```@example SampleModel
 GetCertainty(Profit, 1000000, 0)
+GetCertainty(Correl_Trials.Profit, 1000000, 0)
 ```
+By accounting for the correlation, we can see the probability of achieving our profit objective dropped by about 5%
 
-`fractiles()` allows you to get the percentiles at various increments.
+
+`fractiles()` allows you to get the percentiles at various increments to be able to compare results along a continuum.
 
 ```@example SampleModel
+#Uncorrelated
 fractiles(Profit)
 ```
+```@example SampleModel
+#Correlated
+fractiles(Correl_Trials.Profit)
+```
+
+### Comparing the impact of the inputs
+
+Sensitivity of uncorrelated results:
 
 ```@example SampleModel
 sensitivity_chrt(Trials,1)
 ```
-
-### Correlated Results
+Sensitivity of correlated results
 ```@example SampleModel
-density_chrt(C_Profit)
-```
-
-Probability of Making 1m or less (correlated) :
-```@example SampleModel
-GetCertainty(C_Profit, 1000000, 0)
-```
-
-```@example SampleModel
-fractiles(C_Profit)
-```
-
-```@example SampleModel
-sensitivity_chrt(C_Trials,1)
+sensitivity_chrt(Correl_Trials,3)
 ```
 ## A quick analysis of the results
 1. Accounting for correlation meant a 5% (42.5% vs. 47.7%) reduction in probability of not making our goals.
