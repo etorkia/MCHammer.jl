@@ -12,13 +12,29 @@ Pkg.add("Dates")
 Pkg.add("MCHammer")
 Pkg.add("DataFrames")
 Pkg.add("Gadfly")
-```
 
-```@example NPVModel
 using Distributions
 using Dates
 using Gadfly
-using StatsBase
+using StatsBase, Statistics
+using MCHammer
+using DataFrames
+```
+
+```@example NPVModel
+using Pkg
+Pkg.add("Distributions")
+Pkg.add("StatsBase")
+Pkg.add("Statistics")
+Pkg.add("Dates")
+Pkg.add("MCHammer")
+Pkg.add("DataFrames")
+Pkg.add("Gadfly")
+
+using Distributions
+using Dates
+using Gadfly
+using StatsBase, Statistics
 using MCHammer
 using DataFrames
 ```
@@ -102,8 +118,7 @@ end
 **Setup inputs/outputs(above) and output tables (below)** for sensitivity analysis and charting. Since correlation is based on the same math as regression, the only way to calculate sensitivity on an Array > 1 (in this case multiple years) is to condense the array into a scalar value using either mean, sum or any other transform because what ever you pick will generate a similar or identical result.
 
 ```@example NPVModel
-Sensitivity_Tbl = DataFrame(hcat(ProjectNPV, USC, USP, DR, OP))
-names!(Sensitivity_Tbl, [:ProjectNPV, :USC, :USP, :DR, :OP])
+Sensitivity_Tbl = DataFrame(ProjectNPV = ProjectNPV, USC = USC, USP = USP, DR = DR, OP = OP))
 NPV_Sensitivity = cormat(Sensitivity_Tbl,1)
 ```
 

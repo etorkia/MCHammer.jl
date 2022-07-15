@@ -1,14 +1,14 @@
-clearconsole()
-
 using Dates
 using DataFrames
-using Documenter#, DocumenterTools
 using Distributions, Statistics, StatsBase
 using Gadfly
 using Documenter,Test, DocumenterTools
 using MCHammer, Compose, Cairo, Fontconfig
 
 #remember to change directory to \docs
+
+cd("Z:\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer\\docs")
+
 function DoIt()
 
     makedocs(
@@ -32,8 +32,8 @@ function DoIt()
     ])
 end
 
-@testset "MCHammer" begin
-
-    doctest(MCHammer; manual = true)
-
-end
+# @testset "MCHammer" begin
+#
+#     doctest(MCHammer; manual = true)
+#
+# end

@@ -14,11 +14,19 @@ Pkg.add("Dates")
 Pkg.add("MCHammer")
 Pkg.add("DataFrames")
 Pkg.add("Gadfly")
+
+using DataFrames, MCHammer, Gadfly, Distributions,Statistics, StatsBase, Dates, TimeSeries
+
+n_trials = 10000
+Random.seed!(1)
+Revenue = rand(TriangularDist(2500000,4000000,3000000), n_trials)
+Expenses = rand(TriangularDist(1400000,3000000,2000000), n_trials)
 ```
 
 ```@example SampleModel
-using Distributions, StatsBase, DataFrames, MCHammer
+using Distributions, StatsBase, DataFrames, MCHammer #hide
 n_trials = 10000
+Random.seed!(1)
 Revenue = rand(TriangularDist(2500000,4000000,3000000), n_trials)
 Expenses = rand(TriangularDist(1400000,3000000,2000000), n_trials)
 
@@ -29,7 +37,7 @@ Profit = Revenue - Expenses
 Profit
 
 # Trials or Results Table (OUTPUT)
-Trials = DataFrame(Profit = Profit, Revenue = Revenue, Expenses = Expenses)
+Trials = DataFrame(Revenue = Revenue, Expenses = Expenses, Profit = Profit)
 
 cormat(Trials)
 ```
@@ -47,6 +55,8 @@ cor_matrix
 ```
 It is very important to join Trial into an array before applying correlation. Furthermore, this step is necessary in order to produce a `sensitivity_chrt()`
 ```@example SampleModel
+using Distributions, StatsBase, DataFrames, MCHammer
+
 Input_Table = DataFrame(Revenue=Revenue, Expenses=Expenses)
 Correl_Trials = corvar(Input_Table, n_trials, cor_matrix)
 rename!(Correl_Trials, [:Revenue, :Expenses])

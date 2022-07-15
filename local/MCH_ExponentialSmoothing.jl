@@ -1,6 +1,6 @@
 #Basic ES Forecast Methods
 
-using DataFrames, StatsBase, DataFramesMeta, CSV, Gadfly, Distributions, Dates
+using DataFrames, StatsBase, DataFramesMeta, CSV, Gadfly, Distributions, Dates, Statisitics
 
 
 ## Exponential Smoothing

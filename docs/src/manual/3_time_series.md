@@ -19,6 +19,7 @@ using DataFrames
 using MCHammer
 using Random
 using Gadfly
+using TimeSeries, Dates
 using Compose, Cairo, Fontconfig
 
 BrandShare = [0.1, 0.25, 0.05, 0.35, 0.25]
@@ -47,6 +48,7 @@ DocTestSetup = quote
     using Random
     using DataFrames
     using Gadfly
+    using Dates
 end
 ```
 ```@docs
@@ -59,18 +61,19 @@ GBMMfit(historical, 12)
 
 # output
 12×1 Matrix{Float64}:
- 6.6992003689078325
- 7.062760356166932
- 7.103000620460403
- 7.420415139367789
- 8.514400412609032
- 3.943937898162356
- 4.146251875790493
- 5.262045352529825
- 0.7692838668172376
- 1.2648073358011491
- 1.5912440333414342
- 2.1886864479965875
+12×1 Matrix{Float64}:
+14.9841041471206
+13.173975261845019
+ 5.583633586576405
+ 7.6339649415704285
+ 1.9828532914096435
+ 1.7098509331782616
+ 1.4736020097212592
+ 0.8039772093974257
+ 0.3910586242984384
+ 0.40850588933635484
+ 0.1610792608898977
+ 0.16589444773512724
 ```
 ```@docs
 GBMM
@@ -81,20 +84,19 @@ Random.seed!(1)
 GBMM(100000, 0.05,0.05,12)
 
 # output
-
 12×1 Matrix{Float64}:
- 106486.4399226773
- 113846.7611813516
- 116137.16176312814
- 121883.36579797923
- 122864.3632374885
- 130918.80622439094
- 152488.25443945627
- 142827.4651618234
- 153753.52041326065
- 164757.82535740297
- 177804.24203041938
- 195258.14301210243
+ 104647.08430523051
+ 112660.31315346305
+ 113748.31702531039
+ 133409.66433589451
+ 147850.42050983387
+ 157220.91712571305
+ 178838.2719844225
+ 180393.97903114106
+ 180008.3650923122
+ 186046.44107246998
+ 190862.7004979811
+ 211688.13727362957
 ```
 
 ```@docs
@@ -103,11 +105,27 @@ GBMA_d
 
 ## Simulating a random walk
 
+```@setup Graphing
+using Pkg
+Pkg.add("Gadfly")
+Pkg.add("Distributions")
+Pkg.add("StatsBase")
+Pkg.add("Statistics")
+Pkg.add("Dates")
+Pkg.add("MCHammer")
+Pkg.add("DataFrames")
+
+using Distributions
+using DataFrames
+using MCHammer
+using Random
+using Gadfly
+using TimeSeries, Dates
+using Compose, Cairo, Fontconfig
+
 ```@example Graphing
-using Dates, Distributions, DataFrames, MCHammer #hide
 
 ts_trials =[]
-dr = collect(Date(2019,1,01):Dates.Month(1):Date(2019,12,31))
 
 #To setup a TimeSeries simulation with MCHammer
 for i = 1:1000
@@ -119,7 +137,8 @@ for i = 1:1000
 end
 
 #You can graph the result using trend_chrt()
-trend_chrt(ts_trials, dr)
+dr = collect(Date(2019,1,01):Dates.Month(1):Date(2019,12,31))
+trend_chrt(ts_trials, collect(Date(2019,1,01):Dates.Month(1):Date(2019,12,31)))
 ```
 
 # Stochastic Time Series
@@ -238,6 +257,25 @@ The basic idea behind ES (Exponential Smoothing) is to give more weight to recen
 ESmooth
 ```
 
+```@setup ES
+using Pkg
+Pkg.add("Gadfly")
+Pkg.add("Distributions")
+Pkg.add("StatsBase")
+Pkg.add("Statistics")
+Pkg.add("Dates")
+Pkg.add("MCHammer")
+Pkg.add("DataFrames")
+
+using Distributions
+using DataFrames
+using MCHammer
+using Random
+using Gadfly
+using TimeSeries, Dates
+using Compose, Cairo, Fontconfig
+```
+
 ```@example ES
 HistoricalSeries = [3,10,12,13,12,10,12] # results [803.0, 957.8, 900.38, 828.938, 842.4938,  886.14938, 927.414938, 888.3414938]
 alpha = 0.9
@@ -256,7 +294,7 @@ ESmooth2x
 ESFore2x
 ```
 
-```@example ES2
+```@example ES
 HistoricalSeries = [30,21,29,31,40,48,53,47,37,39,31,29,17,9,20,24,27,35,41,38,
           27,31,27,26,21,13,21,18,33,35,40,36,22,24,21,20,17,14,17,19,
           26,29,40,31,20,24,18,26,17,9,17,21,28,32,46,33,23,28,22,27,
@@ -281,9 +319,7 @@ ESFore3x
 ```
 
 
-```@example ES2
-using Gadfly
-
+```@example ES
 fit = ES3xFit(HistoricalSeries, 12, 100_000)
 ForecastSeries = ESFore3x(HistoricalSeries, 12, fit[1], fit[2], fit[3], 24)
 frct = layer(y=ForecastSeries, Geom.line, Theme(default_color="red"))
@@ -298,7 +334,7 @@ Because most models we work on are probabilistic, we can apply the Rand Walk app
 ```@docs
 ForecastUncertainty
 ```
-```@example ES2
+```@example ES
 @time fit = ES3xFit(HistoricalData, 12, 100_000)
 ForecastSeries = ESFore3x(HistoricalData, 12, fit[1], fit[2], fit[3], 24; forecast_only=true)
 SimResults = []
