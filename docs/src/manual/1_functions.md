@@ -20,7 +20,7 @@ end
 
 ## Overview
 
-Though most of your modeling can be realized in raw Julia, some of the most important features in a Monte-Carlo simulation package have to do with analyzing and applying correlation in models. MCHammer's correlation approach is based on *"Ronald L. Iman & W. J. Conover (1982) A distribution-free approach to inducing rank correlation among input variables, Communications in Statistics - Simulation and Computation"*
+Though most of your modeling can be realized in raw Julia, some of the most important features in a Monte-Carlo simulation package have to do with analyzing and applying correlation in models. MCHammer's correlation approach is based on **"Ronald L. Iman & W. J. Conover (1982) A distribution-free approach to inducing rank correlation among input variables, Communications in Statistics - Simulation and Computation"**
 
 The simulation and correlation functions are designed to quickly obtain risk and decision analysis metrics such as moments, percentiles and risk over time.
 

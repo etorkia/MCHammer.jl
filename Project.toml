@@ -1,7 +1,7 @@
 name = "MCHammer"
 uuid = "58716550-704d-11e9-05c2-8f708e47025f"
 authors = ["Eric Torkia <etorkia@technologypartnerz.com>"]
-version = "0.1.8"
+version = "0.1.9"
 
 [deps]
 CSV = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"

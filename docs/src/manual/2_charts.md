@@ -35,7 +35,7 @@ histogram_chrt(dist, "The Standard Normal")
 ```@docs
 s_curve
 ```
-#Regular Cumulative Density Function
+# Regular Cumulative Density Function
 ```@example Graphing
 s_curve(dist)
 ```

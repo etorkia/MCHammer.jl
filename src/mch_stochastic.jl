@@ -1,5 +1,5 @@
 #STOCHASTIC MODELING FUNCTIONS FOR MC HAMMER
-#by Eric Torkia, August 2020
+#by Eric Torkia, 2019-2022 (Please join the team so I don't have to do this alone)
 
 #Markov Chains, Martingales and other useful stochastic processes
 

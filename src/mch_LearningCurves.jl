@@ -1,4 +1,5 @@
 #Learning Curve Modelling Tools (Please Document before including in Package)
+#by Eric Torkia, 2019-2022 (Please join the team so I don't have to do this alone)
 
 using DataFrames, Gadfly
 

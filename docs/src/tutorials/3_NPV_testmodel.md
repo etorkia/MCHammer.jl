@@ -128,6 +128,9 @@ fractiles(ProjectNPV)
 histogram_chrt(ProjectNPV, "Five Year NPV")
 ```
 
+```@example NPVModel
+s_curve(ProjectNPV, "Five Year NPV")
+```
 
 ```@example NPVModel
 density_chrt(ProjectNPV, "Five Year NPV")

@@ -1,4 +1,5 @@
-#Basic ES Forecast Methods
+#Basic ES Forecast Methods for MCHammer
+#by Eric Torkia, 2019-2022 (Please join the team so I don't have to do this alone)
 
 using DataFrames, StatsBase, DataFramesMeta, CSV, Gadfly, Distributions, Dates
 
