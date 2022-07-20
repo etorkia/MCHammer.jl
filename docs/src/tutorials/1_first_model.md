@@ -63,7 +63,8 @@ Though the most used distributions are cite below, Julia's Distributions package
 In order to define a simulated input you need to use the *rand* function. By assigning a variable name, you can generate any simulated vector you want.
 
 ```@example
-using Distributions
+using Distributions, Random
+Random.seed!(1)
 input_variable = rand(Normal(0,1),100)
 ```
 
@@ -85,6 +86,12 @@ Pkg.add("Dates")
 Pkg.add("MCHammer")
 Pkg.add("DataFrames")
 Pkg.add("Gadfly")
+
+using Distributions, StatsBase, Statistics, DataFrames, MCHammer
+n_trials = 1000
+Revenue = rand(TriangularDist(2500000,4000000,3000000), n_trials)
+Expenses = rand(TriangularDist(1400000,3000000,2000000), n_trials)
+
 ```
 
 ```@example SampleModel

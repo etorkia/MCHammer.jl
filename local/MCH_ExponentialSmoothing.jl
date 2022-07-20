@@ -1,6 +1,6 @@
 #Basic ES Forecast Methods
 
-using DataFrames, StatsBase, DataFramesMeta, CSV, Gadfly, Distributions, Dates, Statisitics
+using DataFrames, StatsBase, DataFramesMeta, CSV, Gadfly, Distributions, Dates, Statistics
 
 
 ## Exponential Smoothing
@@ -148,7 +148,7 @@ function ESFore2x(HistoricalSeries, alpha, beta, periods)
     println()
     println()
     forecast = DataFrame(forecast, :auto)
-    rename!(forecast, [:Historical, :Level, :Forecast])
+    DataFrames.rename!(forecast, [:Historical, :Level, :Forecast])
 return forecast
 
 end

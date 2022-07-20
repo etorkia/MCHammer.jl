@@ -3,36 +3,6 @@
 ## Overview
 MCH Timeseries contains functions to create simulated times series with MCHammer. Current implementation supports Geometric Brownian Motion, Martingales and Markov Chain Time Series. Other methods will be added.
 
-## Functions
-```@setup Stochastic
-using Pkg
-Pkg.add("Gadfly")
-Pkg.add("Distributions")
-Pkg.add("StatsBase")
-Pkg.add("Statistics")
-Pkg.add("Dates")
-Pkg.add("MCHammer")
-Pkg.add("DataFrames")
-
-using Distributions
-using DataFrames
-using MCHammer
-using Random
-using Gadfly
-using TimeSeries, Dates
-using Compose, Cairo, Fontconfig
-
-BrandShare = [0.1, 0.25, 0.05, 0.35, 0.25]
-
-DrinkPreferences =
-[0.6	0.03 0.15 0.2 0.02;
-0.02 0.4 0.3 0.2 0.08;
-0.15	0.25	0.3 0.25	0.05;
-0.15	0.02	0.1	0.7	0.03;
-0.15	0.3 0.05	0.05	0.45]
-
-```
-
 ```@meta
 DocTestSetup = quote
     using Pkg
@@ -43,88 +13,92 @@ DocTestSetup = quote
     Pkg.add("MCHammer")
     Pkg.add("DataFrames")
     Pkg.add("Gadfly")
+
     using MCHammer
     using Distributions
     using Random
     using DataFrames
     using Gadfly
     using Dates
+    rng = MersenneTwister(1)
+
+    BrandShare = [0.1, 0.25, 0.05, 0.35, 0.25]
+
+    DrinkPreferences =
+    [0.6	0.03 0.15 0.2 0.02;
+    0.02 0.4 0.3 0.2 0.08;
+    0.15	0.25	0.3 0.25	0.05;
+    0.15	0.02	0.1	0.7	0.03;
+    0.15	0.3 0.05	0.05	0.45]
+
 end
 ```
+
+
+## Functions
+
 ```@docs
 GBMMfit
 ```
 ```jldoctest GBBMFit
-Random.seed!(1)
-historical = rand(Normal(10,2.5),1000)
-GBMMfit(historical, 12)
+rng = MersenneTwister(1)
+historical = rand(rng,Normal(10,2.5),1000)
+
+GBMMfit(historical, 12; rng=rng)
 
 # output
 12×1 Matrix{Float64}:
-12×1 Matrix{Float64}:
-14.9841041471206
-13.173975261845019
- 5.583633586576405
- 7.6339649415704285
- 1.9828532914096435
- 1.7098509331782616
- 1.4736020097212592
- 0.8039772093974257
- 0.3910586242984384
- 0.40850588933635484
- 0.1610792608898977
- 0.16589444773512724
+ 6.6992003689078325
+ 7.062760356166932
+ 7.103000620460403
+ 7.420415139367789
+ 8.514400412609032
+ 3.943937898162356
+ 4.146251875790493
+ 5.262045352529825
+ 0.7692838668172376
+ 1.2648073358011491
+ 1.5912440333414342
+ 2.1886864479965875
 ```
 ```@docs
 GBMM
 ```
 ```jldoctest RandWalk
-Random.seed!(1)
-
-GBMM(100000, 0.05,0.05,12)
+rng = MersenneTwister(1)
+GBMM(100000, 0.05,0.05,12, rng=rng)
 
 # output
 12×1 Matrix{Float64}:
- 104647.08430523051
- 112660.31315346305
- 113748.31702531039
- 133409.66433589451
- 147850.42050983387
- 157220.91712571305
- 178838.2719844225
- 180393.97903114106
- 180008.3650923122
- 186046.44107246998
- 190862.7004979811
- 211688.13727362957
+ 106486.4399226773
+ 113846.7611813516
+ 116137.16176312814
+ 121883.36579797923
+ 122864.3632374885
+ 130918.80622439094
+ 152488.25443945627
+ 142827.4651618234
+ 153753.52041326065
+ 164757.82535740297
+ 177804.24203041938
+ 195258.14301210243
 ```
 
 ```@docs
 GBMA_d
 ```
+```jldoctest RandWalk
+rng = MersenneTwister(1)
+GBMA_d(100, 504,0.03,.3, rng=rng)
+
+# output
+106.83641105302092
+```
 
 ## Simulating a random walk
 
-```@setup Graphing
-using Pkg
-Pkg.add("Gadfly")
-Pkg.add("Distributions")
-Pkg.add("StatsBase")
-Pkg.add("Statistics")
-Pkg.add("Dates")
-Pkg.add("MCHammer")
-Pkg.add("DataFrames")
-
-using Distributions
-using DataFrames
-using MCHammer
-using Random
-using Gadfly
-using TimeSeries, Dates
-using Compose, Cairo, Fontconfig
-
 ```@example Graphing
-
+using Dates
 ts_trials =[]
 
 #To setup a TimeSeries simulation with MCHammer
@@ -138,7 +112,7 @@ end
 
 #You can graph the result using trend_chrt()
 dr = collect(Date(2019,1,01):Dates.Month(1):Date(2019,12,31))
-trend_chrt(ts_trials, collect(Date(2019,1,01):Dates.Month(1):Date(2019,12,31)))
+trend_chrt(ts_trials,dr)
 ```
 
 # Stochastic Time Series
@@ -150,6 +124,9 @@ marty
 ```
 
 For example a gambler with 50$ making wagers of 50$, 10 times using the double or nothing strategy.
+```@setup Stochastic
+
+```
 
 ```@example Stochastic
 marty(50,10)
@@ -247,10 +224,11 @@ ms = DataFrame(hcat(transpose(ms), collect(1:10)), [:CherryCola, :DietCola, :Caf
 #Plot Brandshare over time
 plot(stack(ms, Not(:Yr)), x=:Yr, y=:value, color=:variable, Geom.line)
 ```
+
 ### Exponential Smoothing Methods
 Exponential smoothing has proven as one of the best naïve forecasting methods around. Though there are 4 methods out there, we will cover simple, double and triple (a.k.a Holt-Winters Seasonal Method) exponential smoothing.
 
-##Simple Exponetial Smoothing.
+##Simple Exponential Smoothing.
 The basic idea behind ES (Exponential Smoothing) is to give more weight to recent observations over older ones. As the name implies, this method projects provides a smoothed forecast for each historical observations. Originally developed during the Second World War to predict tank positions, it was deemed very accurate for other applications.
 
 ```@docs
@@ -258,22 +236,7 @@ ESmooth
 ```
 
 ```@setup ES
-using Pkg
-Pkg.add("Gadfly")
-Pkg.add("Distributions")
-Pkg.add("StatsBase")
-Pkg.add("Statistics")
-Pkg.add("Dates")
-Pkg.add("MCHammer")
-Pkg.add("DataFrames")
 
-using Distributions
-using DataFrames
-using MCHammer
-using Random
-using Gadfly
-using TimeSeries, Dates
-using Compose, Cairo, Fontconfig
 ```
 
 ```@example ES
@@ -282,6 +245,15 @@ alpha = 0.9
 
 ESmooth(HistoricalSeries, alpha; forecast_only=false)
 
+#output
+7×2 Matrix{Any}:
+  3   3
+ 10   9.3
+ 12  11.73
+ 13  12.873
+ 12  12.0873
+ 10  10.2087
+ 12  11.8209
 ```
 ## Double Exponential Smoothing
 The difference between single and double exponential smoothing is easily explained byduck hunting. In single exponential smoothing we are essentially pointing the gun where we think the duck will be and not where it is. In a double exponential smoothing situation imagine the duck shoots back! For this reason, we can predict one period out using this method. Being the crafty programmers that we are, we extended the method so that you can predict further out but you will realize that in reality the forecast stabilizes after the first period.
