@@ -50,8 +50,8 @@ RiskEvent(0.3, Normal(0,1), 10)
 cormat
 ```
 ```jldoctest matrix
-Random.seed!(1) #hide
-test = rand(Normal(),1000,5)
+rng = MersenneTwister(1)
+test = rand(rng, rng, Normal(),1000,5)
 cormat(test)
 
 # output
@@ -86,24 +86,23 @@ covmat(test)
 corvar
 ```
 ```jldoctest correlating_vars
-Random.seed!(1)
+rng = MersenneTwister(1)
 n_trials = 1000
-sample_data = [rand(LogNormal(0, 0.5),n_trials) rand(Normal(3,2),n_trials) rand(Gamma(1, 0.5),n_trials) rand(LogNormal(0, 0.5),n_trials) rand(Normal(3,2),n_trials) rand(Gamma(1, 0.5),n_trials)]
+sample_data = [rand(rng, LogNormal(0, 0.5),n_trials) rand(rng, Normal(3,2),n_trials) rand(rng, Gamma(1, 0.5),n_trials) rand(rng, LogNormal(0, 0.5),n_trials) rand(rng, Normal(3,2),n_trials) rand(rng, Gamma(1, 0.5),n_trials)]
 
 test_cmatrix = [1 0 0 0 0 0; 0 1 0 0 0 0; 0 0 1 0 0 0;0 0 0 1 0.75 -0.7; 0 0 0 0.75 1 -0.95; 0 0 0 -0.7 -0.95 1 ]
 
-Random.seed!(1)
 cormat(corvar(sample_data, n_trials, test_cmatrix))
 
 # output
 
-6×6 Array{Float64,2}:
-  1.0          0.045012    0.00247197  -0.0455839  -0.0138308   0.0112554
-  0.045012     1.0         0.0534       0.0449149   0.0592791  -0.0355262
-  0.00247197   0.0534      1.0          0.0194396   0.0532426  -0.0468971
- -0.0455839    0.0449149   0.0194396    1.0         0.719585   -0.662708
- -0.0138308    0.0592791   0.0532426    0.719585    1.0        -0.939008
-  0.0112554   -0.0355262  -0.0468971   -0.662708   -0.939008    1.0
+6×6 Matrix{Float64}:
+  1.0          0.00383325  -0.00112225  -0.00340376   0.0198802  -0.0156993
+  0.00383325   1.0         -0.0579411   -0.0441624   -0.0404783   0.0415209
+ -0.00112225  -0.0579411    1.0          0.0618645    0.0207406  -0.0222773
+ -0.00340376  -0.0441624    0.0618645    1.0          0.734808   -0.685302
+  0.0198802   -0.0404783    0.0207406    0.734808     1.0        -0.944979
+ -0.0156993    0.0415209   -0.0222773   -0.685302    -0.944979    1.0
 
 ```
 ## Analyzing Simulation Results
@@ -111,8 +110,8 @@ cormat(corvar(sample_data, n_trials, test_cmatrix))
 GetCertainty
 ```
 ```jldoctest dist_ex
-Random.seed!(1)
-test = rand(Normal(),1000)
+rng = MersenneTwister(1)
+test = rand(rng, Normal(),1000)
 
 GetCertainty(test, 0, 1)
 

@@ -3,35 +3,6 @@
 ## Overview
 MCH Timeseries contains functions to create simulated times series with MCHammer. Current implementation supports Geometric Brownian Motion, Martingales and Markov Chain Time Series. Other methods will be added.
 
-## Functions
-```@setup Stochastic
-using Pkg
-Pkg.add("Gadfly")
-Pkg.add("Distributions")
-Pkg.add("StatsBase")
-Pkg.add("Statistics")
-Pkg.add("Dates")
-Pkg.add("MCHammer")
-Pkg.add("DataFrames")
-
-using Distributions
-using DataFrames
-using MCHammer
-using Random
-using Gadfly
-using Compose, Cairo, Fontconfig
-
-BrandShare = [0.1, 0.25, 0.05, 0.35, 0.25]
-
-DrinkPreferences =
-[0.6	0.03 0.15 0.2 0.02;
-0.02 0.4 0.3 0.2 0.08;
-0.15	0.25	0.3 0.25	0.05;
-0.15	0.02	0.1	0.7	0.03;
-0.15	0.3 0.05	0.05	0.45]
-
-```
-
 ```@meta
 DocTestSetup = quote
     using Pkg
@@ -42,20 +13,38 @@ DocTestSetup = quote
     Pkg.add("MCHammer")
     Pkg.add("DataFrames")
     Pkg.add("Gadfly")
+
     using MCHammer
     using Distributions
     using Random
     using DataFrames
     using Gadfly
+    using Dates
+    rng = MersenneTwister(1)
+
+    BrandShare = [0.1, 0.25, 0.05, 0.35, 0.25]
+
+    DrinkPreferences =
+    [0.6	0.03 0.15 0.2 0.02;
+    0.02 0.4 0.3 0.2 0.08;
+    0.15	0.25	0.3 0.25	0.05;
+    0.15	0.02	0.1	0.7	0.03;
+    0.15	0.3 0.05	0.05	0.45]
+
 end
 ```
+
+
+## Functions
+
 ```@docs
 GBMMfit
 ```
 ```jldoctest GBBMFit
-Random.seed!(1)
-historical = rand(Normal(10,2.5),1000)
-GBMMfit(historical, 12)
+rng = MersenneTwister(1)
+historical = rand(rng,Normal(10,2.5),1000)
+
+GBMMfit(historical, 12; rng=rng)
 
 # output
 12×1 Matrix{Float64}:
@@ -76,13 +65,11 @@ GBMMfit(historical, 12)
 GBMM
 ```
 ```jldoctest RandWalk
-Random.seed!(1)
-
-GBMM(100000, 0.05,0.05,12)
+rng = MersenneTwister(1)
+GBMM(100000, 0.05,0.05,12, rng=rng)
 
 # output
-
-12×1 Array{Float64}:
+12×1 Matrix{Float64}:
  106486.4399226773
  113846.7611813516
  116137.16176312814
@@ -100,14 +87,19 @@ GBMM(100000, 0.05,0.05,12)
 ```@docs
 GBMA_d
 ```
+```jldoctest RandWalk
+rng = MersenneTwister(1)
+GBMA_d(100, 504,0.03,.3, rng=rng)
+
+# output
+106.83641105302092
+```
 
 ## Simulating a random walk
 
 ```@example Graphing
-using Dates, Distributions, DataFrames, MCHammer #hide
-
+using Dates
 ts_trials =[]
-dr = collect(Date(2019,1,01):Dates.Month(1):Date(2019,12,31))
 
 #To setup a TimeSeries simulation with MCHammer
 for i = 1:1000
@@ -119,7 +111,8 @@ for i = 1:1000
 end
 
 #You can graph the result using trend_chrt()
-trend_chrt(ts_trials, dr)
+dr = collect(Date(2019,1,01):Dates.Month(1):Date(2019,12,31))
+trend_chrt(ts_trials,dr)
 ```
 
 # Stochastic Time Series
@@ -131,6 +124,9 @@ marty
 ```
 
 For example a gambler with 50$ making wagers of 50$, 10 times using the double or nothing strategy.
+```@setup Stochastic
+
+```
 
 ```@example Stochastic
 marty(50,10)
@@ -228,14 +224,19 @@ ms = DataFrame(hcat(transpose(ms), collect(1:10)), [:CherryCola, :DietCola, :Caf
 #Plot Brandshare over time
 plot(stack(ms, Not(:Yr)), x=:Yr, y=:value, color=:variable, Geom.line)
 ```
+
 ### Exponential Smoothing Methods
 Exponential smoothing has proven as one of the best naïve forecasting methods around. Though there are 4 methods out there, we will cover simple, double and triple (a.k.a Holt-Winters Seasonal Method) exponential smoothing.
 
-##Simple Exponetial Smoothing.
+##Simple Exponential Smoothing.
 The basic idea behind ES (Exponential Smoothing) is to give more weight to recent observations over older ones. As the name implies, this method projects provides a smoothed forecast for each historical observations. Originally developed during the Second World War to predict tank positions, it was deemed very accurate for other applications.
 
 ```@docs
 ESmooth
+```
+
+```@setup ES
+
 ```
 
 ```@example ES
@@ -244,6 +245,15 @@ alpha = 0.9
 
 ESmooth(HistoricalSeries, alpha; forecast_only=false)
 
+#output
+7×2 Matrix{Any}:
+  3   3
+ 10   9.3
+ 12  11.73
+ 13  12.873
+ 12  12.0873
+ 10  10.2087
+ 12  11.8209
 ```
 ## Double Exponential Smoothing
 The difference between single and double exponential smoothing is easily explained byduck hunting. In single exponential smoothing we are essentially pointing the gun where we think the duck will be and not where it is. In a double exponential smoothing situation imagine the duck shoots back! For this reason, we can predict one period out using this method. Being the crafty programmers that we are, we extended the method so that you can predict further out but you will realize that in reality the forecast stabilizes after the first period.
@@ -256,7 +266,7 @@ ESmooth2x
 ESFore2x
 ```
 
-```@example ES2
+```@example ES
 HistoricalSeries = [30,21,29,31,40,48,53,47,37,39,31,29,17,9,20,24,27,35,41,38,
           27,31,27,26,21,13,21,18,33,35,40,36,22,24,21,20,17,14,17,19,
           26,29,40,31,20,24,18,26,17,9,17,21,28,32,46,33,23,28,22,27,
@@ -281,9 +291,7 @@ ESFore3x
 ```
 
 
-```@example ES2
-using Gadfly
-
+```@example ES
 fit = ES3xFit(HistoricalSeries, 12, 100_000)
 ForecastSeries = ESFore3x(HistoricalSeries, 12, fit[1], fit[2], fit[3], 24)
 frct = layer(y=ForecastSeries, Geom.line, Theme(default_color="red"))
@@ -298,7 +306,7 @@ Because most models we work on are probabilistic, we can apply the Rand Walk app
 ```@docs
 ForecastUncertainty
 ```
-```@example ES2
+```@example ES
 @time fit = ES3xFit(HistoricalData, 12, 100_000)
 ForecastSeries = ESFore3x(HistoricalData, 12, fit[1], fit[2], fit[3], 24; forecast_only=true)
 SimResults = []

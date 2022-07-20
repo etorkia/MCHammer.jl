@@ -45,7 +45,7 @@ deploydocs(
     target="build",
     repo = "github.com/etorkia/MCHammer.jl.git",
     branch = "gh-pages",
-    devbranch="master"
+    devbranch="master",
     versions = ["stable" => "v^", "v#.#"]
 )
 

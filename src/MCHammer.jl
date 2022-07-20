@@ -5,7 +5,7 @@ module MCHammer
 
 using LinearAlgebra
 using Statistics, Random, Distributions, StatsBase, DataFrames, DataFramesMeta, CSV, IterableTables
-using TimeSeries
+using TimeSeries, Dates
 using Gadfly
 
 #Source files for MC_Hammer functions

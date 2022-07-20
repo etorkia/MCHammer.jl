@@ -63,7 +63,8 @@ Though the most used distributions are cite below, Julia's Distributions package
 In order to define a simulated input you need to use the *rand* function. By assigning a variable name, you can generate any simulated vector you want.
 
 ```@example
-using Distributions
+using Distributions, Random
+Random.seed!(1)
 input_variable = rand(Normal(0,1),100)
 ```
 
@@ -85,6 +86,12 @@ Pkg.add("Dates")
 Pkg.add("MCHammer")
 Pkg.add("DataFrames")
 Pkg.add("Gadfly")
+
+using Distributions, StatsBase, Statistics, DataFrames, MCHammer
+n_trials = 1000
+Revenue = rand(TriangularDist(2500000,4000000,3000000), n_trials)
+Expenses = rand(TriangularDist(1400000,3000000,2000000), n_trials)
+
 ```
 
 ```@example SampleModel
@@ -120,15 +127,9 @@ First we need to create a sensitivity table with **hcat()** using both the input
 
 ```@example SampleModel
 
-#Construct the sensitivity input table by consolidating all the relevant
-#inputs and outputs.
+#Construct the sensitivity input table by consolidating all the relevant inputs and outputs.
 
-s_table = hcat(Profit, Revenue, Expenses)
-
-#We then need to convert to a DataFrame and add names
-
-s_table = DataFrame(s_table)
-names!(s_table, [:Profit, :Revenue, :Expenses])
+s_table = DataFrame(Profit = Profit, Revenue = Revenue, Expenses = Expenses)
 
 #To produce a sensitivity tornado chart, we need to select the output against
 #which the inputs are measured for effect.
