@@ -21,6 +21,7 @@ n_trials = 10000
 Random.seed!(1)
 Revenue = rand(TriangularDist(2500000,4000000,3000000), n_trials)
 Expenses = rand(TriangularDist(1400000,3000000,2000000), n_trials)
+Input_Table = DataFrame(Revenue=Revenue, Expenses=Expenses)
 ```
 
 ```@example SampleModel
