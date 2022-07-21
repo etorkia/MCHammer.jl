@@ -97,8 +97,12 @@ GBMA_d(100, 504,0.03,.3, rng=rng)
 
 ## Simulating a random walk
 
+```@setup Graphing
+using Dates, MCHammer, Random, Gadfly, Distributions
+```
+
 ```@example Graphing
-using Dates
+using Dates, MCHammer
 ts_trials =[]
 
 #To setup a TimeSeries simulation with MCHammer
@@ -118,15 +122,15 @@ trend_chrt(ts_trials,dr)
 # Stochastic Time Series
 
 ## Martingales
+```@setup Stochastic
+using Dates, MCHammer, Random, Gadfly, Distributions, DataFrames
+```
 
 ```@docs
 marty
 ```
 
 For example a gambler with 50$ making wagers of 50$, 10 times using the double or nothing strategy.
-```@setup Stochastic
-
-```
 
 ```@example Stochastic
 marty(50,10)
@@ -229,14 +233,13 @@ plot(stack(ms, Not(:Yr)), x=:Yr, y=:value, color=:variable, Geom.line)
 Exponential smoothing has proven as one of the best naïve forecasting methods around. Though there are 4 methods out there, we will cover simple, double and triple (a.k.a Holt-Winters Seasonal Method) exponential smoothing.
 
 ##Simple Exponential Smoothing.
+```@setup ES
+using Dates, MCHammer, Random, Gadfly, Distributions, DataFrames
+```
 The basic idea behind ES (Exponential Smoothing) is to give more weight to recent observations over older ones. As the name implies, this method projects provides a smoothed forecast for each historical observations. Originally developed during the Second World War to predict tank positions, it was deemed very accurate for other applications.
 
 ```@docs
 ESmooth
-```
-
-```@setup ES
-
 ```
 
 ```@example ES

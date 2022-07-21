@@ -189,7 +189,7 @@ trend_chart = DataFrame(trend_chart, :auto)
 DataFrames.rename!(trend_chart, [:LowerBound, :p50, :UpperBound])
 
 #join dates to DataFrame
-trend_chart.timestamp = dr
+trend_chart.timestamp = PeriodRange
 
 #Build Charts
 #Build Charts

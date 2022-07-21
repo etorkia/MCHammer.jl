@@ -1,7 +1,7 @@
 # Simulated NPV with Time-Series
 
 ## Load Environment
-Let's start by making sure all the tools we nned are loaded up. You will almost always need to load these packages up anytime you are build a Monte-Carlo model.
+#Let's start by making sure all the tools we nned are loaded up. You will almost always need to load these packages up anytime you are build a Monte-Carlo model.
 
 using Distributions
 using Dates

@@ -51,7 +51,7 @@ cormat
 ```
 ```jldoctest matrix
 rng = MersenneTwister(1)
-test = rand(rng, rng, Normal(),1000,5)
+test = rand(rng, Normal(),1000,5)
 cormat(test)
 
 # output
@@ -93,16 +93,6 @@ sample_data = [rand(rng, LogNormal(0, 0.5),n_trials) rand(rng, Normal(3,2),n_tri
 test_cmatrix = [1 0 0 0 0 0; 0 1 0 0 0 0; 0 0 1 0 0 0;0 0 0 1 0.75 -0.7; 0 0 0 0.75 1 -0.95; 0 0 0 -0.7 -0.95 1 ]
 
 cormat(corvar(sample_data, n_trials, test_cmatrix))
-
-# output
-
-6×6 Matrix{Float64}:
-  1.0          0.00383325  -0.00112225  -0.00340376   0.0198802  -0.0156993
-  0.00383325   1.0         -0.0579411   -0.0441624   -0.0404783   0.0415209
- -0.00112225  -0.0579411    1.0          0.0618645    0.0207406  -0.0222773
- -0.00340376  -0.0441624    0.0618645    1.0          0.734808   -0.685302
-  0.0198802   -0.0404783    0.0207406    0.734808     1.0        -0.944979
- -0.0156993    0.0415209   -0.0222773   -0.685302    -0.944979    1.0
 
 ```
 ## Analyzing Simulation Results
