@@ -149,7 +149,7 @@ function ESFore2x(HistoricalSeries, alpha, beta, periods)
     println()
     println()
     forecast = DataFrame(forecast, :auto)
-    rename!(forecast, [:Historical, :Level, :Forecast])
+    DataFrames.rename!(forecast, [:Historical, :Level, :Forecast])
 return forecast
 
 end
