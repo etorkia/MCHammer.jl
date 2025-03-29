@@ -112,7 +112,7 @@ trend_chrt(ts_trials,dr)
 ## Martingales
 A stochastic time-series modeled as a martingale describes a process where each subsequent value's expected future outcome is equal to the current observed value, conditional on the history of all past values. It characterizes a fair, unbiased random walk without drift, commonly applied in scenarios like fair gambling games, financial markets under risk-neutral conditions, or unbiased forecasting models.
 ```@setup Stochastic
-using Dates, MCHammer, Random, plots, Distributions, DataFrames
+using Dates, MCHammer, Random, Plots, Distributions, DataFrames
 theme(:ggplot2)
 ```
 

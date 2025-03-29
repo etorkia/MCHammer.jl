@@ -22,6 +22,7 @@ function DoIt()
 
     makedocs(
     sitename="MCHammer.jl",
+    authors = "Eric Torkia and contributors",
     warnonly = true,
     format = Documenter.HTML(size_threshold = 1_000_000_000),
     doctest = false,

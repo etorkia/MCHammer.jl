@@ -78,14 +78,6 @@ Let's create a simple simulation model with 1000 trials with the following input
 
 ### Setup environment and inputs
 ```@setup SampleModel
-using Pkg
-Pkg.add("Distributions")
-Pkg.add("StatsBase")
-Pkg.add("Statistics")
-Pkg.add("Dates")
-Pkg.add("MCHammer")
-Pkg.add("DataFrames")
-Pkg.add("Plots")
 
 using Distributions, StatsBase, Statistics, DataFrames, MCHammer 
 n_trials = 1000

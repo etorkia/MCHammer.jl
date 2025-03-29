@@ -4,7 +4,7 @@
 
 The *MC* in MC Hammer stands for Monte-Carlo. This tool is inspired by seminal tools such as *Oracle Crystal Ball and Palisade @RISK* for their ability to quickly build and analyze Monte-Carlo simulation models using Excel functions and automations. MC Hammer replicates their logic, functions and elemental tools in Julia, thus significantly reducing the time, lines of code, complexity and effort to perform advanced modeling and simulation.
 
-Most of the code and functions were developped in the Decision Superhero series by Eric Torkia. MCHammer was partly developped as the companion software to volumes 2 and 3. 
+Most of the code and functions were developped in the Decision Superhero series by Eric Torkia (Available on Amazon : https://a.co/d/4YlJFzY). Volumes 2 and 3 to be released in Spring and Fall 2025. MCHammer was partly developped as the companion software to volumes 2 and 3. 
 
 ### Key Features:
 
@@ -62,7 +62,9 @@ To load the support packages:
 
 ## Tutorials
 
-* [Building your first model](@ref)
+- [Building your first model](@ref) : This simple exercise shows you how to build quick simulation models using MCHammer.
+- [Correlating Variables in Your Model](@ref): Similar to the first tutorial, here we show users how to correlate variables together in their simulations. 
+- [Simulated NPV with Time-Series](@ref): Basic skeleton to build discounted cashflows with simulation and charting, like Oracle Crystal Ball or '@RISK' 
 
 
 ## Index

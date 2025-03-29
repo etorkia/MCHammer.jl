@@ -4,16 +4,6 @@
 Let's start by making sure all the tools we nned are loaded up. You will almost always need to load these packages up anytime you are build a Monte-Carlo model.
 
 ```@setup NPVModel
-#=using Pkg
-Pkg.add("Distributions")
-Pkg.add("StatsBase")
-Pkg.add("Statistics")
-Pkg.add("Dates")
-Pkg.add("MCHammer")
-Pkg.add("DataFrames")
-Pkg.add("Plots")
-Pkg.add("StatsPlots")=#
-
 using Distributions
 using Dates
 using Plots, StatsPlots

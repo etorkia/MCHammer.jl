@@ -4,9 +4,15 @@ using Plots, StatsPlots, GraphRecipes
 using Documenter, Test, DocumenterTools, Revise
 using MCHammer, Logging, LoggingExtras
 
+# Create a file logger that writes to "doc_errors.log"
+file_logger = LoggingExtras.FileLogger("doc_errors.log")
+global_logger(file_logger)
+
 makedocs(
     sitename = "MCHammer.jl",
     modules = [MCHammer],
+    warnonly = true,
+    format = Documenter.HTML(size_threshold = 1_000_000_000),
     pages = Any[
         "Home" => "index.md",
         "User Manual" => Any[
@@ -14,7 +20,7 @@ makedocs(
             "Distribution Fitting" => "manual/distribution_fitting.md",
             "Charting & Analyzing" => "manual/2_charts.md",
             "Time-Series Functions" => Any[
-                "Random & Probability Methods"     => "manual/3_time_series.md",
+                "Random & Probability Methods" => "manual/3_time_series.md",
                 "Exponential Smoothing" => "manual/ExponentialSmoothing.md",
                 "Learning Curves Models" => "manual/LearningCurves.md"
             ]
@@ -37,16 +43,13 @@ makedocs(
     source = "src",
     build = "build",
     clean = true,
-    repo = "https://github.com/etorkia/MCHammer.jl"
+    repo = "github.com/etorkia/MCHammer.jl"
 )
 
 deploydocs(
-    target = "build",
+    target = "local",
     repo = "https://github.com/etorkia/MCHammer.jl.git",
     branch = "gh-pages",
     devbranch = "master",
     versions = ["stable" => "v^", "v#.#"]
 )
-
-
-#deploydocs(repo = "github.com/etorkia/MCHammer.jl.git")

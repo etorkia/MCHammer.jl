@@ -6,17 +6,6 @@ To get started, we are going to recap what we did in your first model and build 
 ## Building a Simple Uncorrelated Model
 
 ```@setup SampleModel
-#=using Pkg
-Pkg.add("Distributions")
-Pkg.add("StatsBase")
-Pkg.add("Statistics")
-Pkg.add("Dates")
-Pkg.add("MCHammer")
-Pkg.add("DataFrames")
-Pkg.add("Plots")
-Pkg.add("TimeSeries")
-Pkg.add("StatsPlots")=#
-
 using DataFrames, MCHammer, Plots, Distributions,Statistics, StatsBase, StatsPlots, Dates, TimeSeries, Random
 
 n_trials = 10000
