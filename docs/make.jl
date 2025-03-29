@@ -1,30 +1,37 @@
 #clearconsole()
 push!(LOAD_PATH,"../src")
+#push!(LOAD_PATH, joinpath(@__DIR__, ".."))
 using Pkg
 using Dates
 using DataFrames
-using Documenter, DocumenterTools
 using Distributions, Statistics, StatsBase
-using MCHammer
 using Plots, StatsPlots, GraphRecipes
+using Documenter,Test, DocumenterTools,Revise
+using MCHammer, Logging, LoggingExtras, Documenter
 
 makedocs(
 sitename="MCHammer.jl",
 modules =[MCHammer],
 pages = Any[
-"Home" => "index.md",
-"User Manual" => Any[
-    "Simulation Functions" => "manual/1_functions.md",
-    "Charting & Analyzing" => "manual/2_charts.md",
-    "Time-Series Functions" => "manual/3_time_series.md",
-],
-"Tutorials" => Any[
-    "My First Model" => "tutorials/1_first_model.md",
-    "Correlating Inputs" => "tutorials/2_Correlated_Model.md",
-    "Simulated CashFlow Model" => "tutorials/3_NPV_testmodel.md",
-],
-"Import / Export Data" => "manual/4_moving_results.md"
-],
+    "Home" => "index.md",
+    "User Manual" => Any[
+        "Monte-Carlo Simulation" => "manual/1_functions.md",
+        "Distribution Fitting" => "manual/distribution_fitting.md",
+        "Charting & Analyzing" => "manual/2_charts.md",
+        "Time-Series Functions" => Any[
+            "Random & Probability Methods"     => "manual/3_time_series.md",
+            "Exponential Smoothing" => "manual/ExponentialSmoothing.md",
+            "Learning Curves Models" => "manual/LearningCurves.md"
+            ],
+                
+    ],
+    "Tutorials" => Any[
+        "My First Model" => "tutorials/1_first_model.md",
+        "Correlating Inputs" => "tutorials/2_Correlated_Model.md",
+        "Simulated CashFlow Model" => "tutorials/3_NPV_testmodel.md",
+    ],
+    "Import / Export Data" => "manual/4_moving_results.md"
+    ],
 
 format = Documenter.HTML(
     # Use clean URLs, unless built as a "local" build
@@ -34,7 +41,7 @@ format = Documenter.HTML(
     analytics = "UA-3913053-5",
 ),
 
-authors = "Eric Torkia, Technology Partnerz and contributors",
+authors = "Eric Torkia and contributors",
 doctest = true,
 source  = "src",
 build   = "build",
