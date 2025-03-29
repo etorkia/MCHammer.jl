@@ -6,8 +6,6 @@ using Random
 using MCHammer
 
 
-clearconsole()
-
 #Key Variables
 n_trials = 10000
 Revenue = rand(TriangularDist(2500000,4000000,3000000), n_trials)
@@ -30,13 +28,15 @@ Trials = hcat(Trials[!,1], Trials[!,2], Profit_C)
 cormat(Trials,1)
 
 #Plot Density
-plot(x=[Profit Profit_C], Geom.density, color=["Uncorrelated","Correlated"], Guide.Title("Compare Results Methods"))
+density([Profit, Profit_C],
+        label = ["Uncorrelated" "Correlated"],
+        title = "Compare Results Methods")
 
 #Plot S-Curves
 # plot(layer(ecdf(Profit),minimum(Profit), maximum(Profit), Theme(default_color="orange")),layer(ecdf(Profit_C), minimum(Profit_C), maximum(Profit_C)), Guide.Title("Compare Portfolio Methods"))
-# s_table = hcat(Profit_C,Revenue, Expenses)
-# sensitivity_chrt(s_table,1)
+s_table = DataFrame(CorrelatedProfit=Profit_C,Revenue=Revenue, Expenses=Expenses)
 
+sensitivity_chrt(s_table,1,3)
 
 println("Probability of Making 1m or less (uncorrelated) :",GetCertainty(Profit, 1000000, 0))
 println("Input Correlation: ", cor(Revenue,Expenses),"\n")

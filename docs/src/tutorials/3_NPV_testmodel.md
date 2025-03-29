@@ -4,18 +4,19 @@
 Let's start by making sure all the tools we nned are loaded up. You will almost always need to load these packages up anytime you are build a Monte-Carlo model.
 
 ```@setup NPVModel
-using Pkg
+#=using Pkg
 Pkg.add("Distributions")
 Pkg.add("StatsBase")
 Pkg.add("Statistics")
 Pkg.add("Dates")
 Pkg.add("MCHammer")
 Pkg.add("DataFrames")
-Pkg.add("Gadfly")
+Pkg.add("Plots")
+Pkg.add("StatsPlots")=#
 
 using Distributions
 using Dates
-using Gadfly
+using Plots, StatsPlots
 using StatsBase, Statistics
 using MCHammer
 using DataFrames
@@ -25,7 +26,6 @@ using DataFrames
 The next critical step is to setup key inputs, arrays and other important model parameters.
 
 ```@example NPVModel
-
 #Setup the Date Range for the analysis
 dr = collect(Date(2019,1,01):Dates.Year(1):Date(2023,01,01))
 
@@ -46,8 +46,8 @@ DR = []
 OP =[]
 Annual_CashFlows =[]
 ```
-## Build Simulation Model
-Monte-Carlo simulation needs to generate a table of scenarios which are known as ***Trials***. A trial documents, in the form of a row, all of the inputs and calculated outputs for a particular scenario.
+## Simulation Model
+Monte-Carlo simulation needs to generate a table of scenarios which are known as **Trials**. A trial documents, in the form of a row, all of the inputs and calculated outputs for a particular scenario.
 
 Using this results table allows you to runs all sorts of analysis, including sensitivity analysis and assigning probabilities to outcomes. To generate this table, you need to loop your equation/function as many times as you need and vary the inputs using probability distributions.
 
@@ -95,15 +95,15 @@ for i = 1:Trials
     push!(Annual_CashFlows,  CashFlow)
 end
 ```
-## Setting up data for analysis and charting
+### Setting up data for analysis and charting
 **Setup inputs/outputs(above) and output tables (below)** for sensitivity analysis and charting. Since correlation is based on the same math as regression, the only way to calculate sensitivity on an Array > 1 (in this case multiple years) is to condense the array into a scalar value using either mean, sum or any other transform because what ever you pick will generate a similar or identical result.
 
 ```@example NPVModel
 Sensitivity_Tbl = DataFrame(ProjectNPV = ProjectNPV, USC = USC, USP = USP, DR = DR, OP = OP)
-NPV_Sensitivity = cormat(Sensitivity_Tbl,1)
+sensitivity_chrt(Sensitivity_Tbl,1)
 ```
 
-## Stats
+### Stats
 Generate model results and list all the outputs for your charting and analysis functions.
 
 ```@example NPVModel
@@ -120,9 +120,7 @@ To generate a complete list of percentiles, use the `fractiles()`.
 fractiles(ProjectNPV)
 ```
 
-##Visualizing the outputs
-
-### Looking at the Probability Distribution
+## Looking at the Probability Distribution
 
 ```@example NPVModel
 histogram_chrt(ProjectNPV, "Five Year NPV")
@@ -136,15 +134,15 @@ s_curve(ProjectNPV, "Five Year NPV")
 density_chrt(ProjectNPV, "Five Year NPV")
 ```
 
-### What variables are most influential on my output distribution?
+## What variables are most influential on my output distribution?
 
 ```@example NPVModel
 sensitivity_chrt(Sensitivity_Tbl, 1, 3)
 ```
-### What does my cashflow look like over time?
+## What does my cashflow look like over time?
 The trend chart is a median centered chart that establishes a 90% confidence interval for each period. Remember **dr** or the date range is specified at the top.
 
-#### CashFlow forecast
+### CashFlow forecast
 ```@example NPVModel
 trend_chrt(Annual_CashFlows, dr)
 ```

@@ -1,9 +1,6 @@
 # Script to fit distributions using Julia
 # ©Decision Superhero. Please cite source if using code in your projects.
 
-using Distributions, StatsBase, Statistics  # MCHammer
-using DataFrames, HypothesisTests, StatsAPI, StatsPlots
-
 """
     viz_fit(SampleData; DistFit=[], cumulative=false)
 
@@ -29,7 +26,7 @@ function viz_fit(SampleData; DistFit=[], cumulative=false)
         StatsPlots.plot()
         base_plot = StatsPlots.density(SampleData; label="SampleData", linewidth=4, alpha=0.5)
 
-        for i = 1:length(DistFit)
+        for i = eachindex(DistFit)
             try
                 fitted_dist = fit(DistFit[i], SampleData)
                 println(fitted_dist)
@@ -44,7 +41,7 @@ function viz_fit(SampleData; DistFit=[], cumulative=false)
         StatsPlots.plot()
         base_plot = StatsPlots.cdensity(SampleData, func=cdf; label="SampleData", linewidth=4, alpha=0.5)
 
-        for i = 1:length(DistFit)
+        for i = 1:eachindex(DistFit)
             try
                 fitted_dist = fit(DistFit[i], SampleData)
                 println(fitted_dist)
@@ -92,7 +89,7 @@ function p_fit(SampleData; DistFit=[], Increment=0.1)
     results = [P_Vals * 100 fractile_values]
     col_names = [:Percentile, :SampleData]
 
-    for i = 1:length(DistFit)
+    for i = eachindex(DistFit)
         try
             test_fit = fit(DistFit[i], SampleData)
             theoreticals = quantile(test_fit, P_Vals)
@@ -155,7 +152,7 @@ function fit_stats(SampleData; DistFit=[], pvals=true, Increment=0.1)
     )
 
     # Loop theoreticals
-    for i = 1:length(DistFit)
+    for i = eachindex(DistFit)
         try
             test_fit = fit(DistFit[i], SampleData)
             results = [
@@ -255,6 +252,7 @@ function sort_fit_df!(fit_df::DataFrame, sort::String)
     end
     return fit_df
 end
+
 
 
 """

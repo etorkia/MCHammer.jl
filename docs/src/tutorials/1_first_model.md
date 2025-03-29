@@ -85,9 +85,9 @@ Pkg.add("Statistics")
 Pkg.add("Dates")
 Pkg.add("MCHammer")
 Pkg.add("DataFrames")
-Pkg.add("Gadfly")
+Pkg.add("Plots")
 
-using Distributions, StatsBase, Statistics, DataFrames, MCHammer
+using Distributions, StatsBase, Statistics, DataFrames, MCHammer 
 n_trials = 1000
 Revenue = rand(TriangularDist(2500000,4000000,3000000), n_trials)
 Expenses = rand(TriangularDist(1400000,3000000,2000000), n_trials)
@@ -95,7 +95,7 @@ Expenses = rand(TriangularDist(1400000,3000000,2000000), n_trials)
 ```
 
 ```@example SampleModel
-using Distributions, StatsBase, DataFrames, MCHammer
+using Distributions, StatsBase, DataFrames, MCHammer #hide
 n_trials = 1000
 Revenue = rand(TriangularDist(2500000,4000000,3000000), n_trials)
 Expenses = rand(TriangularDist(1400000,3000000,2000000), n_trials)

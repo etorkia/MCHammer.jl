@@ -84,7 +84,7 @@ Pkg.add("Statistics")
 Pkg.add("Dates")
 Pkg.add("MCHammer")
 Pkg.add("DataFrames")
-Pkg.add("Gadfly")
+Pkg.add("Plots")
 ```
 
 ```@example SampleModel

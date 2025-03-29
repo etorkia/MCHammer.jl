@@ -1,16 +1,15 @@
 #NPV TEST MODEL FOR MC HAMMER
 #MAY 2019
-clearconsole()
 
 using Distributions
 using Dates
-using Gadfly
+using Plots
 using StatsBase
 using MCHammer
 using DataFrames
 
 #Setup the Date Range for the analysis
-dr = collect(Date(2019,1,01):Dates.Year(1):Date(2023,01,01))
+dr = collect(Date(2022,1,01):Dates.Year(1):Date(2026,01,01))
 
 #Setup Global Inputs
 ForecastYrs = 5

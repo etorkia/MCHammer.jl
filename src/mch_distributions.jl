@@ -4,7 +4,7 @@
 
 
 """
-    RiskEvent(Prob, Distribution, Trials; seed=0)
+    RiskEvent(prob::Float64, dist::UnivariateDistribution, trials::Int; seed=0)
 
 Risk Events are defined as conditional distributions that will inflate the 0.
 
@@ -27,8 +27,8 @@ end
 ## Metalogs
 #Ported from https://github.com/colsmit/PyMetalog/blob/master/pymetalog/support.py Metalogs
 
-function mlprobs(Array, Increment)
+#=function mlprobs(Array, Increment)
     ArrayLength = size(Array,1)
-    SA = sort(Array,1,rev=false)
+    SA = sort(Array,by=1,rev=false)
     ML_Probs = []
-end
+end=#

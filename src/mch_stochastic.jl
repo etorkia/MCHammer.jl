@@ -1,5 +1,5 @@
 #STOCHASTIC MODELING FUNCTIONS FOR MC HAMMER
-#by Eric Torkia, 2019-2022 (Please join the team so I don't have to do this alone)
+#by Eric Torkia, 2019-2025 (Please join the team so I don't have to do this alone)
 
 #Markov Chains, Martingales and other useful stochastic processes
 
@@ -70,8 +70,6 @@ Extremely useful for market share or account receivables problems where you want
 *t_matrix* is the transition Matrix
 *start_arr* is the starting values for the chain.
  *trials* is the number of iterations you want to run through the Markov Chain Process.
-
-
 
 """
 function markov_ts(t_matrix, start_arr, trials=1)

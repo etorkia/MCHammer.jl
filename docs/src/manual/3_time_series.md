@@ -1,27 +1,12 @@
-# Time-Series Simulation
+# Random + Probability Time-Series 
 
 ## Overview
-MCH Timeseries contains functions to create simulated times series with MCHammer. Current implementation supports Geometric Brownian Motion, Martingales and Markov Chain Time Series. Other methods will be added.
+MCH Timeseries contains functions to create simulated times series with MCHammer. Current implementation supports Geometric Brownian Motion, Martingales and Markov Chain Time Series. 
 
-```@meta
+```@setup
 DocTestSetup = quote
-    using Pkg
-    Pkg.add("Distributions")
-    Pkg.add("StatsBase")
-    Pkg.add("Statistics")
-    Pkg.add("Dates")
-    Pkg.add("MCHammer")
-    Pkg.add("DataFrames")
-    Pkg.add("Gadfly")
-
-    using MCHammer
-    using Distributions
-    using Random
-    using DataFrames
-    using Gadfly
-    using Dates
     rng = MersenneTwister(1)
-
+    Random.seed!(1)
     BrandShare = [0.1, 0.25, 0.05, 0.35, 0.25]
 
     DrinkPreferences =
@@ -35,74 +20,80 @@ end
 ```
 
 
-## Functions
-
+## Random Walks (Geometric Brownian Motion)
+Geometric Brownian Motion is commonly used for simulating financial time series, such as stock prices. It models continuous price paths where changes follow a log-normal distribution.
 ```@docs
 GBMMfit
 ```
-```jldoctest GBBMFit
+```@jldoctest GBBMFit
+using MCHammer, Random, Distributions
 rng = MersenneTwister(1)
-historical = rand(rng,Normal(10,2.5),1000)
+Random.seed!(1)
+historical = rand(Normal(10,2.5),1000)
 
 GBMMfit(historical, 12; rng=rng)
 
 # output
 12×1 Matrix{Float64}:
- 6.6992003689078325
- 7.062760356166932
- 7.103000620460403
- 7.420415139367789
- 8.514400412609032
- 3.943937898162356
- 4.146251875790493
- 5.262045352529825
- 0.7692838668172376
- 1.2648073358011491
- 1.5912440333414342
- 2.1886864479965875
+ 7.3005613535018785
+ 9.941620113944857
+ 7.103000072680243
+ 3.5244881063798483
+ 0.5845383089109127
+ 0.8153566312249856
+ 1.072169905405429
+ 1.0457817586351268
+ 1.1470926126750904
+ 0.8738792037186909
+ 1.0021288627898237
+ 1.7966621213142604
 ```
 ```@docs
 GBMM
 ```
-```jldoctest RandWalk
+```@jldoctest RandWalk
+using MCHammer, Random, Distributions
+Random.seed!(1)
 rng = MersenneTwister(1)
 GBMM(100000, 0.05,0.05,12, rng=rng)
 
 # output
 12×1 Matrix{Float64}:
- 106486.4399226773
- 113846.7611813516
- 116137.16176312814
- 121883.36579797923
- 122864.3632374885
- 130918.80622439094
- 152488.25443945627
- 142827.4651618234
- 153753.52041326065
- 164757.82535740297
- 177804.24203041938
- 195258.14301210243
+ 104315.42290790279
+ 114538.65544311896
+ 115918.4421778525
+ 113954.88460165854
+ 107025.58832570235
+ 117985.02450091281
+ 128814.81609339731
+ 134829.80326014754
+ 143300.85485171276
+ 145928.17297856198
+ 156063.17236356856
+ 180291.78429354102
 ```
 
 ```@docs
 GBMA_d
 ```
-```jldoctest RandWalk
+```@jldoctest RandWalk
+using MCHammer, Random #hide
 rng = MersenneTwister(1)
+Random.seed!(1)
 GBMA_d(100, 504,0.03,.3, rng=rng)
 
 # output
-106.83641105302092
+88.86175908928719
 ```
 
-## Simulating a random walk
+### Simulating a random walk time-series
 
 ```@setup Graphing
-using Dates, MCHammer, Random, Gadfly, Distributions
+using Dates, MCHammer, Random, Distributions
+Random.seed!(1)
 ```
 
 ```@example Graphing
-using Dates, MCHammer
 ts_trials =[]
 
 #To setup a TimeSeries simulation with MCHammer
@@ -118,12 +109,11 @@ end
 dr = collect(Date(2019,1,01):Dates.Month(1):Date(2019,12,31))
 trend_chrt(ts_trials,dr)
 ```
-
-# Stochastic Time Series
-
 ## Martingales
+A stochastic time-series modeled as a martingale describes a process where each subsequent value's expected future outcome is equal to the current observed value, conditional on the history of all past values. It characterizes a fair, unbiased random walk without drift, commonly applied in scenarios like fair gambling games, financial markets under risk-neutral conditions, or unbiased forecasting models.
 ```@setup Stochastic
-using Dates, MCHammer, Random, Gadfly, Distributions, DataFrames
+using Dates, MCHammer, Random, plots, Distributions, DataFrames
+theme(:ggplot2)
 ```
 
 ```@docs
@@ -142,186 +132,26 @@ Now let's assume that the gambler knows the odds of winning  at the casino are l
 println(marty(50,10; GameWinProb=0.45, CashInHand=400))
 ```
 
-Using `Gadfly.jl`,  you can compare outcomes at different win probabilities
+Using `Plots.jl`,  you can compare outcomes at different win probabilities
 
 ```@example Stochastic
-Exp11 = plot(y = marty(5, 100, GameWinProb = 0.25, CashInHand = 400), Geom.point)
-Exp12 = plot(y = marty(5, 100, GameWinProb = 0.33, CashInHand = 400), Geom.point)
-Exp13 = plot(y = marty(5, 100, GameWinProb = 0.5, CashInHand = 400), Geom.point)
-Exp14 = plot(y = marty(5, 100, GameWinProb = 0.55, CashInHand = 400), Geom.point)
+using Plots
 
-gridstack([Exp11 Exp12; Exp13 Exp14])
-```
+# Generate the four plots as scatter plots.
+Exp11 = scatter(marty(5, 100, GameWinProb = 0.25, CashInHand = 400), title="GameWinProb = 0.25", label="Bets", markerstrokecolor=:white, markercolor=:lightblue, titlefontsize=10)
 
-## Markov Chains
-### Analytic Solution
-Using linear algebra and matrix math, you can calculate the final state of equilibrium of the Markov Chain directly from the transition matrix.
+Exp12 = scatter(marty(5, 100, GameWinProb = 0.33, CashInHand = 400), title="GameWinProb = 0.33", label="Bets", markerstrokecolor=:white, markercolor=:lightblue, titlefontsize=10)
 
-```@docs
-markov_a
-```
+Exp13 = scatter(marty(5, 100, GameWinProb = 0.5,  CashInHand = 400), title="GameWinProb = 0.5", label="Bets", markerstrokecolor=:white, markercolor=:lightblue, titlefontsize=10)
 
-For example, we want to see how many people will still be married once the Markov chain has stabilized. In the example below we will calculate what is the probability of still being married in 25 or 50 yrs assuming we are still alive.
+Exp14 = scatter(marty(5, 100, GameWinProb = 0.55, CashInHand = 400), title="GameWinProb = 0.55", label="Bets", markerstrokecolor=:white, markercolor=:lightblue, titlefontsize=10)
 
-Lets define the **Marital Status Transition Matrix =  [Single Married Separated Divorced]**
-
-As we can see, from a starting point of 88% of the people who are married, we have a 44% of them are still being married at the end of the process while 47% of the population is divorced.
-
-```@example Stochastic
-
-Marital_StatM = [0.85	0.12	0.02	0.01;
-0	0.88	0.08	0.04;
-0	0.13	0.45	0.42;
-0	0.09	0.02	0.89;
-]
-
-markov_a(Marital_StatM)
+#) Combine them into a 2x2 grid layout.
+combined = Plots.plot(Exp11, Exp12, Exp13, Exp14, layout=(2,2), legend=:topleft)
 
 ```
+---
 
-### Times Series (Iterative Approach)
-```@docs
-markov_ts
-```
-A large bottling company wants to calculate market share based on clients switching to and from their beverage brands. The transition matrix below represents the probabilities of switching for the company's various beverage type
-
-**Drink Preferences Transition Matrix = [CherryCola DietCola CaffeinFree Classic Zero]**
-
-Assumming that each trial is equal to 1 year, we can calculate the brand shares at different points in time (e.g. 5 or 10 yrs.) using the `markov_ts()`
-
-```@example Stochastic
-
-DrinkPreferences =
-[0.6	0.03 0.15 0.2 0.02;
-0.02 0.4 0.3 0.2 0.08;
-0.15	0.25	0.3 0.25	0.05;
-0.15	0.02	0.1	0.7	0.03;
-0.15	0.3 0.05	0.05	0.45]
-
-# This array represents the starting brand share. It must total 1.
-
-BrandShare = [0.1, 0.25, 0.05, 0.35, 0.25]
-
- markov_ts(DrinkPreferences, BrandShare, 10)
-
-```
-
-To visualize the changes in state over time, we can chart the results using `Gadfly.jl`
-
-```@example Stochastic
-
-DrinkPreferences =
-[0.6	0.03 0.15 0.2 0.02;
-0.02 0.4 0.3 0.2 0.08;
-0.15	0.25	0.3 0.25	0.05;
-0.15	0.02	0.1	0.7	0.03;
-0.15	0.3 0.05	0.05	0.45]
-
-# This array represents the starting brand share. It must total 1.
-
-BrandShare = [0.1, 0.25, 0.05, 0.35, 0.25]
-
-#Organize results using DataFrames for plot
-ms = markov_ts(DrinkPreferences, BrandShare, 10)
-ms = DataFrame(hcat(transpose(ms), collect(1:10)), [:CherryCola, :DietCola, :CaffeinFree, :Classic, :Zero, :Yr])
-
-#Plot Brandshare over time
-plot(stack(ms, Not(:Yr)), x=:Yr, y=:value, color=:variable, Geom.line)
-```
-
-### Exponential Smoothing Methods
-Exponential smoothing has proven as one of the best naïve forecasting methods around. Though there are 4 methods out there, we will cover simple, double and triple (a.k.a Holt-Winters Seasonal Method) exponential smoothing.
-
-##Simple Exponential Smoothing.
-```@setup ES
-using Dates, MCHammer, Random, Gadfly, Distributions, DataFrames
-```
-The basic idea behind ES (Exponential Smoothing) is to give more weight to recent observations over older ones. As the name implies, this method projects provides a smoothed forecast for each historical observations. Originally developed during the Second World War to predict tank positions, it was deemed very accurate for other applications.
-
-```@docs
-ESmooth
-```
-
-```@example ES
-HistoricalSeries = [3,10,12,13,12,10,12] # results [803.0, 957.8, 900.38, 828.938, 842.4938,  886.14938, 927.414938, 888.3414938]
-alpha = 0.9
-
-ESmooth(HistoricalSeries, alpha; forecast_only=false)
-
-#output
-7×2 Matrix{Any}:
-  3   3
- 10   9.3
- 12  11.73
- 13  12.873
- 12  12.0873
- 10  10.2087
- 12  11.8209
-```
-## Double Exponential Smoothing
-The difference between single and double exponential smoothing is easily explained byduck hunting. In single exponential smoothing we are essentially pointing the gun where we think the duck will be and not where it is. In a double exponential smoothing situation imagine the duck shoots back! For this reason, we can predict one period out using this method. Being the crafty programmers that we are, we extended the method so that you can predict further out but you will realize that in reality the forecast stabilizes after the first period.
-
-```@docs
-ESmooth2x
-```
-
-```@docs
-ESFore2x
-```
-
-```@example ES
-HistoricalSeries = [30,21,29,31,40,48,53,47,37,39,31,29,17,9,20,24,27,35,41,38,
-          27,31,27,26,21,13,21,18,33,35,40,36,22,24,21,20,17,14,17,19,
-          26,29,40,31,20,24,18,26,17,9,17,21,28,32,46,33,23,28,22,27,
-          18,8,17,21,31,34,44,38,31,30,26,32]
-
-periods = 4
-alpha = 0.9
-beta = 0.1
-
-ESFore2x(HistoricalSeries, alpha, beta, periods)
-```
-
-## Triple Exponential Smoothing (Holt-Winters Multiplicative Method)
-If the historical data has some seasonal patterns in it, we can use the Holt-Winters Multiplicative. This function is most effective when combined with the auto fitting function like in the example below.
-
-```@docs
-ES3xFit
-```
-
-```@docs
-ESFore3x
-```
-
-
-```@example ES
-fit = ES3xFit(HistoricalSeries, 12, 100_000)
-ForecastSeries = ESFore3x(HistoricalSeries, 12, fit[1], fit[2], fit[3], 24)
-frct = layer(y=ForecastSeries, Geom.line, Theme(default_color="red"))
-hist = layer(y=HistoricalSeries, Geom.line)
-plot(hist,frct)
-```
-
-## Simulating forecast using historical uncertainty
-
-Because most models we work on are probabilistic, we can apply the Rand Walk approach to the predicted time series to get a stochastic result over time.
-
-```@docs
-ForecastUncertainty
-```
-```@example ES
-@time fit = ES3xFit(HistoricalData, 12, 100_000)
-ForecastSeries = ESFore3x(HistoricalData, 12, fit[1], fit[2], fit[3], 24; forecast_only=true)
-SimResults = []
-
-for i = 1:10000
-    Uncertainty = ForecastUncertainty(HistoricalData, 24)
-    TrialFrct = ForecastSeries .* Uncertainty
-    push!(SimResults, TrialFrct)
-end
-
-
-#set the date range for the trend chart and generate plot
-dr = collect(Date(2019,1,01):Dates.Month(1):Date(2020,12,31))
-trend_chrt(SimResults, dr)
-```
+## Sources & References
+- Eric Torkia, Decision Superhero Vol. 2, chapter 7 : SuperPower – Modeling Probability and Random Events, 2025
+- Eric Torkia, Decision Superhero Vol. 3, chapter 5 : Predicting 1000 futures, Technics Publishing, 2025

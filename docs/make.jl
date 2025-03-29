@@ -6,7 +6,7 @@ using DataFrames
 using Documenter, DocumenterTools
 using Distributions, Statistics, StatsBase
 using MCHammer
-using Gadfly, Compose, Cairo
+using Plots, StatsPlots, GraphRecipes
 
 makedocs(
 sitename="MCHammer.jl",
