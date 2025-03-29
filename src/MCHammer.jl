@@ -28,7 +28,7 @@ export
     cmd,
     truncate_digit
 
-include("mch_Distributions.jl")
+include("mch_distributions.jl")
 export RiskEvent
 
 include("mch_charts.jl")
@@ -87,7 +87,4 @@ export
 end # module
 
 
-# function test()
-#     println("Hello")
-# end 
-
+# MC Hammer is a Monte-Carlo Tool Kit for quickly building/porting risk and decisision analysis in Julia for breakneck performance.
