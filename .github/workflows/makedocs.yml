@@ -1,0 +1,19 @@
+name: Build & Deploy Docs
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:  # <- This allows you to manually run the workflow from the GitHub UI
+
+jobs:
+  build-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build and deploy docs
+        run: |
+          # your doc generation commands
