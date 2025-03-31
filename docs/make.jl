@@ -4,10 +4,6 @@ using Plots, StatsPlots, GraphRecipes
 using Documenter, Test, DocumenterTools
 using MCHammer
 
-# Create a file logger that writes to "doc_errors.log"
-file_logger = LoggingExtras.FileLogger("doc_errors.log")
-global_logger(file_logger)
-
 makedocs(
     sitename = "MCHammer.jl",
     modules = [MCHammer],
