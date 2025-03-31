@@ -1,8 +1,8 @@
 push!(LOAD_PATH, joinpath(@__DIR__, "..", "src"))
 using Pkg, Dates, DataFrames, Distributions, Statistics, StatsBase
 using Plots, StatsPlots, GraphRecipes
-using Documenter, Test, DocumenterTools, Revise
-using MCHammer, Logging, LoggingExtras
+using Documenter, Test, DocumenterTools
+using MCHammer
 
 # Create a file logger that writes to "doc_errors.log"
 file_logger = LoggingExtras.FileLogger("doc_errors.log")
