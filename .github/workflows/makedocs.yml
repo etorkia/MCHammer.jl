@@ -7,13 +7,36 @@ on:
   pull_request:
     branches:
       - main
-  workflow_dispatch:  # <- This allows you to manually run the workflow from the GitHub UI
+  workflow_dispatch:  # lets you manually trigger a build
 
 jobs:
-  build-docs:
+  docs:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Build and deploy docs
+      # 1) Check out the repo
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      # 2) Install Julia
+      - name: Set up Julia
+        uses: julia-actions/setup-julia@v1
+        with:
+          version: '1.8'   # use your desired Julia version
+
+      # 3) Make sure docs environment is ready
+      - name: Install doc dependencies
         run: |
-          # your doc generation commands
+          julia --project=docs -e '
+            using Pkg;
+            # Optional: ensure local package is in the environment
+            Pkg.develop(path="."); 
+            Pkg.instantiate();
+          '
+
+      # 4) Build & deploy docs with Documenter.jl
+      - name: Build and deploy
+        run: |
+          julia --project=docs docs/make.jl
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}       # needed if accessing private repos
+          DOCUMENTER_KEY: ${{ secrets.DOCUMENTER_KEY }}   # your private SSH deploy key
