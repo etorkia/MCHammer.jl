@@ -1,0 +1,819 @@
+┌ Info: SetupBuildDirectory: setting up build directory.
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\builder_pipeline.jl:75
+┌ Info: Doctest: running doctests.
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\builder_pipeline.jl:209
+┌ Info: ExpandTemplates: expanding markdown templates.
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\builder_pipeline.jl:223
+┌ Info: CrossReferences: building cross-references.
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\builder_pipeline.jl:230
+┌ Info: CheckDocument: running document checks.
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\builder_pipeline.jl:237
+┌ Error: 18 docstrings not included in the manual:
+│ 
+│     MCHammer.cmatrix :: Tuple{Int64}
+│     MCHammer.ExponentialSmoothingMethod
+│     MCHammer.lineprep :: Tuple{Any}
+│     MCHammer.GBMM_Sim :: NTuple{4, Any}
+│     MCHammer.p_fit :: Tuple{Any}
+│     MCHammer.dfnames :: Tuple{Any}
+│     MCHammer.TripleES
+│     MCHammer.seasonal_components :: Tuple{Vector{<:Real}, Int64}
+│     MCHammer.SimpleES
+│     MCHammer.DoubleES
+│     MCHammer.initial_trend :: Tuple{Vector{<:Real}, Int64}
+│     MCHammer.markov_ts :: Union{Tuple{Any, Any}, Tuple{Any, Any, Any}}
+│     MCHammer.LearningCurveMethod
+│     MCHammer.SIPNames :: Tuple{Any}
+│     MCHammer.markov_a :: Tuple{Any}
+│     MCHammer.lc_analytic :: Tuple{CrawfordMethod, Any, Any, Any}
+│     MCHammer.lc_analytic :: Tuple{WrightMethod, Any, Any, Any}
+│     MCHammer.lc_analytic :: Tuple{ExperienceMethod, Any, Any, Any}
+│ 
+│ These are docstrings in the checked modules (configured with the modules keyword)
+│ that are not included in canonical @docs or @autodocs blocks.
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\utilities\utilities.jl:44
+┌ Info: Populate: populating indices.
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\builder_pipeline.jl:247
+┌ Debug: getting prompt info failed
+│   exception = (MethodError(REPL.LineEdit.write_prompt, (Base.TTY(Base.Libc.WindowsRawSocket(0x0000000000000274) open, 0 bytes waiting), "Prompt(\"julia> \",...)"), 0x000000000000699d), Union{Ptr{Nothing}, Base.InterpreterIP}[Ptr{Nothing} @0x00007fff9a5814fc, Ptr{Nothing} @0x00007fff9a58a1e5, Ptr{Nothing} @0x00007fff9a58a3cd, Ptr{Nothing} @0x00007fff9a58d5bd, Ptr{Nothing} @0x0000029a8193e965, Ptr{Nothing} @0x0000029a81941a1d, Ptr{Nothing} @0x0000029a81942690, Ptr{Nothing} @0x0000029a819435be, Ptr{Nothing} @0x0000029a8194369b, Ptr{Nothing} @0x00007fff9a59959b, Ptr{Nothing} @0x0000029a79aa5e6e, Ptr{Nothing} @0x0000029a79aa5eab, Ptr{Nothing} @0x00007fff9a59ba42, Ptr{Nothing} @0x0000029a79a70bfd, Ptr{Nothing} @0x0000029a79a70ee4, Ptr{Nothing} @0x00007fff9a5b2e03])
+└ @ VSCodeServer c:\Users\EricTorkia\.vscode\extensions\julialang.language-julia-1.127.2\scripts\packages\VSCodeServer\src\eval.jl:165
+┌ Debug: interpret_repo_and_remotes
+│   remotes_checked = Documenter.RemoteRepository[]
+│   repo_normalized = Documenter.Remotes.URL("github.com/etorkia/MCHammer.jl", nothing)
+│   makedocs_root_remoteref = nothing
+│   makedocs_root_repo = E:\Technology Partnerz\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer
+│   makedocs_root_remote = Documenter.Remotes.GitHub("etorkia", "mc_hammer")
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\documents.jl:574
+┌ Debug: Remotes: using automatically determined remote
+│   makedocs_root_remoteref = nothing
+│   makedocs_root_repo = E:\Technology Partnerz\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer
+│   makedocs_root_remote = Documenter.Remotes.GitHub("etorkia", "mc_hammer")
+│   repo_normalized = Documenter.Remotes.URL("github.com/etorkia/MCHammer.jl", nothing)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\documents.jl:639
+┌ Debug: Document: remotes
+│   remote = Documenter.Remotes.URL("github.com/etorkia/MCHammer.jl", nothing)
+│   remotes = Documenter.RemoteRepository[Documenter.RemoteRepository("E:\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.URL("github.com/etorkia/MCHammer.jl", nothing), "626089aba57ea803b4d1f317643043c807392ee8")]
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\documents.jl:434
+┌ Info: SetupBuildDirectory: setting up build directory.
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\builder_pipeline.jl:75
+┌ Info: Doctest: running doctests.
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\builder_pipeline.jl:209
+┌ Debug: Running doctests.
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\doctests.jl:30
+┌ Info: ExpandTemplates: expanding markdown templates.
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\builder_pipeline.jl:223
+┌ Debug: pages
+│   keys(doc.blueprint.pages) = ["tutorials\\3_NPV_testmodel.md", "manual\\3_time_series.md", "manual\\ExponentialSmoothing.md", "tutorials\\1_first_model.md", "manual\\distribution_fitting.md", "tutorials\\2_Correlated_Model.md", "manual\\2_charts.md", "manual\\4_moving_results.md", "manual\\LearningCurves.md", "index.md", "manual\\1_functions.md"]
+│   priority_pages = String[]
+│   normal_pages = ["index.md", "manual\\1_functions.md", "manual\\2_charts.md", "manual\\3_time_series.md", "manual\\4_moving_results.md", "manual\\ExponentialSmoothing.md", "manual\\LearningCurves.md", "manual\\distribution_fitting.md", "tutorials\\1_first_model.md", "tutorials\\2_Correlated_Model.md", "tutorials\\3_NPV_testmodel.md"]
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:14
+┌ Debug: Running ExpanderPipeline on index.md
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:17
+┌ Debug: Running ExpanderPipeline on manual\1_functions.md
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:17
+┌ Debug: Evaluating @docs block:
+│ RiskEvent
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:382
+┌ Debug: Evaluating @example block:
+│ using MCHammer, Distributions, Random #hide
+│ # Simulate a conditional risk event with a 30% chance of occurring and an impact
+│ # that is distributed according to a standard Normal. 10 trials are generated and
+│ # about 3 should have non-zero outcomes.
+│ 
+│ using MCHammer #hide
+│ 
+│ RiskEvent(0.3, Normal(0,1), 10)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @docs block:
+│ cormat
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:382
+┌ Debug: Evaluating @docs block:
+│ covmat
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:382
+┌ Debug: Evaluating @docs block:
+│ corvar
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:382
+┌ Debug: Evaluating @docs block:
+│ GetCertainty
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:382
+┌ Debug: Evaluating @docs block:
+│ fractiles
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:382
+┌ Debug: Evaluating @docs block:
+│ cmd
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:382
+┌ Debug: Evaluating @docs block:
+│ truncate_digit
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:382
+┌ Debug: Running ExpanderPipeline on manual\2_charts.md
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:17
+┌ Debug: Evaluating @setup block:
+│ using Distributions, MCHammer, Random, StatsPlots, Dates
+│ theme(:ggplot2)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:960
+┌ Debug: Evaluating @docs block:
+│ density_chrt
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:382
+┌ Debug: Evaluating @example block:
+│ 
+│ dist = rand(Normal(), 1000)
+│ density_chrt(dist, "The Standard Normal")
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @docs block:
+│ histogram_chrt
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:382
+┌ Debug: Evaluating @example block:
+│ histogram_chrt(dist, "The Standard Normal")
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @docs block:
+│ s_curve
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:382
+┌ Debug: Evaluating @example block:
+│ s_curve(dist)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @example block:
+│ s_curve(dist; rev=true)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @docs block:
+│ sensitivity_chrt
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:382
+┌ Debug: Evaluating @example block:
+│ using DataFrames, Distributions, Random #hide
+│ 
+│ # Set trials
+│ n_trials = 1000
+│ 
+│ # Set inputs
+│ Revenue = rand(TriangularDist(2_500_000, 4_000_000, 3_000_000), n_trials)
+│ Expenses = rand(TriangularDist(1_400_000, 3_000_000, 2_000_000), n_trials)
+│ 
+│ # Model
+│ Profit = Revenue - Expenses
+│ 
+│ # Capture results
+│ Trials_df = DataFrame(Profit = Revenue - Expenses, Revenue = Revenue, Expenses = Expenses)
+│ 
+│ # Chart sensitivity of profit (column 1 in DataFrame)
+│ sensitivity_chrt(Trials_df, 1)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @docs block:
+│ trend_chrt
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:382
+┌ Debug: Evaluating @example block:
+│ ts_trials = []
+│ 
+│ # Setup a TimeSeries simulation with MCHammer over 12 periods
+│ for i in 1:1000
+│     Monthly_Sales = GBMM(100_000, 0.05, 0.05, 12)
+│     Monthly_Expenses = GBMM(50_000, 0.03, 0.02, 12)
+│     MonthlyCOGS = Monthly_Sales .* 0.3
+│     MonthlyProfit = Monthly_Sales - Monthly_Expenses - MonthlyCOGS
+│     push!(ts_trials, MonthlyProfit)
+│ end
+│ 
+│ trend_chrt(ts_trials, x_label="last 12 months")
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @example block:
+│ dr = collect(Date(2019,1,1):Dates.Month(1):Date(2019,12,1))
+│ trend_chrt(ts_trials, dr, x_label="last 12 months")
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Running ExpanderPipeline on manual\3_time_series.md
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:17
+┌ Debug: Evaluating @setup block:
+│ DocTestSetup = quote
+│     rng = MersenneTwister(1)
+│     Random.seed!(1)
+│     BrandShare = [0.1, 0.25, 0.05, 0.35, 0.25]
+│ 
+│     DrinkPreferences =
+│     [0.6	0.03 0.15 0.2 0.02;
+│     0.02 0.4 0.3 0.2 0.08;
+│     0.15	0.25	0.3 0.25	0.05;
+│     0.15	0.02	0.1	0.7	0.03;
+│     0.15	0.3 0.05	0.05	0.45]
+│ 
+│ end
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:960
+┌ Debug: Evaluating @docs block:
+│ GBMMfit
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:382
+┌ Debug: Evaluating @docs block:
+│ GBMM
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:382
+┌ Debug: Evaluating @docs block:
+│ GBMA_d
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:382
+┌ Debug: Evaluating @setup block:
+│ using Dates, MCHammer, Random, Distributions
+│ Random.seed!(1)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:960
+┌ Debug: Evaluating @example block:
+│ ts_trials =[]
+│ 
+│ #To setup a TimeSeries simulation with MCHammer
+│ for i = 1:1000
+│      Monthly_Sales = GBMM(100000, 0.05,0.05,12)
+│      Monthly_Expenses = GBMM(50000, 0.03,0.02,12)
+│      MonthlyCOGS = Monthly_Sales .* 0.3
+│      MonthlyProfit = Monthly_Sales - Monthly_Expenses - MonthlyCOGS
+│      push!(ts_trials, MonthlyProfit)
+│ end
+│ 
+│ #You can graph the result using trend_chrt()
+│ dr = collect(Date(2019,1,01):Dates.Month(1):Date(2019,12,31))
+│ trend_chrt(ts_trials,dr)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @setup block:
+│ using Dates, MCHammer, Random, Plots, Distributions, DataFrames
+│ theme(:ggplot2)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:960
+┌ Debug: Evaluating @docs block:
+│ marty
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:382
+┌ Debug: Evaluating @example block:
+│ marty(50,10)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @example block:
+│ println(marty(50,10; GameWinProb=0.45, CashInHand=400))
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @example block:
+│ using Plots
+│ 
+│ # Generate the four plots as scatter plots.
+│ Exp11 = scatter(marty(5, 100, GameWinProb = 0.25, CashInHand = 400), title="GameWinProb = 0.25", label="Bets", markerstrokecolor=:white, markercolor=:lightblue, titlefontsize=10)
+│ 
+│ Exp12 = scatter(marty(5, 100, GameWinProb = 0.33, CashInHand = 400), title="GameWinProb = 0.33", label="Bets", markerstrokecolor=:white, markercolor=:lightblue, titlefontsize=10)
+│ 
+│ Exp13 = scatter(marty(5, 100, GameWinProb = 0.5,  CashInHand = 400), title="GameWinProb = 0.5", label="Bets", markerstrokecolor=:white, markercolor=:lightblue, titlefontsize=10)
+│ 
+│ Exp14 = scatter(marty(5, 100, GameWinProb = 0.55, CashInHand = 400), title="GameWinProb = 0.55", label="Bets", markerstrokecolor=:white, markercolor=:lightblue, titlefontsize=10)
+│ 
+│ #) Combine them into a 2x2 grid layout.
+│ combined = Plots.plot(Exp11, Exp12, Exp13, Exp14, layout=(2,2), legend=:topleft)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Running ExpanderPipeline on manual\4_moving_results.md
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:17
+┌ Debug: Evaluating @docs block:
+│ importxlsip
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:382
+┌ Debug: Evaluating @docs block:
+│ importsip
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:382
+┌ Debug: Evaluating @docs block:
+│ genmeta
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:382
+┌ Debug: Evaluating @docs block:
+│ sip2csv
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:382
+┌ Debug: Running ExpanderPipeline on manual\ExponentialSmoothing.md
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:17
+┌ Debug: Evaluating @setup block:
+│ using MCHammer, DataFrames, Distributions, Random, Plots, StatsPlots, GraphRecipes #hide
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:960
+┌ Debug: Evaluating @example block:
+│ using MCHammer #hide
+│ model = MCHammer.SimpleES(0.2)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @example block:
+│ using MCHammer #hide
+│ model = DoubleES(0.3, 0.1)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @example block:
+│ using MCHammer #hide
+│ model = TripleES(12, 0.3, 0.2, 0.1)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @docs block:
+│ MCHammer.es_smooth 
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:382
+┌ Debug: Evaluating @example block:
+│ using DataFrames, Distributions, Random, MCHammer #hide
+│ 
+│ data = [100, 102, 104, 108, 110]
+│ simple_model = SimpleES(0.2)
+│ smoothed_simple = es_smooth(simple_model, data; forecast_only=true)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @example block:
+│ # DoubleES example
+│ using MCHammer, DataFrames, Distributions, Random # hide
+│ double_model = DoubleES(0.2, 0.1)
+│ smoothed_double = es_smooth(double_model, data)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @docs block:
+│ MCHammer.es_forecast
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:382
+┌ Debug: Evaluating @example block:
+│ using MCHammer,Plots # hide
+│ 
+│ data = [100, 102, 104, 108, 110]
+│ 
+│ # DoubleES forecast
+│ double_model = DoubleES(0.2, 0.1)
+│ df_forecast = es_forecast(double_model, data, 3)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @example block:
+│ using Plots
+│ 
+│ # Create an index vector corresponding to the rows.
+│ x_all = 1:nrow(df_forecast)
+│ 
+│ # Identify the indices where Historical is nonzero.
+│ nonzero_idx = findall(x -> x != 0, df_forecast.Historical)
+│ 
+│ # Plot forecast over all rows.
+│ plot(x_all, df_forecast.Forecast, label="Forecast", xlabel="Time", ylabel="Value", lw=2)
+│ 
+│ # Plot Historical and Level only on nonzero indices.
+│ plot!(nonzero_idx, df_forecast.Historical[nonzero_idx], label="Historical", marker=:circle, lw=2)
+│ plot!(nonzero_idx, df_forecast.Level[nonzero_idx], label="Level", marker=:square, lw=2)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @example block:
+│ # TripleES forecast
+│ using MCHammer, DataFrames, Distributions, Random # hide
+│ 
+│ seasonal_data = [120,130,140,130,125,135,145,150,160,155,165,170]
+│ triple_model = MCHammer.TripleES(12, 0.3, 0.2, 0.1)
+│ df_forecast = es_forecast(triple_model, seasonal_data, 6; forecast_only=false)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @example block:
+│ using Plots
+│ theme(:ggplot2)
+│ 
+│ # Create an index vector corresponding to the rows.
+│ x_all = 1:nrow(df_forecast)
+│ 
+│ # Identify the indices where Historical is nonzero.
+│ nonzero_idx = findall(x -> x != 0, df_forecast.Historical)
+│ 
+│ # Plot forecast over all rows.
+│ plot(x_all, df_forecast.Forecast, label="Forecast", xlabel="Time", ylabel="Value", lw=2)
+│ 
+│ # Plot Historical and Level only on nonzero indices.
+│ plot!(nonzero_idx, df_forecast.Historical[nonzero_idx], label="Historical", marker=:circle, lw=2)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @docs block:
+│ MCHammer.FrctStdError
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:382
+┌ Debug: Evaluating @example block:
+│ using MCHammer # hide
+│ 
+│ data = [100, 102, 104, 108, 110]
+│ double_model = DoubleES(0.3, 0.2)
+│ 
+│ # Generate in-sample forecast; since periods = 0, the forecast equals the smoothed level
+│ 
+│ df_forecast = es_forecast(double_model, data, 0)
+│ forecasted = df_forecast.Forecast  # Access the forecast column from the returned DataFrame
+│ se = FrctStdError(data, forecasted)
+│ println("Forecast Standard Error: ", se)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @docs block:
+│ MCHammer.es_fit
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:382
+┌ Debug: Evaluating @example block:
+│ using MCHammer # hide
+│ data = [120,130,140,130,125,135,145,150,160,155,165,170]
+│ best_model = es_fit(TripleES, data, 12, 1000)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @docs block:
+│ forecast_uncertainty
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:382
+┌ Debug: Evaluating @example block:
+│ using MCHammer, DataFrames, Distributions, Random # hide
+│ 
+│ #The historical data is used to assess the volatility of the series automatically.
+│ data = [100, 105, 102, 108, 110]
+│ 
+│ uncertainty = forecast_uncertainty(data, 4)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @example block:
+│ using MCHammer, DataFrames, Distributions, Random # hide
+│ 
+│ function simulate_ESTS()
+│ 
+│ #Simulation Model Inputs and Parameters
+│ n_trials = 1000
+│ n_periods = 5
+│ historical_data = [100, 105, 102, 108, 110, 115, 120, 118, 122, 125, 130, 128]
+│ seasonality = 12
+│ 
+│     # 1. Fit optimal TripleES parameters using 1,000 optimization trials. Seasonality is the number of periods to test for seasonal patterns.
+│     optimal_triple = es_fit(TripleES, historical_data, seasonality, 1000)
+│ 
+│     # 2. Generate the base forecast (for n_periods = 5) with the fitted model
+│     base_forecast = es_forecast(optimal_triple, historical_data, n_periods; forecast_only=true)
+│ 
+│     # 3. Run simulation: for 1,000 trials, apply forecast uncertainty to the base forecast
+│ 
+│ 
+│     # Prepare a DataFrame to store simulation results in long format.
+│     # Columns: Trial (simulation number), Period (forecast period), Forecast (simulated forecast value)
+│     sim_results = DataFrame(Trial=Int[], Period=Int[], Forecast=Float64[])
+│ 
+│         for trial in 1:n_trials
+│         # Compute forecast uncertainty multipliers for the next n_periods
+│         uncertainty = forecast_uncertainty(historical_data, n_periods)
+│         
+│         # Apply the uncertainty multipliers to the base forecast to simulate forecast variability.
+│         # This returns a DataFrame with columns "Historical", "Level", and "Forecast".
+│         simulated_forecast = base_forecast .* uncertainty
+│ 
+│         # Now iterate over the rows using eachrow() and enumerate to get an index.
+│             for (i, row) in enumerate(eachrow(simulated_forecast))
+│                 push!(sim_results, (Trial = trial, Period = i, Forecast = row.Forecast))
+│             end
+│             
+│         end
+│ 
+│ 
+│         return sim_results = unstack(sim_results, :Period, :Forecast)
+│ 
+│ end
+│ 
+│ #Genreate simulation trials
+│ sim_results_to_chart = simulate_ESTS()
+│ 
+│ #Here are the first 10 trials
+│ first(sim_results_to_chart,10)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @example block:
+│ trend_chrt(sim_results_to_chart[:,2:6])
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Running ExpanderPipeline on manual\LearningCurves.md
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:17
+┌ Debug: Evaluating @setup block:
+│ using MCHammer, DataFrames, Distributions, Random, Plots
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:960
+┌ Debug: Evaluating @docs block:
+│ WrightMethod 
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:382
+┌ Debug: Evaluating @docs block:
+│ CrawfordMethod 
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:382
+┌ Debug: Evaluating @docs block:
+│ ExperienceMethod
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:382
+┌ Debug: Evaluating @example block:
+│ result = lc_analytic(WrightMethod(), 200, 500, 0.85)
+│ println(result)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @example block:
+│ result = lc_analytic(CrawfordMethod(), 150, 400, 0.75)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @example block:
+│ result = lc_analytic(ExperienceMethod(), 100, 1000, 0.8)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @docs block:
+│ lc_curve
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:382
+┌ Debug: Evaluating @example block:
+│ df = lc_curve(WrightMethod(), 200, 500, 0.85; LotSize=25)
+│ println(first(df, 5))
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @docs block:
+│ lc_fit
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:382
+┌ Debug: Evaluating @example block:
+│ best_fit = lc_fit(CrawfordMethod(), 150, 400; EstLC=0.75)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @docs block:
+│ learn_rate
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:382
+┌ Debug: Evaluating @example block:
+│ rate = learn_rate(WrightMethod(), 1, 2000, 144, 8000)
+│ println(rate)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @docs block:
+│ learn_rates
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:382
+┌ Debug: Evaluating @example block:
+│ rates_df = learn_rates(100, 500; LC_Step=0.05)
+│ println(first(rates_df, 5))
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @example block:
+│ using Plots
+│ 
+│ LearnRate = 0.78
+│ InitialEffort = 50
+│ Units = 1000
+│ 
+│ 
+│ CC = lc_curve(CrawfordMethod(), InitialEffort, Units, LearnRate; LotSize=25)
+│ WC = lc_curve(WrightMethod(), InitialEffort, Units, LearnRate; LotSize=25)
+│ EC = lc_curve(ExperienceMethod(), InitialEffort, Units, LearnRate; LotSize=25)
+│ GraphResults = vcat(CC, WC, EC)
+│ 
+│ plot(GraphResults.Units, GraphResults.AvgCost, group=GraphResults.Method,
+│     xlabel="Units", ylabel="Average Cost", title="Average Cost vs Units by Method",
+│     lw=2, legend=:topright)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Running ExpanderPipeline on manual\distribution_fitting.md
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:17
+┌ Debug: Evaluating @docs block:
+│ viz_fit
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:382
+┌ Debug: Evaluating @example block:
+│ 
+│ # Generate sample data from a Normal distribution
+│ using MCHammer, Random #hide
+│ rng = MersenneTwister(1)
+│ Random.seed!(42)
+│ sample_data = randn(1000)
+│ fit_result = viz_fit(sample_data)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @docs block:
+│ fit_stats
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:382
+┌ Debug: Evaluating @example block:
+│ # Generate sample data from a LogNormal distribution
+│ using Distributions, MCHammer, Random #hide
+│ Random.seed!(42)
+│ sample_data = rand(LogNormal(0, 1), 1000)
+│ fits = fit_stats(sample_data)
+│ show(fits, allrows=true, allcols=true)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @docs block:
+│ MCHammer.autofit_dist
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:382
+┌ Debug: Evaluating @example block:
+│ using Distributions, MCHammer, Random # hide
+│ Random.seed!(42)
+│ sample_data = rand(LogNormal(0, 1), 1000)
+│ fits = autofit_dist(sample_data)
+│ show(fits, allrows=true, allcols=true)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Running ExpanderPipeline on tutorials\1_first_model.md
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:17
+┌ Debug: Evaluating @example block:
+│ using Distributions, Random
+│ Random.seed!(1)
+│ input_variable = rand(Normal(0,1),100)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @setup block:
+│ 
+│ using Distributions, StatsBase, Statistics, DataFrames, MCHammer 
+│ n_trials = 1000
+│ Revenue = rand(TriangularDist(2500000,4000000,3000000), n_trials)
+│ Expenses = rand(TriangularDist(1400000,3000000,2000000), n_trials)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:960
+┌ Debug: Evaluating @example block:
+│ using Distributions, StatsBase, DataFrames, MCHammer #hide
+│ n_trials = 1000
+│ Revenue = rand(TriangularDist(2500000,4000000,3000000), n_trials)
+│ Expenses = rand(TriangularDist(1400000,3000000,2000000), n_trials)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @example block:
+│ # The Model
+│ Profit = Revenue - Expenses
+│ 
+│ #Trial Results : the Profit vector (OUTPUT)
+│ Profit
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @example block:
+│ # `fractiles()` allows you to get the percentiles at various increments.
+│ 
+│ fractiles(Profit)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @example block:
+│ 
+│ density_chrt(Profit)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @example block:
+│ 
+│ #Construct the sensitivity input table by consolidating all the relevant inputs and outputs.
+│ 
+│ s_table = DataFrame(Profit = Profit, Revenue = Revenue, Expenses = Expenses)
+│ 
+│ #To produce a sensitivity tornado chart, we need to select the output against
+│ #which the inputs are measured for effect.
+│ 
+│ sensitivity_chrt(s_table, 1, 3)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Running ExpanderPipeline on tutorials\2_Correlated_Model.md
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:17
+┌ Debug: Evaluating @setup block:
+│ using DataFrames, MCHammer, Plots, Distributions,Statistics, StatsBase, StatsPlots, Dates, TimeSeries, Random
+│ 
+│ n_trials = 10000
+│ Random.seed!(1)
+│ Revenue = rand(TriangularDist(2500000,4000000,3000000), n_trials)
+│ Expenses = rand(TriangularDist(1400000,3000000,2000000), n_trials)
+│ Input_Table = DataFrame(Revenue=Revenue, Expenses=Expenses)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:960
+┌ Debug: Evaluating @example block:
+│ using Distributions, StatsBase, DataFrames, MCHammer
+│ n_trials = 10000
+│ Random.seed!(1)
+│ Revenue = rand(TriangularDist(2500000,4000000,3000000), n_trials)
+│ Expenses = rand(TriangularDist(1400000,3000000,2000000), n_trials)
+│ 
+│ # The Model
+│ Profit = Revenue - Expenses
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @example block:
+│ #Trial Results : the Profit vector (OUTPUT)
+│ Profit
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @example block:
+│ # Trials or Results Table (OUTPUT)
+│ Trials = DataFrame(Revenue = Revenue, Expenses = Expenses, Profit = Profit)
+│ first(Trials,20)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @example block:
+│ # Uncorrelated simulation
+│ cormat(Trials)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @example block:
+│ #Correlate the expenses and the revenue with a coefficient of 0.8
+│ Rev_Exp_Cor = 0.8
+│ cor_matrix = [1 Rev_Exp_Cor; Rev_Exp_Cor 1]
+│ 
+│ #Validate input correlation. You can also use cormat() to define the correlation
+│ #matrix from historical data.
+│ cor_matrix
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @example block:
+│ Input_Table = DataFrame(Revenue=Revenue, Expenses=Expenses)
+│ Correl_Trials = corvar(Input_Table, n_trials, cor_matrix)
+│ DataFrames.rename!(Correl_Trials, [:Revenue, :Expenses])
+│ 
+│ #Using the correlated inputs to calculate the correlated profit
+│ Correl_Trials.Profit = Correl_Trials.Revenue - Correl_Trials.Expenses
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @example block:
+│ #Verify correlation is applied correctly
+│ cormat(Correl_Trials)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @example block:
+│ cor(Revenue,Expenses)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @example block:
+│ cor(Correl_Trials.Revenue, Correl_Trials.Expenses)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @example block:
+│ 
+│ compresults_df = DataFrame(uprofit = Profit, cprofit = Correl_Trials.Profit )
+│ 
+│ @df stack(compresults_df) density(:value, group=:variable, legend=:topright, title="Density Plot")
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @example block:
+│ GetCertainty(Profit, 1000000, 0)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @example block:
+│ GetCertainty(Correl_Trials.Profit, 1000000, 0)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @example block:
+│ #Uncorrelated
+│ fractiles(Profit)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @example block:
+│ #Correlated
+│ fractiles(Correl_Trials.Profit)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @example block:
+│ sensitivity_chrt(Trials,3)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @example block:
+│ sensitivity_chrt(Correl_Trials,3)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Running ExpanderPipeline on tutorials\3_NPV_testmodel.md
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:17
+┌ Debug: Evaluating @setup block:
+│ using Distributions
+│ using Dates
+│ using Plots, StatsPlots
+│ using StatsBase, Statistics
+│ using MCHammer
+│ using DataFrames
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:960
+┌ Debug: Evaluating @example block:
+│ #Setup the Date Range for the analysis
+│ dr = collect(Date(2019,1,01):Dates.Year(1):Date(2023,01,01))
+│ 
+│ #Setup Global Inputs
+│ ForecastYrs = 5
+│ Trials = 10000
+│ Units = [5000, 10000, 17000, 18000, 20000]
+│ InitialInvestment = 250000
+│ Investment = [100000, 0, 0, 25000,0] #fill(0,ForecastYrs)
+│ 
+│ #Setup Outputs
+│ Sensitivity_Tbl = []
+│ 
+│ ProjectNPV = []
+│ USP = []
+│ USC =[]
+│ DR = []
+│ OP =[]
+│ Annual_CashFlows =[]
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @example block:
+│ for i = 1:Trials
+│     UnitSellPrice = GBMM(80, 0.2, 0.1, ForecastYrs)
+│     UnitCost = GBMM(40, 0.1, 0.05, ForecastYrs)
+│ 
+│     #Each period the discount rate is independent. If you use an additive method instead of multiplicative, you can end up with differences. These may or may not impact the decision. For simulation it is best to use the risk free rate.
+│ 
+│         #Multiplicative Method
+│         DiscountRate = cumprod(rand(Normal(0.02,0.0075),ForecastYrs)+fill(1,ForecastYrs))#accumulate(+,rand(Normal(0.02,0.0075),ForecastYrs))+fill(1,ForecastYrs)
+│ 
+│         #Additive Method
+│         #DiscountRate = accumulate(+,rand(Normal(0.02,0.0075),ForecastYrs))+fill(1,ForecastYrs)
+│ 
+│         #a static DR
+│         #DiscountRate = accumulate(+, fill(0.02,ForecastYrs))+fill(1,ForecastYrs)
+│ 
+│     #print(DiscountRate)
+│ 
+│     #DCF Elements
+│     Annual_Sales = UnitSellPrice .* Units
+│     Annual_COGS = UnitCost .* Units
+│     OPEX = rand(TriangularDist(.2,0.5,0.35),ForecastYrs) .* Annual_Sales
+│ 
+│     #Constant Dollar Cashflow
+│     #CashFlow_C = (Annual_Sales - Annual_COGS - OPEX - Investment)
+│ 
+│     #Discounted CashFLow over multpile periods. This function uses arrays and DOT functions.
+│ 
+│     CashFlow = (Annual_Sales - Annual_COGS - OPEX - Investment) ./ DiscountRate
+│ 
+│     #Calculated Output
+│     Trial_NPV = sum(CashFlow)-InitialInvestment
+│ 
+│ #Convert Arrays to Scalars for sensitivity analysis
+│     push!(ProjectNPV, Trial_NPV)
+│     push!(USC, mean(UnitCost))
+│     push!(USP, mean(UnitSellPrice))
+│     push!(DR,  mean(DiscountRate))
+│     push!(OP,  mean(OPEX))
+│     push!(Annual_CashFlows,  CashFlow)
+│ end
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @example block:
+│ Sensitivity_Tbl = DataFrame(ProjectNPV = ProjectNPV, USC = USC, USP = USP, DR = DR, OP = OP)
+│ sensitivity_chrt(Sensitivity_Tbl,1)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @example block:
+│ print("Project Mean: ", mean(ProjectNPV),"\n")
+│ print("Project Std.Dev: ", std(ProjectNPV),"\n")
+│ print("Prob. of Neg. NPV: ", GetCertainty(ProjectNPV,0,0),"\n")
+│ print("NPV p10, p50, p90 : ", quantile(collect(Float64, ProjectNPV),[0.1,0.5,0.9]),"\n")
+│ println("")
+│ println("OUTPUTS: Annual_CashFlows, ProjectNPV, Sensitivity_Tbl")
+│ println("date range = dr")
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @example block:
+│ fractiles(ProjectNPV)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @example block:
+│ histogram_chrt(ProjectNPV, "Five Year NPV")
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @example block:
+│ s_curve(ProjectNPV, "Five Year NPV")
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @example block:
+│ density_chrt(ProjectNPV, "Five Year NPV")
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @example block:
+│ sensitivity_chrt(Sensitivity_Tbl, 1, 3)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Debug: Evaluating @example block:
+│ trend_chrt(Annual_CashFlows, dr)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\expander_pipeline.jl:787
+┌ Info: CrossReferences: building cross-references.
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\builder_pipeline.jl:230
+┌ Info: CheckDocument: running document checks.
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\builder_pipeline.jl:237
+┌ Debug: checking for missing docstrings.
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\docchecks.jl:42
+┌ Error: 18 docstrings not included in the manual:
+│ 
+│     MCHammer.cmatrix :: Tuple{Int64}
+│     MCHammer.ExponentialSmoothingMethod
+│     MCHammer.lineprep :: Tuple{Any}
+│     MCHammer.GBMM_Sim :: NTuple{4, Any}
+│     MCHammer.p_fit :: Tuple{Any}
+│     MCHammer.dfnames :: Tuple{Any}
+│     MCHammer.TripleES
+│     MCHammer.seasonal_components :: Tuple{Vector{<:Real}, Int64}
+│     MCHammer.SimpleES
+│     MCHammer.DoubleES
+│     MCHammer.initial_trend :: Tuple{Vector{<:Real}, Int64}
+│     MCHammer.markov_ts :: Union{Tuple{Any, Any}, Tuple{Any, Any, Any}}
+│     MCHammer.LearningCurveMethod
+│     MCHammer.SIPNames :: Tuple{Any}
+│     MCHammer.markov_a :: Tuple{Any}
+│     MCHammer.lc_analytic :: Tuple{CrawfordMethod, Any, Any, Any}
+│     MCHammer.lc_analytic :: Tuple{WrightMethod, Any, Any, Any}
+│     MCHammer.lc_analytic :: Tuple{ExperienceMethod, Any, Any, Any}
+│ 
+│ These are docstrings in the checked modules (configured with the modules keyword)
+│ that are not included in canonical @docs or @autodocs blocks.
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\utilities\utilities.jl:44
+┌ Debug: checking footnote links.
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\docchecks.jl:123
+┌ Info: Populate: populating indices.
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\QLA7E\src\builder_pipeline.jl:247
+┌ Debug: remote closed the connection
+└ @ VSCodeServer c:\Users\EricTorkia\.vscode\extensions\julialang.language-julia-1.127.2\scripts\packages\VSCodeServer\src\VSCodeServer.jl:170
+┌ Debug: JSONRPC dispatcher task finished
+└ @ VSCodeServer c:\Users\EricTorkia\.vscode\extensions\julialang.language-julia-1.127.2\scripts\packages\VSCodeServer\src\VSCodeServer.jl:179

@@ -1,7 +1,7 @@
 *.jl.cov
 *.jl.*.cov
 *.jl.mem
-
+*.log
 
 test/examples/builds/
 test/formats/builds/

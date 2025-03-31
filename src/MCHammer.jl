@@ -4,8 +4,8 @@ module MCHammer
 
 
 using LinearAlgebra, HypothesisTests
-using Statistics, Random, Distributions, StatsBase, DataFrames, DataFramesMeta, CSV, IterableTables
-using StatsBase, StatsAPI, StatsPlots, Random
+using Distributions, DataFrames, DataFramesMeta, CSV, IterableTables
+using Statistics, StatsBase, StatsAPI, StatsPlots, Random
 using TimeSeries, Dates
 using Plots, Printf, GraphRecipes
 
