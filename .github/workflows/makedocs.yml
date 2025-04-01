@@ -3,10 +3,10 @@ name: Build & Deploy Docs
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
     branches:
-      - main
+      - master
   workflow_dispatch:  # lets you manually trigger a build
 
 jobs:
@@ -31,12 +31,13 @@ jobs:
             # Optional: ensure local package is in the environment
             Pkg.develop(path="."); 
             Pkg.instantiate();
-          '
+          julia --project=docs -e 'using Pkg; Pkg.add("Documenter")'
+          julia --project=docs -e 'using Pkg; Pkg.add("DocumenterTools")'
 
       # 4) Build & deploy docs with Documenter.jl
-      - name: Build and deploy
-        run: |
-          julia --project=docs docs/make.jl
+      - name: Deploy Documentation
+        if: github.event_name == 'push'
+        run: julia --project=docs -e 'using Pkg; import Documenter: deploydocs; deploydocs()'
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}       # needed if accessing private repos
-          DOCUMENTER_KEY: ${{ secrets.DOCUMENTER_KEY }}   # your private SSH deploy key
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DOCUMENTER_KEY: ${{ secrets.DOCUMENTER_KEY }}
