@@ -22,11 +22,7 @@ jobs:
 
       - name: Install doc dependencies
         run: |
-          julia --project=docs -e '
-            using Pkg;
-            Pkg.develop(path="."); 
-            Pkg.instantiate();
-          '
+          julia --project=docs -e 'using Pkg; Pkg.develop(path="."); Pkg.instantiate();'
 
       - name: Deploy Documentation
         if: github.event_name == 'push'
