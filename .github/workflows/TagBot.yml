@@ -5,6 +5,11 @@ on:
       - created
   workflow_dispatch:
 jobs:
+  - name: Set Git identity
+    run: |
+      git config --global user.name "Eric Torkia"
+      git config --global user.email "etorkia@technologypartnerz.com"
+      
   TagBot:
     if: github.event_name == 'workflow_dispatch' || github.actor == 'JuliaTagBot'
     runs-on: ubuntu-latest

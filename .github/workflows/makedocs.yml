@@ -7,11 +7,18 @@ on:
     branches: [master]
   workflow_dispatch:
 
+export GPG_TTY=$(tty)
+
 jobs:
   docs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Set Git identity
+        run: |
+          git config --global user.name "Eric Torkia"
+          git config --global user.email "etorkia@technologypartnerz.com"
+      
       - name: Check out repository
         uses: actions/checkout@v2
 
