@@ -36,7 +36,11 @@ jobs:
             Pkg.add("DocumenterTools");
           '
 
-      # 4) Build & deploy docs with Documenter.jl
+      # 4) Print environment variables for debugging
+      - name: Print environment variables
+        run: printenv
+
+      # 5) Build & deploy docs with Documenter.jl
       - name: Deploy Documentation
         if: github.event_name == 'push'
         run: julia --project=docs -e 'using Pkg; import Documenter: deploydocs; deploydocs()'
