@@ -12,6 +12,7 @@ on:
 jobs:
   docs:
     runs-on: ubuntu-latest
+
     steps:
       # 1) Check out the repo
       - name: Check out repository
@@ -31,8 +32,9 @@ jobs:
             # Optional: ensure local package is in the environment
             Pkg.develop(path="."); 
             Pkg.instantiate();
-          julia --project=docs -e 'using Pkg; Pkg.add("Documenter")'
-          julia --project=docs -e 'using Pkg; Pkg.add("DocumenterTools")'
+            Pkg.add("Documenter");
+            Pkg.add("DocumenterTools");
+          '
 
       # 4) Build & deploy docs with Documenter.jl
       - name: Deploy Documentation
