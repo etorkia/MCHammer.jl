@@ -1,7 +1,9 @@
 push!(LOAD_PATH, joinpath(@__DIR__, "..", "src"))
 using Pkg
 using Documenter
-using MCHammer
+Pkg.develop(path=".")
+
+@info "Using MCHammer from" pathof(MCHammer)
 
 makedocs(
     sitename = "MCHammer.jl",
