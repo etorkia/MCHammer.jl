@@ -1,5 +1,9 @@
 push!(LOAD_PATH, joinpath(@__DIR__, "..", "src"))
-using Pkg, Dates, DataFrames, Distributions, Statistics, StatsBase
+using Pkg
+Pkg.add("Documenter")
+Pkg.add("DocumenterTools")
+
+using Dates, DataFrames, Distributions, Statistics, StatsBase
 using Plots, StatsPlots, GraphRecipes
 using Documenter, Test, DocumenterTools
 using MCHammer
