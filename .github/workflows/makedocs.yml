@@ -1,49 +1,36 @@
-name: Build and Deploy Docs
+name: "Build & Deploy Docs"
 
 on:
   push:
-    branches:
-      - master
+    branches: [master]
   pull_request:
-    branches:
-      - master
-  workflow_dispatch:  # lets you manually trigger a build
+    branches: [master]
+  workflow_dispatch:
 
 jobs:
   docs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1) Check out the repo
       - name: Check out repository
         uses: actions/checkout@v2
 
-      # 2) Install Julia
       - name: Set up Julia
         uses: julia-actions/setup-julia@v1
         with:
-          version: '1.8'   # use your desired Julia version
+          version: '1.11'
 
-      # 3) Make sure docs environment is ready
       - name: Install doc dependencies
         run: |
           julia --project=docs -e '
             using Pkg;
-            # Optional: ensure local package is in the environment
             Pkg.develop(path="."); 
             Pkg.instantiate();
-            Pkg.add("Documenter");
-            Pkg.add("DocumenterTools");
           '
 
-      # 4) Print environment variables for debugging
-      - name: Print environment variables
-        run: printenv
-
-      # 5) Build & deploy docs with Documenter.jl
       - name: Deploy Documentation
         if: github.event_name == 'push'
-        run: julia --project=docs -e 'using Pkg; import Documenter: deploydocs; deploydocs()'
+        run: julia --project=docs docs/make.jl
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DOCUMENTER_KEY: ${{ secrets.DOCUMENTER_KEY }}
