@@ -88,12 +88,10 @@ GBMA_d(100, 504,0.03,.3, rng=rng)
 
 ### Simulating a random walk time-series
 
-```@setup Graphing
+```@example Graphing
 using Dates, MCHammer, Random, Distributions
 Random.seed!(1)
-```
 
-```@example Graphing
 ts_trials =[]
 
 #To setup a TimeSeries simulation with MCHammer
@@ -106,7 +104,7 @@ for i = 1:1000
 end
 
 #You can graph the result using trend_chrt()
-dr = collect(Date(2019,1,01):Dates.Month(1):Date(2019,12,31))
+dr = collect(Date(2025,1,01):Dates.Month(1):Date(2025,12,31))
 trend_chrt(ts_trials,dr)
 ```
 ## Martingales
@@ -120,7 +118,7 @@ theme(:ggplot2)
 marty
 ```
 
-For example a gambler with 50$ making wagers of 50$, 10 times using the double or nothing strategy.
+For example a gambler with 50\$ making wagers of 50\$, 10 times using the double or nothing strategy.
 
 ```@example Stochastic
 marty(50,10)

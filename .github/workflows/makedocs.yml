@@ -7,32 +7,38 @@ on:
     branches: [master]
   workflow_dispatch:
 
-export GPG_TTY=$(tty)
-
 jobs:
   docs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Set Git identity
-        run: |
-          git config --global user.name "Eric Torkia"
-          git config --global user.email "etorkia@technologypartnerz.com"
-      
       - name: Check out repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # ✅ Required so Documenter can push and tag
 
       - name: Set up Julia
         uses: julia-actions/setup-julia@v1
         with:
           version: '1.11'
 
+      - name: Set Git identity (needed for deploydocs)
+        run: |
+          git config --global user.name "CI Bot"
+          git config --global user.email "ci@decisionsuperhero.com"
+
+      - name: Set GPG_TTY (optional, if using signed commits)
+        run: echo "GPG_TTY=$(tty)" >> $GITHUB_ENV
+
       - name: Install doc dependencies
         run: |
-          julia --project=docs -e 'using Pkg; Pkg.develop(path="."); Pkg.instantiate();'
+          julia --project=docs -e '
+            using Pkg;
+            Pkg.develop(path=".");  # Bring in your local MCHammer package
+            Pkg.instantiate();      # Install its dependencies
+          '
 
-      - name: Deploy Documentation
-        if: github.event_name == 'push'
+      - name: Build and deploy documentation
         run: julia --project=docs docs/make.jl
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

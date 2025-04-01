@@ -6,6 +6,7 @@ using MCHammer
 makedocs(
     sitename = "MCHammer.jl",
     modules = [MCHammer],
+    repo = Remotes.GitHub("etorkia", "MCHammer.jl"),
     warnonly = true,
     pages = Any[
         "Home" => "index.md",
@@ -30,15 +31,16 @@ makedocs(
         prettyurls = get(ENV, "CI", nothing) == "true",
         canonical = "https://etorkia.github.io/MCHammer.jl/",
         assets = ["assets/favicon.ico"],
-        analytics = "UA-3913053-5"
+        analytics = "UA-3913053-5",
+        example_size_threshold = 3_000_000_000,
     ),
     authors = "Eric Torkia and contributors",
     doctest = true,
     source = "src",
     build = "build",
     clean = true,
-    repo = "github.com/etorkia/MCHammer.jl"
-)
+    checkdocs = :exports
+    )
 
 deploydocs(
     target = "local",
