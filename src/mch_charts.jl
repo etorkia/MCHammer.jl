@@ -18,6 +18,7 @@ theme(:ggplot2)
 
 Data is your array (simulated or historical).
 x_label (optional) customizes the X-axis label.
+
 """
 function density_chrt(Data, x_label="Sim. Values")
     x_label == "" && (x_label = "x")
@@ -49,6 +50,7 @@ end
 
 Data is your array (simulated or historical).
 x_label (optional) customizes the X-axis label.
+
 """
 function histogram_chrt(Data, x_label="Sim. Values")
     x_label == "" && (x_label = "x")

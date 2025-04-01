@@ -23,6 +23,10 @@ Pkg.add("Random")
 Pkg.add("Printf")
 
 using Documenter, MCHammer
+using Plots
+gr()
+ENV["GKSwstype"] = "nul" 
+
 
 @info "Using MCHammer from" pathof(MCHammer)
 
@@ -56,6 +60,7 @@ makedocs(
         assets = ["assets/favicon.ico"],
         analytics = "UA-3913053-5",
         example_size_threshold = 3_000_000_000,
+        size_threshold = 700 * 1024
     ),
     authors = "Eric Torkia and contributors",
     doctest = true,

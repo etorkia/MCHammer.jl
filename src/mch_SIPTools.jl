@@ -10,6 +10,7 @@ using DataFrames, CSV, Distributions
     dfnames(headings)
 
 Adds ":" in front of all items in an array. This format is required by the DataFrame packages when giving names to columns.
+
 """
 function dfnames(headings)
 h_list = []
@@ -28,6 +29,7 @@ end
 - In order to export a SIP Library from Julia, you simply need to have a DataFrame.
 - Only specify header fields if your data does not contain any.
 - Also make to specify the full filename, including extension
+
 """
 function sip2csv(FileName, source_df, s_name="SLURP", s_origin="Julia Language")
 

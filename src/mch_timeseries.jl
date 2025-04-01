@@ -56,7 +56,7 @@ end
 
 
 """
-    GBMM(LastValue, ReturnsMean, ReturnsStd, PeriodsToForecast; rng="none")
+    GBMM(LastValue, ReturnsMean, ReturnsStd, PeriodsToForecast; rng::Any="none")
 
 GBMM produces a random walk using the last data point and requires a mean and standard deviation to be provided.
 

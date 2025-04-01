@@ -1,10 +1,10 @@
 #MCHAMMER Custom Distributions
 #Distributions not currently implemented in Julia
-#by Eric Torkia, August 2020
+#by Eric Torkia, August 2025
 
 
 """
-    RiskEvent(prob::Float64, dist::UnivariateDistribution, trials::Int; seed=0)
+    RiskEvent(Prob, Distribution, Trials; seed=0)
 
 Risk Events are defined as conditional distributions that will inflate the 0.
 

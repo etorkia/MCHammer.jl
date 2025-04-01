@@ -5,14 +5,17 @@
 #------------------------------------------------------------------------------
 
 """
-Abstract type for learning curve methods for MCHammer
+    abstract type LearningCurveMethod end
+
+    Abstract type for learning curve methods for MCHammer
+        
 """
 abstract type LearningCurveMethod end
 
 """
 Wright learning curve method. 
 
-    struct WrightMethod <: LearningCurveMethod
+    struct WrightMethod <: LearningCurveMethod end
 
 Introduced by T.P. Wright in 1936 in his seminal work on airplane production cost 
 analysis (Wright, 1936).  This model observes that with each doubling of cumulative production, the unit cost 
@@ -37,7 +40,7 @@ struct WrightMethod <: LearningCurveMethod end
 """
 Crawford learning curve method.
         
-    struct CrawfordMethod <: LearningCurveMethod 
+    struct CrawfordMethod <: LearningCurveMethod end
 
 Derived from discrete cumulative cost analysis methods found in operations research, the Crawford 
 learning curve (e.g., Crawford, 1982) aggregates individual unit costs—which decrease according to a 
@@ -62,7 +65,7 @@ struct CrawfordMethod <: LearningCurveMethod end
 """
 Experience learning curve method.
     
-        struct ExperienceMethod <: LearningCurveMethod
+        struct ExperienceMethod <: LearningCurveMethod end
 
 Popularized by Bruce Henderson of the Boston Consulting Group in the 1970s, the experience 
 curve expands on Wright’s observation to encompass total cost reductions (including overhead and other 

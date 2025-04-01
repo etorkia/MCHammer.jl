@@ -5,13 +5,14 @@
 
 
 """
-    cormat(ArrayName, RankOrder=1)
+      cormat(ArrayName, RankOrder=1)
 
 Cormat calculates a symetric correlation matrix using both PPMC and Rank Order. Rank Order is default because this is what it used in the Iman-Conover method for correlating of simulated variables.
 
-**RankOrder = 1** calculates the Spearman rank order correlation used in MCHammer (this argument is optional and defaults to Spearman)
+`RankOrder = 1` calculates the Spearman rank order correlation used in MCHammer (this argument is optional and defaults to Spearman)
 
-**RankOrder = 0** calculates the Pearson Product Moment Correlation
+`RankOrder = 0` calculates the Pearson Product Moment Correlation
+
 """
 function cormat(ArrayName, RankOrder=1)
 cor_mat = []
@@ -48,9 +49,10 @@ return hcat(cor_mat...)
 end
 
 """
-    covmat(ArrayName)
+      covmat(ArrayName)
 
 Calculates the covariance matrix.
+
 """
 function covmat(ArrayName)
 M_Size = size(ArrayName,2)
@@ -72,7 +74,7 @@ end
 
 #Correlation using Iman-Conover
 """
-    corvar(ArrayName, n_trials, correl_matrix)
+      corvar(ArrayName, n_trials, correl_matrix)
 
 The corvar function correlates simulation inputs unsing the Iman Conover Method. Your array must contain >2 simulated inputs. **Remember to hcat() your inputs into tables reflecting your input correlation matrices.**
 
@@ -80,6 +82,7 @@ The corvar function correlates simulation inputs unsing the Iman Conover Method.
 
 **correl_matrix**: must be defined as a Square Positive Definite correlation matrix. This can be calculated from histroical data using `cormat()` function.
 """
+
 function corvar(ArrayName, n_trials, correl_matrix)
 
 if typeof(ArrayName) == Array{Float64,2}
@@ -119,7 +122,7 @@ end
 
 # GetCertainty
 """
-    GetCertainty(ArrayName, x, AboveBelow=0)
+      GetCertainty(ArrayName, x, AboveBelow=0)
 
 This function returns the percentage of trials Above (1) or Below(0) a target value of x.
 """
@@ -135,7 +138,7 @@ end
 
 
 """
-    cmd(x)
+      cmd(x)
 
 Shell /Dos Command wrapper to run batch and shell commands in script. This is used to process SQL from the command line or perform system level operation in a script using a command prompt.
 """
@@ -161,7 +164,7 @@ end
 
 #fractiles function calculates percentiles at equal increments.
 """
-    fractiles(ArrayName, Increment=0.1)
+      fractiles(ArrayName, Increment=0.1)
 
 The fractiles function calculates percentiles at equal increments. The default optional argument for Increments is 0.1 for deciles but can be set to anything such as 0.05 for quintiles or 0.01 for percentiles.
 """
