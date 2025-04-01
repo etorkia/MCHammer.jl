@@ -48,7 +48,7 @@ makedocs(
 
 deploydocs(
     target = "local",
-    repo = "https://github.com/etorkia/MCHammer.jl.git",
+    repo = "github.com/etorkia/MCHammer.jl.git",
     branch = "gh-pages",
     devbranch = "master",
     versions = ["stable" => "v^", "v#.#"]
