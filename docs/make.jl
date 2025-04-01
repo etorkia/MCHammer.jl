@@ -7,7 +7,6 @@ makedocs(
     sitename = "MCHammer.jl",
     modules = [MCHammer],
     warnonly = true,
-    format = Documenter.HTML(size_threshold = 1_000_000_000),
     pages = Any[
         "Home" => "index.md",
         "User Manual" => Any[
