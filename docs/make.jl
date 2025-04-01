@@ -1,6 +1,27 @@
 push!(LOAD_PATH, joinpath(@__DIR__, "..", "src"))
 using Pkg
 Pkg.develop(path="..")
+
+Pkg.add("Documenter")
+Pkg.add("DocumenterTools")
+Pkg.add("Distributions")
+Pkg.add("DataFrames")
+Pkg.add("DataFramesMeta")
+Pkg.add("CSV")
+Pkg.add("IterableTables")
+Pkg.add("StatsBase")
+Pkg.add("StatsAPI")
+Pkg.add("StatsPlots")
+Pkg.add("TimeSeries")
+Pkg.add("Dates")
+Pkg.add("Plots")
+Pkg.add("GraphRecipes")
+Pkg.add("HypothesisTests")
+Pkg.add("LinearAlgebra")
+Pkg.add("Statistics")
+Pkg.add("Random")
+Pkg.add("Printf")
+
 using Documenter, MCHammer
 
 @info "Using MCHammer from" pathof(MCHammer)
