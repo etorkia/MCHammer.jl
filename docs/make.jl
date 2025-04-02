@@ -71,7 +71,6 @@ makedocs(
     )
 
 deploydocs(
-    target = "build",
     repo = "github.com/etorkia/MCHammer.jl.git",
     branch = "gh-pages",
     devbranch = "master",
