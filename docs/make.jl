@@ -21,6 +21,8 @@ Pkg.add("LinearAlgebra")
 Pkg.add("Statistics")
 Pkg.add("Random")
 Pkg.add("Printf")
+Pkg.Registry.rm("General")
+Pkg.Registry.add("General")
 
 using Documenter, MCHammer
 using Plots
