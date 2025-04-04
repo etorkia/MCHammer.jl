@@ -3,6 +3,9 @@ uuid = "58716550-704d-11e9-05c2-8f708e47025f"
 authors = ["Eric Torkia <etorkia@technologypartnerz.com>"]
 version = "0.2.0"
 
+[build]
+script = "build.jl"
+
 [deps]
 CSV = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
 DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
