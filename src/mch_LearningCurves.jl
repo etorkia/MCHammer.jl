@@ -225,14 +225,116 @@ end
 """
 Estimate the learning rate using Wright's method from two production data points. 
     
-    learn_rate(::WrightMethod, TotalUnitsA, WorkUnitA, TotalUnitsB, WorkUnitB)
+    learn_rate(::WrightMethod, UnitsA, WorkA, UnitsB, WorkB)
 
-This method can be used as a starting point for the Crawford and Experience curves because no closed form solutions exist for these methods
+# Arguments
+- `UnitsA`: cumulative units at point A (independent variable, x-axis)
+- `WorkA`: total effort/cost for point A (dependent variable, y-axis)
+- `UnitsB`: cumulative units at point B (independent variable, x-axis)  
+- `WorkB`: total effort/cost for point B (dependent variable, y-axis)
+
+This method can be used as a starting point for the Crawford and Experience curves because no closed form solutions exist for these methods.
 """ 
-function learn_rate(::WrightMethod, TotalUnitsA, WorkUnitA, TotalUnitsB, WorkUnitB)
-    b_val = log(TotalUnitsB) - log(TotalUnitsA)
+function learn_rate(::WrightMethod, UnitsA, WorkA, UnitsB, WorkB)
+    b_val = log(UnitsB) - log(UnitsA)
     x_val = b_val
-    return 10 ^ (((log(WorkUnitB) - log(WorkUnitA) - x_val) / b_val) * (log(2) / log(10)))
+    return 10 ^ (((log(WorkB) - log(WorkA) - x_val) / b_val) * (log(2) / log(10)))
+end
+
+"""
+Estimate the learning rate using Crawford's method from two production data points.
+    
+    learn_rate(::CrawfordMethod, UnitsA, WorkA, UnitsB, WorkB)
+
+# Arguments
+- `UnitsA`: cumulative units at point A (independent variable, x-axis)
+- `WorkA`: total effort/cost for point A (dependent variable, y-axis)
+- `UnitsB`: cumulative units at point B (independent variable, x-axis)  
+- `WorkB`: total effort/cost for point B (dependent variable, y-axis)
+
+This method uses an iterative approach to estimate the learning rate since Crawford's method
+does not have a closed-form solution for rate estimation from two data points.
+"""
+function learn_rate(::CrawfordMethod, UnitsA, WorkA, UnitsB, WorkB)
+    # Start with Wright's method as initial estimate
+    initial_rate = learn_rate(WrightMethod(), UnitsA, WorkA, UnitsB, WorkB)
+    
+    # Use iterative approach with numerical optimization
+    rate = initial_rate
+    tolerance = 1e-6
+    max_iterations = 1000
+    step_size = 0.001
+    
+    best_rate = rate
+    best_error = Inf
+    
+    for iteration in 1:max_iterations
+        # Calculate initial effort from point A
+        initial_effort = WorkA / lc_analytic(CrawfordMethod(), 1.0, UnitsA, rate)
+        
+        # Calculate predicted cost at point B
+        predicted_WorkB = lc_analytic(CrawfordMethod(), initial_effort, UnitsB, rate)
+        
+        # Calculate error
+        error = abs(predicted_WorkB - WorkB)
+        
+        if error < best_error
+            best_error = error
+            best_rate = rate
+        end
+        
+        if error < tolerance
+            break
+        end
+        
+        # Gradient-based adjustment
+        rate_plus = rate + step_size
+        initial_effort_plus = WorkA / lc_analytic(CrawfordMethod(), 1.0, UnitsA, rate_plus)
+        predicted_WorkB_plus = lc_analytic(CrawfordMethod(), initial_effort_plus, UnitsB, rate_plus)
+        error_plus = abs(predicted_WorkB_plus - WorkB)
+        
+        # Adjust rate based on gradient
+        if error_plus < error
+            rate += step_size
+        else
+            rate -= step_size
+        end
+        
+        # Adaptive step size
+        if iteration % 100 == 0
+            step_size *= 0.9
+        end
+    end
+    
+    return best_rate
+end
+
+"""
+Estimate the learning rate using Experience method from two production data points.
+    
+    learn_rate(::ExperienceMethod, UnitsA, WorkA, UnitsB, WorkB)
+
+# Arguments
+- `UnitsA`: cumulative units at point A (independent variable, x-axis)
+- `WorkA`: total effort/cost for point A (dependent variable, y-axis)
+- `UnitsB`: cumulative units at point B (independent variable, x-axis)  
+- `WorkB`: total effort/cost for point B (dependent variable, y-axis)
+
+This method uses the Experience curve formula to estimate the learning rate directly
+from two data points using logarithmic transformation.
+"""
+function learn_rate(::ExperienceMethod, UnitsA, WorkA, UnitsB, WorkB)
+    # Experience curve: Cost = InitialEffort * (Units^Learning)
+    # Taking log: log(Cost) = log(InitialEffort) + Learning * log(Units)
+    # From two points: Learning = (log(WorkB) - log(WorkA)) / (log(UnitsB) - log(UnitsA))
+    
+    if UnitsA == UnitsB
+        error("UnitsA and UnitsB cannot be equal")
+    end
+    
+    learning_rate = (log(WorkB) - log(WorkA)) / (log(UnitsB) - log(UnitsA))
+    
+    return learning_rate
 end
 
 #------------------------------------------------------------------------------
