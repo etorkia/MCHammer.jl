@@ -83,14 +83,23 @@ best_fit = lc_fit(CrawfordMethod(), 150, 400; EstLC=0.75)
 
 ### Learning Rate Estimation
 
-Estimates learning rates using Wright's method from two data points.
+Estimates learning rates using the three methods from two data points.
 
 ```@docs
 learn_rate
 ```
 ```@example LCs
+# Example: Estimate learning rate using Wright's method
 rate = learn_rate(WrightMethod(), 1, 2000, 144, 8000)
-println(rate)
+println("Wright method rate: ", rate)
+
+# Example: Estimate learning rate using Experience method  
+rate_exp = learn_rate(ExperienceMethod(), 1, 2000, 144, 8000)
+println("Experience method rate: ", rate_exp)
+
+# Example: Estimate learning rate using Crawford method
+rate_crawford = learn_rate(CrawfordMethod(), 1, 2000, 144, 8000)
+println("Crawford method rate: ", rate_crawford)
 ```
 
 ### Comparison Utility
