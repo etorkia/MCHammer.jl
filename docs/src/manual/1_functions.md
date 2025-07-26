@@ -65,12 +65,15 @@ covmat(test)
   0.00167811  -0.00357405   1.05398     -0.0033127   -0.0285162
   0.0401224    0.0142628   -0.0033127    0.872718    -0.00241684
  -0.0820211   -0.032553    -0.0285162   -0.00241684   1.01745
-
 ```
+
 ## Correlating Simulation Variables
+
 `corvar` adjusts your simulated datasets to match a desired correlation matrix. In modeling:
+
 - **Use Cases**: Forces scenario data to reflect real-world or hypothesized correlations, ensuring valid joint distributions.
 - **Applications**: Stress tests in finance, correlated risk analysis (e.g., hurricane + flood), and multivariate forecasting.
+
 ```@docs
 corvar
 ```
