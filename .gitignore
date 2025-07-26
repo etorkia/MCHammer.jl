@@ -2,7 +2,8 @@
 *.jl.*.cov
 *.jl.mem
 *.log
-
+src/MCHammer copy.jl
+src/mch_LearningCurves_old.jl
 test/examples/builds/
 test/formats/builds/
 test/missingdocs/build/
@@ -12,3 +13,4 @@ docs/local/
 docs/build/
 docs/pdf/build/
 docs/site/
+archive
