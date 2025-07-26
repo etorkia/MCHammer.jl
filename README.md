@@ -4,7 +4,7 @@
 
 | **Documentation**                                                               | **Build Status**                                                                                |
 |:-------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------:|
-| [![][docs-stable-img]][docs-stable-url] | [![][travis-img]][travis-url] |
+| [![][docs-dev-img]][docs-dev-url] | [![][travis-img]][travis-url] |
 
 
 ## Overview
@@ -37,28 +37,40 @@ Even though you can make the argument that anything can be modelled using uncert
 ## Current Features
 
 ### Modeling Features
-*	Correlation of Simulated Inputs (Iman-Conover[1982])
-	*	Covariance Matrix
-	*	Rank Order Correlation Matrix
-	*	Pearson Product Moment Correlation Matrix
-*	Stats and Simulation Charts
+* Correlation of Simulated Inputs (Iman-Conover[1982])
+	* Covariance Matrix
+	* Rank Order Correlation Matrix
+	* Pearson Product Moment Correlation Matrix
+* Stats and Simulation Charts
 	* Density and Histogram Charts with Descriptive Stats
 	* Fractiles
 	* GetCertainty to find the exact probability of a scenario
 	* Cumulative and Reverse Cumulative S-Curves (New)
-*	Sensitivity Analysis Chart
-	*	Rank Correlation
-	*	PPMC
-	*	Contribution to Variance %
+* Sensitivity Analysis Chart
+	* Rank Correlation
+	* PPMC
+	* Contribution to Variance %
+ * Distribution Fitting
+ 	* Continuous /Discrete
+  	* Godness of Fit
+   	* Statistics
+    	* Visual Fits	    
 
 ### Time Series Features
-*	Time Series using Simulated Random Walk
-*	Time Series using Historical Data to calculate parameters for Simulated Random Walk
-*	Trend Charts with Customizable Confidence Bands
+* Time Series using Simulated Random Walk
+* Time Series using Historical Data to calculate parameters for Simulated Random Walk
+* Trend Charts with Customizable Confidence Bands
 * Exponential Smoothing (New)
 	* Simple
 	* Double
 	* Triple (Holt-Winters)
+ * Learning Curves
+   	* Crawford
+   	* Wright
+   	* Experience
+* Probability / Random Methods
+  	* Martingale Simulation
+  	* Markov Chains
 
 ### Import / Exporting
 
@@ -71,30 +83,6 @@ Even though you can make the argument that anything can be modelled using uncert
 * Introduced a simulated martingale process with adjustable win probability
 * Markov Chain discrete time-series solution
 * Markov Chain analytical solve method to calculate equilibrium state
-
-### Current Functions
-* cormat()
-* covmat()
-* corvar()
-* GetCertainty()
-* fractiles()
-* cmd()
-* truncate_digit()
-* density_chrt()
-* histogram_chrt()
-* sensitivity_chrt()
-* trend_chrt()
-* GBMMult_Fit()
-* GBMM()
-* genmeta()
-* sip2csv()
-* importsip()
-* importxlsip()
-* RiskEvent()
-* marty()
-* markov_a()
-* markov_ts()
-*...
 
 ## Documentation
 
