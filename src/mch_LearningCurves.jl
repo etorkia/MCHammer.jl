@@ -26,7 +26,7 @@ struct ExperienceMethod <: LearningCurveMethod end
 #------------------------------------------------------------------------------
 
 
-@doc """
+@doc raw"""
     lc_analytic(::WrightMethod, initial, N, α) -> Float64
 
 Compute cumulative cost using Wright’s model:
@@ -43,7 +43,7 @@ function lc_analytic(::WrightMethod, initial::Real, N::Integer, α::Real)::Float
     return initial * sum(i^(-α) for i in 1:N)
 end
 
-@doc """
+@doc raw"""
     lc_analytic(::CrawfordMethod, initial, N, α) -> Float64
 
 Compute cumulative cost using Crawford’s model (same analytic form as Wright):
@@ -56,7 +56,7 @@ Formula:
 """
 lc_analytic(::CrawfordMethod, initial::Real, N::Integer, α::Real) = lc_analytic(WrightMethod(), initial, N, α)
 
-@doc """
+@doc raw"""
     lc_analytic(::ExperienceMethod, initial_avg, N, α) -> Float64
 
 Compute cumulative cost using Experience curve:
@@ -82,7 +82,7 @@ b = log(x2/x1)/log(n2/n1), returns progress ratio = 2^b.
 a1 = T1/n1, a2 = T2/n2; b = log(a2/a1)/log(n2/n1); returns 2^b.
 b = log(avg2/avg1)/log(n2/n1); returns 2^b.
 
-@doc """
+@doc raw"""
     learn_rate(::WrightMethod, n1, x1, n2, x2) -> Float64
 
 Two-point fit for Wright’s method:
@@ -100,7 +100,7 @@ function learn_rate(::WrightMethod, n1::Real, x1::Real, n2::Real, x2::Real)::Flo
     return 2.0^b
 end
 
-@doc """
+@doc raw"""
     learn_rate(::CrawfordMethod, n1, T1, n2, T2) -> Float64
 
 Two-point fit for Crawford’s method:
@@ -123,7 +123,7 @@ function learn_rate(::CrawfordMethod, n1::Real, T1::Real, n2::Real, T2::Real)::F
     return 2.0^b
 end
 
-@doc """
+@doc raw"""
     learn_rate(::ExperienceMethod, n1, avg1, n2, avg2) -> Float64
 
 Two-point fit for Experience curve:
@@ -145,7 +145,7 @@ end
 # Curve Generation and Fitting
 #------------------------------------------------------------------------------
 
-@doc """
+@doc raw"""
     lc_fit(method, x1, n1, n2, x2) -> Tuple{Float64,Float64}
 
 Fit power-law slope b and progress ratio for any method using two points:
@@ -157,7 +157,7 @@ function lc_fit(::LearningCurveMethod, x1::Real, n1::Real, n2::Real, x2::Real)
     return b, 2.0^b
 end
 
-@doc """
+@doc raw"""
     lc_curve(method, x1, n1, n2, x2; steps) -> DataFrame
 
 Generate DataFrame of time per unit across `steps` points between `n1` and `n2`:
@@ -174,7 +174,7 @@ end
 # Comparison of Cumulative Costs Across Learning Rates
 #------------------------------------------------------------------------------
 
-@doc """
+@doc raw"""
     learn_rates(initial, N; α_step) -> DataFrame
 
 Compare cumulative cost at total units `N` across methods for learning exponents from 0 to 1:
