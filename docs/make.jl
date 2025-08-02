@@ -69,7 +69,7 @@ makedocs(
     source = "src",
     build = "build",
     clean = true,
-    checkdocs = :exports
+    checkdocs = :exports,  # This should only check exported functions
     )
 
 deploydocs(

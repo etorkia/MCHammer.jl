@@ -26,7 +26,7 @@ function DoIt()
     warnonly = true,
     format = Documenter.HTML(size_threshold = 1_000_000_000),
     doctest = false,
-    checkdocs = :all,
+    checkdocs = :export,
     source  = "src",
     build   = "local",
     modules =[MCHammer],
@@ -61,6 +61,7 @@ end
 end =#
 
 #Build Local Docs
+
 
 
 DoIt()
