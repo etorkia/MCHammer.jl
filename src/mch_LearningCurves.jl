@@ -1,4 +1,4 @@
-module MCHammer.LearningCurves
+module LearningCurves
 
 using DataFrames
 
