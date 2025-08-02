@@ -45,6 +45,7 @@ To compute cumulative cost analytically for an experience curve, here are the fu
 
 ### Wright Learning Curve
 
+
 ```@example LCs
 result = lc_analytic(WrightMethod(), 200, 500, 0.85)
 println(result)
@@ -52,11 +53,13 @@ println(result)
 
 ### Crawford Learning Curve
 
+
 ```@example LCs
 result = lc_analytic(CrawfordMethod(), 150, 400, 0.75)
 ```
 
 ### Experience Curve
+
 
 ```@example LCs
 result = lc_analytic(ExperienceMethod(), 100, 1000, 0.8)
@@ -69,6 +72,7 @@ Generates detailed DataFrame including cumulative, incremental, and average cost
 ```@docs 
 lc_curve
 ```
+
 
 ```@example LCs
 df = lc_curve(WrightMethod(), 200, 1, 500, 100; steps=25)
@@ -84,11 +88,13 @@ lc_fit
 ```
 
 **Example:**
+
 ```julia
 lc_fit(::ExperienceMethod, InitialEffort, Units; EstLC=0.8)
 lc_fit(::CrawfordMethod, InitialEffort, Units; EstLC=0.8)
 lc_fit(::WrightMethod, InitialEffort, Units; EstLC=0.8)
 ```
+
 
 ```@example LCs
 best_fit = lc_fit(CrawfordMethod(), 150, 400; EstLC=0.75)
@@ -101,6 +107,7 @@ Estimates learning rates using Wright's method from two data points.
 ```@docs
 learn_rate
 ```
+
 
 ```@example LCs
 rate = learn_rate(WrightMethod(), 1, 2000, 144, 8000)
@@ -133,10 +140,11 @@ using Plots
 # Two-point fitting approach: x1 at n1, x2 at n2
 
 # Example data points for each method
+
 CC = lc_curve(CrawfordMethod(), 50, 1, 1000, 25; steps=50)
 CC.Method = fill("Crawford", nrow(CC))
 
-WC = lc_curve(WrightMethod(), 50, 1, 1000, 25; steps=50)  
+WC = lc_curve(WrightMethod(), 50, 1, 1000, 25; steps=50)
 WC.Method = fill("Wright", nrow(WC))
 
 EC = lc_curve(ExperienceMethod(), 50, 1, 1000, 25; steps=50)
@@ -151,7 +159,7 @@ plot(GraphResults.Units, GraphResults.Time, group=GraphResults.Method,
 
 ## Mathematical Notes
 
-- `$\\alpha$`: learning exponent (progress ratio = $2^b$)
+- `$\alpha$`: learning exponent (progress ratio = $2^b$)
 - $N$: number of units
 
 **Wright's Law (Cumulative Average Model):**

@@ -27,24 +27,24 @@ struct ExperienceMethod <: LearningCurveMethod end
 
 
 @doc """
-    lc_analytic(::WrightMethod, initial, α, N) -> Float64
+    lc_analytic(::WrightMethod, initial, N, α) -> Float64
 
 Compute cumulative cost using Wright’s model:
 - `initial`: base cost for first unit
-- `α`: learning exponent (progress ratio = 2^b)
 - `N`: total units
+- `α`: learning exponent (progress ratio = 2^b)
 
 Formula:
 ```math
 \text{Cumulative Cost}_N = \text{initial} \times \sum_{i=1}^N i^{-\alpha}
 ```
 """
-function lc_analytic(::WrightMethod, initial::Real, α::Real, N::Integer)::Float64
+function lc_analytic(::WrightMethod, initial::Real, N::Integer, α::Real)::Float64
     return initial * sum(i^(-α) for i in 1:N)
 end
 
 @doc """
-    lc_analytic(::CrawfordMethod, initial, α, N) -> Float64
+    lc_analytic(::CrawfordMethod, initial, N, α) -> Float64
 
 Compute cumulative cost using Crawford’s model (same analytic form as Wright):
 - Uses batch-average reduction.
@@ -54,22 +54,22 @@ Formula:
 \text{Cumulative Cost}_N = \text{initial} \times \sum_{i=1}^N i^{-\alpha}
 ```
 """
-lc_analytic(::CrawfordMethod, initial::Real, α::Real, N::Integer) = lc_analytic(WrightMethod(), initial, α, N)
+lc_analytic(::CrawfordMethod, initial::Real, N::Integer, α::Real) = lc_analytic(WrightMethod(), initial, N, α)
 
 @doc """
-    lc_analytic(::ExperienceMethod, initial_avg, α, N) -> Float64
+    lc_analytic(::ExperienceMethod, initial_avg, N, α) -> Float64
 
 Compute cumulative cost using Experience curve:
 - `initial_avg`: average cost per unit at unit 1
-- `α`: learning exponent
 - `N`: total units
+- `α`: learning exponent
 
 Formula:
 ```math
 \text{Cumulative Cost}_N = (\text{initial\_avg} \times N^{-\alpha}) \times N
 ```
 """
-function lc_analytic(::ExperienceMethod, initial_avg::Real, α::Real, N::Integer)::Float64
+function lc_analytic(::ExperienceMethod, initial_avg::Real, N::Integer, α::Real)::Float64
     avgN = initial_avg * N^(-α)
     return avgN * N
 end
@@ -187,9 +187,9 @@ Returns DataFrame with columns `:α`, `:Wright`, `:Crawford`, `:Experience`.
 function learn_rates(initial::Real, N::Integer; α_step::Real=0.1)::DataFrame
     df = DataFrame(α=Float64[], Wright=Float64[], Crawford=Float64[], Experience=Float64[])
     for α in 0:α_step:1
-        w = lc_analytic(WrightMethod(), initial, α, N)
-        c = lc_analytic(CrawfordMethod(), initial, α, N)
-        e = lc_analytic(ExperienceMethod(), initial, α, N)
+        w = lc_analytic(WrightMethod(), initial, N, α)
+        c = lc_analytic(CrawfordMethod(), initial, N, α)
+        e = lc_analytic(ExperienceMethod(), initial, N, α)
         push!(df, (α, w, c, e))
     end
     return df
