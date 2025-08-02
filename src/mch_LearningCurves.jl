@@ -25,6 +25,7 @@ struct ExperienceMethod <: LearningCurveMethod end
 # Analytic Cumulative-Cost Functions
 #------------------------------------------------------------------------------
 
+
 @doc """
     lc_analytic(::WrightMethod, initial, α, N) -> Float64
 
@@ -34,8 +35,8 @@ Compute cumulative cost using Wright’s model:
 - `N`: total units
 
 Formula:
-```
-cost = initial * sum(i^(-α) for i in 1:N)
+```math
+\text{Cumulative Cost}_N = \text{initial} \times \sum_{i=1}^N i^{-\alpha}
 ```
 """
 function lc_analytic(::WrightMethod, initial::Real, α::Real, N::Integer)::Float64
@@ -49,8 +50,8 @@ Compute cumulative cost using Crawford’s model (same analytic form as Wright):
 - Uses batch-average reduction.
 
 Formula:
-```
-cost = initial * sum(i^(-α) for i in 1:N)
+```math
+\text{Cumulative Cost}_N = \text{initial} \times \sum_{i=1}^N i^{-\alpha}
 ```
 """
 lc_analytic(::CrawfordMethod, initial::Real, α::Real, N::Integer) = lc_analytic(WrightMethod(), initial, α, N)
@@ -64,8 +65,8 @@ Compute cumulative cost using Experience curve:
 - `N`: total units
 
 Formula:
-```
-cost = (initial_avg * N^(-α)) * N
+```math
+\text{Cumulative Cost}_N = (\text{initial\_avg} \times N^{-\alpha}) \times N
 ```
 """
 function lc_analytic(::ExperienceMethod, initial_avg::Real, α::Real, N::Integer)::Float64
@@ -77,14 +78,22 @@ end
 # Two-Point Learning-Rate Estimation
 #------------------------------------------------------------------------------
 
+b = log(x2/x1)/log(n2/n1), returns progress ratio = 2^b.
+a1 = T1/n1, a2 = T2/n2; b = log(a2/a1)/log(n2/n1); returns 2^b.
+b = log(avg2/avg1)/log(n2/n1); returns 2^b.
+
 @doc """
     learn_rate(::WrightMethod, n1, x1, n2, x2) -> Float64
 
 Two-point fit for Wright’s method:
-- `n1`,`n2`: unit indices
-- `x1`,`x2`: time for nth unit
+- `n1`, `n2`: unit indices
+- `x1`, `x2`: time for nth unit
 
-b = log(x2/x1)/log(n2/n1), returns progress ratio = 2^b.
+Formula:
+```math
+b = \frac{\log(x_2/x_1)}{\log(n_2/n_1)}
+```
+Returns progress ratio: ``2^b``
 """
 function learn_rate(::WrightMethod, n1::Real, x1::Real, n2::Real, x2::Real)::Float64
     b = (log(x2) - log(x1)) / (log(n2) - log(n1))
@@ -95,10 +104,17 @@ end
     learn_rate(::CrawfordMethod, n1, T1, n2, T2) -> Float64
 
 Two-point fit for Crawford’s method:
-- `n1`,`n2`: batch sizes
-- `T1`,`T2`: total times for each batch
+- `n1`, `n2`: batch sizes
+- `T1`, `T2`: total times for each batch
 
-a1 = T1/n1, a2 = T2/n2; b = log(a2/a1)/log(n2/n1); returns 2^b.
+Formula:
+```math
+a_1 = \frac{T_1}{n_1},\quad a_2 = \frac{T_2}{n_2}
+```
+```math
+b = \frac{\log(a_2/a_1)}{\log(n_2/n_1)}
+```
+Returns progress ratio: ``2^b``
 """
 function learn_rate(::CrawfordMethod, n1::Real, T1::Real, n2::Real, T2::Real)::Float64
     a1 = T1 / n1
@@ -111,10 +127,14 @@ end
     learn_rate(::ExperienceMethod, n1, avg1, n2, avg2) -> Float64
 
 Two-point fit for Experience curve:
-- `n1`,`n2`: cumulative units
-- `avg1`,`avg2`: cumulative average cost/time
+- `n1`, `n2`: cumulative units
+- `avg1`, `avg2`: cumulative average cost/time
 
-b = log(avg2/avg1)/log(n2/n1); returns 2^b.
+Formula:
+```math
+b = \frac{\log(\text{avg}_2/\text{avg}_1)}{\log(n_2/n_1)}
+```
+Returns progress ratio: ``2^b``
 """
 function learn_rate(::ExperienceMethod, n1::Real, avg1::Real, n2::Real, avg2::Real)::Float64
     b = (log(avg2) - log(avg1)) / (log(n2) - log(n1))

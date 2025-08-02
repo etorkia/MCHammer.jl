@@ -1097,3 +1097,6 @@
 │   input_delta = 0
 │   output_delta = 2773
 └ @ TranscodingStreams C:\Users\EricTorkia\.julia\packages\TranscodingStreams\O3BYF\src\stream.jl:686
+┌ Debug: getting prompt info failed
+│   exception = (MethodError(REPL.LineEdit.write_prompt, (Base.TTY(Base.Libc.WindowsRawSocket(0x0000000000000278) open, 0 bytes waiting), "Prompt(\"julia> \",...)"), 0x0000000000006a25), Union{Ptr{Nothing}, Base.InterpreterIP}[Ptr{Nothing} @0x00007ffce17814fc, Ptr{Nothing} @0x00007ffce178a1e5, Ptr{Nothing} @0x00007ffce178a3cd, Ptr{Nothing} @0x00007ffce178d5bd, Ptr{Nothing} @0x0000015989b6dc84, Ptr{Nothing} @0x0000015989b6e0cf, Ptr{Nothing} @0x0000015989b6edf4, Ptr{Nothing} @0x0000015989b6ffbb, Ptr{Nothing} @0x0000015989b700df, Ptr{Nothing} @0x00007ffce179959b, Ptr{Nothing} @0x0000015989b03dce, Ptr{Nothing} @0x0000015989b03e0b, Ptr{Nothing} @0x00007ffce179ba42, Ptr{Nothing} @0x0000015989ac5ebb, Ptr{Nothing} @0x0000015989ac6124, Ptr{Nothing} @0x00007ffce17b2e03])
+└ @ VSCodeServer c:\Users\EricTorkia\.vscode\extensions\julialang.language-julia-1.149.2\scripts\packages\VSCodeServer\src\eval.jl:165

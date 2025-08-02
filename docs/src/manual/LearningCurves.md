@@ -71,7 +71,7 @@ lc_curve
 ```
 
 ```@example LCs
-df = lc_curve(WrightMethod(), 200, 500, 0.85; LotSize=25)
+df = lc_curve(WrightMethod(), 200, 1, 500, 100; steps=25)
 println(first(df, 5))
 ```
 
@@ -129,23 +129,24 @@ Sometimes picking the right curve is challenging and in these cases plotting a c
 using DataFrames
 using Plots
 
-LearnRate = 0.78
-InitialEffort = 50
-Units = 1000
+# Using the correct function signature for the current implementation
+# Two-point fitting approach: x1 at n1, x2 at n2
 
-CC = lc_curve(CrawfordMethod(), InitialEffort, Units, LearnRate; LotSize=25)
+# Example data points for each method
+CC = lc_curve(CrawfordMethod(), 50, 1, 1000, 25; steps=50)
 CC.Method = fill("Crawford", nrow(CC))
-WC = lc_curve(WrightMethod(), InitialEffort, Units, LearnRate; LotSize=25)
+
+WC = lc_curve(WrightMethod(), 50, 1, 1000, 25; steps=50)  
 WC.Method = fill("Wright", nrow(WC))
-EC = lc_curve(ExperienceMethod(), InitialEffort, Units, LearnRate; LotSize=25)
+
+EC = lc_curve(ExperienceMethod(), 50, 1, 1000, 25; steps=50)
 EC.Method = fill("Experience", nrow(EC))
 
 GraphResults = vcat(CC, WC, EC)
 
-plt = plot(GraphResults.Units, GraphResults.AvgCost, group=GraphResults.Method,
-    xlabel="Units", ylabel="Average Cost", title="Average Cost vs Units by Method",
+plot(GraphResults.Units, GraphResults.Time, group=GraphResults.Method,
+    xlabel="Units", ylabel="Time per Unit", title="Learning Curves Comparison",
     lw=2, legend=:topright)
-plt
 ```
 
 ## Mathematical Notes
