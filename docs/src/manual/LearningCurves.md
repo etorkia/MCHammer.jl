@@ -3,6 +3,7 @@
 ```@setup LCs
 using MCHammer, DataFrames, Distributions, Random, Plots
 ```
+
 Learning curves are mathematical models predicting improvements in productivity and efficiency as experience with a task increases. These curves are essential tools for:
 
 - Estimating project costs and timelines.
@@ -12,41 +13,51 @@ Learning curves are mathematical models predicting improvements in productivity 
 The following documentation covers three popular methods implemented using Julia with multiple dispatch:
 
 ## Learning Curve Methods
+
 ```julia
 abstract type LearningCurveMethod end
     struct WrightMethod <: LearningCurveMethod end
     struct CrawfordMethod <: LearningCurveMethod end
     struct ExperienceMethod <: LearningCurveMethod end
 ```
+
 ### Wright's Curve
+
 ```@docs
 WrightMethod 
 ```
+
 ### Crawford's Curve
+
 ```@docs
 CrawfordMethod 
 ```
+
 ### Experience Curve
+
 ```@docs
 ExperienceMethod
 ```
 
 ## Cumulative Cost Analysis
-To computes cumulative cost analytically for an experience curve, here are the functions to accomplish this.  
 
+To compute cumulative cost analytically for an experience curve, here are the functions to accomplish this.
 
 ### Wright Learning Curve
+
 ```@example LCs
 result = lc_analytic(WrightMethod(), 200, 500, 0.85)
 println(result)
 ```
 
 ### Crawford Learning Curve
+
 ```@example LCs
 result = lc_analytic(CrawfordMethod(), 150, 400, 0.75)
 ```
 
 ### Experience Curve
+
 ```@example LCs
 result = lc_analytic(ExperienceMethod(), 100, 1000, 0.8)
 ```
@@ -58,12 +69,14 @@ Generates detailed DataFrame including cumulative, incremental, and average cost
 ```@docs 
 lc_curve
 ```
+
 ```@example LCs
 df = lc_curve(WrightMethod(), 200, 500, 0.85; LotSize=25)
 println(first(df, 5))
 ```
 
 ## Analysis Functions
+
 ### Fitting Functions
 
 ```@docs
@@ -88,6 +101,7 @@ Estimates learning rates using Wright's method from two data points.
 ```@docs
 learn_rate
 ```
+
 ```@example LCs
 rate = learn_rate(WrightMethod(), 1, 2000, 144, 8000)
 println(rate)
@@ -109,32 +123,58 @@ println(first(rates_df, 5))
 
 ## Picking the right curve
 
-Sometimes picking the righ curve is challenging and in these cases plotting a comparison of average costs across methods using `Plots.jl` can be very helpful.
+Sometimes picking the right curve is challenging and in these cases plotting a comparison of average costs across methods using `Plots.jl` can be very helpful.
 
 ```@example LCs
+using DataFrames
 using Plots
 
 LearnRate = 0.78
 InitialEffort = 50
 Units = 1000
 
-
 CC = lc_curve(CrawfordMethod(), InitialEffort, Units, LearnRate; LotSize=25)
+CC.Method = fill("Crawford", nrow(CC))
 WC = lc_curve(WrightMethod(), InitialEffort, Units, LearnRate; LotSize=25)
+WC.Method = fill("Wright", nrow(WC))
 EC = lc_curve(ExperienceMethod(), InitialEffort, Units, LearnRate; LotSize=25)
+EC.Method = fill("Experience", nrow(EC))
+
 GraphResults = vcat(CC, WC, EC)
 
-plot(GraphResults.Units, GraphResults.AvgCost, group=GraphResults.Method,
+plt = plot(GraphResults.Units, GraphResults.AvgCost, group=GraphResults.Method,
     xlabel="Units", ylabel="Average Cost", title="Average Cost vs Units by Method",
     lw=2, legend=:topright)
+plt
 ```
 
+## Mathematical Notes
 
+- `$\\alpha$`: learning exponent (progress ratio = $2^b$)
+- $N$: number of units
+
+**Wright's Law (Cumulative Average Model):**
+
+```math
+\text{Cumulative Average Cost}_N = \text{Initial} \times N^{-\alpha}
+```
+
+**Crawford's Law (Unit Cost Model):**
+
+```math
+\text{Unit Cost}_N = \text{Initial} \times N^{-\alpha}
+```
+
+**Experience Curve:**
+
+```math
+\text{Cost}_N = \text{Initial} \times N^{-\alpha}
+```
 
 ## Sources & References
+
 - Eric Torkia, Decision Superhero Vol. 2, chapter 6 : SuperPower: The Laws of Nature that Predict, Technics Publishing, 2025
 - Available on Amazon : https://a.co/d/4YlJFzY . Volumes 2 and 3 to be released in Spring and Fall 2025.
 - Wright, T.P. (1936). *Factors Affecting the Cost of Airplanes*. Journal of the Aeronautical Sciences, 3(4), 122–128.
 - Henderson, B.D. (1973). *Industrial Experience, Technology Transfer, and Cost Behavior*. Harvard Business School Working Paper.
-- Crawford, D. (1982). *Learning Curves: Theory and Practice*. Journal of Cost Analysis. 
-"""
+- Crawford, D. (1982). *Learning Curves: Theory and Practice*. Journal of Cost Analysis.
