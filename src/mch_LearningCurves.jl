@@ -78,9 +78,18 @@ end
 # Two-Point Learning-Rate Estimation
 #------------------------------------------------------------------------------
 
-b = log(x2/x1)/log(n2/n1), returns progress ratio = 2^b.
-a1 = T1/n1, a2 = T2/n2; b = log(a2/a1)/log(n2/n1); returns 2^b.
-b = log(avg2/avg1)/log(n2/n1); returns 2^b.
+
+@doc raw"""
+    learn_rate(method, ...) -> Float64
+
+Summary of two-point learning rate formulas:
+
+- Wright:  $b = \frac{\log(x_2/x_1)}{\log(n_2/n_1)}$  (progress ratio $2^b$)
+- Crawford:  $a_1 = T_1/n_1$, $a_2 = T_2/n_2$, $b = \frac{\log(a_2/a_1)}{\log(n_2/n_1)}$  (progress ratio $2^b$)
+- Experience:  $b = \frac{\log(\text{avg}_2/\text{avg}_1)}{\log(n_2/n_1)}$  (progress ratio $2^b$)
+
+See method-specific docstrings below for details.
+"""
 
 @doc raw"""
     learn_rate(::WrightMethod, n1, x1, n2, x2) -> Float64
