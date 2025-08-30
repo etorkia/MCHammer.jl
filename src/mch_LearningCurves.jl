@@ -1,207 +1,469 @@
-module LearningCurves
+#module LearningCurves
 
 using DataFrames
 
 export LearningCurveMethod, WrightMethod, CrawfordMethod, ExperienceMethod
 export lc_analytic, lc_curve, lc_fit, learn_rate, learn_rates
 
-#------------------------------------------------------------------------------
+# =====================================================================
 # Types
-#------------------------------------------------------------------------------
+# =====================================================================
 
-"""Abstract type for learning curve methods."""
+
+"""
+    abstract type LearningCurveMethod end
+
+    Abstract type for learning curve methods for MCHammer
+        
+"""
 abstract type LearningCurveMethod end
 
-"""Wright’s learning-curve method."""
+"""
+Wright learning curve method. 
+
+    struct WrightMethod <: LearningCurveMethod end
+
+Introduced by T.P. Wright in 1936 in his seminal work on airplane production cost 
+analysis (Wright, 1936). This model observes that with each doubling of cumulative production, the unit cost 
+decreases by a fixed percentage. It is well‑suited for processes where learning is continuous and gradual.
+
+**Parameters (package-wide convention)**
+- `Learning` = progress ratio **LR** in `(0,1]` (e.g. `0.85` = 85%)
+- `b = log(Learning)/log(2)` (negative when there is learning)
+- `InitialEffort` = first‑unit cost `C₁`
+
+**Implementation returns cumulative total cost (cumulative‑average form):**
+```math
+\\mathrm{Total}(N)=C_1\\,N^{\\,b+1},\\qquad b=\\frac{\\log(\\mathrm{LR})}{\\log 2}
+```
+**Unit‑cost form (reference):**
+```math
+C_N = C_1\\,N^{\\,b}
+```
+
+**When to Use**
+- When historical data show a smooth, predictable decline in unit costs as production doubles.
+
+**When to Avoid**
+- When cost reductions occur in discrete steps or when the production process experiences structural changes.
+"""
 struct WrightMethod <: LearningCurveMethod end
 
-"""Crawford’s learning-curve method."""
+"""
+Crawford learning curve method.
+
+    struct CrawfordMethod <: LearningCurveMethod end
+
+Crawford models per‑unit learning discretely and accumulates unit costs.
+
+**Parameters**
+- `Learning` = progress ratio **LR** in `(0,1]`
+- `b = log(Learning)/log(2)`
+- `InitialEffort` = first‑unit cost `C₁`
+
+**Implementation returns cumulative total cost (discrete sum):**
+```math
+\\mathrm{Total}(N)=\\sum_{i=1}^N C_1\\, i^{\\,b}
+```
+**Per‑unit cost (reference):** 
+```math
+C_i = C_1\\, i^{\\,b}
+```
+"""
 struct CrawfordMethod <: LearningCurveMethod end
 
-"""Experience curve learning method."""
+"""
+Experience learning curve method.
+
+    struct ExperienceMethod <: LearningCurveMethod end
+
+BCG/Excel-style experience curve where the **exponent equals the progress ratio** `LR`.
+This matches spreadsheet formulas like `C1 * N^(LR)`; e.g., with `LR=0.8` the total is `C1 * N^0.8`.
+
+**Parameters**
+- `Learning` = progress ratio **LR** in `(0,1]`
+- `InitialEffort` = average cost at `N=1` (`\bar{C}_1`)
+
+**Implementation returns cumulative total cost:**
+```math
+\\mathrm{Total}(N)=\\bar{C}_1\\,N^{\\,\\mathrm{LR}}
+```
+
+**When to Use**
+- Strategic/competitive planning when broad efficiency improvements are observed and spreadsheet convention is desired.
+
+**When to Avoid**
+- When per‑unit discreteness dominates (see `CrawfordMethod`).
+"""
 struct ExperienceMethod <: LearningCurveMethod end
 
-#------------------------------------------------------------------------------
-# Analytic Cumulative-Cost Functions
-#------------------------------------------------------------------------------
+# =====================================================================
+# Internal helpers (not exported)
+# =====================================================================
 
+# Convert progress ratio p to slope b (for Wright & Crawford)
+_b_from_p(p::Real) = log(p) / log(2)
 
-@doc raw"""
-    lc_analytic(::WrightMethod, initial, N, α) -> Float64
+# Wright unit-increment (difference of cumulative totals)
+_wright_unit_inc(n::Real, b::Real) = n^(1+b) - (n-1)^(1+b)
 
-Compute cumulative cost using Wright’s model:
-- `initial`: base cost for first unit
-- `N`: total units
-- `α`: learning exponent (progress ratio = 2^b)
+# Two-point solver for Wright from UNIT times; returns b
+function _wright_two_point_unit_b(n1::Real, u1::Real, n2::Real, u2::Real;
+                                  tol::Real=1e-10, maxiter::Int=200)::Float64
+    @assert n1>0 && n2>0 && u1>0 && u2>0
+    R = u2 / u1
+    f(b) = log(R) - log( _wright_unit_inc(n2, b) / _wright_unit_inc(n1, b) )
 
-Formula:
-```math
-\text{Cumulative Cost}_N = \text{initial} \times \sum_{i=1}^N i^{-\alpha}
-```
-"""
-function lc_analytic(::WrightMethod, initial::Real, N::Integer, α::Real)::Float64
-    return initial * sum(i^(-α) for i in 1:N)
+    # Bracket then bisection
+    lo, hi = -3.0, 1.0
+    nbins = 80
+    xs = range(lo, hi; length=nbins)
+    vals = [f(x) for x in xs]
+    bracket = false
+    a = xs[1]; fa = vals[1]
+    for (x, fx) in zip(xs[2:end], vals[2:end])
+        if fa * fx < 0
+            lo = a; hi = x; bracket = true; break
+        end
+        a = x; fa = fx
+    end
+    b_est = 0.0
+    if bracket
+        a = lo; b = hi; fa = f(a); fb = f(b)
+        iter = 0
+        while iter < maxiter && (b - a) > tol
+            m = (a + b) / 2
+            fm = f(m)
+            if fa * fm <= 0
+                b = m; fb = fm
+            else
+                a = m; fa = fm
+            end
+            iter += 1
+        end
+        b_est = (a + b) / 2
+    else
+        # fallback: secant from endpoints
+        x0, x1 = lo, hi
+        f0, f1 = f(x0), f(x1)
+        iter = 0
+        while iter < maxiter && abs(x1 - x0) > tol
+            denom = (f1 - f0)
+            if abs(denom) < 1e-16
+                break
+            end
+            x2 = x1 - f1 * (x1 - x0) / denom
+            x0, f0, x1, f1 = x1, f1, x2, f(x2)
+            iter += 1
+        end
+        b_est = x1
+    end
+    return b_est
 end
 
-@doc raw"""
-    lc_analytic(::CrawfordMethod, initial, N, α) -> Float64
-
-Compute cumulative cost using Crawford’s model (same analytic form as Wright):
-- Uses batch-average reduction.
-
-Formula:
-```math
-\text{Cumulative Cost}_N = \text{initial} \times \sum_{i=1}^N i^{-\alpha}
-```
-"""
-lc_analytic(::CrawfordMethod, initial::Real, N::Integer, α::Real) = lc_analytic(WrightMethod(), initial, N, α)
-
-@doc raw"""
-    lc_analytic(::ExperienceMethod, initial_avg, N, α) -> Float64
-
-Compute cumulative cost using Experience curve:
-- `initial_avg`: average cost per unit at unit 1
-- `N`: total units
-- `α`: learning exponent
-
-Formula:
-```math
-\text{Cumulative Cost}_N = (\text{initial\_avg} \times N^{-\alpha}) \times N
-```
-"""
-function lc_analytic(::ExperienceMethod, initial_avg::Real, N::Integer, α::Real)::Float64
-    avgN = initial_avg * N^(-α)
-    return avgN * N
+# Fit Wright AVG on vectors via log-log least squares; returns (a,b,p,sse)
+function _fit_wright_avg(ns::AbstractVector, ys::AbstractVector)
+    ns = collect(ns); ys = collect(ys)
+    @assert length(ns) == length(ys) ≥ 2 "Need at least two points"
+    @assert all(ns .> 0) && all(ys .> 0)
+    X = [ones(length(ns)) log.(ns)]
+    θ = X \ log.(ys)
+    loga, b = θ
+    a = exp(loga)
+    yhat = a .* (ns .^ b)
+    sse = sum((ys .- yhat).^2)
+    return a, b, 2.0^b, sse
 end
 
-#------------------------------------------------------------------------------
-# Two-Point Learning-Rate Estimation
-#------------------------------------------------------------------------------
-
-
-@doc raw"""
-    learn_rate(method, ...) -> Float64
-
-Summary of two-point learning rate formulas:
-
-- Wright:  $b = \frac{\log(x_2/x_1)}{\log(n_2/n_1)}$  (progress ratio $2^b$)
-- Crawford:  $a_1 = T_1/n_1$, $a_2 = T_2/n_2$, $b = \frac{\log(a_2/a_1)}{\log(n_2/n_1)}$  (progress ratio $2^b$)
-- Experience:  $b = \frac{\log(\text{avg}_2/\text{avg}_1)}{\log(n_2/n_1)}$  (progress ratio $2^b$)
-
-See method-specific docstrings below for details.
-"""
-
-@doc raw"""
-    learn_rate(::WrightMethod, n1, x1, n2, x2) -> Float64
-
-Two-point fit for Wright’s method:
-- `n1`, `n2`: unit indices
-- `x1`, `x2`: time for nth unit
-
-Formula:
-```math
-b = \frac{\log(x_2/x_1)}{\log(n_2/n_1)}
-```
-Returns progress ratio: ``2^b``
-"""
-function learn_rate(::WrightMethod, n1::Real, x1::Real, n2::Real, x2::Real)::Float64
-    b = (log(x2) - log(x1)) / (log(n2) - log(n1))
-    return 2.0^b
+# Fit Wright UNIT on vectors by searching over b and LS for a; returns (a,b,p,sse)
+function _fit_wright_unit(ns::AbstractVector, ys::AbstractVector)
+    ns = collect(ns); ys = collect(ys)
+    @assert length(ns) == length(ys) ≥ 2 "Need at least two points"
+    @assert all(ns .> 0) && all(ys .> 0)
+    function sse_for_b(b)
+        F = _wright_unit_inc.(ns, b)
+        denom = sum(F.^2)
+        if denom ≤ 0
+            return Inf, 0.0, F
+        end
+        a = sum(F .* ys) / denom
+        yhat = a .* F
+        return sum((ys .- yhat).^2), a, F
+    end
+    bgrid = range(-2.5, 0.5; length=121)
+    best_sse = Inf; best_b = -0.3; best_a = NaN
+    for b in bgrid
+        sse, a, _ = sse_for_b(b)
+        if sse < best_sse
+            best_sse = sse; best_b = b; best_a = a
+        end
+    end
+    # refine locally
+    for δ in (0.1, 0.05, 0.02, 0.01, 0.005)
+        for b in (best_b-δ):δ/10:(best_b+δ)
+            sse, a, _ = sse_for_b(b)
+            if sse < best_sse
+                best_sse = sse; best_b = b; best_a = a
+            end
+        end
+    end
+    return best_a, best_b, 2.0^best_b, best_sse
 end
 
-@doc raw"""
-    learn_rate(::CrawfordMethod, n1, T1, n2, T2) -> Float64
+# =====================================================================
+# Analytic cumulative‑cost functions
+# =====================================================================
 
-Two-point fit for Crawford’s method:
-- `n1`, `n2`: batch sizes
-- `T1`, `T2`: total times for each batch
-
-Formula:
-```math
-a_1 = \frac{T_1}{n_1},\quad a_2 = \frac{T_2}{n_2}
-```
-```math
-b = \frac{\log(a_2/a_1)}{\log(n_2/n_1)}
-```
-Returns progress ratio: ``2^b``
 """
-function learn_rate(::CrawfordMethod, n1::Real, T1::Real, n2::Real, T2::Real)::Float64
-    a1 = T1 / n1
-    a2 = T2 / n2
-    b  = (log(a2) - log(a1)) / (log(n2) - log(n1))
-    return 2.0^b
+    lc_analytic(::ExperienceMethod, InitialEffort, TotalUnits, Learning)
+
+Returns the **cumulative total cost** using the Excel/BCG convention where the
+**exponent equals the progress ratio** `LR`:
+
+```math
+\\mathrm{Total}(N)=\\bar{C}_1\\,N^{\\,\\mathrm{LR}}
+```
+"""
+function lc_analytic(::ExperienceMethod, InitialEffort::Real, TotalUnits::Integer, Learning::Real)
+    @assert TotalUnits ≥ 0 "TotalUnits must be non‑negative"
+    @assert 0 < Learning ≤ 1 "Experience Learning (progress ratio) must be in (0,1]"
+    return InitialEffort * (TotalUnits ^ Learning)
 end
 
-@doc raw"""
+"""
+    lc_analytic(::WrightMethod, InitialEffort, TotalUnits, Learning)
+
+Returns the **cumulative total cost up to `TotalUnits`** for Wright’s cumulative‑average model
+with progress ratio `LR` (`b = log(LR)/log 2`):
+
+```math
+\\mathrm{Total}(N)=C_1\\,N^{\\,b+1}
+```
+"""
+function lc_analytic(::WrightMethod, InitialEffort::Real, TotalUnits::Integer, Learning::Real)
+    @assert TotalUnits ≥ 0 "TotalUnits must be non‑negative"
+    @assert 0 < Learning ≤ 1 "Wright Learning (progress ratio) must be in (0,1]"
+    b = _b_from_p(Learning)
+    return InitialEffort * (TotalUnits ^ (1 + b))
+end
+
+"""
+    lc_analytic(::CrawfordMethod, InitialEffort, TotalUnits, Learning)
+
+Returns the **cumulative total cost up to `TotalUnits`** for Crawford’s discrete unit model:
+
+```math
+\\mathrm{Total}(N)=\\sum_{i=1}^{N} C_1\\, i^{\\,b},\\qquad b=\\frac{\\log(\\mathrm{LR})}{\\log 2}
+```
+"""
+function lc_analytic(::CrawfordMethod, InitialEffort::Real, TotalUnits::Integer, Learning::Real)
+    @assert TotalUnits ≥ 0 "TotalUnits must be non‑negative"
+    @assert 0 < Learning ≤ 1 "Crawford Learning (progress ratio) must be in (0,1]"
+    b = _b_from_p(Learning)
+    total = 0.0
+    for i in 1:TotalUnits
+        total += InitialEffort * (i ^ b)
+    end
+    return total
+end
+
+# =====================================================================
+# Two‑point learning‑rate estimation (public API)
+# =====================================================================
+
+"""
+    learn_rate(::WrightMethod, n1, y1, n2, y2; mode=:avg) -> Float64
+
+Estimate Wright **progress ratio** `p` from two observations.
+
+- If `mode = :avg` (default), `y` values are **cumulative averages** at `n1` and `n2`:
+```math
+b = \\frac{\\ln(y_2/y_1)}{\\ln(n_2/n_1)}, \\quad p = 2^b.
+```
+- If `mode = :unit`, `y` values are **unit times** at `n1` and `n2`. The function solves
+for `b` from the unit‑increment relation and returns `p = 2^b`.
+"""
+function learn_rate(::WrightMethod, n1::Real, y1::Real, n2::Real, y2::Real; mode::Symbol=:avg)::Float64
+    @assert n1>0 && n2>0 && y1>0 && y2>0
+    if mode === :avg
+        b = (log(y2) - log(y1)) / (log(n2) - log(n1))
+        return 2.0 ^ b
+    elseif mode === :unit
+        b = _wright_two_point_unit_b(n1, y1, n2, y2)
+        return 2.0 ^ b
+    else
+        error("For two points, set mode=:avg (cumulative averages) or :unit (unit times)." )
+    end
+end
+
+"""
+    learn_rate(::WrightMethod, n::AbstractVector, y::AbstractVector; mode=:auto) -> Float64
+
+Estimate Wright **progress ratio** `p` from ≥3 points. If `mode = :auto` (default),
+fits both average and unit models and picks the lower SSE. Set `mode=:avg` or
+`:unit` to force a specific interpretation.
+"""
+function learn_rate(::WrightMethod, n::AbstractVector, y::AbstractVector; mode::Symbol=:auto)::Float64
+    if mode === :avg
+        _, _, p, _ = _fit_wright_avg(n, y)
+        return p
+    elseif mode === :unit
+        _, _, p, _ = _fit_wright_unit(n, y)
+        return p
+    else
+        # auto
+        _, _, p_avg, sse_avg  = _fit_wright_avg(n, y)
+        _, _, p_unit, sse_unit = _fit_wright_unit(n, y)
+        return sse_avg ≤ sse_unit ? p_avg : p_unit
+    end
+end
+
+"""
+    learn_rate(::CrawfordMethod, i1, y1, i2, y2) -> Float64
+
+Two‑point fit for Crawford’s **unit** model using **per‑unit** costs
+`y(i) = a i^b`. With two observations `(i₁, y₁)` and `(i₂, y₂)`:
+```math
+b = \\frac{\\ln(y_2/y_1)}{\\ln(i_2/i_1)}, \\quad p = 2^b.
+```
+Returns the learning rate `p`.
+"""
+function learn_rate(::CrawfordMethod, i1::Real, y1::Real, i2::Real, y2::Real)::Float64
+    b  = (log(y2) - log(y1)) / (log(i2) - log(i1))
+    return 2.0 ^ b
+end
+
+"""
     learn_rate(::ExperienceMethod, n1, avg1, n2, avg2) -> Float64
 
-Two-point fit for Experience curve:
-- `n1`, `n2`: cumulative units
-- `avg1`, `avg2`: cumulative average cost/time
-
-Formula:
+Two‑point fit for the Experience curve under the Excel/BCG convention where the
+**exponent equals LR**. Given cumulative **totals** `T(N) = \bar{C}_1 N^{LR}`, the
+average at `N` is `avg(N) = T(N)/N = \bar{C}_1 N^{LR-1}`. Using averages:
 ```math
-b = \frac{\log(\text{avg}_2/\text{avg}_1)}{\log(n_2/n_1)}
+LR = 1 + \\frac{\\ln(\\mathrm{avg}_2/\\mathrm{avg}_1)}{\\ln(n_2/n_1)}.
 ```
-Returns progress ratio: ``2^b``
+Returns `LR` (e.g., `0.8`).
 """
 function learn_rate(::ExperienceMethod, n1::Real, avg1::Real, n2::Real, avg2::Real)::Float64
-    b = (log(avg2) - log(avg1)) / (log(n2) - log(n1))
-    return 2.0^b
+    LR = 1 + (log(avg2) - log(avg1)) / (log(n2) - log(n1))
+    return LR
 end
 
-#------------------------------------------------------------------------------
-# Curve Generation and Fitting
-#------------------------------------------------------------------------------
-
-@doc raw"""
-    lc_fit(method, x1, n1, n2, x2) -> Tuple{Float64,Float64}
-
-Fit power-law slope b and progress ratio for any method using two points:
-- `x1` at `n1`, `x2` at `n2`.
-Returns `(b, 2^b)`.
 """
-function lc_fit(::LearningCurveMethod, x1::Real, n1::Real, n2::Real, x2::Real)
+    lc_fit(::LearningCurveMethod, n1, x1, n2, x2) -> (b, p)
+
+Generic two‑point fit for a power law `x = a n^b`. Returns the slope `b` and
+the progress ratio `p = 2^b`.
+"""
+function lc_fit(::LearningCurveMethod, n1::Real, x1::Real, n2::Real, x2::Real)
     b = (log(x2) - log(x1)) / (log(n2) - log(n1))
-    return b, 2.0^b
+    return b, 2.0 ^ b
 end
 
-@doc raw"""
-    lc_curve(method, x1, n1, n2, x2; steps) -> DataFrame
+# =====================================================================
+# Curve generation
+# =====================================================================
 
-Generate DataFrame of time per unit across `steps` points between `n1` and `n2`:
-- `x1` at `n1`, slope b from two-point fit, then x(n) = x1*(n/n1)^b.
 """
-function lc_curve(::LearningCurveMethod, x1::Real, n1::Real, n2::Real, x2::Real; steps::Int=100)::DataFrame
-    b = (log(x2) - log(x1)) / (log(n2) - log(n1))
-    ns = range(n1, n2, length=steps)
-    xs = x1 .* (ns ./ n1) .^ b
-    return DataFrame(Units=collect(ns), Time=collect(xs))
-end
+    lc_curve(method::LearningCurveMethod,
+             InitialEffort::Real,
+             StartUnit::Integer,
+             TotalUnits::Integer,
+             Learning::Real;
+             steps::Integer=1) -> DataFrame
 
-#------------------------------------------------------------------------------
-# Comparison of Cumulative Costs Across Learning Rates
-#------------------------------------------------------------------------------
+Build a table of cumulative and per-unit costs.
 
-@doc raw"""
-    learn_rates(initial, N; α_step) -> DataFrame
+Columns:
+- `Units` — cumulative units at this row
+- `CumulativeCost` — total cost up to `Units`
+- `Incremental` — incremental cost over the last `steps` units
+- `AvgCost` — cumulative average cost up to `Units`
+- `Method` — method name
 
-Compare cumulative cost at total units `N` across methods for learning exponents from 0 to 1:
-- `initial` cost parameter
-- `N` total units
-- `α_step`: increment for the learning exponent scan
-
-Returns DataFrame with columns `:α`, `:Wright`, `:Crawford`, `:Experience`.
+Notes on `Incremental`:
+- **Wright** uses block-difference of `C_1 N^{b+1}` divided by `steps`.
+- **Crawford** uses the average of unit costs `C_1 i^b` over the block.
+- **Experience** uses block-difference of `\bar{C}_1 N^{LR}` divided by `steps`.
 """
-function learn_rates(initial::Real, N::Integer; α_step::Real=0.1)::DataFrame
-    df = DataFrame(α=Float64[], Wright=Float64[], Crawford=Float64[], Experience=Float64[])
-    for α in 0:α_step:1
-        w = lc_analytic(WrightMethod(), initial, N, α)
-        c = lc_analytic(CrawfordMethod(), initial, N, α)
-        e = lc_analytic(ExperienceMethod(), initial, N, α)
-        push!(df, (α, w, c, e))
+function lc_curve(method::LearningCurveMethod,
+                  InitialEffort::Real,
+                  StartUnit::Integer,
+                  TotalUnits::Integer,
+                  Learning::Real; steps::Integer=1)
+
+    @assert StartUnit ≥ 1 "StartUnit must be ≥ 1"
+    @assert TotalUnits ≥ StartUnit "TotalUnits must be ≥ StartUnit"
+    @assert steps ≥ 1 "steps must be ≥ 1"
+
+    df = DataFrame(Units=Float64[], CumulativeCost=Float64[],
+                   Incremental=Float64[], AvgCost=Float64[], Method=String[])
+
+    if method isa WrightMethod
+        method_str = "Wright"
+    elseif method isa CrawfordMethod
+        method_str = "Crawford"
+    elseif method isa ExperienceMethod
+        method_str = "Experience"
+    else
+        method_str = "Unknown"
     end
+
+    for n in StartUnit:steps:TotalUnits
+        cp = lc_analytic(method, InitialEffort, n, Learning)
+        avg = cp / n
+
+        inc = 0.0
+        if method isa WrightMethod
+            b = _b_from_p(Learning)
+            total = InitialEffort * (n ^ (1 + b))
+            prior_total = n - steps ≥ 1 ? InitialEffort * ((n - steps) ^ (1 + b)) : 0.0
+            inc = (total - prior_total) / steps
+        elseif method isa CrawfordMethod
+            b = _b_from_p(Learning)
+            s = 0.0
+            for i in max(1, n - steps + 1):n
+                s += InitialEffort * (i ^ b)
+            end
+            inc = s / steps
+        elseif method isa ExperienceMethod
+            prior = n - steps ≥ 1 ? InitialEffort * ((n - steps) ^ Learning) : 0.0
+            inc = (InitialEffort * (n ^ Learning) - prior) / steps
+        else
+            inc = 0.0  # fallback for unknown methods
+        end
+
+        push!(df, (float(n), cp, inc, avg, method_str))
+    end
+
     return df
 end
 
-end # module
+# =====================================================================
+# Comparison across learning ratios
+# =====================================================================
+
+
+"""
+    learn_rates(InitialEffort, TotalUnits; α_step=0.1) -> DataFrame
+
+Compare cumulative total cost across methods for a sweep of learning rates `LR` in `(0,1]`.
+
+- Wright: `C_1 * N^(1 + b)` with `b = log(LR)/log 2`
+- Crawford: `∑ C_1 * i^b` with `b = log(LR)/log 2`
+- Experience: `\bar{C}_1 * N^(LR)`
+"""
+function learn_rates(InitialEffort::Real, TotalUnits::Integer; α_step::Real=0.1)::DataFrame
+    @assert 0 < α_step ≤ 1 "α_step must be in (0,1]"
+    df = DataFrame(LC=Float64[], Wright=Float64[], Crawford=Float64[], Experience=Float64[])
+    for lc in α_step:α_step:1.0
+        w_cost = lc_analytic(WrightMethod(),    InitialEffort, TotalUnits, lc)
+        c_cost = lc_analytic(CrawfordMethod(),  InitialEffort, TotalUnits, lc)
+        e_cost = lc_analytic(ExperienceMethod(),InitialEffort, TotalUnits, lc)
+        push!(df, (lc, w_cost, c_cost, e_cost))
+    end
+    sort!(df, :LC, rev=true)
+    return df
+end
+
+#end # module

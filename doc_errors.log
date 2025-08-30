@@ -1,12 +1,3 @@
-┌ Debug: getting prompt info failed
-│   exception = (MethodError(REPL.LineEdit.write_prompt, (Base.TTY(Base.Libc.WindowsRawSocket(0x0000000000000278) open, 0 bytes waiting), "Prompt(\"julia> \",...)"), 0x0000000000006977), Union{Ptr{Nothing}, Base.InterpreterIP}[Ptr{Nothing} @0x00007ffce17814fc, Ptr{Nothing} @0x00007ffce178a1e5, Ptr{Nothing} @0x00007ffce178a3cd, Ptr{Nothing} @0x00007ffce178d5bd, Ptr{Nothing} @0x0000015989b6dc84, Ptr{Nothing} @0x0000015989b6e0cf, Ptr{Nothing} @0x0000015989b6edf4, Ptr{Nothing} @0x0000015989b6ffbb, Ptr{Nothing} @0x0000015989b700df, Ptr{Nothing} @0x00007ffce179959b, Ptr{Nothing} @0x0000015989b03dce, Ptr{Nothing} @0x0000015989b03e0b, Ptr{Nothing} @0x00007ffce179ba42, Ptr{Nothing} @0x0000015989ac5ebb, Ptr{Nothing} @0x0000015989ac6124, Ptr{Nothing} @0x00007ffce17b2e03])
-└ @ VSCodeServer c:\Users\EricTorkia\.vscode\extensions\julialang.language-julia-1.149.2\scripts\packages\VSCodeServer\src\eval.jl:165
-┌ Debug: getting prompt info failed
-│   exception = (MethodError(REPL.LineEdit.write_prompt, (Base.TTY(Base.Libc.WindowsRawSocket(0x0000000000000278) open, 0 bytes waiting), "Prompt(\"julia> \",...)"), 0x0000000000006977), Union{Ptr{Nothing}, Base.InterpreterIP}[Ptr{Nothing} @0x00007ffce17814fc, Ptr{Nothing} @0x00007ffce178a1e5, Ptr{Nothing} @0x00007ffce178a3cd, Ptr{Nothing} @0x00007ffce178d5bd, Ptr{Nothing} @0x0000015989b6dc84, Ptr{Nothing} @0x0000015989b6e0cf, Ptr{Nothing} @0x0000015989b6edf4, Ptr{Nothing} @0x0000015989b6ffbb, Ptr{Nothing} @0x0000015989b700df, Ptr{Nothing} @0x00007ffce179959b, Ptr{Nothing} @0x0000015989b03dce, Ptr{Nothing} @0x0000015989b03e0b, Ptr{Nothing} @0x00007ffce179ba42, Ptr{Nothing} @0x0000015989ac5ebb, Ptr{Nothing} @0x0000015989ac6124, Ptr{Nothing} @0x00007ffce17b2e03])
-└ @ VSCodeServer c:\Users\EricTorkia\.vscode\extensions\julialang.language-julia-1.149.2\scripts\packages\VSCodeServer\src\eval.jl:165
-┌ Debug: getting prompt info failed
-│   exception = (MethodError(REPL.LineEdit.write_prompt, (Base.TTY(Base.Libc.WindowsRawSocket(0x0000000000000278) open, 0 bytes waiting), "Prompt(\"julia> \",...)"), 0x0000000000006978), Union{Ptr{Nothing}, Base.InterpreterIP}[Ptr{Nothing} @0x00007ffce17814fc, Ptr{Nothing} @0x00007ffce178a1e5, Ptr{Nothing} @0x00007ffce178a3cd, Ptr{Nothing} @0x00007ffce178d5bd, Ptr{Nothing} @0x0000015989b6dc84, Ptr{Nothing} @0x0000015989b6e0cf, Ptr{Nothing} @0x0000015989b6edf4, Ptr{Nothing} @0x0000015989b6ffbb, Ptr{Nothing} @0x0000015989b700df, Ptr{Nothing} @0x00007ffce179959b, Ptr{Nothing} @0x0000015989b03dce, Ptr{Nothing} @0x0000015989b03e0b, Ptr{Nothing} @0x00007ffce179ba42, Ptr{Nothing} @0x0000015989ac5ebb, Ptr{Nothing} @0x0000015989ac6124, Ptr{Nothing} @0x00007ffce17b2e03])
-└ @ VSCodeServer c:\Users\EricTorkia\.vscode\extensions\julialang.language-julia-1.149.2\scripts\packages\VSCodeServer\src\eval.jl:165
 ┌ Debug: interpret_repo_and_remotes
 │   remotes_checked = Documenter.RemoteRepository[]
 │   repo_normalized = nothing
@@ -22,7 +13,7 @@
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:639
 ┌ Debug: Document: remotes
 │   remote = Documenter.Remotes.GitHub("etorkia", "mc_hammer")
-│   remotes = Documenter.RemoteRepository[Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "0565a3e942274b1779ac6814cf9d32cafdedd540")]
+│   remotes = Documenter.RemoteRepository[Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481")]
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:434
 ┌ Info: SetupBuildDirectory: setting up build directory.
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\builder_pipeline.jl:75
@@ -93,94 +84,92 @@
 │ density_chrt(dist, "The Standard Normal")
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\expander_pipeline.jl:816
 ┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\3af036b12a076c2d4c042dde6d956ef4eac2c2ce\bin)
-└ @ GR C:\Users\EricTorkia\.julia\packages\GR\A0sha\src\funcptrs.jl:56
+└ @ GR C:\Users\EricTorkia\.julia\packages\GR\s7T1Y\src\funcptrs.jl:56
+┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\AppData\Local\Programs\Julia-1.11.4\bin)
+└ @ GR C:\Users\EricTorkia\.julia\packages\GR\s7T1Y\src\funcptrs.jl:56
 ┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\1da3b3a2698813adf2b925c46aa2d68ec8474449\bin)
-└ @ GR C:\Users\EricTorkia\.julia\packages\GR\A0sha\src\funcptrs.jl:56
-┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\b0ebd74eb8afa6bfc460434bbc19c05b059cf4fe\bin)
-└ @ GR C:\Users\EricTorkia\.julia\packages\GR\A0sha\src\funcptrs.jl:56
-┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\AppData\Local\Programs\Julia-1.11.4\bin)
-└ @ GR C:\Users\EricTorkia\.julia\packages\GR\A0sha\src\funcptrs.jl:56
-┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\378a1ade57bc1deb1c579da47331dd9657bded3a\bin)
-└ @ GR C:\Users\EricTorkia\.julia\packages\GR\A0sha\src\funcptrs.jl:56
-┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\f9f799e6ae3fe7f244bb55052db7ff1cea876c27\bin)
-└ @ GR C:\Users\EricTorkia\.julia\packages\GR\A0sha\src\funcptrs.jl:56
-┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\7de578e660d4ad9f8ddbe10244cc8730d674b85c\bin)
-└ @ GR C:\Users\EricTorkia\.julia\packages\GR\A0sha\src\funcptrs.jl:56
+└ @ GR C:\Users\EricTorkia\.julia\packages\GR\s7T1Y\src\funcptrs.jl:56
+┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\58a307887a7b823f6a7cac7e6337710ec14aced2\bin)
+└ @ GR C:\Users\EricTorkia\.julia\packages\GR\s7T1Y\src\funcptrs.jl:56
+┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\df4cc9189a878ad66ad99fed70ece5cf4e45b246\bin)
+└ @ GR C:\Users\EricTorkia\.julia\packages\GR\s7T1Y\src\funcptrs.jl:56
+┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\c3147644202f8802c6131410ffd73f7e41db31f8\bin)
+└ @ GR C:\Users\EricTorkia\.julia\packages\GR\s7T1Y\src\funcptrs.jl:56
 ┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\fcc05863e77d0e700007d714ef7304c87b39d10e\bin)
-└ @ GR C:\Users\EricTorkia\.julia\packages\GR\A0sha\src\funcptrs.jl:56
-┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\642b74e2606de71e0cd0f8cf9827fc6a2eb2b900\bin)
-└ @ GR C:\Users\EricTorkia\.julia\packages\GR\A0sha\src\funcptrs.jl:56
+└ @ GR C:\Users\EricTorkia\.julia\packages\GR\s7T1Y\src\funcptrs.jl:56
+┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\166f431d14e588224598f7952888bb847a545ac6\bin)
+└ @ GR C:\Users\EricTorkia\.julia\packages\GR\s7T1Y\src\funcptrs.jl:56
 ┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\13e3cf8e6f38d3b6418b758bb68cb8b149c28251\bin)
-└ @ GR C:\Users\EricTorkia\.julia\packages\GR\A0sha\src\funcptrs.jl:56
-┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\abe9a24d2f229d936a82fa861765024908b5566b\bin)
-└ @ GR C:\Users\EricTorkia\.julia\packages\GR\A0sha\src\funcptrs.jl:56
-┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\7a0bb5e45d4299e0335822c903fe5bb9ffe32fdd\bin)
-└ @ GR C:\Users\EricTorkia\.julia\packages\GR\A0sha\src\funcptrs.jl:56
+└ @ GR C:\Users\EricTorkia\.julia\packages\GR\s7T1Y\src\funcptrs.jl:56
+┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\51e4c0b5a201939ab2352553b85f5d0932d5cf03\bin)
+└ @ GR C:\Users\EricTorkia\.julia\packages\GR\s7T1Y\src\funcptrs.jl:56
+┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\cb74fa09f359d430ea01be69a61cd98b50ec8c22\bin)
+└ @ GR C:\Users\EricTorkia\.julia\packages\GR\s7T1Y\src\funcptrs.jl:56
 ┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\6e310796647a1c58e5873a7ab7ad32b8e60dea3f\bin)
-└ @ GR C:\Users\EricTorkia\.julia\packages\GR\A0sha\src\funcptrs.jl:56
-┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\e548a4cdf6502ce72ec0201b72c6b12bc4b7d2a4\bin)
-└ @ GR C:\Users\EricTorkia\.julia\packages\GR\A0sha\src\funcptrs.jl:56
+└ @ GR C:\Users\EricTorkia\.julia\packages\GR\s7T1Y\src\funcptrs.jl:56
+┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\d119ba6f3cc7e3fb09a8bb637f705bf9d9982000\bin)
+└ @ GR C:\Users\EricTorkia\.julia\packages\GR\s7T1Y\src\funcptrs.jl:56
 ┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\ce4261864aeaa78b205a3f6fb750be4c4afe9b4b\bin)
-└ @ GR C:\Users\EricTorkia\.julia\packages\GR\A0sha\src\funcptrs.jl:56
+└ @ GR C:\Users\EricTorkia\.julia\packages\GR\s7T1Y\src\funcptrs.jl:56
 ┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\ec3406e9ba84281719f20b0fb3a874c9e3bac027\bin)
-└ @ GR C:\Users\EricTorkia\.julia\packages\GR\A0sha\src\funcptrs.jl:56
-┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\2ccf31673883b692ebc17f11ce212bb37ea940aa\bin)
-└ @ GR C:\Users\EricTorkia\.julia\packages\GR\A0sha\src\funcptrs.jl:56
-┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\ba086fd5c33e4739579fd912fe0be3c73684998a\bin)
-└ @ GR C:\Users\EricTorkia\.julia\packages\GR\A0sha\src\funcptrs.jl:56
-┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\8534fc77f690d6336c7e58fe7c8d213167c8bd17\bin)
-└ @ GR C:\Users\EricTorkia\.julia\packages\GR\A0sha\src\funcptrs.jl:56
+└ @ GR C:\Users\EricTorkia\.julia\packages\GR\s7T1Y\src\funcptrs.jl:56
+┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\8d9f87bf9e08a0e0db47c0ab531ee29fff143eee\bin)
+└ @ GR C:\Users\EricTorkia\.julia\packages\GR\s7T1Y\src\funcptrs.jl:56
+┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\41cbcbec1d1b6ca0484999b1db571f8066f29233\bin)
+└ @ GR C:\Users\EricTorkia\.julia\packages\GR\s7T1Y\src\funcptrs.jl:56
+┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\5c7df64500371e5ab4723fe2fc999b996aa8f3a7\bin)
+└ @ GR C:\Users\EricTorkia\.julia\packages\GR\s7T1Y\src\funcptrs.jl:56
 ┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\81ad3b6f8af8fa057c1a9640ca91454b669b342b\bin)
-└ @ GR C:\Users\EricTorkia\.julia\packages\GR\A0sha\src\funcptrs.jl:56
-┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\6f5e7c4e3249d2073c64e6beaa3abcd7ae4fa9bc\bin)
-└ @ GR C:\Users\EricTorkia\.julia\packages\GR\A0sha\src\funcptrs.jl:56
-┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\d838c1b0d7cc2560e308446cf9aa985c46b01a8f\bin)
-└ @ GR C:\Users\EricTorkia\.julia\packages\GR\A0sha\src\funcptrs.jl:56
-┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\b6996b88c9d4f2b3ac5d2ab78ea0cc9b2573bc75\bin)
-└ @ GR C:\Users\EricTorkia\.julia\packages\GR\A0sha\src\funcptrs.jl:56
-┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\c6e48d3563556547ad4cc0021c2cffa066a079df\bin)
-└ @ GR C:\Users\EricTorkia\.julia\packages\GR\A0sha\src\funcptrs.jl:56
-┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\da2e0ac84abbe712490f8ee73aca3d512f1eaaab\bin)
-└ @ GR C:\Users\EricTorkia\.julia\packages\GR\A0sha\src\funcptrs.jl:56
-┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\98e6bed8a4d660954f8d8b4044b38560eb5e5bb6\bin)
-└ @ GR C:\Users\EricTorkia\.julia\packages\GR\A0sha\src\funcptrs.jl:56
-┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\fb9a8380891be8f2464dd29539924a67e159c5e7\bin)
-└ @ GR C:\Users\EricTorkia\.julia\packages\GR\A0sha\src\funcptrs.jl:56
-┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\3ac49f33c861f2eb1afea813bec920729529c0e0\bin)
-└ @ GR C:\Users\EricTorkia\.julia\packages\GR\A0sha\src\funcptrs.jl:56
+└ @ GR C:\Users\EricTorkia\.julia\packages\GR\s7T1Y\src\funcptrs.jl:56
+┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\8258f1ad1bf2f9853eb157e9d4b755f0e427a0ea\bin)
+└ @ GR C:\Users\EricTorkia\.julia\packages\GR\s7T1Y\src\funcptrs.jl:56
+┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\25bfd4c7adfcd3cb3399a7c509ec239a32c247f3\bin)
+└ @ GR C:\Users\EricTorkia\.julia\packages\GR\s7T1Y\src\funcptrs.jl:56
+┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\45c659a2370bbaa5bee3c0ed364427d4c33552db\bin)
+└ @ GR C:\Users\EricTorkia\.julia\packages\GR\s7T1Y\src\funcptrs.jl:56
+┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\98941fbb5eed27cef1d77fa8710290bc197dd24f\bin)
+└ @ GR C:\Users\EricTorkia\.julia\packages\GR\s7T1Y\src\funcptrs.jl:56
+┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\ba2dc75245508e0cf0c860081b2f2fd10bdf4357\bin)
+└ @ GR C:\Users\EricTorkia\.julia\packages\GR\s7T1Y\src\funcptrs.jl:56
+┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\a2b7bddf24b04fe5cf3e6d40e0527451b3439d23\bin)
+└ @ GR C:\Users\EricTorkia\.julia\packages\GR\s7T1Y\src\funcptrs.jl:56
+┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\7e207f56275705f9cbc88b826acd28ea0e40f1ae\bin)
+└ @ GR C:\Users\EricTorkia\.julia\packages\GR\s7T1Y\src\funcptrs.jl:56
+┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\8f71eb37d5b304026b6363d835f8c65ff1920339\bin)
+└ @ GR C:\Users\EricTorkia\.julia\packages\GR\s7T1Y\src\funcptrs.jl:56
 ┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\02775a21e94cac114e07abbcf93b4d00c82a58e2\bin)
-└ @ GR C:\Users\EricTorkia\.julia\packages\GR\A0sha\src\funcptrs.jl:56
-┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\ce1752fb83841fee6b176fa9d56adbf59961663d\bin)
-└ @ GR C:\Users\EricTorkia\.julia\packages\GR\A0sha\src\funcptrs.jl:56
+└ @ GR C:\Users\EricTorkia\.julia\packages\GR\s7T1Y\src\funcptrs.jl:56
+┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\dcf40d7a9d26889efcb6a446b44bde1e68e7497f\bin)
+└ @ GR C:\Users\EricTorkia\.julia\packages\GR\s7T1Y\src\funcptrs.jl:56
 ┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\c2f4f3bb11c021b1508ebf8de35dde7a4f0f6723\bin)
-└ @ GR C:\Users\EricTorkia\.julia\packages\GR\A0sha\src\funcptrs.jl:56
+└ @ GR C:\Users\EricTorkia\.julia\packages\GR\s7T1Y\src\funcptrs.jl:56
 ┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\004a4c653a5364f66fd8d8c2fe9c81f3fb5ae8fe\bin)
-└ @ GR C:\Users\EricTorkia\.julia\packages\GR\A0sha\src\funcptrs.jl:56
+└ @ GR C:\Users\EricTorkia\.julia\packages\GR\s7T1Y\src\funcptrs.jl:56
 ┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\8e19ee77a5aed0ac3f6828efb9671b8c619cd27b\bin)
-└ @ GR C:\Users\EricTorkia\.julia\packages\GR\A0sha\src\funcptrs.jl:56
+└ @ GR C:\Users\EricTorkia\.julia\packages\GR\s7T1Y\src\funcptrs.jl:56
 ┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\5fefe63265b5e518250aa25b1fae792d179c0e97\bin)
-└ @ GR C:\Users\EricTorkia\.julia\packages\GR\A0sha\src\funcptrs.jl:56
+└ @ GR C:\Users\EricTorkia\.julia\packages\GR\s7T1Y\src\funcptrs.jl:56
 ┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\848dfc9dd7fae7e0a28e367b621a600925bce9dc\bin)
-└ @ GR C:\Users\EricTorkia\.julia\packages\GR\A0sha\src\funcptrs.jl:56
-┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\0394df33239f031cea08c819f7bbd8ed1b2fef7a\bin)
-└ @ GR C:\Users\EricTorkia\.julia\packages\GR\A0sha\src\funcptrs.jl:56
-┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\67de2ef2a933857373f728cdd366cc6dc9180017\bin)
-└ @ GR C:\Users\EricTorkia\.julia\packages\GR\A0sha\src\funcptrs.jl:56
+└ @ GR C:\Users\EricTorkia\.julia\packages\GR\s7T1Y\src\funcptrs.jl:56
+┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\762f4b366aa9d1f908b33813a6852d64a4d56bff\bin)
+└ @ GR C:\Users\EricTorkia\.julia\packages\GR\s7T1Y\src\funcptrs.jl:56
+┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\.julia\artifacts\a54b856f4d0dfe6301d42d55eba59ee6c86756c2\bin)
+└ @ GR C:\Users\EricTorkia\.julia\packages\GR\s7T1Y\src\funcptrs.jl:56
 ┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\AppData\Local\Programs\Julia-1.11.4\bin\..\lib\julia)
-└ @ GR C:\Users\EricTorkia\.julia\packages\GR\A0sha\src\funcptrs.jl:56
+└ @ GR C:\Users\EricTorkia\.julia\packages\GR\s7T1Y\src\funcptrs.jl:56
 ┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\AppData\Local\Programs\Julia-1.11.4\bin\..\lib)
-└ @ GR C:\Users\EricTorkia\.julia\packages\GR\A0sha\src\funcptrs.jl:56
+└ @ GR C:\Users\EricTorkia\.julia\packages\GR\s7T1Y\src\funcptrs.jl:56
 ┌ Debug: `windows`: AddDllDirectory(C:\Users\EricTorkia\AppData\Local\Programs\Julia-1.11.4\bin)
-└ @ GR C:\Users\EricTorkia\.julia\packages\GR\A0sha\src\funcptrs.jl:56
+└ @ GR C:\Users\EricTorkia\.julia\packages\GR\s7T1Y\src\funcptrs.jl:56
 ┌ Debug: Found an embedded environment
 │   mime_type[] = svg
-│   file_path[] = C:\Users\ERICTO~1\AppData\Local\Temp\jl_7u3UNIVWXs.svg
+│   file_path[] = C:\Users\ERICTO~1\AppData\Local\Temp\jl_TMRo1OzUZI.svg
 │   ENV["GKSwstype"] = svg
-│   ENV["GKS_FILEPATH"] = C:\Users\ERICTO~1\AppData\Local\Temp\jl_7u3UNIVWXs.svg
-└ @ GR C:\Users\EricTorkia\.julia\packages\GR\A0sha\src\GR.jl:364
+│   ENV["GKS_FILEPATH"] = C:\Users\ERICTO~1\AppData\Local\Temp\jl_TMRo1OzUZI.svg
+└ @ GR C:\Users\EricTorkia\.julia\packages\GR\s7T1Y\src\GR.jl:364
 ┌ Debug: Default GKS_ENCODING
 │   ENV["GKS_ENCODING"] = utf8
-└ @ GR C:\Users\EricTorkia\.julia\packages\GR\A0sha\src\GR.jl:390
+└ @ GR C:\Users\EricTorkia\.julia\packages\GR\s7T1Y\src\GR.jl:390
 ┌ Debug: Evaluating @docs block:
 │ histogram_chrt
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\expander_pipeline.jl:411
@@ -502,70 +491,93 @@
 ┌ Debug: Running ExpanderPipeline on manual\LearningCurves.md
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\expander_pipeline.jl:45
 ┌ Debug: Evaluating @setup block:
-│ using MCHammer, DataFrames, Distributions, Random, Plots
+│ using DataFrames, Distributions, Random, Plots
+│ using MCHammer
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\expander_pipeline.jl:989
 ┌ Debug: Evaluating @docs block:
-│ WrightMethod 
+│ WrightMethod
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\expander_pipeline.jl:411
 ┌ Debug: Evaluating @docs block:
-│ CrawfordMethod 
+│ CrawfordMethod
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\expander_pipeline.jl:411
 ┌ Debug: Evaluating @docs block:
 │ ExperienceMethod
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\expander_pipeline.jl:411
 ┌ Debug: Evaluating @example block:
+│ # compute the cumulative total cost for 500 units with a progress ratio of 0.85
 │ result = lc_analytic(WrightMethod(), 200, 500, 0.85)
 │ println(result)
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\expander_pipeline.jl:816
 ┌ Debug: Evaluating @example block:
-│ result = lc_analytic(CrawfordMethod(), 150, 400, 0.75)
+│ # compute the cumulative total cost for 500 units with a progress ratio of 0.85
+│ result = lc_analytic(CrawfordMethod(), 200, 500, 0.85)
+│ println(result)
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\expander_pipeline.jl:816
 ┌ Debug: Evaluating @example block:
-│ result = lc_analytic(ExperienceMethod(), 100, 1000, 0.8)
+│ # compute the cumulative total cost for 500 units with a progress ratio of 0.85
+│ result = lc_analytic(ExperienceMethod(), 200, 500, 0.85)
+│ println(result)
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\expander_pipeline.jl:816
 ┌ Debug: Evaluating @docs block:
 │ lc_curve
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\expander_pipeline.jl:411
 ┌ Debug: Evaluating @example block:
-│ df = lc_curve(WrightMethod(), 200, 500, 0.85; LotSize=25)
+│ df = lc_curve(WrightMethod(), 200, 1, 500, 0.85; steps=25)
+│ println(first(df, 5))
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\expander_pipeline.jl:816
+┌ Debug: Evaluating @example block:
+│ df = lc_curve(CrawfordMethod(), 200, 1, 500, 0.85; steps=25)
+│ println(first(df, 5))
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\expander_pipeline.jl:816
+┌ Debug: Evaluating @example block:
+│ df = lc_curve(ExperienceMethod(), 200, 1, 500, 0.85; steps=25)
 │ println(first(df, 5))
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\expander_pipeline.jl:816
 ┌ Debug: Evaluating @docs block:
 │ lc_fit
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\expander_pipeline.jl:411
 ┌ Debug: Evaluating @example block:
-│ best_fit = lc_fit(CrawfordMethod(), 150, 400; EstLC=0.75)
+│ # two observation points
+│ n1, x1 = 8, 200.0
+│ n2, x2 = 32, 140.0
+│ 
+│ # estimate (b, progress ratio) for each method using the same inputs
+│ (b_w, L_w) = lc_fit(WrightMethod(),    n1, x1, n2, x2)
+│ (b_c, L_c) = lc_fit(CrawfordMethod(),  n1, x1, n2, x2)
+│ (b_e, L_e) = lc_fit(ExperienceMethod(),n1, x1, n2, x2)
+│ 
+│ ((b_w, L_w), (b_c, L_c), (b_e, L_e))
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\expander_pipeline.jl:816
 ┌ Debug: Evaluating @docs block:
 │ learn_rate
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\expander_pipeline.jl:411
 ┌ Debug: Evaluating @example block:
-│ rate = learn_rate(WrightMethod(), 1, 2000, 144, 8000)
+│ rate = learn_rate(WrightMethod(), 1, 2000, 144, 1600)
 │ println(rate)
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\expander_pipeline.jl:816
 ┌ Debug: Evaluating @docs block:
 │ learn_rates
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\expander_pipeline.jl:411
 ┌ Debug: Evaluating @example block:
-│ rates_df = learn_rates(100, 500; LC_Step=0.05)
+│ rates_df = learn_rates(100, 500; α_step=0.05)
 │ println(first(rates_df, 5))
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\expander_pipeline.jl:816
 ┌ Debug: Evaluating @example block:
-│ using Plots
+│ # Generate sample tables for each method and plot the average cost across units.
+│ CC = lc_curve(CrawfordMethod(), 50, 1, 1000, 0.85; steps=25)
+│ WC = lc_curve(WrightMethod(), 50, 1, 1000, 0.85; steps=25)
+│ EC = lc_curve(ExperienceMethod(), 50, 1, 1000, 0.85; steps=25)
 │ 
-│ LearnRate = 0.78
-│ InitialEffort = 50
-│ Units = 1000
-│ 
-│ 
-│ CC = lc_curve(CrawfordMethod(), InitialEffort, Units, LearnRate; LotSize=25)
-│ WC = lc_curve(WrightMethod(), InitialEffort, Units, LearnRate; LotSize=25)
-│ EC = lc_curve(ExperienceMethod(), InitialEffort, Units, LearnRate; LotSize=25)
+│ # Combine the results
 │ GraphResults = vcat(CC, WC, EC)
-│ 
+│ first(GraphResults,5)
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\expander_pipeline.jl:816
+┌ Debug: Evaluating @example block:
+│ using Plots
 │ plot(GraphResults.Units, GraphResults.AvgCost, group=GraphResults.Method,
-│     xlabel="Units", ylabel="Average Cost", title="Average Cost vs Units by Method",
-│     lw=2, legend=:topright)
+│            xlabel="Units", ylabel="Average Cost per Unit", 
+│            title="Learning Curves Comparison",
+│            lw=2, legend=:topright)
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\expander_pipeline.jl:816
 ┌ Debug: Running ExpanderPipeline on manual\distribution_fitting.md
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\expander_pipeline.jl:45
@@ -846,30 +858,6 @@
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\builder_pipeline.jl:237
 ┌ Debug: checking for missing docstrings.
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\docchecks.jl:42
-┌ Warning: 18 docstrings not included in the manual:
-│ 
-│     MCHammer.cmatrix :: Tuple{Int64}
-│     MCHammer.ExponentialSmoothingMethod
-│     MCHammer.lineprep :: Tuple{Any}
-│     MCHammer.GBMM_Sim :: NTuple{4, Any}
-│     MCHammer.p_fit :: Tuple{Any}
-│     MCHammer.dfnames :: Tuple{Any}
-│     MCHammer.TripleES
-│     MCHammer.seasonal_components :: Tuple{Vector{<:Real}, Int64}
-│     MCHammer.SimpleES
-│     MCHammer.DoubleES
-│     MCHammer.initial_trend :: Tuple{Vector{<:Real}, Int64}
-│     MCHammer.markov_ts :: Union{Tuple{Any, Any}, Tuple{Any, Any, Any}}
-│     MCHammer.LearningCurveMethod
-│     MCHammer.SIPNames :: Tuple{Any}
-│     MCHammer.markov_a :: Tuple{Any}
-│     MCHammer.lc_analytic :: Tuple{CrawfordMethod, Any, Any, Any}
-│     MCHammer.lc_analytic :: Tuple{ExperienceMethod, Any, Any, Any}
-│     MCHammer.lc_analytic :: Tuple{WrightMethod, Any, Any, Any}
-│ 
-│ These are docstrings in the checked modules (configured with the modules keyword)
-│ that are not included in canonical @docs or @autodocs blocks.
-└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\utilities\utilities.jl:49
 ┌ Debug: checking footnote links.
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\docchecks.jl:123
 ┌ Info: Populate: populating indices.
@@ -882,321 +870,351 @@
 └ @ Documenter.HTMLWriter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\html\HTMLWriter.jl:788
 ┌ Debug: edit_url
 │   path = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\docs\src\tutorials\3_NPV_testmodel.md
-│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "0565a3e942274b1779ac6814cf9d32cafdedd540"), relpath = "docs\\src\\tutorials\\3_NPV_testmodel.md")
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "docs\\src\\tutorials\\3_NPV_testmodel.md")
 │   rev = master
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:881
 ┌ Debug: Rendering manual\3_time_series.md [5]
 └ @ Documenter.HTMLWriter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\html\HTMLWriter.jl:788
 ┌ Debug: edit_url
 │   path = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\docs\src\manual\3_time_series.md
-│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "0565a3e942274b1779ac6814cf9d32cafdedd540"), relpath = "docs\\src\\manual\\3_time_series.md")
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "docs\\src\\manual\\3_time_series.md")
 │   rev = master
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:881
-┌ Debug: relpath_from_remote_root: adding pkg registry -based remote
-│   remoteref = Documenter.RemoteRepository("C:\\Users\\EricTorkia\\.julia\\packages\\MCHammer\\0gI0c", Documenter.Remotes.GitHub("etorkia", "MCHammer.jl"), "v0.2.0")
-└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:847
 ┌ Debug: source_url
 │   mod = MCHammer
-│   file = C:\Users\EricTorkia\.julia\packages\MCHammer\0gI0c\src\mch_timeseries.jl
+│   file = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\src\mch_timeseries.jl
 │   linerange = 8:19
-│   remoteref = (repo = Documenter.RemoteRepository("C:\\Users\\EricTorkia\\.julia\\packages\\MCHammer\\0gI0c", Documenter.Remotes.GitHub("etorkia", "MCHammer.jl"), "v0.2.0"), relpath = "src\\mch_timeseries.jl")
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "src\\mch_timeseries.jl")
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:909
 ┌ Debug: source_url
 │   mod = MCHammer
-│   file = C:\Users\EricTorkia\.julia\packages\MCHammer\0gI0c\src\mch_timeseries.jl
+│   file = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\src\mch_timeseries.jl
 │   linerange = 58:70
-│   remoteref = (repo = Documenter.RemoteRepository("C:\\Users\\EricTorkia\\.julia\\packages\\MCHammer\\0gI0c", Documenter.Remotes.GitHub("etorkia", "MCHammer.jl"), "v0.2.0"), relpath = "src\\mch_timeseries.jl")
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "src\\mch_timeseries.jl")
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:909
 ┌ Debug: source_url
 │   mod = MCHammer
-│   file = C:\Users\EricTorkia\.julia\packages\MCHammer\0gI0c\src\mch_timeseries.jl
+│   file = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\src\mch_timeseries.jl
 │   linerange = 83:94
-│   remoteref = (repo = Documenter.RemoteRepository("C:\\Users\\EricTorkia\\.julia\\packages\\MCHammer\\0gI0c", Documenter.Remotes.GitHub("etorkia", "MCHammer.jl"), "v0.2.0"), relpath = "src\\mch_timeseries.jl")
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "src\\mch_timeseries.jl")
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:909
 ┌ Debug: source_url
 │   mod = MCHammer
-│   file = C:\Users\EricTorkia\.julia\packages\MCHammer\0gI0c\src\mch_stochastic.jl
+│   file = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\src\mch_stochastic.jl
 │   linerange = 89:101
-│   remoteref = (repo = Documenter.RemoteRepository("C:\\Users\\EricTorkia\\.julia\\packages\\MCHammer\\0gI0c", Documenter.Remotes.GitHub("etorkia", "MCHammer.jl"), "v0.2.0"), relpath = "src\\mch_stochastic.jl")
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "src\\mch_stochastic.jl")
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:909
 ┌ Debug: Rendering manual\ExponentialSmoothing.md [6]
 └ @ Documenter.HTMLWriter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\html\HTMLWriter.jl:788
 ┌ Debug: edit_url
 │   path = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\docs\src\manual\ExponentialSmoothing.md
-│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "0565a3e942274b1779ac6814cf9d32cafdedd540"), relpath = "docs\\src\\manual\\ExponentialSmoothing.md")
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "docs\\src\\manual\\ExponentialSmoothing.md")
 │   rev = master
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:881
 ┌ Debug: source_url
 │   mod = MCHammer
-│   file = C:\Users\EricTorkia\.julia\packages\MCHammer\0gI0c\src\mch_ExponentialSmoothing.jl
+│   file = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\src\mch_ExponentialSmoothing.jl
 │   linerange = 105:117
-│   remoteref = (repo = Documenter.RemoteRepository("C:\\Users\\EricTorkia\\.julia\\packages\\MCHammer\\0gI0c", Documenter.Remotes.GitHub("etorkia", "MCHammer.jl"), "v0.2.0"), relpath = "src\\mch_ExponentialSmoothing.jl")
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "src\\mch_ExponentialSmoothing.jl")
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:909
 ┌ Debug: source_url
 │   mod = MCHammer
-│   file = C:\Users\EricTorkia\.julia\packages\MCHammer\0gI0c\src\mch_ExponentialSmoothing.jl
+│   file = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\src\mch_ExponentialSmoothing.jl
 │   linerange = 136:150
-│   remoteref = (repo = Documenter.RemoteRepository("C:\\Users\\EricTorkia\\.julia\\packages\\MCHammer\\0gI0c", Documenter.Remotes.GitHub("etorkia", "MCHammer.jl"), "v0.2.0"), relpath = "src\\mch_ExponentialSmoothing.jl")
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "src\\mch_ExponentialSmoothing.jl")
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:909
 ┌ Debug: source_url
 │   mod = MCHammer
-│   file = C:\Users\EricTorkia\.julia\packages\MCHammer\0gI0c\src\mch_ExponentialSmoothing.jl
+│   file = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\src\mch_ExponentialSmoothing.jl
 │   linerange = 169:181
-│   remoteref = (repo = Documenter.RemoteRepository("C:\\Users\\EricTorkia\\.julia\\packages\\MCHammer\\0gI0c", Documenter.Remotes.GitHub("etorkia", "MCHammer.jl"), "v0.2.0"), relpath = "src\\mch_ExponentialSmoothing.jl")
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "src\\mch_ExponentialSmoothing.jl")
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:909
 ┌ Debug: source_url
 │   mod = MCHammer
-│   file = C:\Users\EricTorkia\.julia\packages\MCHammer\0gI0c\src\mch_ExponentialSmoothing.jl
+│   file = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\src\mch_ExponentialSmoothing.jl
 │   linerange = 210:223
-│   remoteref = (repo = Documenter.RemoteRepository("C:\\Users\\EricTorkia\\.julia\\packages\\MCHammer\\0gI0c", Documenter.Remotes.GitHub("etorkia", "MCHammer.jl"), "v0.2.0"), relpath = "src\\mch_ExponentialSmoothing.jl")
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "src\\mch_ExponentialSmoothing.jl")
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:909
 ┌ Debug: source_url
 │   mod = MCHammer
-│   file = C:\Users\EricTorkia\.julia\packages\MCHammer\0gI0c\src\mch_ExponentialSmoothing.jl
+│   file = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\src\mch_ExponentialSmoothing.jl
 │   linerange = 264:275
-│   remoteref = (repo = Documenter.RemoteRepository("C:\\Users\\EricTorkia\\.julia\\packages\\MCHammer\\0gI0c", Documenter.Remotes.GitHub("etorkia", "MCHammer.jl"), "v0.2.0"), relpath = "src\\mch_ExponentialSmoothing.jl")
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "src\\mch_ExponentialSmoothing.jl")
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:909
 ┌ Debug: source_url
 │   mod = MCHammer
-│   file = C:\Users\EricTorkia\.julia\packages\MCHammer\0gI0c\src\mch_ExponentialSmoothing.jl
+│   file = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\src\mch_ExponentialSmoothing.jl
 │   linerange = 322:334
-│   remoteref = (repo = Documenter.RemoteRepository("C:\\Users\\EricTorkia\\.julia\\packages\\MCHammer\\0gI0c", Documenter.Remotes.GitHub("etorkia", "MCHammer.jl"), "v0.2.0"), relpath = "src\\mch_ExponentialSmoothing.jl")
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "src\\mch_ExponentialSmoothing.jl")
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:909
 ┌ Debug: source_url
 │   mod = MCHammer
-│   file = C:\Users\EricTorkia\.julia\packages\MCHammer\0gI0c\src\mch_ExponentialSmoothing.jl
+│   file = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\src\mch_ExponentialSmoothing.jl
 │   linerange = 289:307
-│   remoteref = (repo = Documenter.RemoteRepository("C:\\Users\\EricTorkia\\.julia\\packages\\MCHammer\\0gI0c", Documenter.Remotes.GitHub("etorkia", "MCHammer.jl"), "v0.2.0"), relpath = "src\\mch_ExponentialSmoothing.jl")
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "src\\mch_ExponentialSmoothing.jl")
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:909
 ┌ Debug: Rendering tutorials\1_first_model.md [8]
 └ @ Documenter.HTMLWriter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\html\HTMLWriter.jl:788
 ┌ Debug: edit_url
 │   path = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\docs\src\tutorials\1_first_model.md
-│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "0565a3e942274b1779ac6814cf9d32cafdedd540"), relpath = "docs\\src\\tutorials\\1_first_model.md")
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "docs\\src\\tutorials\\1_first_model.md")
 │   rev = master
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:881
 ┌ Debug: Rendering manual\distribution_fitting.md [3]
 └ @ Documenter.HTMLWriter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\html\HTMLWriter.jl:788
 ┌ Debug: edit_url
 │   path = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\docs\src\manual\distribution_fitting.md
-│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "0565a3e942274b1779ac6814cf9d32cafdedd540"), relpath = "docs\\src\\manual\\distribution_fitting.md")
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "docs\\src\\manual\\distribution_fitting.md")
 │   rev = master
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:881
 ┌ Debug: source_url
 │   mod = MCHammer
-│   file = C:\Users\EricTorkia\.julia\packages\MCHammer\0gI0c\src\mch_DistributionFitting.jl
+│   file = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\src\mch_DistributionFitting.jl
 │   linerange = 4:17
-│   remoteref = (repo = Documenter.RemoteRepository("C:\\Users\\EricTorkia\\.julia\\packages\\MCHammer\\0gI0c", Documenter.Remotes.GitHub("etorkia", "MCHammer.jl"), "v0.2.0"), relpath = "src\\mch_DistributionFitting.jl")
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "src\\mch_DistributionFitting.jl")
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:909
 ┌ Debug: source_url
 │   mod = MCHammer
-│   file = C:\Users\EricTorkia\.julia\packages\MCHammer\0gI0c\src\mch_DistributionFitting.jl
+│   file = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\src\mch_DistributionFitting.jl
 │   linerange = 109:131
-│   remoteref = (repo = Documenter.RemoteRepository("C:\\Users\\EricTorkia\\.julia\\packages\\MCHammer\\0gI0c", Documenter.Remotes.GitHub("etorkia", "MCHammer.jl"), "v0.2.0"), relpath = "src\\mch_DistributionFitting.jl")
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "src\\mch_DistributionFitting.jl")
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:909
 ┌ Debug: source_url
 │   mod = MCHammer
-│   file = C:\Users\EricTorkia\.julia\packages\MCHammer\0gI0c\src\mch_DistributionFitting.jl
+│   file = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\src\mch_DistributionFitting.jl
 │   linerange = 258:285
-│   remoteref = (repo = Documenter.RemoteRepository("C:\\Users\\EricTorkia\\.julia\\packages\\MCHammer\\0gI0c", Documenter.Remotes.GitHub("etorkia", "MCHammer.jl"), "v0.2.0"), relpath = "src\\mch_DistributionFitting.jl")
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "src\\mch_DistributionFitting.jl")
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:909
 ┌ Debug: Rendering tutorials\2_Correlated_Model.md [9]
 └ @ Documenter.HTMLWriter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\html\HTMLWriter.jl:788
 ┌ Debug: edit_url
 │   path = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\docs\src\tutorials\2_Correlated_Model.md
-│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "0565a3e942274b1779ac6814cf9d32cafdedd540"), relpath = "docs\\src\\tutorials\\2_Correlated_Model.md")
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "docs\\src\\tutorials\\2_Correlated_Model.md")
 │   rev = master
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:881
 ┌ Debug: Rendering manual\2_charts.md [4]
 └ @ Documenter.HTMLWriter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\html\HTMLWriter.jl:788
 ┌ Debug: edit_url
 │   path = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\docs\src\manual\2_charts.md
-│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "0565a3e942274b1779ac6814cf9d32cafdedd540"), relpath = "docs\\src\\manual\\2_charts.md")
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "docs\\src\\manual\\2_charts.md")
 │   rev = master
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:881
 ┌ Debug: source_url
 │   mod = MCHammer
-│   file = C:\Users\EricTorkia\.julia\packages\MCHammer\0gI0c\src\mch_charts.jl
+│   file = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\src\mch_charts.jl
 │   linerange = 16:22
-│   remoteref = (repo = Documenter.RemoteRepository("C:\\Users\\EricTorkia\\.julia\\packages\\MCHammer\\0gI0c", Documenter.Remotes.GitHub("etorkia", "MCHammer.jl"), "v0.2.0"), relpath = "src\\mch_charts.jl")
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "src\\mch_charts.jl")
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:909
 ┌ Debug: source_url
 │   mod = MCHammer
-│   file = C:\Users\EricTorkia\.julia\packages\MCHammer\0gI0c\src\mch_charts.jl
+│   file = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\src\mch_charts.jl
 │   linerange = 48:54
-│   remoteref = (repo = Documenter.RemoteRepository("C:\\Users\\EricTorkia\\.julia\\packages\\MCHammer\\0gI0c", Documenter.Remotes.GitHub("etorkia", "MCHammer.jl"), "v0.2.0"), relpath = "src\\mch_charts.jl")
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "src\\mch_charts.jl")
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:909
 ┌ Debug: source_url
 │   mod = MCHammer
-│   file = C:\Users\EricTorkia\.julia\packages\MCHammer\0gI0c\src\mch_charts.jl
+│   file = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\src\mch_charts.jl
 │   linerange = 318:325
-│   remoteref = (repo = Documenter.RemoteRepository("C:\\Users\\EricTorkia\\.julia\\packages\\MCHammer\\0gI0c", Documenter.Remotes.GitHub("etorkia", "MCHammer.jl"), "v0.2.0"), relpath = "src\\mch_charts.jl")
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "src\\mch_charts.jl")
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:909
 ┌ Debug: source_url
 │   mod = MCHammer
-│   file = C:\Users\EricTorkia\.julia\packages\MCHammer\0gI0c\src\mch_charts.jl
+│   file = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\src\mch_charts.jl
 │   linerange = 82:104
-│   remoteref = (repo = Documenter.RemoteRepository("C:\\Users\\EricTorkia\\.julia\\packages\\MCHammer\\0gI0c", Documenter.Remotes.GitHub("etorkia", "MCHammer.jl"), "v0.2.0"), relpath = "src\\mch_charts.jl")
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "src\\mch_charts.jl")
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:909
 ┌ Debug: source_url
 │   mod = MCHammer
-│   file = C:\Users\EricTorkia\.julia\packages\MCHammer\0gI0c\src\mch_charts.jl
+│   file = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\src\mch_charts.jl
 │   linerange = 229:234
-│   remoteref = (repo = Documenter.RemoteRepository("C:\\Users\\EricTorkia\\.julia\\packages\\MCHammer\\0gI0c", Documenter.Remotes.GitHub("etorkia", "MCHammer.jl"), "v0.2.0"), relpath = "src\\mch_charts.jl")
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "src\\mch_charts.jl")
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:909
 ┌ Debug: source_url
 │   mod = MCHammer
-│   file = C:\Users\EricTorkia\.julia\packages\MCHammer\0gI0c\src\mch_charts.jl
+│   file = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\src\mch_charts.jl
 │   linerange = 273:277
-│   remoteref = (repo = Documenter.RemoteRepository("C:\\Users\\EricTorkia\\.julia\\packages\\MCHammer\\0gI0c", Documenter.Remotes.GitHub("etorkia", "MCHammer.jl"), "v0.2.0"), relpath = "src\\mch_charts.jl")
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "src\\mch_charts.jl")
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:909
 ┌ Debug: Rendering manual\4_moving_results.md [11]
 └ @ Documenter.HTMLWriter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\html\HTMLWriter.jl:788
 ┌ Debug: edit_url
 │   path = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\docs\src\manual\4_moving_results.md
-│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "0565a3e942274b1779ac6814cf9d32cafdedd540"), relpath = "docs\\src\\manual\\4_moving_results.md")
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "docs\\src\\manual\\4_moving_results.md")
 │   rev = master
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:881
 ┌ Debug: source_url
 │   mod = MCHammer
-│   file = C:\Users\EricTorkia\.julia\packages\MCHammer\0gI0c\src\mch_SIPTools.jl
+│   file = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\src\mch_SIPTools.jl
 │   linerange = 158:163
-│   remoteref = (repo = Documenter.RemoteRepository("C:\\Users\\EricTorkia\\.julia\\packages\\MCHammer\\0gI0c", Documenter.Remotes.GitHub("etorkia", "MCHammer.jl"), "v0.2.0"), relpath = "src\\mch_SIPTools.jl")
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "src\\mch_SIPTools.jl")
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:909
 ┌ Debug: source_url
 │   mod = MCHammer
-│   file = C:\Users\EricTorkia\.julia\packages\MCHammer\0gI0c\src\mch_SIPTools.jl
+│   file = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\src\mch_SIPTools.jl
 │   linerange = 192:197
-│   remoteref = (repo = Documenter.RemoteRepository("C:\\Users\\EricTorkia\\.julia\\packages\\MCHammer\\0gI0c", Documenter.Remotes.GitHub("etorkia", "MCHammer.jl"), "v0.2.0"), relpath = "src\\mch_SIPTools.jl")
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "src\\mch_SIPTools.jl")
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:909
 ┌ Debug: source_url
 │   mod = MCHammer
-│   file = C:\Users\EricTorkia\.julia\packages\MCHammer\0gI0c\src\mch_SIPTools.jl
+│   file = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\src\mch_SIPTools.jl
 │   linerange = 223:227
-│   remoteref = (repo = Documenter.RemoteRepository("C:\\Users\\EricTorkia\\.julia\\packages\\MCHammer\\0gI0c", Documenter.Remotes.GitHub("etorkia", "MCHammer.jl"), "v0.2.0"), relpath = "src\\mch_SIPTools.jl")
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "src\\mch_SIPTools.jl")
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:909
 ┌ Debug: source_url
 │   mod = MCHammer
-│   file = C:\Users\EricTorkia\.julia\packages\MCHammer\0gI0c\src\mch_SIPTools.jl
+│   file = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\src\mch_SIPTools.jl
 │   linerange = 26:33
-│   remoteref = (repo = Documenter.RemoteRepository("C:\\Users\\EricTorkia\\.julia\\packages\\MCHammer\\0gI0c", Documenter.Remotes.GitHub("etorkia", "MCHammer.jl"), "v0.2.0"), relpath = "src\\mch_SIPTools.jl")
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "src\\mch_SIPTools.jl")
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:909
 ┌ Debug: Rendering manual\LearningCurves.md [7]
 └ @ Documenter.HTMLWriter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\html\HTMLWriter.jl:788
 ┌ Debug: edit_url
 │   path = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\docs\src\manual\LearningCurves.md
-│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "0565a3e942274b1779ac6814cf9d32cafdedd540"), relpath = "docs\\src\\manual\\LearningCurves.md")
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "docs\\src\\manual\\LearningCurves.md")
 │   rev = master
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:881
 ┌ Debug: source_url
 │   mod = MCHammer
-│   file = C:\Users\EricTorkia\.julia\packages\MCHammer\0gI0c\src\mch_LearningCurves.jl
-│   linerange = 15:33
-│   remoteref = (repo = Documenter.RemoteRepository("C:\\Users\\EricTorkia\\.julia\\packages\\MCHammer\\0gI0c", Documenter.Remotes.GitHub("etorkia", "MCHammer.jl"), "v0.2.0"), relpath = "src\\mch_LearningCurves.jl")
+│   file = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\src\mch_LearningCurves.jl
+│   linerange = 21:49
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "src\\mch_LearningCurves.jl")
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:909
 ┌ Debug: source_url
 │   mod = MCHammer
-│   file = C:\Users\EricTorkia\.julia\packages\MCHammer\0gI0c\src\mch_LearningCurves.jl
-│   linerange = 40:58
-│   remoteref = (repo = Documenter.RemoteRepository("C:\\Users\\EricTorkia\\.julia\\packages\\MCHammer\\0gI0c", Documenter.Remotes.GitHub("etorkia", "MCHammer.jl"), "v0.2.0"), relpath = "src\\mch_LearningCurves.jl")
+│   file = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\src\mch_LearningCurves.jl
+│   linerange = 52:72
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "src\\mch_LearningCurves.jl")
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:909
 ┌ Debug: source_url
 │   mod = MCHammer
-│   file = C:\Users\EricTorkia\.julia\packages\MCHammer\0gI0c\src\mch_LearningCurves.jl
-│   linerange = 65:83
-│   remoteref = (repo = Documenter.RemoteRepository("C:\\Users\\EricTorkia\\.julia\\packages\\MCHammer\\0gI0c", Documenter.Remotes.GitHub("etorkia", "MCHammer.jl"), "v0.2.0"), relpath = "src\\mch_LearningCurves.jl")
+│   file = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\src\mch_LearningCurves.jl
+│   linerange = 75:97
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "src\\mch_LearningCurves.jl")
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:909
 ┌ Debug: source_url
 │   mod = MCHammer
-│   file = C:\Users\EricTorkia\.julia\packages\MCHammer\0gI0c\src\mch_LearningCurves.jl
-│   linerange = 143:154
-│   remoteref = (repo = Documenter.RemoteRepository("C:\\Users\\EricTorkia\\.julia\\packages\\MCHammer\\0gI0c", Documenter.Remotes.GitHub("etorkia", "MCHammer.jl"), "v0.2.0"), relpath = "src\\mch_LearningCurves.jl")
+│   file = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\src\mch_LearningCurves.jl
+│   linerange = 367:388
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "src\\mch_LearningCurves.jl")
+└ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:909
+┌ Warning: Unexpected Julia interpolation in the Markdown. This probably means that you
+│ have an unbalanced or un-escaped $ in the text.
+│ 
+│ To write the dollar sign, escape it with `\$`
+│ 
+│ We don't have the file or line number available, but we got given the value:
+│ 
+│ `200` which is of type `Int64`
+└ @ Documenter.HTMLWriter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\html\HTMLWriter.jl:2312
+┌ Warning: Unexpected Julia interpolation in the Markdown. This probably means that you
+│ have an unbalanced or un-escaped $ in the text.
+│ 
+│ To write the dollar sign, escape it with `\$`
+│ 
+│ We don't have the file or line number available, but we got given the value:
+│ 
+│ `200` which is of type `Int64`
+└ @ Documenter.HTMLWriter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\html\HTMLWriter.jl:2312
+┌ Warning: Unexpected Julia interpolation in the Markdown. This probably means that you
+│ have an unbalanced or un-escaped $ in the text.
+│ 
+│ To write the dollar sign, escape it with `\$`
+│ 
+│ We don't have the file or line number available, but we got given the value:
+│ 
+│ `200` which is of type `Int64`
+└ @ Documenter.HTMLWriter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\html\HTMLWriter.jl:2312
+┌ Debug: source_url
+│   mod = MCHammer
+│   file = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\src\mch_LearningCurves.jl
+│   linerange = 352:357
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "src\\mch_LearningCurves.jl")
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:909
 ┌ Debug: source_url
 │   mod = MCHammer
-│   file = C:\Users\EricTorkia\.julia\packages\MCHammer\0gI0c\src\mch_LearningCurves.jl
-│   linerange = 181:186
-│   remoteref = (repo = Documenter.RemoteRepository("C:\\Users\\EricTorkia\\.julia\\packages\\MCHammer\\0gI0c", Documenter.Remotes.GitHub("etorkia", "MCHammer.jl"), "v0.2.0"), relpath = "src\\mch_LearningCurves.jl")
+│   file = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\src\mch_LearningCurves.jl
+│   linerange = 274:285
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "src\\mch_LearningCurves.jl")
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:909
 ┌ Debug: source_url
 │   mod = MCHammer
-│   file = C:\Users\EricTorkia\.julia\packages\MCHammer\0gI0c\src\mch_LearningCurves.jl
-│   linerange = 196:202
-│   remoteref = (repo = Documenter.RemoteRepository("C:\\Users\\EricTorkia\\.julia\\packages\\MCHammer\\0gI0c", Documenter.Remotes.GitHub("etorkia", "MCHammer.jl"), "v0.2.0"), relpath = "src\\mch_LearningCurves.jl")
+│   file = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\src\mch_LearningCurves.jl
+│   linerange = 299:305
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "src\\mch_LearningCurves.jl")
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:909
 ┌ Debug: source_url
 │   mod = MCHammer
-│   file = C:\Users\EricTorkia\.julia\packages\MCHammer\0gI0c\src\mch_LearningCurves.jl
-│   linerange = 211:216
-│   remoteref = (repo = Documenter.RemoteRepository("C:\\Users\\EricTorkia\\.julia\\packages\\MCHammer\\0gI0c", Documenter.Remotes.GitHub("etorkia", "MCHammer.jl"), "v0.2.0"), relpath = "src\\mch_LearningCurves.jl")
+│   file = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\src\mch_LearningCurves.jl
+│   linerange = 321:330
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "src\\mch_LearningCurves.jl")
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:909
 ┌ Debug: source_url
 │   mod = MCHammer
-│   file = C:\Users\EricTorkia\.julia\packages\MCHammer\0gI0c\src\mch_LearningCurves.jl
-│   linerange = 225:231
-│   remoteref = (repo = Documenter.RemoteRepository("C:\\Users\\EricTorkia\\.julia\\packages\\MCHammer\\0gI0c", Documenter.Remotes.GitHub("etorkia", "MCHammer.jl"), "v0.2.0"), relpath = "src\\mch_LearningCurves.jl")
+│   file = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\src\mch_LearningCurves.jl
+│   linerange = 336:346
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "src\\mch_LearningCurves.jl")
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:909
 ┌ Debug: source_url
 │   mod = MCHammer
-│   file = C:\Users\EricTorkia\.julia\packages\MCHammer\0gI0c\src\mch_LearningCurves.jl
-│   linerange = 242:253
-│   remoteref = (repo = Documenter.RemoteRepository("C:\\Users\\EricTorkia\\.julia\\packages\\MCHammer\\0gI0c", Documenter.Remotes.GitHub("etorkia", "MCHammer.jl"), "v0.2.0"), relpath = "src\\mch_LearningCurves.jl")
+│   file = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\src\mch_LearningCurves.jl
+│   linerange = 447:455
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "src\\mch_LearningCurves.jl")
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:909
 ┌ Debug: Rendering index.md [1]
 └ @ Documenter.HTMLWriter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\html\HTMLWriter.jl:788
 ┌ Debug: edit_url
 │   path = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\docs\src\index.md
-│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "0565a3e942274b1779ac6814cf9d32cafdedd540"), relpath = "docs\\src\\index.md")
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "docs\\src\\index.md")
 │   rev = master
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:881
 ┌ Debug: Rendering manual\1_functions.md [2]
 └ @ Documenter.HTMLWriter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\html\HTMLWriter.jl:788
 ┌ Debug: edit_url
 │   path = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\docs\src\manual\1_functions.md
-│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "0565a3e942274b1779ac6814cf9d32cafdedd540"), relpath = "docs\\src\\manual\\1_functions.md")
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "docs\\src\\manual\\1_functions.md")
 │   rev = master
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:881
 ┌ Debug: source_url
 │   mod = MCHammer
-│   file = C:\Users\EricTorkia\.julia\packages\MCHammer\0gI0c\src\mch_distributions.jl
+│   file = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\src\mch_distributions.jl
 │   linerange = 6:17
-│   remoteref = (repo = Documenter.RemoteRepository("C:\\Users\\EricTorkia\\.julia\\packages\\MCHammer\\0gI0c", Documenter.Remotes.GitHub("etorkia", "MCHammer.jl"), "v0.2.0"), relpath = "src\\mch_distributions.jl")
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "src\\mch_distributions.jl")
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:909
 ┌ Debug: source_url
 │   mod = MCHammer
-│   file = C:\Users\EricTorkia\.julia\packages\MCHammer\0gI0c\src\mch_simtools.jl
+│   file = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\src\mch_simtools.jl
 │   linerange = 7:16
-│   remoteref = (repo = Documenter.RemoteRepository("C:\\Users\\EricTorkia\\.julia\\packages\\MCHammer\\0gI0c", Documenter.Remotes.GitHub("etorkia", "MCHammer.jl"), "v0.2.0"), relpath = "src\\mch_simtools.jl")
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "src\\mch_simtools.jl")
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:909
 ┌ Debug: source_url
 │   mod = MCHammer
-│   file = C:\Users\EricTorkia\.julia\packages\MCHammer\0gI0c\src\mch_simtools.jl
+│   file = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\src\mch_simtools.jl
 │   linerange = 51:56
-│   remoteref = (repo = Documenter.RemoteRepository("C:\\Users\\EricTorkia\\.julia\\packages\\MCHammer\\0gI0c", Documenter.Remotes.GitHub("etorkia", "MCHammer.jl"), "v0.2.0"), relpath = "src\\mch_simtools.jl")
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "src\\mch_simtools.jl")
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:909
 ┌ Debug: source_url
 │   mod = MCHammer
-│   file = C:\Users\EricTorkia\.julia\packages\MCHammer\0gI0c\src\mch_simtools.jl
+│   file = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\src\mch_simtools.jl
 │   linerange = 124:128
-│   remoteref = (repo = Documenter.RemoteRepository("C:\\Users\\EricTorkia\\.julia\\packages\\MCHammer\\0gI0c", Documenter.Remotes.GitHub("etorkia", "MCHammer.jl"), "v0.2.0"), relpath = "src\\mch_simtools.jl")
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "src\\mch_simtools.jl")
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:909
 ┌ Debug: source_url
 │   mod = MCHammer
-│   file = C:\Users\EricTorkia\.julia\packages\MCHammer\0gI0c\src\mch_simtools.jl
+│   file = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\src\mch_simtools.jl
 │   linerange = 166:170
-│   remoteref = (repo = Documenter.RemoteRepository("C:\\Users\\EricTorkia\\.julia\\packages\\MCHammer\\0gI0c", Documenter.Remotes.GitHub("etorkia", "MCHammer.jl"), "v0.2.0"), relpath = "src\\mch_simtools.jl")
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "src\\mch_simtools.jl")
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:909
 ┌ Debug: source_url
 │   mod = MCHammer
-│   file = C:\Users\EricTorkia\.julia\packages\MCHammer\0gI0c\src\mch_simtools.jl
+│   file = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\src\mch_simtools.jl
 │   linerange = 140:144
-│   remoteref = (repo = Documenter.RemoteRepository("C:\\Users\\EricTorkia\\.julia\\packages\\MCHammer\\0gI0c", Documenter.Remotes.GitHub("etorkia", "MCHammer.jl"), "v0.2.0"), relpath = "src\\mch_simtools.jl")
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "src\\mch_simtools.jl")
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:909
 ┌ Debug: source_url
 │   mod = MCHammer
-│   file = C:\Users\EricTorkia\.julia\packages\MCHammer\0gI0c\src\mch_simtools.jl
+│   file = z:\Program Dev\Risk & Simulation\Solution Dev\Julia\mc_hammer\src\mch_simtools.jl
 │   linerange = 147:154
-│   remoteref = (repo = Documenter.RemoteRepository("C:\\Users\\EricTorkia\\.julia\\packages\\MCHammer\\0gI0c", Documenter.Remotes.GitHub("etorkia", "MCHammer.jl"), "v0.2.0"), relpath = "src\\mch_simtools.jl")
+│   remoteref = (repo = Documenter.RemoteRepository("\\\\localhost\\Technology Partnerz\\Program Dev\\Risk & Simulation\\Solution Dev\\Julia\\mc_hammer", Documenter.Remotes.GitHub("etorkia", "mc_hammer"), "68886d34c99f40d0a468fb922a712097e8f8c481"), relpath = "src\\mch_simtools.jl")
 └ @ Documenter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\documents.jl:909
 ┌ Warning: For 25 @example blocks, the 'text/html' representation of the resulting
 │ object is above the threshold (example_size_threshold: 8192 bytes).
@@ -1207,9 +1225,9 @@
 └ @ Documenter.HTMLWriter C:\Users\EricTorkia\.julia\packages\Documenter\tbj1p\src\html\write_inventory.jl:84
 ┌ Debug: called process()
 │   code = ok
-│   input_size = 12540
+│   input_size = 12542
 │   output_size = 16384
-│   input_delta = 12540
+│   input_delta = 12542
 │   output_delta = 2
 └ @ TranscodingStreams C:\Users\EricTorkia\.julia\packages\TranscodingStreams\O3BYF\src\stream.jl:686
 ┌ Debug: called process()
@@ -1217,8 +1235,5 @@
 │   input_size = 0
 │   output_size = 16384
 │   input_delta = 0
-│   output_delta = 2773
+│   output_delta = 2801
 └ @ TranscodingStreams C:\Users\EricTorkia\.julia\packages\TranscodingStreams\O3BYF\src\stream.jl:686
-┌ Debug: getting prompt info failed
-│   exception = (MethodError(REPL.LineEdit.write_prompt, (Base.TTY(Base.Libc.WindowsRawSocket(0x0000000000000278) open, 0 bytes waiting), "Prompt(\"julia> \",...)"), 0x000000000000699a), Union{Ptr{Nothing}, Base.InterpreterIP}[Ptr{Nothing} @0x00007ffce17814fc, Ptr{Nothing} @0x00007ffce178a1e5, Ptr{Nothing} @0x00007ffce178a3cd, Ptr{Nothing} @0x00007ffce178d5bd, Ptr{Nothing} @0x0000015989b6dc84, Ptr{Nothing} @0x0000015989b6e0cf, Ptr{Nothing} @0x0000015989b6edf4, Ptr{Nothing} @0x0000015989b6ffbb, Ptr{Nothing} @0x0000015989b700df, Ptr{Nothing} @0x00007ffce179959b, Ptr{Nothing} @0x0000015989b03dce, Ptr{Nothing} @0x0000015989b03e0b, Ptr{Nothing} @0x00007ffce179ba42, Ptr{Nothing} @0x0000015989ac5ebb, Ptr{Nothing} @0x0000015989ac6124, Ptr{Nothing} @0x00007ffce17b2e03])
-└ @ VSCodeServer c:\Users\EricTorkia\.vscode\extensions\julialang.language-julia-1.149.2\scripts\packages\VSCodeServer\src\eval.jl:165

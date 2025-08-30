@@ -1,4 +1,3 @@
-
 using Logging, LoggingExtras, Documenter
 
 # Create a file logger that writes to "doc_errors.log"

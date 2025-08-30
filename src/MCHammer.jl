@@ -37,9 +37,8 @@ include("mch_timeseries.jl")
 export GBMMfit, GBMM, GBMA_d, GBMM_Sim
 
 include("mch_LearningCurves.jl")
-using .LearningCurves
-export LearningCurveMethod, WrightMethod, CrawfordMethod, ExperienceMethod,
-       lc_analytic, lc_curve, lc_fit, learn_rate, learn_rates
+export LearningCurveMethod, WrightMethod, CrawfordMethod, ExperienceMethod
+export lc_analytic, lc_curve, lc_fit, learn_rate, learn_rates
 
 include("mch_DistributionFitting.jl")
 export autofit_dist, viz_fit, fit_stats
