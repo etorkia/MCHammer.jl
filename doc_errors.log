@@ -1237,3 +1237,7 @@
 │   input_delta = 0
 │   output_delta = 2801
 └ @ TranscodingStreams C:\Users\EricTorkia\.julia\packages\TranscodingStreams\O3BYF\src\stream.jl:686
+┌ Debug: remote closed the connection
+└ @ VSCodeServer c:\Users\EricTorkia\.vscode\extensions\julialang.language-julia-1.149.2\scripts\packages\VSCodeServer\src\VSCodeServer.jl:174
+┌ Debug: JSONRPC dispatcher task finished
+└ @ VSCodeServer c:\Users\EricTorkia\.vscode\extensions\julialang.language-julia-1.149.2\scripts\packages\VSCodeServer\src\VSCodeServer.jl:183

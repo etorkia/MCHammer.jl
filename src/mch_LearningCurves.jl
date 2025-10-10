@@ -210,6 +210,15 @@ function _fit_wright_unit(ns::AbstractVector, ys::AbstractVector)
     return best_a, best_b, 2.0^best_b, best_sse
 end
 
+# Sum for Crawford discrete model: S_b(N) = \sum_{i=1}^N i^b
+_crawford_sum(N::Integer, b::Real) = begin
+    s = 0.0
+    @inbounds for i in 1:N
+        s += i^b
+    end
+    s
+end
+
 # =====================================================================
 # Analytic cumulative‑cost functions
 # =====================================================================
@@ -280,19 +289,31 @@ Estimate Wright **progress ratio** `p` from two observations.
 ```math
 b = \\frac{\\ln(y_2/y_1)}{\\ln(n_2/n_1)}, \\quad p = 2^b.
 ```
-- If `mode = :unit`, `y` values are **unit times** at `n1` and `n2`. The function solves
-for `b` from the unit‑increment relation and returns `p = 2^b`.
+- If `mode = :total` or `mode = :cumulative`, `y` values are **cumulative totals** at `n1` and `n2`. First converts to averages, then applies average formula.
+- If `mode = :unit`, `y` values are **unit times** at `n1` and `n2`. The function solves for `b` from the unit‑increment relation and returns `p = 2^b`.
+- If `mode = :auto` (default), automatically detects data type: if `y2 > y1`, assumes `:total` mode; otherwise `:avg` mode.
 """
-function learn_rate(::WrightMethod, n1::Real, y1::Real, n2::Real, y2::Real; mode::Symbol=:avg)::Float64
+function learn_rate(::WrightMethod, n1::Real, y1::Real, n2::Real, y2::Real; mode::Symbol=:auto)::Float64
     @assert n1>0 && n2>0 && y1>0 && y2>0
+    
+    # Auto-detect mode if requested
+    if mode === :auto
+        mode = (y2 > y1) ? :total : :avg
+    end
+    
     if mode === :avg
         b = (log(y2) - log(y1)) / (log(n2) - log(n1))
+        return 2.0 ^ b
+    elseif mode === :total || mode === :cumulative
+        # Convert totals to averages: avg = total/n
+        avg1, avg2 = y1/n1, y2/n2
+        b = (log(avg2) - log(avg1)) / (log(n2) - log(n1))
         return 2.0 ^ b
     elseif mode === :unit
         b = _wright_two_point_unit_b(n1, y1, n2, y2)
         return 2.0 ^ b
     else
-        error("For two points, set mode=:avg (cumulative averages) or :unit (unit times)." )
+        error("For Wright method, set mode=:auto, :avg (cumulative averages), :total/:cumulative (cumulative totals), or :unit (unit times).")
     end
 end
 
@@ -319,34 +340,192 @@ function learn_rate(::WrightMethod, n::AbstractVector, y::AbstractVector; mode::
 end
 
 """
-    learn_rate(::CrawfordMethod, i1, y1, i2, y2) -> Float64
+    learn_rate(::CrawfordMethod, n1, y1, n2, y2; mode=:auto) -> Float64
 
-Two‑point fit for Crawford’s **unit** model using **per‑unit** costs
-`y(i) = a i^b`. With two observations `(i₁, y₁)` and `(i₂, y₂)`:
-```math
-b = \\frac{\\ln(y_2/y_1)}{\\ln(i_2/i_1)}, \\quad p = 2^b.
-```
+Two-point fit for Crawford's model with multiple data types.
+
+- If `mode = :unit`, `y` values are per-unit costs at units `n1` and `n2`: `y(i) = C1 * i^b`.
+- If `mode = :avg`, `y` values are cumulative averages at `n1` and `n2`. Uses the exact discrete-sum relation A(N) = (C₁/N) · S_b(N) with S_b(N) = ∑ i^b and solves for b.
+- If `mode = :total` or `mode = :cumulative`, `y` values are cumulative totals at `n1` and `n2`. Uses T(N) = C₁ · S_b(N) and solves for b.
+- If `mode = :auto` (default), automatically detects: if `y2 > y1`, assumes `:total`; otherwise `:unit`.
+
 Returns the learning rate `p`.
 """
-function learn_rate(::CrawfordMethod, i1::Real, y1::Real, i2::Real, y2::Real)::Float64
-    b  = (log(y2) - log(y1)) / (log(i2) - log(i1))
-    return 2.0 ^ b
+function learn_rate(::CrawfordMethod, n1::Real, y1::Real, n2::Real, y2::Real; mode::Symbol=:auto)::Float64
+    @assert n1>0 && n2>0 && y1>0 && y2>0
+
+    # Auto-detect mode if requested
+    if mode === :auto
+        mode = (y2 > y1) ? :total : :unit
+    end
+
+    if mode === :unit
+        # Direct unit cost fitting: y(i) = a * i^b
+        b = (log(y2) - log(y1)) / (log(n2) - log(n1))
+        return 2.0 ^ b
+    elseif mode === :total || mode === :cumulative
+        # Exact total fit: T(N) = C1 * S_b(N). Eliminate C1 via ratio and solve for b.
+        R = y2 / y1
+        N1 = Int(round(n1)); N2 = Int(round(n2))
+        @assert N1 ≥ 1 && N2 ≥ 1
+    f_total(b) = log(_crawford_sum(N2, b) / _crawford_sum(N1, b)) - log(R)
+        # Bracket b in a reasonable range (learning to diseconomies)
+        lo, hi = -3.0, 1.0
+        nb = 200
+        xs = range(lo, hi; length=nb)
+        fx_prev = f_total(first(xs)); a = first(xs)
+        bracketed = false
+        for x in xs[2:end]
+            fx = f_total(x)
+            if fx_prev * fx ≤ 0
+                lo = a; hi = x; bracketed = true; break
+            end
+            a = x; fx_prev = fx
+        end
+        if bracketed
+            fa, fb = f_total(lo), f_total(hi)
+            iter = 0; tol = 1e-10
+            while iter < 200 && (hi - lo) > tol
+                mid = (lo + hi) / 2
+                fm = f_total(mid)
+                if fa * fm ≤ 0
+                    hi = mid; fb = fm
+                else
+                    lo = mid; fa = fm
+                end
+                iter += 1
+            end
+            b = (lo + hi) / 2
+            return 2.0 ^ b
+        else
+            # Fallback to average approximation on totals
+            avg1, avg2 = y1/n1, y2/n2
+            b = (log(avg2) - log(avg1)) / (log(n2) - log(n1))
+            return 2.0 ^ b
+        end
+    elseif mode === :avg
+        # Exact average fit: A(N) = (C1/N) * S_b(N). Eliminate C1 via ratio and solve for b.
+        R = y2 / y1
+        N1 = Int(round(n1)); N2 = Int(round(n2))
+        @assert N1 ≥ 1 && N2 ≥ 1
+        f_avg(b) = log((_crawford_sum(N2, b) / N2) / (_crawford_sum(N1, b) / N1)) - log(R)
+        lo, hi = -3.0, 1.0
+        nb = 200
+        xs = range(lo, hi; length=nb)
+        fx_prev = f_avg(first(xs)); a = first(xs)
+        bracketed = false
+        for x in xs[2:end]
+            fx = f_avg(x)
+            if fx_prev * fx ≤ 0
+                lo = a; hi = x; bracketed = true; break
+            end
+            a = x; fx_prev = fx
+        end
+        if bracketed
+            fa, fb = f_avg(lo), f_avg(hi)
+            iter = 0; tol = 1e-10
+            while iter < 200 && (hi - lo) > tol
+                mid = (lo + hi) / 2
+                fm = f_avg(mid)
+                if fa * fm ≤ 0
+                    hi = mid; fb = fm
+                else
+                    lo = mid; fa = fm
+                end
+                iter += 1
+            end
+            b = (lo + hi) / 2
+            return 2.0 ^ b
+        else
+            # Fallback to power law approximation on averages
+            b = (log(y2) - log(y1)) / (log(n2) - log(n1))
+            return 2.0 ^ b
+        end
+    else
+        error("For Crawford method, set mode=:auto, :unit (per-unit costs), :avg (cumulative averages), or :total/:cumulative (cumulative totals).")
+    end
 end
 
 """
-    learn_rate(::ExperienceMethod, n1, avg1, n2, avg2) -> Float64
+    learn_rate(::ExperienceMethod, n1, y1, n2, y2; mode=:auto) -> Float64
 
-Two‑point fit for the Experience curve under the Excel/BCG convention where the
-**exponent equals LR**. Given cumulative **totals** `T(N) = \bar{C}_1 N^{LR}`, the
-average at `N` is `avg(N) = T(N)/N = \bar{C}_1 N^{LR-1}`. Using averages:
-```math
-LR = 1 + \\frac{\\ln(\\mathrm{avg}_2/\\mathrm{avg}_1)}{\\ln(n_2/n_1)}.
-```
+Two‑point fit for the Experience curve with multiple data types.
+
+- If `mode = :avg`, `y` values are **cumulative averages** at `n1` and `n2`. For T(N) = C₁ * N^LR, avg(N) = C₁ * N^(LR-1).
+- If `mode = :total` or `mode = :cumulative`, `y` values are **cumulative totals** at `n1` and `n2`. T(N) = C₁ * N^LR.
+ - If `mode = :unit`, `y` values are **per-unit costs** at `n1` and `n2`. Uses the exact incremental relation
+   ΔT(N) = T(N) − T(N−1) = C̄₁ · [N^LR − (N−1)^LR] and solves numerically for LR from two points.
+- If `mode = :auto` (default), automatically detects: if `y2 > y1`, assumes `:total`; otherwise `:avg`.
+
 Returns `LR` (e.g., `0.8`).
 """
-function learn_rate(::ExperienceMethod, n1::Real, avg1::Real, n2::Real, avg2::Real)::Float64
-    LR = 1 + (log(avg2) - log(avg1)) / (log(n2) - log(n1))
-    return LR
+function learn_rate(::ExperienceMethod, n1::Real, y1::Real, n2::Real, y2::Real; mode::Symbol=:auto)::Float64
+    @assert n1>0 && n2>0 && y1>0 && y2>0
+    
+    # Auto-detect mode if requested
+    if mode === :auto
+        mode = (y2 > y1) ? :total : :avg
+    end
+    
+    if mode === :avg
+        # For T(N) = C₁ * N^LR, avg(N) = T(N)/N = C₁ * N^(LR-1)
+        # So LR = 1 + ln(avg₂/avg₁)/ln(n₂/n₁)
+        LR = 1 + (log(y2) - log(y1)) / (log(n2) - log(n1))
+        return LR
+    elseif mode === :total || mode === :cumulative
+        # Direct total fitting: T(N) = C₁ * N^LR
+        # So LR = ln(T₂/T₁)/ln(n₂/n₁)
+        LR = (log(y2) - log(y1)) / (log(n2) - log(n1))
+        return LR
+    elseif mode === :unit
+        # Exact unit costs from Experience total: ΔT(N) = T(N) − T(N−1) = C̄₁·[N^LR − (N−1)^LR]
+        # Given (n1,y1) and (n2,y2), solve for LR in (0,1] such that
+        #   y2/y1 = [n2^LR − (n2−1)^LR] / [n1^LR − (n1−1)^LR]
+        R = y2 / y1
+        @assert R > 0
+        diff(n, LR) = (n^LR - (n-1)^LR)
+        f(LR) = log(diff(n2, LR) / diff(n1, LR)) - log(R)
+
+        # Try to bracket a root for f(LR) on a reasonable interval
+        lo, hi = 1e-6, 2.0
+        nbins = 200
+        xs = range(lo, hi; length=nbins)
+        fx_prev = f(first(xs))
+        a = first(xs)
+        bracketed = false
+        for x in xs[2:end]
+            fx = f(x)
+            if fx_prev * fx ≤ 0
+                lo = a; hi = x; bracketed = true
+                break
+            end
+            a = x; fx_prev = fx
+        end
+
+        if bracketed
+            # Bisection
+            fa, fb = f(lo), f(hi)
+            iter = 0
+            tol = 1e-10
+            while iter < 200 && (hi - lo) > tol
+                mid = (lo + hi) / 2
+                fm = f(mid)
+                if fa * fm ≤ 0
+                    hi = mid; fb = fm
+                else
+                    lo = mid; fa = fm
+                end
+                iter += 1
+            end
+            return (lo + hi) / 2
+        else
+            # Fallback: power-law approximation on units
+            b = (log(y2) - log(y1)) / (log(n2) - log(n1))
+            return 1 + b
+        end
+    else
+        error("For Experience method, set mode=:auto, :avg (cumulative averages), :total/:cumulative (cumulative totals), or :unit (per-unit costs).")
+    end
 end
 
 """
@@ -449,7 +628,7 @@ function learn_rates(InitialEffort::Real, TotalUnits::Integer; LR_step::Real=0.1
         e_cost = lc_analytic(ExperienceMethod(),  InitialEffort, TotalUnits, LR)
         push!(df, (Float64(LR), w_cost, c_cost, e_cost))
     end
-
+     df.RetentionRate = 1 .- df.LR  # for sorting
     sort!(df, :LR, rev=true)  # show 1.0 → smaller LR
     return df
 end
