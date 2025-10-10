@@ -363,7 +363,6 @@ end
 # =====================================================================
 # Curve generation
 # =====================================================================
-
 """
     lc_curve(method::LearningCurveMethod,
              InitialEffort::Real,
@@ -375,16 +374,13 @@ end
 Build a table of cumulative and per-unit costs.
 
 Columns:
-- `Units` — cumulative units at this row
-- `CumulativeCost` — total cost up to `Units`
-- `Incremental` — incremental cost over the last `steps` units
-- `AvgCost` — cumulative average cost up to `Units`
+- `Units` — cumulative units at this row (StartUnit:steps:TotalUnits)
+- `CumulativeCost` — total cost up to `Units` (via `lc_analytic`)
+- `Incremental` — **per-unit** cost at `Units` (`C_N`)
+  * Wright/Experience: `T(N) - T(N-1)` where `T(·)` is the cumulative total
+  * Crawford: direct unit cost `C_N = C₁ · N^b`, with `b = log(LR)/log(2)`
+- `AvgCost` — `CumulativeCost / Units`
 - `Method` — method name
-
-Notes on `Incremental`:
-- **Wright** uses block-difference of `C_1 N^{b+1}` divided by `steps`.
-- **Crawford** uses the average of unit costs `C_1 i^b` over the block.
-- **Experience** uses block-difference of `\bar{C}_1 N^{LR}` divided by `steps`.
 """
 function lc_curve(method::LearningCurveMethod,
                   InitialEffort::Real,
@@ -399,41 +395,28 @@ function lc_curve(method::LearningCurveMethod,
     df = DataFrame(Units=Float64[], CumulativeCost=Float64[],
                    Incremental=Float64[], AvgCost=Float64[], Method=String[])
 
-    if method isa WrightMethod
-        method_str = "Wright"
-    elseif method isa CrawfordMethod
-        method_str = "Crawford"
-    elseif method isa ExperienceMethod
-        method_str = "Experience"
-    else
-        method_str = "Unknown"
-    end
+    method_str = method isa WrightMethod    ? "Wright" :
+                 method isa CrawfordMethod  ? "Crawford" :
+                 method isa ExperienceMethod ? "Experience" : "Unknown"
+
+    # precompute b when needed
+    b = (method isa WrightMethod || method isa CrawfordMethod) ? _b_from_p(Learning) : nothing
 
     for n in StartUnit:steps:TotalUnits
-        cp = lc_analytic(method, InitialEffort, n, Learning)
-        avg = cp / n
+        # cumulative total via the package's analytic formula
+        cum = lc_analytic(method, InitialEffort, n, Learning)
+        avg = cum / n
 
-        inc = 0.0
-        if method isa WrightMethod
-            b = _b_from_p(Learning)
-            total = InitialEffort * (n ^ (1 + b))
-            prior_total = n - steps ≥ 1 ? InitialEffort * ((n - steps) ^ (1 + b)) : 0.0
-            inc = (total - prior_total) / steps
-        elseif method isa CrawfordMethod
-            b = _b_from_p(Learning)
-            s = 0.0
-            for i in max(1, n - steps + 1):n
-                s += InitialEffort * (i ^ b)
-            end
-            inc = s / steps
-        elseif method isa ExperienceMethod
-            prior = n - steps ≥ 1 ? InitialEffort * ((n - steps) ^ Learning) : 0.0
-            inc = (InitialEffort * (n ^ Learning) - prior) / steps
+        incr = if method isa CrawfordMethod
+            # unit model: per-unit cost at N
+            InitialEffort * (n ^ b)
         else
-            inc = 0.0  # fallback for unknown methods
+            # average models (Wright, Experience): per-unit = T(N) - T(N-1)
+            prev_cum = (n > 1) ? lc_analytic(method, InitialEffort, n - 1, Learning) : 0.0
+            cum - prev_cum
         end
 
-        push!(df, (float(n), cp, inc, avg, method_str))
+        push!(df, (Float64(n), cum, incr, avg, method_str))
     end
 
     return df
@@ -445,25 +428,31 @@ end
 
 
 """
-    learn_rates(InitialEffort, TotalUnits; α_step=0.1) -> DataFrame
+    learn_rates(InitialEffort, TotalUnits; LR_step=0.1) -> DataFrame
 
-Compare cumulative total cost across methods for a sweep of learning rates `LR` in `(0,1]`.
+Compare cumulative total cost across methods for a sweep of progress ratios `LR` in (0, 1].
 
-- Wright: `C_1 * N^(1 + b)` with `b = log(LR)/log 2`
-- Crawford: `∑ C_1 * i^b` with `b = log(LR)/log 2`
-- Experience: `\bar{C}_1 * N^(LR)`
+Totals at N = `TotalUnits`:
+- Wright:     T_W(N) = C₁ * N^(1 + b),   with b = log(LR) / log(2)
+- Crawford:   T_C(N) = ∑_{i=1}^N C₁ * i^b, with b = log(LR) / log(2)
+- Experience: T_E(N) = C₁ * N^(LR)
 """
-function learn_rates(InitialEffort::Real, TotalUnits::Integer; α_step::Real=0.1)::DataFrame
-    @assert 0 < α_step ≤ 1 "α_step must be in (0,1]"
-    df = DataFrame(LC=Float64[], Wright=Float64[], Crawford=Float64[], Experience=Float64[])
-    for lc in α_step:α_step:1.0
-        w_cost = lc_analytic(WrightMethod(),    InitialEffort, TotalUnits, lc)
-        c_cost = lc_analytic(CrawfordMethod(),  InitialEffort, TotalUnits, lc)
-        e_cost = lc_analytic(ExperienceMethod(),InitialEffort, TotalUnits, lc)
-        push!(df, (lc, w_cost, c_cost, e_cost))
+function learn_rates(InitialEffort::Real, TotalUnits::Integer; LR_step::Real=0.1)::DataFrame
+    @assert 0 < LR_step ≤ 1 "LR_step must be in (0,1]"
+
+    df = DataFrame(LR=Float64[], Wright=Float64[], Crawford=Float64[], Experience=Float64[])
+
+    # Sweep LR from LR_step up to 1.0
+    for LR in range(LR_step, stop=1.0, step=LR_step)
+        w_cost = lc_analytic(WrightMethod(),      InitialEffort, TotalUnits, LR)
+        c_cost = lc_analytic(CrawfordMethod(),    InitialEffort, TotalUnits, LR)
+        e_cost = lc_analytic(ExperienceMethod(),  InitialEffort, TotalUnits, LR)
+        push!(df, (Float64(LR), w_cost, c_cost, e_cost))
     end
-    sort!(df, :LC, rev=true)
+
+    sort!(df, :LR, rev=true)  # show 1.0 → smaller LR
     return df
 end
+
 
 #end # module
