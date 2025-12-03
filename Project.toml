@@ -3,11 +3,9 @@ uuid = "58716550-704d-11e9-05c2-8f708e47025f"
 authors = ["Eric Torkia <etorkia@technologypartnerz.com>"]
 version = "0.2.2"
 
-[build]
-script = "build.jl"
-
 [deps]
 CSV = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
+Colors = "5ae59095-9a9b-59fe-a467-6f913c188581"
 DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
 DataFramesMeta = "1313f7d8-7da2-5740-9ea0-a2ca25f37964"
 Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
@@ -16,7 +14,9 @@ GraphRecipes = "bd48cda9-67a9-57be-86fa-5b3c104eda73"
 HypothesisTests = "09f84164-cd44-5f33-b23f-e6b0d136a0d5"
 InlineStrings = "842dd82b-1e85-43dc-bf29-5d0ee9dffc48"
 IterableTables = "1c8ee90f-4401-5389-894e-7a04a3dc0f4d"
+JSON3 = "0f8b85d8-7281-11e9-16c2-39a750bddbf1"
 LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
+Measures = "442fdcdd-2543-5da2-b0f3-8c86c306513e"
 Plots = "91a5bcdd-55d7-5caf-9e0b-520d859cae80"
 Printf = "de0858da-6303-5e67-8744-51eddeeeb8d7"
 Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
@@ -27,14 +27,18 @@ StatsPlots = "f3b207a7-027a-5e70-b257-86293d7955fd"
 TimeSeries = "9e3dc215-6440-5c97-bce1-76c03772f85e"
 
 [compat]
-
+CSV = "0.9.0 - 0.10"
+Colors = "0.13.1"
 DataFrames = "1.0 - 2.0"
 DataFramesMeta = "^0.15"
 Dates = "^1.8"
 Distributions = "0.23.2 - 0.25.118"
 GraphRecipes = "^0.5.13"
 HypothesisTests = "^0.11.3"
+InlineStrings = "1.0 - 1.4"
 IterableTables = "^1.0"
+JSON3 = "1.14.3"
+Measures = "0.3.3"
 Plots = "^1.29"
 Statistics = "^1.0"
 StatsAPI = "^1.6"
@@ -42,8 +46,9 @@ StatsBase = "0.24 - 0.34"
 StatsPlots = "^0.15"
 TimeSeries = "^0.20"
 julia = "^1.0"
-InlineStrings = "1.0 - 1.4"
-CSV = "0.9.0 - 0.10"
+
+[build]
+script = "build.jl"
 
 [extras]
 Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"

@@ -7,7 +7,7 @@ using LinearAlgebra, HypothesisTests
 using Distributions, DataFrames, DataFramesMeta, CSV, IterableTables
 using Statistics, StatsBase, StatsAPI, StatsPlots, Random
 using TimeSeries, Dates
-using Plots, Printf, GraphRecipes
+using Plots, Printf, GraphRecipes, Measures
 
 import StatsBase: tiedrank
 import Random: rand, rand!, seed!
@@ -31,7 +31,7 @@ include("mch_SIPTools.jl")
 export sip2csv, importxlsip, importsip, genmeta
 
 include("mch_stochastic.jl")
-export marty, markov_a, markov_ts, cmatrix
+export marty, markov_solve, markov_ts, cmatrix, markov_ts_plot, markov_state_graph, cmatrix
 
 include("mch_timeseries.jl")
 export GBMMfit, GBMM, GBMA_d, GBMM_Sim
