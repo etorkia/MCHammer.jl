@@ -2,6 +2,13 @@
 
 This page documents the exponential smoothing methods and functions provided by the package, including detailed explanations, docstrings, and usage examples.
 
+```@docs
+ExponentialSmoothingMethod
+SimpleES
+DoubleES
+TripleES
+```
+
 ## Method Functions
 ### Simple Exponential Smoothing
 

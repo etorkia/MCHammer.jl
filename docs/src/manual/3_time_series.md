@@ -68,7 +68,9 @@ Random.seed!(1)
 GBMA_d(100, 504,0.03,.3, rng=rng)
 ```
   
-
+```@docs
+GBMM_Sim
+```
 
 ### Example: Profit Random Walk
 

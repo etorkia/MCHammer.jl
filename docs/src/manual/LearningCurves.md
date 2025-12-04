@@ -15,6 +15,10 @@ The following documentation covers three popular methods implemented using Julia
 
 ## Learning Curve Methods
 
+```@docs
+LearningCurveMethod
+```
+
 The learning curve methods are implemented as an abstract type hierarchy:
 
 - `LearningCurveMethod`: Abstract base type
@@ -43,6 +47,14 @@ ExperienceMethod
 ## Cumulative Cost Analysis
 
 To compute cumulative cost analytically for an experience curve, here are the functions to accomplish this.
+
+```@docs
+```@docs
+lc_analytic(::ExperienceMethod, Real, Integer, Real)
+lc_analytic(::WrightMethod, Real, Integer, Real)
+lc_analytic(::CrawfordMethod, Real, Integer, Real)
+```
+```
 
 ### Wright Learning Curve
 
@@ -154,7 +166,7 @@ learn_rates
 
 **Example:**
 ```@example LCs
-rates_df = learn_rates(100, 500; α_step=0.05)
+rates_df = learn_rates(100, 500; LR_step=0.05)
 println(first(rates_df, 5))
 ```
 

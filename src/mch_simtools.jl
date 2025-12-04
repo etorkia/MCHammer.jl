@@ -82,7 +82,6 @@ The corvar function correlates simulation inputs unsing the Iman Conover Method.
 
 **correl_matrix**: must be defined as a Square Positive Definite correlation matrix. This can be calculated from histroical data using `cormat()` function.
 """
-
 function corvar(ArrayName, n_trials, correl_matrix)
 
 if typeof(ArrayName) == Array{Float64,2}

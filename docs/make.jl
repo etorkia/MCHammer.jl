@@ -61,8 +61,8 @@ makedocs(
         canonical = "https://etorkia.github.io/MCHammer.jl/",
         assets = ["assets/favicon.ico"],
         analytics = "UA-3913053-5",
-        example_size_threshold = 3_000_000_000,
-        size_threshold = 700 * 1024
+        example_size_threshold = 10_000_000_000,
+        size_threshold = 1024 * 1024
     ),
     authors = "Eric Torkia and contributors",
     doctest = true,
