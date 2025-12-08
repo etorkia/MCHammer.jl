@@ -220,23 +220,19 @@ function markov_ts(T::AbstractMatrix, start_vec; trials::Int=1, state_names=noth
     @assert length(start_vec) == n "start_vec must match number of states."
     @assert trials ≥ 1        "trials must be at least 1."
 
-    # ensure Float64 and don't mutate caller input
     current = collect(float.(start_vec))
-
-    # one-step evolution: vᵗ * T → as column-style vector
     step(T, v) = (v' * T)'
 
-    # n × trials matrix to store time series
-    series = Array{Float64}(undef, n, trials)
-
-    # first step
-    current = step(T, current)
+    # n × (trials + 1) matrix: column 1 is period 0, columns 2..(trials+1) are transitions
+    series = Array{Float64}(undef, n, trials + 1)
+    
+    # Period 0: initial state
     series[:, 1] .= current
-
-    # remaining steps
-    for k in 2:trials
+    
+    # Periods 1 through trials
+    for k in 1:trials
         current = step(T, current)
-        series[:, k] .= current
+        series[:, k + 1] .= current
     end
 
     # if no state names, just return numeric matrix
@@ -259,13 +255,13 @@ function markov_ts(T::AbstractMatrix, start_vec; trials::Int=1, state_names=noth
             fill("Ergodic", n)
         end
 
-    # -------- build DataFrame: State | Type | 1 | 2 | ... | trials --------
+    # -------- build DataFrame: State | Type | 0 | 1 | 2 | ... | trials --------
     df = DataFrame()
     df.State = state_names
     df.Type  = type_col
 
-    for k in 1:trials
-        df[!, Symbol(k)] = series[:, k]
+    for k in 0:trials
+        df[!, Symbol(k)] = series[:, k + 1]
     end
 
     return df
